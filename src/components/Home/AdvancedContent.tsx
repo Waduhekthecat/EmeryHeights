@@ -1,0 +1,101 @@
+import React from 'react'
+import styled from 'styled-components'
+import Card1 from './Card1'
+import Card2 from './Card2'
+import Card3 from './Card3'
+import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom'
+
+import routerIcon from '../../assets/images/routerIcon.png'
+import searchIcon from '../../assets/images/searchIcon.png'
+import chartIcon from '../../assets/images/chartIcon.png'
+import stationImage from '../../assets/images/stationImage.png'
+import { colors } from '../../styles'
+
+interface Props {
+    // switchContent: (num: number) => void;
+}
+
+const ItemContainer = styled.div`
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding-left:1%;
+    padding-right:1%;
+    border-radius:20px;
+    padding-top:1em;
+    padding-bottom:7em;
+    margin-bottom:10em;
+    background-color: rgb(31,36,54);
+    @media (max-width: 960px) {
+        width: 100%;
+        height:100%;
+        padding-left:3%;
+        padding-right:3%;
+    }
+`
+const HeaderArea = styled.div`
+    padding-top:4em;
+    margin-bottom:2em;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    font-style:italic;
+    @media (max-width: 1400px) {
+        flex-direction:column;
+    }
+`
+const HeaderTitle = styled.p`
+    color: rgb(${colors.fontColor});
+    font-size: 35px;
+    text-align: center;
+    font-weight:bold;
+    margin:0;
+    margin-right:20px;
+    @media (max-width: 960px) {
+        font-size: 40px;
+    }
+    @media (max-width: 550px) {
+        width:350px;
+    }
+`
+const Description = styled.p`
+    color: rgb(${colors.grey});
+    font-size: 20px;
+    text-align: center;
+    margin-bottom:5em;
+`
+const HaederImage = styled.img`
+    width: 550px;
+    background-size: contain;
+    @media (max-width: 550px) {
+        width:350px;
+    }
+`
+
+// const ItemList: React.FC<Props> = ({ switchContent }) => {
+const AdvancedContent: React.FC<Props> = ({ }) => {
+    const history = useHistory()
+    return (
+        <div>
+            <HeaderArea>
+                <HeaderTitle>Here is what we've found.</HeaderTitle>
+            </HeaderArea>
+            <ItemContainer>
+                <Card3 />
+                <Grid container spacing={2} style={{ backgroundColor: '#1f2436' }}>
+                    <Grid item xs={12} md={3} onClick={() => { }}>
+                        <Card1 />
+                    </Grid>
+                    <Grid item xs={12} md={9} onClick={() => { }}>
+                        <Card2 />
+                    </Grid>
+                </Grid>
+            </ItemContainer>
+        </div>
+    )
+}
+
+export default AdvancedContent
