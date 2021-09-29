@@ -271,6 +271,15 @@ const OutlineButton = styledCom.button`
         color: rgb(${colors.main});
         background: rgb(${colors.fontColor});
     }
+    :active {
+        background: rgb(93,109,248);
+    }
+    :focus {
+        background: rgb(93,109,248);
+    }
+    :target {
+        background: rgb(93,109,248);
+    }
 `
 const ModalCloseButton = styledCom.button`
     position:absolute;
@@ -368,10 +377,9 @@ const QueryButton = styledCom.a`
 interface Props {
 }
 
-const BannerContent: React.FC<Props> = () => {
+const BannerContentDOA: React.FC<Props> = () => {
     const history = useHistory()
     const classes = useStyles();
-    const [birthday, setBirthday] = useState("");
     const [percentage, setPercentage] = useState(40);
     const [amount, setAmount] = useState(50);
     const [age, setAge] = useState('');
@@ -397,7 +405,7 @@ const BannerContent: React.FC<Props> = () => {
                     <OutlineButton>Call</OutlineButton>
                     <OutlineButton>Put</OutlineButton>
                 </ButtonContainer>
-                <Title>Underlysing Asset</Title>
+                <Title>Underlying Asset</Title>
                 <DataPickerArea style={{ width: '100%' }}>
                     <FormControl sx={{ m: 1, minWidth: 120 }} variant="standard" className={classes.dropdown}>
                         <MyNativeSelect
@@ -419,7 +427,12 @@ const BannerContent: React.FC<Props> = () => {
                         <CalendarImage src={calendarIcon} />
                     </CalendarImageArea>
                     <DataPickerArea>
-                        <DataPicker onChange={birthdayHandler} name="birthday" value={birthday} type="date" className="timepickerInput" placeholder="Date of Birth" />
+                        <DataPicker 
+                        onChange={birthdayHandler} 
+                        name="birthday"
+                        type="date" 
+                        className="timepickerInput" 
+                        placeholder="Date of Birth" />
                         {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
                     </DataPickerArea>
                 </ButtonContainer1>
@@ -453,4 +466,4 @@ const BannerContent: React.FC<Props> = () => {
     )
 }
 
-export default BannerContent
+export default BannerContentDOA

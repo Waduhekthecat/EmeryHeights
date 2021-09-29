@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles'
-import BannerContent from './BannerContent'
+import BannerContentSOR from './BannerContentSOR'
 
 const BannerContainer = styled.div`
     width: 90%;
@@ -17,12 +17,12 @@ const BannerContainer = styled.div`
 interface Props {
 }
 
-const TopContainer:React.FC<Props> = () => {
+const TopContainerSOR:React.FC<Props> = () => {
     return (
         <BannerContainer>
-            <BannerContent />
+            <BannerContentSOR />
         </BannerContainer>
     )
 }
 
-export default TopContainer
+export default TopContainerSOR

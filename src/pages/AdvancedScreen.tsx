@@ -3,10 +3,7 @@ import Web3 from "web3";
 import { IAssetData, IBoxProfile } from "../helpers/types";
 
 import BuccaneerHeader from '../components/Home/BuccaneerHeader'
-import AggregatorContainer from '../components/Home/AggregatorContainer'
 import AdvancedContent from '../components/Home/AdvancedContent'
-import ImageContainer from '../components/Home/ImageContainer'
-import Footer from '../components/Home/Footer'
 import ScreenWrapper from '../components/Home/ScreenWrapper'
 import Container from '@material-ui/core/Container';
 import chain from './assets/images/chain.png';

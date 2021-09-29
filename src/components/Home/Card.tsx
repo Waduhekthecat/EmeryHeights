@@ -21,6 +21,7 @@ const Container = styled.div`
     border: 1px solid rgba(${colors.border});
     &:hover {
         box-shadow: 0 4px 8px 0 rgba(${colors.border}), 0 6px 20px 0 rgba(${colors.border});
+        background: rgb(93,109,248);
     }
 `
 const CardImage = styled.img`

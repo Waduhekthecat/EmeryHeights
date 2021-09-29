@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles'
-import BannerContentDOA from './BannerContentDOA'
+import BannerContentSUB from './BannerContentSUB'
 
 const BannerContainer = styled.div`
     width: 100%;
@@ -28,13 +28,13 @@ const Description = styled.p`
 interface Props {
 }
 
-const TopContainerDOA:React.FC<Props> = () => {
+const TopContainerSUB:React.FC<Props> = () => {
     return (
         <BannerContainer>
-            <Description>Derivatives Aggregator</Description>
-            <BannerContentDOA />
+            <Description>Subgraph</Description>
+            <BannerContentSUB />
         </BannerContainer>
     )
 }
 
-export default TopContainerDOA
+export default TopContainerSUB

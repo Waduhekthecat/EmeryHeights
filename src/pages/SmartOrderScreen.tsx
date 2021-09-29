@@ -14,7 +14,7 @@ import { callBalanceOf, callTransfer } from "../helpers/web3";
 
 import PreLoader from '../components/Home/PreLoader'
 import BuccaneerHeader from '../components/Home/BuccaneerHeader'
-import AggregatorContainer from '../components/Home/AggregatorContainer'
+import SmartOrderContainer from '../components/Home/SmartOrderContainer'
 import ItemList from '../components/Home/ItemList'
 import ImageContainer from '../components/Home/ImageContainer'
 import Footer from '../components/Home/Footer'
@@ -57,10 +57,7 @@ const INITIAL_STATE: IAppState = {
 
 function App() {
 
-  const [showModal, setShowModal] = useState(false);
-  const [switchRouter, setSwitchRouter] = useState(false);
-  const [switchAggregator, setSwitchAggregator] = useState(false);
-  const [switchSubgraph, setSwitchSubgraph] = useState(false);
+
   const [isHide, setIsHide] = useState(false);
 
   const _onHideMenu = (bool: boolean) => {
@@ -73,7 +70,7 @@ function App() {
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />
-      <AggregatorContainer />
+      <SmartOrderContainer />
 
     </ScreenWrapper>
   );

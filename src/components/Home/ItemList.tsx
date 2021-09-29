@@ -102,10 +102,10 @@ const ItemList: React.FC<Props> = ({ }) => {
                 <Grid item xs={12} md={4} onClick={() => { history.push('/smartOrder') }}>
                 <Card url={routerIcon} text="Smart Order Router" />
                 </Grid>
-                <Grid item xs={12} md={4} onClick={() => { history.push('/smartOrder')}}>
+                <Grid item xs={12} md={4} onClick={() => { history.push('/aggregator')}}>
                     <Card url={searchIcon} text="Derivatives Aggregator" />
                 </Grid>
-                <Grid item xs={12} md={4} onClick={() => { history.push('/smartOrder') }}>
+                <Grid item xs={12} md={4} onClick={() => { history.push('/subgraph') }}>
                     <Card url={chartIcon} text="Subgraph" />
                 </Grid>
             </Grid>

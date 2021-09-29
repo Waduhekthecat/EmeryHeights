@@ -14,6 +14,7 @@ import { callBalanceOf, callTransfer } from "../helpers/web3";
 
 import PreLoader from '../components/Home/PreLoader'
 import BuccaneerHeader from '../components/Home/BuccaneerHeader'
+import AggregatorContainer from '../components/Home/AggregatorContainer'
 import ItemList from '../components/Home/ItemList'
 import ImageContainer from '../components/Home/ImageContainer'
 import Footer from '../components/Home/Footer'
@@ -62,55 +63,17 @@ function App() {
   const [switchSubgraph, setSwitchSubgraph] = useState(false);
   const [isHide, setIsHide] = useState(false);
 
-  const toggleModal = () =>
-    setShowModal(!showModal);
-
   const _onHideMenu = (bool: boolean) => {
     setIsHide(bool)
   }
 
-  const switchContent = (num: number) => {
-    console.log("switchContent>>>>>", num)
-    switch (num) {
-      case 1:
-        setSwitchRouter(true)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(false)
-        break;
-      case 2:
-        setSwitchRouter(false)
-        setSwitchAggregator(true)
-        setSwitchSubgraph(false)
-        break;
-      case 3:
-        setSwitchRouter(false)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(true)
-        break;
-      default:
-        break;
-    }
-  }
-
   return (
     <ScreenWrapper>
-      {/* <Container maxWidth="lg"> */}
-      {/* <PreLoader /> */}
       <BuccaneerHeader
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />
-      {/* {!switchRouter && !switchAggregator && !switchSubgraph && <ItemList switchContent={switchContent} />}
-      {switchAggregator && <AggregatorContainer />} */}
-
-      <ItemList/>  
-
-
-      {/* <ImageContainer url={chain} /> */}
-      {/* <ImageContainer url={cubic} />
-          <ImageContainer url={dot} /> */}
-      {/* </Container> */}
-      {/* <Footer /> */}
+      <AggregatorContainer />
 
     </ScreenWrapper>
   );

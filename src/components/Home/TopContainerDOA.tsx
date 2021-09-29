@@ -4,25 +4,14 @@ import { colors } from '../../styles'
 import BannerContentDOA from './BannerContentDOA'
 
 const BannerContainer = styled.div`
-    width: 100%;
-    height: 100vh;
+    width: 90%;
+    background: linear-gradient(253.59deg, rgba(${colors.gradDark}) 1.89%, rgba(${colors.gradLight}) 99.63%);
+    border: 1px solid rgba(${colors.border});
     margin: 0 auto;
+    border-radius: 25px;
     padding: 2em;
     min-height: 490px;
-    background-color: rgb(${colors.main});
-    @media (max-width: 450px) {
-        width: 100%;
-        height:100%;
-        padding: 0em;
-    }
-`
-const Description = styled.p`
-    font-size: 40px;
-    font-weight: 500;
-    color: white;
-    line-height: 1.5;
-    text-align:center;
-    margin-bottom:1em;
+    backdrop-filter: blur(4px);
 `
 
 interface Props {
@@ -31,7 +20,6 @@ interface Props {
 const TopContainerDOA:React.FC<Props> = () => {
     return (
         <BannerContainer>
-            <Description>Derivatives Aggregator</Description>
             <BannerContentDOA />
         </BannerContainer>
     )
