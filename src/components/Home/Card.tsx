@@ -5,8 +5,6 @@ import { colors } from '../../styles'
 interface Props {
     url: string;
     text: string;
-    // onClick:(num: number)=>void;
-    // num:number;
 }
 
 const Container = styled.div`
@@ -35,15 +33,6 @@ const Description = styled.p`
     text-align: center;
     font-weight:bold
 `
-
-// const Card: React.FC<Props> = ({ url, text, onClick, num }) => {
-//     return (
-//         <Container onClick={()=>{onClick(num)}}>
-//             <CardImage src={url} />
-//             <Description>{text}</Description>
-//         </Container>
-//     )
-// }
 
 const Card: React.FC<Props> = ({ url, text }) => {
     return (

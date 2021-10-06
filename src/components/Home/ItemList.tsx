@@ -77,21 +77,6 @@ const HaederImage = styled.img`
 const ItemList: React.FC<Props> = ({ }) => {
     const history = useHistory()
     return (
-        // <ItemContainer>
-        //     <HeaderTitle>Welcome to STATION</HeaderTitle>
-        //     <Description>Select a service to get started</Description>
-        //     <Grid container spacing={4} style={{backgroundColor:'#353c4f'}}>
-        //         <Grid item xs={12} md={4}>
-        //             <Card url={routerIcon} text="Smart Order Router" num = {1} onClick={switchContent} />
-        //         </Grid>
-        //         <Grid item xs={12} md={4}>
-        //             <Card url={searchIcon}  num = {2} text="Derivatives Aggregator" onClick={switchContent} />
-        //         </Grid>
-        //         <Grid item xs={12} md={4}>
-        //             <Card url={chartIcon}  num = {3} text="Subgraph" onClick={switchContent}/>
-        //         </Grid>
-        //     </Grid>
-        // </ItemContainer>
         <ItemContainer>
             <HeaderArea>
                 <HeaderTitle>Welcome to</HeaderTitle>

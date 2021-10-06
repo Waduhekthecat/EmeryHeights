@@ -13,7 +13,7 @@ import {
 import { callBalanceOf, callTransfer } from "../helpers/web3";
 
 import PreLoader from '../components/Home/PreLoader'
-import BuccaneerHeader from '../components/Home/BuccaneerHeader'
+import PageHeader from '../components/Home/PageHeader'
 import AggregatorContainer from '../components/Home/AggregatorContainer'
 import ItemList from '../components/Home/ItemList'
 import ImageContainer from '../components/Home/ImageContainer'
@@ -69,7 +69,7 @@ function App() {
 
   return (
     <ScreenWrapper>
-      <BuccaneerHeader
+      <PageHeader
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />

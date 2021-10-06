@@ -22,6 +22,8 @@ const Description = styled.p`
     color: white;
     line-height: 1.5;
     text-align:center;
+    justify-content: center;
+    align-items: center;
     margin-bottom:1em;
 `
 

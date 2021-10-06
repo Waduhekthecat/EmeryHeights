@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { IAssetData, IBoxProfile } from "../helpers/types";
 
-import BuccaneerHeader from '../components/Home/BuccaneerHeader'
+import PageHeader from '../components/Home/PageHeader'
 import AdvancedContent from '../components/Home/AdvancedContent'
 import ScreenWrapper from '../components/Home/ScreenWrapper'
 import Container from '@material-ui/core/Container';
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <ScreenWrapper>
-      <BuccaneerHeader
+      <PageHeader
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />

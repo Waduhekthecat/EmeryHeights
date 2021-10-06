@@ -217,8 +217,9 @@ const Title5 = styledCom.p`
     color: rgb(${colors.gradDark});
 `
 const Description = styledCom.p`
-    font-size: 40px;
-    font-weight: 600;
+    font-size: 50px;
+    font-style: bold;
+    font-weight: 800;
     color: #05e400;
     line-height: 1.5;
 `

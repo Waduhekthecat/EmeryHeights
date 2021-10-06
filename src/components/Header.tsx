@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import * as PropTypes from 'prop-types'
-import Blockie from './Blockie'
+import Blockie from './chains/Blockie'
 import { ellipseAddress } from '../helpers/utilities'
 import { transitions } from '../styles'
 

@@ -18,7 +18,7 @@ interface Props {
     isHide: boolean,
 }
 
-const BuccaneerHeader: React.FC<Props> = ({ setIsHide, isHide }) => {
+const PageHeader: React.FC<Props> = ({ setIsHide, isHide }) => {
     const [currentWidth, setCurrentWidth] = useState(0)
     useEffect(() => {
         function updateSize() {
@@ -42,4 +42,4 @@ const BuccaneerHeader: React.FC<Props> = ({ setIsHide, isHide }) => {
     )
 }
 
-export default BuccaneerHeader
+export default PageHeader

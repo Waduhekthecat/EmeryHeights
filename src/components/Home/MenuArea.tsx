@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles'
-import twitter from '../../assets/images/twitter.png'
-import telegram from '../../assets/images/telegram.png'
+
 
 interface MenuAreaProps {
     displayMenu: boolean;
