@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../../assets/images/logo.webp'
+import logo from '../../assets/images/logo07.png'
 import { colors } from '../../styles'
 
 const LogoContainer = styled.div`

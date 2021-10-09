@@ -51,26 +51,11 @@ const MmenuItem = styled.li`
         text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue
     }
 `
-const SocialIcon = styled.img`
-    width: 25px;
-    height: 25px;
-    margin: 0.5em;
-    &:hover {
-        cursor: pointer;
-    }
-`
 
 const MenuArea: React.FC<MenuAreaProps> = ({ displayMenu, openMenu }) => {
     return (
         <MenuContainer status={displayMenu}>
             <MmenuItem  onClick={openMenu}>Connect Wallet</MmenuItem>
-            {/* <MmenuItem>Bermuda</MmenuItem>
-            <MmenuItem>OTC</MmenuItem> */}
-            {/* {!displayMenu &&
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <SocialIcon src={twitter} />
-                    <SocialIcon src={telegram} />
-                </div>} */}
         </MenuContainer>
     )
 }

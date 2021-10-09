@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import AdcancedCard from './AdcancedCard';
+import ResultsCard from './ResultsCard';
 const useStyles = makeStyles((theme) => ({
     gridCont: {
     },
@@ -54,31 +54,31 @@ const Card: React.FC<Props> = ({ }) => {
         <Container>
             <Grid container spacing={1}>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <AdcancedCard />
+                    <ResultsCard />
                 </Grid>
             </Grid>
         </Container>

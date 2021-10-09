@@ -32,13 +32,10 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     justifyContent: "center",
     alignItems: "center",
-    height: "60 !important",
+    height: "60 ",
     backgroundColor: "white",
-    borderRadius: "3px !important",
-    borderColor: "black !important",
-  },
-  Tog1: {
-    color: "white !important",
+    border: "rounded",
+    borderColor: "black",
   },
 }));
 

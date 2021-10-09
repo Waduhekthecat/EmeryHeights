@@ -2,44 +2,25 @@ import React, { ReactComponentElement, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
 import calendarIcon from "../../assets/images/calendarIcon.png";
-import {
-  makeStyles,
-  styled,
-  withStyles,
-} from "@material-ui/core/styles";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
+import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
 import { useHistory } from "react-router-dom";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import ToggleButton from "@mui/material/ToggleButton";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import CallPutToggleButton from "../CallPutToggleButton";
+import AmountSlider from "./AmountSlider";
 
-// const data = [
-//     {
-//         id: 100,
-//         title: "Centaur",
-//         image: "https://d30y9cdsu7xlg0.cloudfront.net/png/120146-200.png"
-//     },
-//     {
-//         id: 70,
-//         title: "BTC",
-//         image: "https://d30y9cdsu7xlg0.cloudfront.net/png/120146-200.png"
-//     },
-//     {
-//         id: 110,
-//         title: "Ethereum",
-//         image: "https://d30y9cdsu7xlg0.cloudfront.net/png/120146-200.png"
-//     },
-// ];
+interface CustomProps {
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
+}
+
 const MyNativeSelect = withStyles({
   icon: {
     color: "white !important",
@@ -81,6 +62,34 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
+    );
+  }
+);
+
+interface State {
+  numberformat: string;
+}
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -117,16 +126,12 @@ const useStyles = makeStyles((theme) => ({
   textCont: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
     paddingRight: "5% !important",
   },
   textCont1: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    paddingLeft: "5% !important",
     paddingRight: "5% !important",
-    backgroundColor: "white",
   },
   imgCont: {
     display: "flex",
@@ -144,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
   progress: {
     width: "100%",
     borderRadius: 4,
-    backgroundColor: "#373b44",
+    backgroundColor: "white",
     height: 10,
   },
   dropdown: {
@@ -186,15 +191,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 // styled-components
-const BannerImg = styledCom.img`
-    width: 100%;
-    height: 100%;
-    max-width: 450px;
-    max-height: 450px;
-    min-width: 200px;
-    min-height: 200px;
+const ItemContainer = styledCom.div`
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding-left:2%;
+    padding-bottom:2%;
+    margin-top:10em;
+    margin-left:28em;
+    border-radius:20px;
+    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+    background-color: rgba(51, 50, 102, 0.87);
+    @media (max-width: 720px) {
+        width: 75%;
+        height:75%;
+        padding-left:2%;
+        padding-right:2%;
+    }
 `;
 const Title = styledCom.p`
     font-size: 25px;
@@ -210,109 +225,33 @@ const Title1 = styledCom.p`
     margin-left:20px;
     border-radius:5px;
 `;
-const Title2 = styledCom.p`
+const FooterText = styledCom.p`
     font-size: 17px;
-    color: rgb(${colors.gradLight});
+    color: white;
     text-align:center;
     margin-top:15px;
     margin-bottom:-15px;
 `;
-const Title4 = styledCom.p`
+const TitleStrike = styledCom.p`
     font-size: 23px;
     font-weight:bold;
-    color: rgb(${colors.gradDark});
+    color: white;
 `;
 const Title5 = styledCom.p`
     font-size: 30px;
     text-align:center;
     font-weight:bold;
-    color: rgb(${colors.gradDark});
-`;
-const Description = styledCom.p`
-    font-size: 16px;
-    font-weight: 600;
     color: white;
-    line-height: 1.5;
-`;
-const ButtonContainer = styledCom.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    @media (max-width: 550px) {
-        width: 100%;
-    }
-`;
-const ButtonContainer2 = styledCom.div`
-    width: 350px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    @media (max-width: 550px) {
-        width: 300px;
-    }
 `;
 const ButtonContainer1 = styledCom.div`
-    width: 100%;
+    width: 85%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom:30px;
     @media (max-width: 550px) {
         width: 100%;
         margin-left:0;
     }
-`;
-const OutlineButton = styledCom.button`
-    width: 150px;
-    height: 50px;
-    border-radius: 10px;
-    font-size:25px;
-    font-weight:bold;
-    border: 1px solid rgb(${colors.fontColor});
-    color: rgb(${colors.gradLight});
-    background-color: white;
-    margin: 0.5em 0;
-    transition: all 0.2s ease-out;
-    @media (max-width: 550px) {
-        width: 90%;
-        margin:0 10px;
-    }
-    &:hover {
-        cursor: pointer;
-        color: rgb(${colors.main});
-        background: rgb(${colors.fontColor});
-    }
-    :active {
-        background: rgb(93,109,248);
-    }
-    :focus {
-        background: rgb(93,109,248);
-    }
-    :target {
-        background: rgb(93,109,248);
-    }
-`;
-const ModalCloseButton = styledCom.button`
-    position:absolute;
-    top:15px;
-    right:15px;
-    width:25px;
-    height:25px;
-    border-radius: 15px;
-    font-size:15px;
-    font-weight:bold;
-    border: 1px solid rgb(${colors.fontColor});
-    color: rgb(${colors.gradLight});
-    background-color: white;
-    margin: 0.5em 0;
-    transition: all 0.2s ease-out;
-    &:hover {
-        cursor: pointer;
-        color: rgb(${colors.main});
-        background: rgb(${colors.fontColor});
-    }
-`;
-const NoBorderButton = styledCom(OutlineButton)`
-    border: none;
 `;
 const CalendarImage = styledCom.img`
     width: 35px;
@@ -323,6 +262,7 @@ const CalendarImageArea = styledCom.div`
     width:60px;
     height:60px;
     border-radius:10px;
+    margin-right:0.5em;
     background-color: rgb(62,66,81);
     display:flex;
     justify-content:center;
@@ -349,19 +289,12 @@ const DataPicker = styledCom.input`
     color: white;
     border-color: rgb(63,66,81);
 `;
-const CoinDropPicker = styledCom.input`
-    background-color: rgb(63,66,81);
-    padding-left:0.5em;
-    width:250px;
-    border-width:0px;
-    font-size:20px !important;
-    color: white;
-    border-color: rgb(63,66,81);
-`;
+
 const PriceArea = styledCom.div`
     padding-top:1em;
     display:flex;
     flex-direction:row;
+    justify-content: space-between;
     align-items:center;
 `;
 const QueryButton = styledCom.a`
@@ -387,136 +320,128 @@ const QueryButton = styledCom.a`
 interface Props {}
 
 const BannerContentDOA: React.FC<Props> = () => {
+  const [values, setValues] = React.useState<State>({
+    numberformat: "1320",
+  });
   const history = useHistory();
   const classes = useStyles();
-  const [percentage, setPercentage] = useState(40);
   const [amount, setAmount] = useState(50);
   const [age, setAge] = useState("");
-  const [alignment, setAlignment] = React.useState('web');
-  const [selected, setSelected] = React.useState(false);
+  const [alignment, setAlignment] = React.useState("web");
+
   const birthdayHandler = () => {};
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleChange2 = (event: { target: { value: string } }) => {
     setAge(event.target.value);
   };
 
-  const handleChange = (
-    e: React.MouseEvent<HTMLElement>,
-    newAlignment: string,
- 
-  ) => {
-    setAlignment(newAlignment);
-  };
   const theme = createTheme({
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
-            color: 'white !important',
-            backgroundColor: '#3e4251 !important',
-            borderRadius: '3px !important',
+            color: "white !important",
+            backgroundColor: "#3e4251 !important",
+            borderRadius: "3px !important",
           },
+        },
+      },
+      MuiLinearProgress: {
+        styleOverrides: {
+          colorPrimary: "white",
+          barColorPrimary: "#00dcb9",
         },
       },
     },
   });
 
-
   return (
-    <Grid container spacing={2} className={classes.root}>
-      <Grid item xs={12} md={5} className={classes.textCont}>
-        <Title>Option Type</Title>
-        <CallPutToggleButton />
-        <Title></Title>
-        <DataPickerArea style={{ width: "85%" }}>
-          <FormControl
-            sx={{ m: 1, minWidth: 120 }}
-            variant="standard"
-            className={classes.dropdown}
-          >
-            <MyNativeSelect
-              value={age}
-              onChange={handleChange2}
-              input={<BootstrapInput />}
-            >
-
-              <option key='blankChoice'>Underlying Asset</option>
-              <option value={10}>WBTC</option>
-              <option value={20}>USDC</option>
-              <option value={30}>ETH</option>
-              <option value={20}>USDT</option>
-            </MyNativeSelect>
-          </FormControl>
-        </DataPickerArea>
-        <Title>Expiration</Title>
-        <ButtonContainer1>
-          <CalendarImageArea>
-            <CalendarImage src={calendarIcon} />
-          </CalendarImageArea>
-          <DataPickerArea>
-            <DataPicker
-              onChange={birthdayHandler}
-              name="birthday"
-              type="date"
-              className="timepickerInput"
-              placeholder="Date of Birth"
-            />
-            {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
+    <ItemContainer>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6} className={classes.textCont}>
+          <Title>Option Type</Title>
+          <CallPutToggleButton />
+          <Title>Underlying Asset</Title>
+          <DataPickerArea style={{ width: "85%" }}>
+            <FormControl variant="standard" className={classes.dropdown}>
+              <MyNativeSelect
+                value={age}
+                onChange={handleChange2}
+                input={<BootstrapInput />}
+              >
+                <option value={10}>WBTC</option>
+                <option value={20}>USDC</option>
+                <option value={30}>ETH</option>
+                <option value={20}>USDT</option>
+              </MyNativeSelect>
+            </FormControl>
           </DataPickerArea>
-        </ButtonContainer1>
-      </Grid>
-      <Grid item xs={12} md={7} className={classes.textCont1}>
-        <PriceArea>
-          <Title4>Strike Price:</Title4>
-          <Title1>500$</Title1>
-        </PriceArea>
-        <Title4>Order Amount</Title4>
-        {/* <input
-                    id="progressInput"
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="1"
-                    value={percentage}
-                    onChange={handleChangeEvent}
-                    style={{width:'100%', color:'green'}}
-                /> */}
-        <ThemeProvider theme={theme}>
-          <LinearProgress
-            variant="determinate"
-            className={classes.progress}
-            value={amount}
-            color="primary"
-          />
-        </ThemeProvider>
-        <Title5>0.5 BTC</Title5>
-        <Title2>
-          Need a large amount? Try{" "}
-          <em
-            style={{
-              fontSize: 20,
-              textDecoration: "underline",
-              color: "#05e400",
-              fontStyle: "italic",
-              fontWeight: 500,
+          <Title>Expiration</Title>
+          <ButtonContainer1>
+            <CalendarImageArea>
+              <CalendarImage src={calendarIcon} />
+            </CalendarImageArea>
+            <DataPickerArea>
+              <DataPicker
+                onChange={birthdayHandler}
+                name="birthday"
+                type="date"
+                className="timepickerInput"
+                placeholder="Date of Birth"
+              />
+              {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
+            </DataPickerArea>
+          </ButtonContainer1>
+        </Grid>
+        <Grid item xs={12} md={6} className={classes.textCont}>
+        <Title>Strike Price</Title>
+              <TextField
+                value={values.numberformat}
+                onChange={handleChange}
+                name="numberformat"
+                id="formatted-numberformat-input"
+                InputProps={{
+                  inputComponent: NumberFormatCustom as any,
+                }}
+                variant="standard"
+              />
+            
+          <Title>Order Amount</Title>
+          <ThemeProvider theme={theme}>
+            <AmountSlider />
+          </ThemeProvider>
+          <FooterText>
+            Need a large amount? Try{" "}
+            <em
+              style={{
+                fontSize: 20,
+                textDecoration: "underline",
+                color: "#05e400",
+                fontStyle: "italic",
+                fontWeight: 500,
+              }}
+            >
+              Smart Order Routing
+            </em>
+          </FooterText>
+
+          <QueryButton
+            onClick={() => {
+              history.push("/advanced");
             }}
           >
-            Smart Order Routing
-          </em>
-        </Title2>
-        {/* <Title2>Try <em style={{ fontSize: 23, textDecoration: 'underline', color: "#559b91", fontStyle: "italic", fontWeight: 500 }}>Smart Order Routing</em></Title2> */}
-        {/* <Title>Expiration</Title> */}
-        <QueryButton
-          onClick={() => {
-            history.push("/advanced");
-          }}
-        >
-          Begin Query
-        </QueryButton>
+            Begin Query
+          </QueryButton>
+        </Grid>
       </Grid>
-    </Grid>
+    </ItemContainer>
   );
 };
 

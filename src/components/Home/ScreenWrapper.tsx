@@ -1,13 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import BackImage from '../../assets/images/roadmap.jpg'
 
 interface Props {
 }
 
 const AppContainer = styled.div`
-    background-color: rgb(${colors.main});
-    width: 100%;
+    background-image: url(${BackImage});
+    background-color: rgb(80, 71, 152);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    pading-bottom: 2rem;
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100vh;
     flex:1;
 `
 

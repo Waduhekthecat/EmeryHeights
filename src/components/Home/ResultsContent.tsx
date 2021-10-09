@@ -76,7 +76,7 @@ const HaederImage = styled.img`
 `
 
 // const ItemList: React.FC<Props> = ({ switchContent }) => {
-const AdvancedContent: React.FC<Props> = ({ }) => {
+const ResultsContent: React.FC<Props> = ({ }) => {
     const history = useHistory()
     return (
         <div>
@@ -98,4 +98,4 @@ const AdvancedContent: React.FC<Props> = ({ }) => {
     )
 }
 
-export default AdvancedContent
+export default ResultsContent

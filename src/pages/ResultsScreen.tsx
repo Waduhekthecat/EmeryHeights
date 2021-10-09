@@ -3,7 +3,7 @@ import Web3 from "web3";
 import { IAssetData, IBoxProfile } from "../helpers/types";
 
 import PageHeader from '../components/Home/PageHeader'
-import AdvancedContent from '../components/Home/AdvancedContent'
+import ResultsContent from '../components/Home/ResultsContent'
 import ScreenWrapper from '../components/Home/ScreenWrapper'
 import Container from '@material-ui/core/Container';
 import chain from './assets/images/chain.png';
@@ -85,7 +85,7 @@ function App() {
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />
-      <AdvancedContent/>  
+      <ResultsContent/>  
     </ScreenWrapper>
   );
 }

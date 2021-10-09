@@ -6,7 +6,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import HomeScreen from './pages/HomeScreen'
 import AggregatorScreen from './pages/AggregatorScreen'
 import SmartOrderScreen from './pages/SmartOrderScreen'
-import AdvancedScreen from './pages/AdvancedScreen'
+import ResultsScreen from './pages/ResultsScreen'
 import SubgraphScreen from './pages/SubgraphScreen'
 
 
@@ -53,7 +53,7 @@ const App = () => {
           <Route exact path="/" render={() => <HomeScreen />} />
           <Route exact path="/smartOrder" render={() => <SmartOrderScreen />} />
           <Route exact path="/aggregator" render={() => <AggregatorScreen />} />
-          <Route exact path="/advanced" render={() => <AdvancedScreen />} />
+          <Route exact path="/advanced" render={() => <ResultsScreen />} />
           <Route exact path="/subgraph" render={() => <SubgraphScreen />} />
         </Switch>
       </Router>
