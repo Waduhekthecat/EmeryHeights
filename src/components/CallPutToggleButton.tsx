@@ -1,43 +1,47 @@
 import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import {
-  makeStyles,
-  styled,
-  withStyles,
-} from "@material-ui/core/styles";
+import {createTheme} from '@mui/material/styles';
 import styledCom from 'styled-components';
-import { colors } from '../styles'
-import { ClassNames } from '@emotion/react';
+import { colors } from './../styles'
+import { makeStyles } from "@material-ui/core/styles";
+
 
 const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          color: 'white !important',
-          backgroundColor: '#3e4251 !important',
-          borderRadius: '3px !important',
-        },
-      },
+  palette: {
+    primary: {
+      main: "#ffffff",
+      contrastText: "#ffffff" //button text white instead of black
     },
-  },
+    background: {
+      default: "#ffffff"
+    }
+  }
 });
 
 const useStyles = makeStyles((theme) => ({
-  TypeToggle: {
-    width: "85% !important",
-    font: "20px",
-    color: "black",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "60 ",
-    backgroundColor: "white",
-    border: "rounded",
-    borderColor: "black",
+  ButtonToggle: {
+      borderWidth: "2px",
+      borderColor: "black",
   },
-}));
+})
+);
+
+const ButtonEdits = styledCom.button`
+background-color: white;
+    border-radius: 10px;
+    border-radius: rounded;
+    backdrop-filter: blur(4px);
+    border: 2px solid black;
+    height:45px;
+    width:170px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
+`
+
+
 
 export default function CallPutToggleButton() {
   const [alignment, setAlignment] = React.useState('web');
@@ -51,14 +55,16 @@ export default function CallPutToggleButton() {
   };
 
   return (
+   
     <ToggleButtonGroup
-      className={classes.TypeToggle}
+      color="primary"
       value={alignment}
       exclusive
       onChange={handleChange}
+      fullWidth={true}
     >
-      <ToggleButton value="call">CALL</ToggleButton>
-      <ToggleButton value="put">PUT</ToggleButton>
+      <ButtonEdits className={classes.ButtonToggle} value="call">CALL</ButtonEdits>
+      <ButtonEdits className={classes.ButtonToggle} value="put">PUT</ButtonEdits>
     </ToggleButtonGroup>
   );
 }

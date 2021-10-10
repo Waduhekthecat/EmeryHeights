@@ -15,7 +15,8 @@ interface Props {
 }
 
 const ItemContainer = styled.div`
-  width: 50%;
+  width: 900px;
+  height: 468px;
   margin: auto;
   display: flex;
   flex-direction: column;

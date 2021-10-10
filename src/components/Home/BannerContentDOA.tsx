@@ -9,6 +9,7 @@ import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
+import AmountInput from "./AmountInput";
 import TextField from "@mui/material/TextField";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -126,6 +127,13 @@ const useStyles = makeStyles((theme) => ({
   textCont: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: 'space-between',
+    paddingRight: "5% !important",
+  },
+  textCont4: {
+    display: "flex",
+    flexDirection: "column",
+    paddingTop: "2% !important",
     paddingRight: "5% !important",
   },
   textCont1: {
@@ -148,15 +156,15 @@ const useStyles = makeStyles((theme) => ({
   },
   progress: {
     width: "100%",
+    height: "100%",
     borderRadius: 4,
     backgroundColor: "white",
-    height: 10,
   },
-  dropdown: {
+  dropdown: { 
     width: "100%",
-    color: "white",
     height: "100%",
-    backgroundColor: "#3e4251",
+    background: "#ccd2dc",
+    opacity: "0.3",
     borderRadius: 10,
   },
   HeaderTitle: {
@@ -193,12 +201,12 @@ const useStyles = makeStyles((theme) => ({
 
 // styled-components
 const ItemContainer = styledCom.div`
-    width: 50%;
+    width: 900px;
+    height: 500px;
     margin: auto;
-    display: flex;
+    display: flex;  
     flex-direction: column;
     padding-left:2%;
-    padding-bottom:2%;
     margin-top:10em;
     margin-left:28em;
     border-radius:20px;
@@ -216,32 +224,12 @@ const Title = styledCom.p`
     color: white;
     margin-top:50px;
 `;
-const Title1 = styledCom.p`
-    font-size: 23px;
-    color: white;
-    background-color: rgb(${colors.gradLight});
-    text-align:end;
-    padding:0.2em 0.6em;
-    margin-left:20px;
-    border-radius:5px;
-`;
 const FooterText = styledCom.p`
     font-size: 17px;
     color: white;
     text-align:center;
     margin-top:15px;
     margin-bottom:-15px;
-`;
-const TitleStrike = styledCom.p`
-    font-size: 23px;
-    font-weight:bold;
-    color: white;
-`;
-const Title5 = styledCom.p`
-    font-size: 30px;
-    text-align:center;
-    font-weight:bold;
-    color: white;
 `;
 const ButtonContainer1 = styledCom.div`
     width: 85%;
@@ -272,7 +260,7 @@ const DataPickerArea = styledCom.div`
     background-color: rgb(63,66,81);
     border-radius:10px;
     height:60px;
-    width:300px;
+    width:380px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -283,19 +271,11 @@ const DataPickerArea = styledCom.div`
 const DataPicker = styledCom.input`
     background-color: rgb(63,66,81);
     padding-left:0.5em;
-    width:250px;
+    width:360px;
     border-width:0px;
     font-size:20px !important;
     color: white;
     border-color: rgb(63,66,81);
-`;
-
-const PriceArea = styledCom.div`
-    padding-top:1em;
-    display:flex;
-    flex-direction:row;
-    justify-content: space-between;
-    align-items:center;
 `;
 const QueryButton = styledCom.a`
     margin-top:4em;
@@ -325,49 +305,37 @@ const BannerContentDOA: React.FC<Props> = () => {
   });
   const history = useHistory();
   const classes = useStyles();
-  const [amount, setAmount] = useState(50);
   const [age, setAge] = useState("");
-  const [alignment, setAlignment] = React.useState("web");
-
   const birthdayHandler = () => {};
-  const [open, setOpen] = React.useState(false);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   const handleChange2 = (event: { target: { value: string } }) => {
     setAge(event.target.value);
   };
 
   const theme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            color: "white !important",
-            backgroundColor: "#3e4251 !important",
-            borderRadius: "3px !important",
-          },
-        },
+    palette: {
+      primary: {
+        main: "#46AD8D",
+        contrastText: "#fff", //button text white instead of black
       },
-      MuiLinearProgress: {
-        styleOverrides: {
-          colorPrimary: "white",
-          barColorPrimary: "#00dcb9",
-        },
+      background: {
+        default: "#394764",
       },
     },
   });
 
   return (
     <ItemContainer>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} className={classes.textCont}>
+      <Grid container spacing={1}>
+        <Grid item xs={4} md={6} className={classes.textCont}>
           <Title>Option Type</Title>
           <CallPutToggleButton />
+          </Grid>
+          <Grid item xs={4} md={6} className={classes.textCont}>
+          <Title>Strike Price</Title>
+          <AmountInput />
+          </Grid>
+          <Grid item xs={4} md={6} className={classes.textCont}>
           <Title>Underlying Asset</Title>
           <DataPickerArea style={{ width: "85%" }}>
             <FormControl variant="standard" className={classes.dropdown}>
@@ -383,6 +351,28 @@ const BannerContentDOA: React.FC<Props> = () => {
               </MyNativeSelect>
             </FormControl>
           </DataPickerArea>
+          </Grid>
+          <Grid item xs={4} md={6} className={classes.textCont}>
+          <Title>Order Amount</Title>
+          <ThemeProvider theme={theme}>
+            <AmountSlider />
+            <FooterText>
+            Need a large amount? Try{" "}
+            <em
+              style={{
+                fontSize: 20,
+                textDecoration: "underline",
+                color: "#05e400",
+                fontStyle: "italic",
+                fontWeight: 500,
+              }}
+            >
+              Smart Order Routing
+            </em>
+          </FooterText>
+          </ThemeProvider>
+          </Grid> 
+          <Grid item xs={4} md={6} className={classes.textCont}>
           <Title>Expiration</Title>
           <ButtonContainer1>
             <CalendarImageArea>
@@ -400,38 +390,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             </DataPickerArea>
           </ButtonContainer1>
         </Grid>
-        <Grid item xs={12} md={6} className={classes.textCont}>
-        <Title>Strike Price</Title>
-              <TextField
-                value={values.numberformat}
-                onChange={handleChange}
-                name="numberformat"
-                id="formatted-numberformat-input"
-                InputProps={{
-                  inputComponent: NumberFormatCustom as any,
-                }}
-                variant="standard"
-              />
-            
-          <Title>Order Amount</Title>
-          <ThemeProvider theme={theme}>
-            <AmountSlider />
-          </ThemeProvider>
-          <FooterText>
-            Need a large amount? Try{" "}
-            <em
-              style={{
-                fontSize: 20,
-                textDecoration: "underline",
-                color: "#05e400",
-                fontStyle: "italic",
-                fontWeight: 500,
-              }}
-            >
-              Smart Order Routing
-            </em>
-          </FooterText>
-
+        <Grid item xs={4} md={6} className={classes.textCont4}>
           <QueryButton
             onClick={() => {
               history.push("/advanced");
@@ -440,7 +399,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             Begin Query
           </QueryButton>
         </Grid>
-      </Grid>
+        </Grid>
     </ItemContainer>
   );
 };

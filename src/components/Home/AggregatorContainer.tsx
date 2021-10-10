@@ -7,6 +7,7 @@ const BannerContainer = styled.div`
     width: 100%;
     margin: 0 auto;
     padding: 2em;
+    color: white;
     min-height: 490px;
     @media (max-width: 450px) {
         width: 100%;
