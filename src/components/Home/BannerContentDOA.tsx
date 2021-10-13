@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, useState } from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
 import calendarIcon from "../../assets/images/calendarIcon.png";
@@ -7,15 +7,13 @@ import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import AmountInput from "./AmountInput";
-import TextField from "@mui/material/TextField";
+import StrikeInput from "./StrikeInput";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
-import CallPutToggleButton from "../CallPutToggleButton";
+import CallPutToggle from "../CallPutToggle";
 import AmountSlider from "./AmountSlider";
+
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -108,6 +106,7 @@ const style = {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "70%",
+    marginBottom: "5px",
     display: "flex",
     marginLeft: "15%",
     paddingLeft: "3%",
@@ -127,19 +126,62 @@ const useStyles = makeStyles((theme) => ({
   textCont: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: 'space-between',
-    paddingRight: "5% !important",
+    justifyContent: "center",
+  },
+  textCont6: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "4%",
+    marginRight: "4%",
+  },
+  textCont3: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: "4%",
+  },
+  textContTopR: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "2%",
+    marginLeft: "-8%",
+  },
+  textContTopL: {
+    display: "flex",
+    marginTop: "2%",
+    marginLeft: "5px !important",
+    flexDirection: "row",
+  },
+  textType: {
+    display: "flex",
+    marginTop: "2%",
   },
   textCont4: {
     display: "flex",
     flexDirection: "column",
     paddingTop: "2% !important",
+    marginLeft: "25%",
+    marginBottom: "30px",
     paddingRight: "5% !important",
   },
   textCont1: {
     display: "flex",
     flexDirection: "column",
+  },
+  textCont8: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "18%",
+    marginBottom: "-40%",
+  },
+  textContD: {
+    display: "flex",
+    flexDirection: "column",
     paddingRight: "5% !important",
+  },
+  textCont7: {
+    display: "flex",
+    flexDirection: "row",
   },
   imgCont: {
     display: "flex",
@@ -148,8 +190,6 @@ const useStyles = makeStyles((theme) => ({
   main: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
@@ -160,7 +200,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 4,
     backgroundColor: "white",
   },
-  dropdown: { 
+  dropdown: {
     width: "100%",
     height: "100%",
     background: "#ccd2dc",
@@ -197,19 +237,33 @@ const useStyles = makeStyles((theme) => ({
   Tog1: {
     color: "white !important",
   },
+  ItemC: {
+    width: "400px !important",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10em",
+    marginLeft: "25px",
+  },
+  ItemD: {
+    width: "325px !important",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10em",
+  },
 }));
 
 // styled-components
 const ItemContainer = styledCom.div`
-    width: 900px;
-    height: 500px;
-    margin: auto;
+    width: 400px !important; 
+    height: 505px;
     display: flex;  
     flex-direction: column;
     padding-left:2%;
-    margin-top:10em;
-    margin-left:28em;
-    border-radius:20px;
+    margin-top:8em;
+    margin-left:26.2em;
+    border-right-radius:none;
+    border-bottom-left-radius:20px;
+    border-top-left-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
     background-color: rgba(51, 50, 102, 0.87);
     @media (max-width: 720px) {
@@ -219,49 +273,119 @@ const ItemContainer = styledCom.div`
         padding-right:2%;
     }
 `;
+const ItemContainer2 = styledCom.div`
+    width: 500px !important;
+    height: 505px;
+    display: flex;  
+    flex-direction: column !important;
+    padding-right:2%;
+    margin-top:8em;
+    margin-left:74.9px;
+    border-left-radius:none;
+    border-bottom-right-radius:20px;
+    border-top-right-radius:20px;
+    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+    background-color: rgba(51, 50, 102, 0.87);
+    @media (max-width: 720px) {
+        width: 75%;
+        height:75%;
+        padding-right:2%;
+        padding-left:2%;
+    }
+`;
 const Title = styledCom.p`
     font-size: 25px;
     color: white;
     margin-top:50px;
 `;
+const Title1 = styledCom.p`
+    font-size: 23px;
+    color: white;
+    margin-top:-80px;
+    margin-left: 15px;
+`;
+const Title2 = styledCom.p`
+    font-size: 23px;
+    color: white;
+    margin-left:15px;
+`;
 const FooterText = styledCom.p`
-    font-size: 17px;
+    font-size: 16px;
     color: white;
     text-align:center;
     margin-top:15px;
     margin-bottom:-15px;
+    margin-left:10px;
+`;
+const HeaderText = styledCom.p`
+    font-size: 23px;
+    color: white;
+    margin-left: 15px;
+    margin-top: 25px;
+    width:190px
+`;
+const HeaderText2 = styledCom.p`
+    font-size: 23px;
+    color: white;
+    margin-left: 15px;
+    width:170px
 `;
 const ButtonContainer1 = styledCom.div`
-    width: 85%;
+    width: 225px;
     display: flex;
-    justify-content: space-between;
     margin-bottom:30px;
+    margin-left:10px;
     @media (max-width: 550px) {
         width: 100%;
         margin-left:0;
     }
 `;
 const CalendarImage = styledCom.img`
-    width: 35px;
+    width: 40px;
     height: 35px;
     background-size: contain;
 `;
 const CalendarImageArea = styledCom.div`
-    width:60px;
+    width:65px;
     height:60px;
-    border-radius:10px;
+    border-radius:10px;  
+    alignItems: "center";
     margin-right:0.5em;
-    background-color: rgb(62,66,81);
+    background: rgba(204, 210, 220, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(${colors.border});
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     display:flex;
     justify-content:center;
     align-items:center;
 `;
 const DataPickerArea = styledCom.div`
-    background-color: rgb(63,66,81);
+    background: rgba(204, 210, 220, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(${colors.border});
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
     height:60px;
     width:380px;
     display:flex;
+    margin-bottom:5px;
+    margin-left:10px;
+    justify-content:center;
+    align-items:center;
+    @media (max-width: 550px) {
+        width: 220px;
+    }
+`;
+const DataPickerArea1 = styledCom.div`
+    background: rgba(204, 210, 220, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(${colors.border});
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
+    border-radius:10px;
+    height:60px;
+    width:380px;
+    display:flex;
+    margin-bottom:5px;
     justify-content:center;
     align-items:center;
     @media (max-width: 550px) {
@@ -269,13 +393,12 @@ const DataPickerArea = styledCom.div`
     }
 `;
 const DataPicker = styledCom.input`
-    background-color: rgb(63,66,81);
+    background: rgba(0, 0, 0, 0.0);
     padding-left:0.5em;
-    width:360px;
-    border-width:0px;
+    width:250px !important;
     font-size:20px !important;
     color: white;
-    border-color: rgb(63,66,81);
+    border: none;
 `;
 const QueryButton = styledCom.a`
     margin-top:4em;
@@ -325,83 +448,97 @@ const BannerContentDOA: React.FC<Props> = () => {
   });
 
   return (
-    <ItemContainer>
-      <Grid container spacing={1}>
-        <Grid item xs={4} md={6} className={classes.textCont}>
-          <Title>Option Type</Title>
-          <CallPutToggleButton />
+    <Grid container direction="row">
+      <Grid item md={5}>
+        <ItemContainer className={classes.ItemD}>
+          <Grid item xs={2} md={2} className={classes.textCont1}>
+            <HeaderText>Option Type</HeaderText>
           </Grid>
-          <Grid item xs={4} md={6} className={classes.textCont}>
-          <Title>Strike Price</Title>
-          <AmountInput />
+          <Grid item xs={2} md={2} className={classes.textContTopL}>
+            <CallPutToggle />
           </Grid>
-          <Grid item xs={4} md={6} className={classes.textCont}>
-          <Title>Underlying Asset</Title>
-          <DataPickerArea style={{ width: "85%" }}>
-            <FormControl variant="standard" className={classes.dropdown}>
-              <MyNativeSelect
-                value={age}
-                onChange={handleChange2}
-                input={<BootstrapInput />}
-              >
-                <option value={10}>WBTC</option>
-                <option value={20}>USDC</option>
-                <option value={30}>ETH</option>
-                <option value={20}>USDT</option>
-              </MyNativeSelect>
-            </FormControl>
-          </DataPickerArea>
-          </Grid>
-          <Grid item xs={4} md={6} className={classes.textCont}>
-          <Title>Order Amount</Title>
-          <ThemeProvider theme={theme}>
-            <AmountSlider />
-            <FooterText>
-            Need a large amount? Try{" "}
-            <em
-              style={{
-                fontSize: 20,
-                textDecoration: "underline",
-                color: "#05e400",
-                fontStyle: "italic",
-                fontWeight: 500,
-              }}
-            >
-              Smart Order Routing
-            </em>
-          </FooterText>
-          </ThemeProvider>
-          </Grid> 
-          <Grid item xs={4} md={6} className={classes.textCont}>
-          <Title>Expiration</Title>
-          <ButtonContainer1>
-            <CalendarImageArea>
-              <CalendarImage src={calendarIcon} />
-            </CalendarImageArea>
-            <DataPickerArea>
-              <DataPicker
-                onChange={birthdayHandler}
-                name="birthday"
-                type="date"
-                className="timepickerInput"
-                placeholder="Date of Birth"
-              />
-              {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
+          <Grid item xs={2} md={4} className={classes.textCont1}>
+            <HeaderText>Underlying Asset</HeaderText>
+            <DataPickerArea style={{ width: "270px" }}>
+              <FormControl variant="standard" className={classes.dropdown}>
+                <MyNativeSelect
+                  value={age}
+                  onChange={handleChange2}
+                  input={<BootstrapInput />}
+                >
+                  <option value={10}>WBTC</option>
+                  <option value={20}>USDC</option>
+                  <option value={30}>ETH</option>
+                  <option value={20}>USDT</option>
+                </MyNativeSelect>
+              </FormControl>
             </DataPickerArea>
-          </ButtonContainer1>
-        </Grid>
-        <Grid item xs={4} md={6} className={classes.textCont4}>
-          <QueryButton
-            onClick={() => {
-              history.push("/advanced");
-            }}
-          >
-            Begin Query
-          </QueryButton>
-        </Grid>
-        </Grid>
-    </ItemContainer>
+          </Grid>
+          <Grid item xs={2} md={4} className={classes.textCont}>
+            <Title2>Expiration</Title2>
+            <ButtonContainer1>
+              <CalendarImageArea>
+                <CalendarImage src={calendarIcon} />
+              </CalendarImageArea>
+              <DataPickerArea1 style={{ width: "98%" }}>
+                <DataPicker
+                  onChange={birthdayHandler}
+                  name="birthday"
+                  type="date"
+                  className="timepickerInput"
+                  placeholder="Date of Birth"
+                />
+                {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
+              </DataPickerArea1>
+            </ButtonContainer1>
+          </Grid>
+        </ItemContainer>
+      </Grid>
+      <Grid item md={5}>
+        <ItemContainer2 className={classes.ItemC}>
+          <Grid item xs={2} md={8} className={classes.textContTopL}>
+            <HeaderText2>Strike Price</HeaderText2>
+            {/*Strike Price Input*/}
+            <Grid item xs={2} md={4} className={classes.textContTopR}>
+              <StrikeInput />
+            </Grid>
+          </Grid>
+          <Grid item xs={4} md={10} className={classes.textCont8}>
+            <Title1>Order Amount</Title1>
+            <ThemeProvider theme={theme}>
+              <AmountSlider />
+              <FooterText>
+                Need a large amount? Try{" "}
+                <em
+                  style={{
+                    fontSize: 17,
+                    textDecoration: "underline",
+                    color: "#05e400",
+                    fontStyle: "italic",
+                    fontWeight: 500,
+                  }}
+                >
+                  Smart Order Routing
+                </em>
+              </FooterText>
+            </ThemeProvider>
+          </Grid>
+          <Grid item xs={4} md={6} className={classes.textCont4}>
+<QueryButton
+  onClick={() => {
+    history.push("/advanced");
+  }}
+>
+  Begin Query
+</QueryButton>
+</Grid>
+        </ItemContainer2>
+      </Grid>
+    </Grid>
   );
 };
 
 export default BannerContentDOA;
+
+/*
+ */

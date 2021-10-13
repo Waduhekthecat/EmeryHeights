@@ -1,0 +1,33 @@
+
+
+<Grid item xs={4} md={6} className={classes.textCont1}>
+<Title>Order Amount</Title>
+<ThemeProvider theme={theme}>
+  <AmountSlider />
+  <FooterText>
+  Need a large amount? Try{" "}
+  <em
+    style={{
+      fontSize: 20,
+      textDecoration: "underline",
+      color: "#05e400",
+      fontStyle: "italic",
+      fontWeight: 500,
+    }}
+  >
+    Smart Order Routing
+  </em>
+</FooterText>
+</ThemeProvider>
+</Grid> 
+
+
+<Grid item xs={4} md={6} className={classes.textCont4}>
+<QueryButton
+  onClick={() => {
+    history.push("/advanced");
+  }}
+>
+  Begin Query
+</QueryButton>
+</Grid>

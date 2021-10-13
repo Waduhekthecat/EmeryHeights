@@ -16,23 +16,16 @@ interface Props {
 
 const ItemContainer = styled.div`
   width: 900px;
-  height: 468px;
+  height: 500px;
   margin: auto;
   display: flex;
   flex-direction: column;
   padding-left: 2%;
-  padding-bottom: 2%;
   margin-top: 10em;
   margin-left: 28em;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
   background-color: rgba(51, 50, 102, 0.87);
-  @media (max-width: 720px) {
-    width: 75%;
-    height: 75%;
-    padding-left: 2%;
-    padding-right: 2%;
-  }
 `;
 
 const HeaderArea = styled.div`
@@ -84,7 +77,7 @@ const ItemList: React.FC<Props> = ({}) => {
         <HaederImage src={stationImage} />
       </HeaderArea>
       <Description>Select a service to get started</Description>
-      <Grid container spacing={4} align-items>
+      <Grid container spacing={4} align-items-center>
         <Grid
           item
           xs={12}

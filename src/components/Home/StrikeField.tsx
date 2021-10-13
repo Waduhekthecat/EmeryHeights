@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const WithStylesTextField = withStyles({
   root: {
-    background: "white",
     "& label.Mui-focused": {
       color: "white"
     },
@@ -27,7 +26,6 @@ const WithStylesTextField = withStyles({
 })(TextField);
 
 const StyledTextField = styled(TextField)`
-  background: white;
   & label.Mui-focused {
     color: white;
   }
