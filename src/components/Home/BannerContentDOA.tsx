@@ -8,12 +8,12 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
 import StrikeInput from "./StrikeInput";
+import StrikeInput2 from "./StrikeInput2";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import CallPutToggle from "../CallPutToggle";
 import AmountSlider from "./AmountSlider";
-
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -22,7 +22,7 @@ interface CustomProps {
 
 const MyNativeSelect = withStyles({
   icon: {
-    color: "white !important",
+    color: "#3e4251 !important",
     width: "2em !important",
     height: "2em !important",
     marginTop: -10,
@@ -39,7 +39,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     height: 60,
     //   border: '1px solid #ced4da',
     fontSize: 21,
-    color: "white",
+    color: "black",
     paddingLeft: "10px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
@@ -172,6 +172,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginTop: "18%",
+    marginLeft: "35px",
     marginBottom: "-40%",
   },
   textContD: {
@@ -240,7 +241,10 @@ const useStyles = makeStyles((theme) => ({
   ItemC: {
     width: "400px !important",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column", '& .MuiSlider-valueLabel': {
+    backgroundColor: 'black',
+    color: theme.palette.text.primary,
+  },
     marginTop: "10em",
     marginLeft: "25px",
   },
@@ -302,7 +306,8 @@ const Title1 = styledCom.p`
     font-size: 23px;
     color: white;
     margin-top:-80px;
-    margin-left: 15px;
+    margin-bottom:25px;
+    margin-left:-10px;
 `;
 const Title2 = styledCom.p`
     font-size: 23px;
@@ -321,7 +326,7 @@ const HeaderText = styledCom.p`
     font-size: 23px;
     color: white;
     margin-left: 15px;
-    margin-top: 25px;
+    margin-top: 30px;
     width:190px
 `;
 const HeaderText2 = styledCom.p`
@@ -341,13 +346,12 @@ const ButtonContainer1 = styledCom.div`
     }
 `;
 const CalendarImage = styledCom.img`
-    width: 40px;
+    width: 45px;
     height: 35px;
     background-size: contain;
 `;
 const CalendarImageArea = styledCom.div`
-    width:65px;
-    height:60px;
+    height:54px;
     border-radius:10px;  
     alignItems: "center";
     margin-right:0.5em;
@@ -361,13 +365,13 @@ const CalendarImageArea = styledCom.div`
 `;
 const DataPickerArea = styledCom.div`
     background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
-    height:60px;
+    height:55px;
     width:380px;
     display:flex;
+    margin-top:12px;
     margin-bottom:5px;
     margin-left:10px;
     justify-content:center;
@@ -382,7 +386,7 @@ const DataPickerArea1 = styledCom.div`
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
-    height:60px;
+    height:55px;
     width:380px;
     display:flex;
     margin-bottom:5px;
@@ -395,7 +399,8 @@ const DataPickerArea1 = styledCom.div`
 const DataPicker = styledCom.input`
     background: rgba(0, 0, 0, 0.0);
     padding-left:0.5em;
-    width:250px !important;
+    width:253px !important;
+    height: 55px !important;
     font-size:20px !important;
     color: white;
     border: none;
@@ -411,7 +416,7 @@ const QueryButton = styledCom.a`
     color:white;
     font-size:20px;
     font-weight:600;
-    height: 60px;
+    height: 56px;
     background-color:rgb(94,108,250);
     &:hover {
         cursor: pointer;
@@ -457,19 +462,19 @@ const BannerContentDOA: React.FC<Props> = () => {
           <Grid item xs={2} md={2} className={classes.textContTopL}>
             <CallPutToggle />
           </Grid>
-          <Grid item xs={2} md={4} className={classes.textCont1}>
+          <Grid item xs={2} md={5} className={classes.textCont1}>
             <HeaderText>Underlying Asset</HeaderText>
-            <DataPickerArea style={{ width: "270px" }}>
+            <DataPickerArea style={{ width: "310px" }}>
               <FormControl variant="standard" className={classes.dropdown}>
                 <MyNativeSelect
                   value={age}
                   onChange={handleChange2}
                   input={<BootstrapInput />}
                 >
-                  <option value={10}>WBTC</option>
-                  <option value={20}>USDC</option>
-                  <option value={30}>ETH</option>
-                  <option value={20}>USDT</option>
+                  <option color="white" value={10}>WBTC</option>
+                  <option color="white" value={20}>USDC</option>
+                  <option color="white" value={30}>ETH</option>
+                  <option color="white" value={20}>USDT</option>
                 </MyNativeSelect>
               </FormControl>
             </DataPickerArea>
@@ -480,7 +485,7 @@ const BannerContentDOA: React.FC<Props> = () => {
               <CalendarImageArea>
                 <CalendarImage src={calendarIcon} />
               </CalendarImageArea>
-              <DataPickerArea1 style={{ width: "98%" }}>
+              <DataPickerArea1>
                 <DataPicker
                   onChange={birthdayHandler}
                   name="birthday"
@@ -497,7 +502,7 @@ const BannerContentDOA: React.FC<Props> = () => {
       <Grid item md={5}>
         <ItemContainer2 className={classes.ItemC}>
           <Grid item xs={2} md={8} className={classes.textContTopL}>
-            <HeaderText2>Strike Price</HeaderText2>
+           <HeaderText2>Strike Price</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
               <StrikeInput />
@@ -505,9 +510,9 @@ const BannerContentDOA: React.FC<Props> = () => {
           </Grid>
           <Grid item xs={4} md={10} className={classes.textCont8}>
             <Title1>Order Amount</Title1>
-            <ThemeProvider theme={theme}>
               <AmountSlider />
               <FooterText>
+            <ThemeProvider theme={theme}>
                 Need a large amount? Try{" "}
                 <em
                   style={{
@@ -520,18 +525,18 @@ const BannerContentDOA: React.FC<Props> = () => {
                 >
                   Smart Order Routing
                 </em>
+                </ThemeProvider>
               </FooterText>
-            </ThemeProvider>
           </Grid>
           <Grid item xs={4} md={6} className={classes.textCont4}>
-<QueryButton
-  onClick={() => {
-    history.push("/advanced");
-  }}
->
-  Begin Query
-</QueryButton>
-</Grid>
+            <QueryButton
+              onClick={() => {
+                history.push("/advanced");
+              }}
+            >
+              Begin Query
+            </QueryButton>
+          </Grid>
         </ItemContainer2>
       </Grid>
     </Grid>

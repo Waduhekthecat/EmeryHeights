@@ -23,11 +23,12 @@ const ItemContainer = styled.div`
     flex-direction: column;
     padding-left:1%;
     padding-right:1%;
-    border-radius:20px;
     padding-top:1em;
     padding-bottom:7em;
     margin-bottom:10em;
-    background-color: rgb(31,36,54);
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
+    background-color: rgba(51, 50, 102, 0.87);
     @media (max-width: 960px) {
         width: 100%;
         height:100%;
@@ -85,7 +86,7 @@ const ResultsContent: React.FC<Props> = ({ }) => {
             </HeaderArea>
             <ItemContainer>
                 <Card3 />
-                <Grid container spacing={2} style={{ backgroundColor: '#1f2436' }}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} md={3} onClick={() => { }}>
                         <Card1 />
                     </Grid>

@@ -12,12 +12,12 @@ interface Props {
 const Container = styled.div`
     width: 100%;
     background: rgb(94,108,250);
-    backdrop-filter: blur(4px);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(${colors.border});
     padding:0 1em;
+    margin-top: 10px;
 `
 const CardImage = styled.img`
     width: 50px;
@@ -30,7 +30,7 @@ const HederTitle = styled.p`
     font-weight:500
 `
 const Description1 = styled.p`
-    color: #38ffb7;
+    color: white;
     font-size: 14px;
     text-decoration:underline;
     margin-top:-20px;

@@ -25,29 +25,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Container = styled.div`
   width: 100%;
-  background: white;
-  backdrop-filter: blur(4px);
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(${colors.border});
-  padding: 0 0.7em;
-  margin-bottom: 2em;
+  background: rgba(204, 210, 220, 0.3);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+    margin-bottom: 7px;
+    border: 1px solid rgba(${colors.border});
+    box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.5);
+    &:hover {
+        box-shadow: 0 1px 2px 0 rgba(${colors.border}), 0 1px 3px 0 rgba(${colors.border});
+        box-shadow: 0 1px 2px 0 rgba(${colors.border}), 0 1px 3px 0 rgba(${colors.border});
+        background: gradient(
+            to bottom,
+            rgba(192, 159, 87, 0.5),
+            rgba(192, 159, 87, 0.5) 1px,
+            transparent 0,
+            transparent 2em
+          );
+    }
 `;
 const Description = styled.p`
-  color: rgb(${colors.fontColor1});
+  color: white;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 0;
 `;
 const Description1 = styled.p`
-  color: rgb(${colors.fontColor3});
+  color: white;
   font-size: 25px;
   font-weight: 400;
   margin-right: 20px;
   padding: 0;
 `;
 const FormGroupArea = styled.div`
+  color: white;
   display: flex;
   flex-direction: row;
   align-items: center;

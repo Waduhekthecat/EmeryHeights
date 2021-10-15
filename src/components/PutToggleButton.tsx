@@ -35,7 +35,7 @@ box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
 border-radius: 10px;
 border-radius: rounded;
 height:47px;
-width:100px;
+width:140px;
 display:flex;
 margin-right: 35px;
 align-items:center;

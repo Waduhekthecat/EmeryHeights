@@ -20,12 +20,6 @@ const theme = createTheme({
   }
 });
 
-
-
-
-
-
-
 export default function CallPutToggle() {
   const [alignment, setAlignment] = React.useState('web');
 

@@ -31,3 +31,26 @@
   Begin Query
 </QueryButton>
 </Grid>
+
+
+
+<TextField label="Strike Price" required variant="outlined" defaultValue="55,000.00"
+        inputProps={{ 
+        style: {
+        color: 'white', 
+        background: 'rgba(204, 210, 220, 0.3)',
+        backdropFilter: 'blur(4px)',
+        border: '1px solid rgba(${colors.border})',
+        boxShadow: '3px 3px 3px rgba(10, 13, 27, 0.5)',
+        borderRadius: '10px',color: 'white', 
+        background: 'rgba(204, 210, 220, 0.3)',
+        backdropFilter: 'blur(4px)',
+        border: `1px solid rgba(${colors.border})`,
+        boxShadow: '3px 3px 3px rgba(10, 13, 27, 0.5)',
+        borderRadius: '10px',
+        height: '55px',
+        width: '200px',
+        height: '55px',
+        width: '200px',
+    }
+    }}/>

@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ResultsCard from './ResultsCard';
 const useStyles = makeStyles((theme) => ({
     gridCont: {
+        paddingTop: '0px !important',
     },
 }));
 
@@ -17,10 +18,10 @@ interface Props {
 }
 
 const Container = styled.div`
-    margin-top:-10px;
+    
     width: 100%;
-    background: rgba(${colors.gradDark});
-    backdrop-filter: blur(4px);
+    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6)
+    background: rgba(51, 50, 102, 0.87);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -32,11 +33,11 @@ const CardImage = styled.img`
     background-size: contain;
 `
 const Description = styled.div`
-    color: rgb(${colors.fontColor});
+    color: white;
     font-size: 20px;
     text-align: center;
     font-weight:bold;
-    background-color:rgb(${colors.dark});
+    background-color: rgba(51, 50, 102, 0.87);
 `
 
 // const Card: React.FC<Props> = ({ url, text, onClick, num }) => {
@@ -52,7 +53,7 @@ const Card: React.FC<Props> = ({ }) => {
     const classes = useStyles();
     return (
         <Container>
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
                     <ResultsCard />
                 </Grid>

@@ -33,7 +33,7 @@ const ButtonEdits = styledCom.button`
     border-radius: 10px;
     border-radius: rounded;
     height:47px;
-    width:100px;
+    width:140px;
     display:flex;
     margin-right: 35px;
     align-items:center;
