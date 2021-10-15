@@ -44,6 +44,12 @@ const Container = styled.div`
             transparent 2em
           );
     }
+    @media (max-width: 720px) {
+      width: 75%;
+      height:75%;
+      padding-right:2%;
+      padding-left:2%;
+  }
 `;
 const Description = styled.p`
   color: white;

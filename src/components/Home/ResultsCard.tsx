@@ -15,8 +15,8 @@ interface Props {
 }
 const Description = styled.div`
     background: rgba(204, 210, 220, 0.3);
-    width: 343px;
-    height: 294px;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,13 @@ const Description = styled.div`
         transparent 0,
         transparent 2em
       );
+@media (max-width: 720px) {
+        width: 75%;
+        height:75%;
+        padding-right:2%;
+        padding-left:2%;
+    }
+
 `;
 const HeaderTitle = styled.p`
   color: white;

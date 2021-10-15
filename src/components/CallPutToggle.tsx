@@ -39,7 +39,6 @@ export default function CallPutToggle() {
       exclusive={true}
       onChange={handleChange}
       fullWidth={false}
-      
     >
         <CallToggleButton />
         <PutToggleButton />

@@ -19,11 +19,7 @@ const Container = styled.div`
     padding:0 1em;
     margin-top: 10px;
 `
-const CardImage = styled.img`
-    width: 50px;
-    height: 50px;
-    background-size: contain;
-`
+
 const HederTitle = styled.p`
     color: white;
     font-size: 30px;

@@ -29,11 +29,11 @@ const ItemContainer = styled.div`
     border-radius: 20px;
     box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
     background-color: rgba(51, 50, 102, 0.87);
-    @media (max-width: 960px) {
-        width: 100%;
-        height:100%;
-        padding-left:3%;
-        padding-right:3%;
+    @media (max-width: 720px) {
+        width: 75%;
+        height:75%;
+        padding-right:2%;
+        padding-left:2%;
     }
 `
 const HeaderArea = styled.div`
@@ -85,8 +85,8 @@ const ResultsContent: React.FC<Props> = ({ }) => {
                 <HeaderTitle>Here is what we've found.</HeaderTitle>
             </HeaderArea>
             <ItemContainer>
-                <Card3 />
                 <Grid container spacing={2}>
+                <Card3 />
                     <Grid item xs={12} md={3} onClick={() => { }}>
                         <Card1 />
                     </Grid>
