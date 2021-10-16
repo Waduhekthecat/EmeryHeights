@@ -61,7 +61,7 @@ const Card: React.FC<Props> = ({ }) => {
             <Description1>View historical chart</Description1>
             <Description>Expires: 09/24/2021</Description>
             <Description>Strike Price: $48,000</Description>
-            <Description>Quantity: 2</Description>
+            <Description>Qty: 2</Description>
             <Description>Gas Fee: 108 Wei</Description>
             <Description style={{ marginTop: 80 }}>Price to Break even</Description>
             <Description style={{ fontSize: 25 }}>Total Cost:</Description>
