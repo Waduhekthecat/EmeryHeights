@@ -52,14 +52,7 @@ const PurchaseBtn = styled.button`
         cursor: pointer;
     }
 `
-// const Card: React.FC<Props> = ({ url, text, onClick, num }) => {
-//     return (
-//         <Container onClick={()=>{onClick(num)}}>
-//             <CardImage src={url} />
-//             <Description>{text}</Description>
-//         </Container>
-//     )
-// }
+
 
 const Card: React.FC<Props> = ({ }) => {
     return (
