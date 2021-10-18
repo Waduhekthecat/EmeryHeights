@@ -22,7 +22,6 @@ const theme = createTheme({
 
 export default function CallPutToggle() {
   const [selected, setSelected] = React.useState(false);
-  
   return (
     <ThemeProvider theme={theme}>
     <ToggleButtonGroup

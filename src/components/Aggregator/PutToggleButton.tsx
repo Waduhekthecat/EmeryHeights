@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "35px !important",
       alignItems: "center !important",
       justifyContent: "space-around !important",
+      '& .Mui-selected': {
+      backgroundColor: 'rgba(33, 137, 214, 0.14)',
+      color: 'rgb(26, 88, 159)',
+      },
+      selected: {},
   },
 })
 );
@@ -44,7 +49,7 @@ export default function PutToggleButton() {
       <ToggleButton className={classes.ButtonToggle} 
       value="put"
       selected={selected}
-      onChange={() => {
+      onClick={() => {
         setSelected(!selected);
       }}><p
       style={{
