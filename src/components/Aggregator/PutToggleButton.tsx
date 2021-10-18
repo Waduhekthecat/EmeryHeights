@@ -21,35 +21,32 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
-      borderWidth: "2px",
-      borderColor: "black",
+      background: "rgba(204, 210, 220, 0.3) !important",
+      backdropFilter: "blur(4px) !important",
+      border: `1px solid rgba(${colors.border}) !important`,
+      boxShadow: "3px 3px 3px rgba(10, 13, 27, 0.5) !important",
+      borderRadius: "10px !important",
+      height:"47px !important",
+      width:"140px !important",
+      display:"flex !important",
+      marginRight: "35px !important",
+      alignItems: "center !important",
+      justifyContent: "space-around !important",
   },
 })
 );
 
-const ButtonEdits = styledCom.button`
-background: rgba(204, 210, 220, 0.3);
-backdrop-filter: blur(4px);
-border: 1px solid rgba(${colors.border});
-box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-border-radius: 10px;
-border-radius: rounded;
-height:47px;
-width:140px;
-display:flex;
-margin-right: 35px;
-align-items:center;
-justify-content:space-around;
-box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-`
-
-
-
 export default function PutToggleButton() {
+  const [selected, setSelected] = React.useState(false);
   const classes = useStyles();
 
   return (
-      <ButtonEdits className={classes.ButtonToggle} value="put">{" "}<p
+      <ToggleButton className={classes.ButtonToggle} 
+      value="put"
+      selected={selected}
+      onChange={() => {
+        setSelected(!selected);
+      }}><p
       style={{
         fontSize: 17,
         color: "#ffffff",
@@ -57,6 +54,6 @@ export default function PutToggleButton() {
       }}
       >PUT
         </p>
-    </ButtonEdits>
+    </ToggleButton>
   );
 }

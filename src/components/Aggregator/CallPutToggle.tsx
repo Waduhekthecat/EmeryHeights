@@ -21,24 +21,12 @@ const theme = createTheme({
 });
 
 export default function CallPutToggle() {
-  const [alignment, setAlignment] = React.useState('web');
-
-
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string,
-  ) => {
-    setAlignment(newAlignment);
-  };
-
+  const [selected, setSelected] = React.useState(false);
+  
   return (
     <ThemeProvider theme={theme}>
     <ToggleButtonGroup
       color="primary"
-      value={alignment}
-      exclusive={true}
-      onChange={handleChange}
-      fullWidth={false}
     >
         <CallToggleButton />
         <PutToggleButton />
