@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card1 from './Card1'
-import Card2 from './Card2'
-import Card3 from './Card3'
+import Card1 from '../Aggregator/Results/Card1'
+import Card2 from '../Aggregator/Results/Card2'
+import Card3 from '../Aggregator/Results/Card3'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
 

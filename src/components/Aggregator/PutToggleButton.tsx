@@ -3,7 +3,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import {createTheme} from '@mui/material/styles';
 import styledCom from 'styled-components';
-import { colors } from '../styles'
+import { colors } from '../../styles'
 import { makeStyles } from "@material-ui/core/styles";
 
 

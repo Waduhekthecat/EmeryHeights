@@ -11,7 +11,7 @@ import StrikeInput from "./StrikeInput";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
-import CallPutToggle from "../CallPutToggle";
+import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
 
 interface CustomProps {

@@ -7,7 +7,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { colors } from "../../styles";
+import { colors } from "../../../styles";
 
 interface Props {
   // url: string;

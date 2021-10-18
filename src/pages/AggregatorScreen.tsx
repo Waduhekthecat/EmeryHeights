@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IAssetData, IBoxProfile } from "../helpers/types";
 
 import PageHeader from '../components/Home/PageHeader'
-import AggregatorContainer from '../components/Home/AggregatorContainer'
+import AggregatorContainer from '../components/Aggregator/AggregatorContainer'
 import ScreenWrapper from '../components/Home/ScreenWrapper'
 
 interface IAppState {

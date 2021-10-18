@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles'
-import BannerContentDOA from './BannerContentDOA'
+import BannerContentDOA from '../Aggregator/BannerContentDOA'
 
 const BannerContainer = styled.div`
     width: 90%;
