@@ -8,7 +8,7 @@ export const colors: any = {
   fontColor: "255,255,255",
   fontColor1: "42,42,42",
   fontColor2: "176,179,194",
-  white: '255, 255, 255',
+  white: 'rgb(255, 255, 255)',
   black: '0, 0, 0',
   dark: '94, 97, 114',
   grey: '139, 142, 159',

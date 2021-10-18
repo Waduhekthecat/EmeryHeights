@@ -1,22 +1,24 @@
 import React from "react";
 import styledCom from "styled-components";
 import { useForm, useWatch, Control } from "react-hook-form";
-import { colors } from '../../styles';
-import {createTheme} from '@mui/material/styles'
+import { colors } from "../../styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { Input } from "@material-ui/core";
 
 type FormValues = {
   strike: number;
 };
 
-
-
 const StrikeFieldArea = styledCom.form`
-    border-radius:10px;
-    border-radius:rounded;
-    height:42px;
-    width:100px;
-    display:flex;
+  background: rgba(204, 210, 220, 0.3);
+  backdrop-filter: blur(4px);
+  border: 0px solid rgba(${colors.border});
+  border-radius:3px;
+  height:31.2px;
+  width:100px;
+  font-size:28px !important;
+  font-color: white;
 `;
 const StrikeField = styledCom.input`
     background: rgba(204, 210, 220, 0.3);
@@ -25,7 +27,7 @@ const StrikeField = styledCom.input`
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
     border-radius:rounded;
-    height:42px;
+    height:40px;
     width:100px;
     font-size:20px !important;
     color: white;
@@ -54,13 +56,15 @@ interface Props {}
 
 const StrikeInput: React.FC<Props> = () => {
   const classes = useStyles();
-  const { register} = useForm<FormValues>();
+  const { register } = useForm<FormValues>();
 
   return (
+    <ThemeProvider theme={theme}>
     <StrikeFieldArea>
-      <StrikeField {...register("strike")} />
+      <Input style={{color: "#ffffff",}} {...register("strike")} />
     </StrikeFieldArea>
+    </ThemeProvider>
   );
-}
+};
 
 export default StrikeInput;

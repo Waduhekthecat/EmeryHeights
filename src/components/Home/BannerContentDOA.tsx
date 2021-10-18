@@ -8,7 +8,6 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
 import StrikeInput from "./StrikeInput";
-import StrikeInput2 from "./StrikeInput2";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
@@ -142,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textContTopR: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     marginTop: "2%",
     marginLeft: "-8%",
   },
@@ -242,8 +241,6 @@ const useStyles = makeStyles((theme) => ({
     width: "400px !important",
     display: "flex",
     flexDirection: "column", '& .MuiSlider-valueLabel': {
-    backgroundColor: 'black',
-    color: theme.palette.text.primary,
   },
     marginTop: "10em",
     marginLeft: "25px",
@@ -491,7 +488,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                   name="birthday"
                   type="date"
                   className="timepickerInput"
-                  placeholder="Date of Birth"
+                  placeholder="Date of Birth" 
                 />
                 {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
               </DataPickerArea1>
@@ -501,7 +498,7 @@ const BannerContentDOA: React.FC<Props> = () => {
       </Grid>
       <Grid item md={5}>
         <ItemContainer2 className={classes.ItemC}>
-          <Grid item xs={2} md={8} className={classes.textContTopL}>
+        <Grid item xs={2} md={8} className={classes.textContTopL}>
            <HeaderText2>Strike Price</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
@@ -544,6 +541,3 @@ const BannerContentDOA: React.FC<Props> = () => {
 };
 
 export default BannerContentDOA;
-
-/*
- */
