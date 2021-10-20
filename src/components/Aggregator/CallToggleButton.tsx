@@ -1,10 +1,11 @@
 import * as React from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import { createTheme } from "@mui/material/styles";
 import styledCom from "styled-components";
 import { colors } from "../../styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { Toggle } from "material-ui";
 
 const theme = createTheme({
   palette: {
@@ -20,35 +21,39 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
-    background: "rgba(204, 210, 220, 0.3) !important",
-    backdropFilter: "blur(4px) !important",
-    border: `1px solid rgba(${colors.border}) !important`,
-    boxShadow: "3px 3px 3px rgba(10, 13, 27, 0.5) !important",
-    borderRadius: "10px !important",
-    height: "47px !important",
-    width: "140px !important",
-    display: "flex !important",
-    marginRight: "35px !important",
-    alignItems: "center !important",
-    justifyContent: "space-around !important",
-    '&$selected': {
-      backgroundColor: 'rgba(33, 137, 214, 0.14)',
-      color: 'rgb(26, 88, 159)',
-      },
+    borderWidth: "2px",
+    borderColor: "black",
   },
 }));
 
+const ButtonEdits = styledCom(Button)`
+    background: rgba(204, 210, 220, 0.3) !important;
+    backdrop-filter: blur(4px) !important;
+    border: 1px solid rgba(${colors.border}) !important;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
+    border-radius: 10px !important;
+    border-radius: rounded !important;
+    height:47px !important;
+    width:140px !important;
+    display:flex !important;
+    margin-right: 35px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    &:focusVisible {
+      background: white !important;
+    }
+`;
 
 export default function CallToggleButton() {
   const classes = useStyles();
-  const [selected, setSelected] = React.useState(false);
+  const [selectedBtn, setSelectedBtn] = React.useState(-1);
   return (
-    <ToggleButton className={classes.ButtonToggle} 
+    <ButtonEdits 
+    className={classes.ButtonToggle} 
     value="call"
-    selected={selected}
-    onClick={() => {
-      setSelected(!selected);
-    }}>
+    disabled={selectedBtn === 1 ? false : true}
+    onClick={()=>setSelectedBtn(1)}
+    >
       {" "}<p
       style={{
         fontSize: 17,
@@ -57,6 +62,6 @@ export default function CallToggleButton() {
       }}
       >CALL
         </p>
-    </ToggleButton>
+    </ButtonEdits>
   );
 }

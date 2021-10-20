@@ -479,9 +479,6 @@ const BannerContentDOA: React.FC<Props> = () => {
           <Grid item xs={2} md={4} className={classes.textCont}>
             <Title2>Expiration</Title2>
             <ButtonContainer1>
-              <CalendarImageArea>
-                <CalendarImage src={calendarIcon} />
-              </CalendarImageArea>
               <DataPickerArea1>
                 <DataPicker
                   onChange={birthdayHandler}
@@ -490,7 +487,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                   className="timepickerInput"
                   placeholder="Date of Birth" 
                 />
-                {/* <img src={arrowUnder} alt="arrow" width="20" height="12" style={{marginRight:20}} /> */}
+                <img src={calendarIcon} alt="arrow" width="20" height="12" style={{marginRight:20}} />
               </DataPickerArea1>
             </ButtonContainer1>
           </Grid>
