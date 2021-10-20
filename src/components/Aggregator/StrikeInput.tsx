@@ -11,14 +11,8 @@ type FormValues = {
 };
 
 const StrikeFieldArea = styledCom.form`
-  background: rgba(204, 210, 220, 0.3);
-  backdrop-filter: blur(4px);
-  border: 0px solid rgba(${colors.border});
-  border-radius:3px;
   height:31.2px;
   width:100px;
-  font-size:28px !important;
-  font-color: white;
 `;
 const StrikeField = styledCom.input`
     background: rgba(204, 210, 220, 0.3);
@@ -61,7 +55,7 @@ const StrikeInput: React.FC<Props> = () => {
   return (
     <ThemeProvider theme={theme}>
     <StrikeFieldArea>
-      <Input style={{color: "#ffffff",}} {...register("strike")} />
+      <StrikeField {...register("strike")} />
     </StrikeFieldArea>
     </ThemeProvider>
   );

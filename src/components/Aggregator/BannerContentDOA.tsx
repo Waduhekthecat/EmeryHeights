@@ -21,24 +21,26 @@ interface CustomProps {
 
 const MyNativeSelect = withStyles({
   icon: {
-    color: "#3e4251 !important",
+    color: "#white !important",
     width: "2em !important",
     height: "2em !important",
+    fill: "white !important",
     marginTop: -10,
   },
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
+    color: "white !important",
   },
   "& .MuiInputBase-input": {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: "#3e4251",
+    color: "white !important",
     height: 60,
     //   border: '1px solid #ced4da',
-    fontSize: 21,
-    color: "black",
+    fontSize: 18,
+    fontWeight: 500,
     paddingLeft: "10px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
@@ -202,9 +204,8 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdown: {
     width: "100%",
+    background: "rbga(255, 255, 255, 0.05)",
     height: "100%",
-    background: "#ccd2dc",
-    opacity: "0.3",
     borderRadius: 10,
   },
   HeaderTitle: {
@@ -365,6 +366,7 @@ const DataPickerArea = styledCom.div`
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
+    color: white !important;
     height:55px;
     width:380px;
     display:flex;
@@ -398,7 +400,8 @@ const DataPicker = styledCom.input`
     padding-left:0.5em;
     width:253px !important;
     height: 55px !important;
-    font-size:20px !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
     color: white;
     border: none;
 `;
@@ -441,7 +444,7 @@ const BannerContentDOA: React.FC<Props> = () => {
     palette: {
       primary: {
         main: "#46AD8D",
-        contrastText: "#fff", //button text white instead of black
+        contrastText: "#ffffff", //button text white instead of black
       },
       background: {
         default: "#394764",
@@ -467,6 +470,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                   value={age}
                   onChange={handleChange2}
                   input={<BootstrapInput />}
+                  placeholder="WBTC"
                 >
                   <option color="white" value={10}>WBTC</option>
                   <option color="white" value={20}>USDC</option>
