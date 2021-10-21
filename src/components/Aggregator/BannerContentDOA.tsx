@@ -26,6 +26,7 @@ const MyNativeSelect = withStyles({
     height: "2em !important",
     marginTop: -10,
   },
+  
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -34,11 +35,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: "#3e4251",
+    backgroundColor: "white",
     height: 60,
     //   border: '1px solid #ced4da',
     fontSize: 21,
-    color: "black",
+    color: "gray",
     paddingLeft: "10px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
@@ -203,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
   dropdown: {
     width: "100%",
     height: "100%",
-    background: "#ccd2dc",
+    background: "black",
     opacity: "0.3",
     borderRadius: 10,
   },
@@ -266,7 +267,7 @@ const ItemContainer = styledCom.div`
     border-bottom-left-radius:20px;
     border-top-left-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgba(51, 50, 102, 0.87);
+    background-color: rgb(67,179,174);
     @media (max-width: 720px) {
         width: 75%;
         height:75%;
@@ -286,7 +287,7 @@ const ItemContainer2 = styledCom.div`
     border-bottom-right-radius:20px;
     border-top-right-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgba(51, 50, 102, 0.87);
+    background-color: #ffffff;
     @media (max-width: 720px) {
         width: 75%;
         height:75%;
@@ -295,25 +296,25 @@ const ItemContainer2 = styledCom.div`
     }
 `;
 const Title = styledCom.p`
-    font-size: 25px;
-    color: white;
+    font-size: 23px;
+    color: black;
     margin-top:50px;
 `;
 const Title1 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-top:-80px;
     margin-bottom:25px;
     margin-left:-10px;
 `;
 const Title2 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left:15px;
 `;
 const FooterText = styledCom.p`
     font-size: 16px;
-    color: white;
+    color: black;
     text-align:center;
     margin-top:15px;
     margin-bottom:-15px;
@@ -321,14 +322,14 @@ const FooterText = styledCom.p`
 `;
 const HeaderText = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left: 15px;
     margin-top: 30px;
     width:190px
 `;
 const HeaderText2 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left: 15px;
     width:170px
 `;

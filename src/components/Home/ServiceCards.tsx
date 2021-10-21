@@ -11,7 +11,7 @@ const Container = styled.div`
     width: 85%;
     height: 85%;
     padding: 3em 0em;
-    background: rgba(204, 210, 220, 0.3);
+    background: rgb(256, 256, 256);
     backdrop-filter: blur(4px);
     border-radius: 25px;
     display: flex;
@@ -32,14 +32,15 @@ const Container = styled.div`
     }
 `
 const CardImage = styled.img`
+    color: black;
     width: 48px;
     height: 48px;
     background-size: contain;
-    color: white;
+    
 `
 const Description = styled.p`
-    color: white;
-    font-size: 15px;
+    color: black;
+    font-size: 18px;
     text-align: center;
     font-weight:bold
 `
