@@ -1,11 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles'
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 interface Props {
     url: string;
     text: string;
 }
+
+const useStyles = makeStyles((theme) =>  ({
+    CardImg: {
+        tintColor: "#000000",
+    }
+})
+)
 
 const Container = styled.div`
     width: 85%;
@@ -35,7 +43,7 @@ const CardImage = styled.img`
     width: 48px;
     height: 48px;
     background-size: contain;
-    color: white;
+    tint-color: #000000;
 `
 const Description = styled.p`
     color: white;
@@ -45,9 +53,10 @@ const Description = styled.p`
 `
 
 const Card: React.FC<Props> = ({ url, text }) => {
+    const classes = useStyles();
     return (
         <Container onClick={()=>{}}>
-            <CardImage src={url} />
+            <CardImage src={url} className={classes.CardImg} />
             <Description>{text}</Description>
         </Container>
     )

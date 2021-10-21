@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import {ThemeProvider, createTheme} from '@mui/material/styles';
 import styledCom from 'styled-components';
 import { colors } from "../../styles";
 import { makeStyles } from "@material-ui/core/styles";
-import CallToggleButton from './CallToggleButton';
-import PutToggleButton from './PutToggleButton';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 );
 
 const ButtonEdits = styledCom(Button)`
-  background: rgba(204, 210, 220, 0.3) !important;
+  background: rgb(204, 210, 220) !important;
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;
   border: 1px solid rgba(${colors.border}) !important;
@@ -33,7 +31,7 @@ const ButtonEdits = styledCom(Button)`
     cursor: pointer;
   }
   &:focus {
-    background: rgba(204, 210, 220, 0.1) !important;
+    background: rgb(204, 210, 220,) !important;
   }
 
 `

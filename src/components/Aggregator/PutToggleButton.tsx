@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 );
 
 const ButtonEdits = styledCom.button`
-background: rgba(204, 210, 220, 0.3);
+background: rgb(204, 210, 220);
 backdrop-filter: blur(4px);
 border: 1px solid rgba(${colors.border});
 box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
