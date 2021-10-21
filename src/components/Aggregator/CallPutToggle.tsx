@@ -1,24 +1,25 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import {ThemeProvider, createTheme} from '@mui/material/styles';
 import styledCom from 'styled-components';
 import { colors } from "../../styles";
 import { makeStyles } from "@material-ui/core/styles";
-import CallToggleButton from './CallToggleButton';
-import PutToggleButton from './PutToggleButton';
 
 
 const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
       borderWidth: "2px",
       borderColor: "black",
+      color: "#000000 !important",
+      '&:focus': {
+      fontColor: "white !important",
+    }
   },
 })
 );
 
 const ButtonEdits = styledCom(Button)`
-  background: rgb(204, 210, 220);
+  background: rgb(255, 255, 255) !important;
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;
   border: 1px solid rgba(${colors.border}) !important;
@@ -33,7 +34,8 @@ const ButtonEdits = styledCom(Button)`
     cursor: pointer;
   }
   &:focus {
-    background: rgba(204, 210, 220, 0.1) !important;
+    background:  rgb(31, 36, 54) !important;
+    color: #ffffff !important;
   }
 
 `
@@ -48,26 +50,24 @@ const [selectedBtn2, setSelectedBtn2] = React.useState(false);
     <ButtonEdits 
       className={classes.ButtonToggle}
       value="call"
-      //selected={selectedBtn}
-      //onClick={()=>setSelectedBtn(!selectedBtn)}
+      selected={selectedBtn}
+      onClick={()=> setSelectedBtn(!selectedBtn)}
       >{" "}<p
       style={{
         fontSize: 17,
-        color: "#ffffff",
         fontWeight: 500,
       }}
-      >CALL
+      >CALL 
         </p>
     </ButtonEdits>
     <ButtonEdits 
       className={classes.ButtonToggle}
       value="put"
-      //selected={selectedBtn2}
-      //onClick={()=>setSelectedBtn2(!selectedBtn2)}
+      selected={selectedBtn2}
+      onClick={()=>setSelectedBtn2(!selectedBtn2)}
       >{" "}<p
       style={{
         fontSize: 17,
-        color: "#ffffff",
         fontWeight: 500,
       }}
       >PUT

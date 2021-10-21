@@ -20,11 +20,13 @@ interface CustomProps {
 }
 
 const MyNativeSelect = withStyles({
-  icon: {
-    color: "#3e4251 !important",
+  icon: { 
     width: "2em !important",
     height: "2em !important",
     marginTop: -10,
+    border: '1px solid #ced4da',
+    boxShadow: '3px 3px 3px rgba(10, 13, 27, 0.5)',
+    borderRadius: 10,
   },
   
 })(NativeSelect);
@@ -33,16 +35,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     marginTop: theme.spacing(3),
   },
   "& .MuiInputBase-input": {
-    borderRadius: 4,
     position: "relative",
-    backgroundColor: "white",
+    background: "white !important",
+    color: "black",
+    borderRadius: "10px !important",
+    border: `1px solid rgba(${colors.border}) !important`,
     height: 60,
-    //   border: '1px solid #ced4da',
     fontSize: 21,
-    color: "gray",
     paddingLeft: "10px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -96,8 +96,8 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   height: 300,
-  bgcolor: "#1f2436",
-  border: "0px solid #000",
+  bgcolor: "#ffffff",
+  border: "1px solid #000",
   borderRadius: 5,
   boxShadow: 24,
 };
@@ -202,11 +202,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   dropdown: {
+    border: '1px solid black',
+    boxShadow: '3px 3px 3px rgba(0, 13, 27, 0.5)',
     width: "100%",
     height: "100%",
-    background: "black",
-    opacity: "0.3",
-    borderRadius: 10,
+    opacity: "0.6",
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
@@ -343,29 +343,8 @@ const ButtonContainer1 = styledCom.div`
         margin-left:0;
     }
 `;
-const CalendarImage = styledCom.img`
-    width: 45px;
-    height: 35px;
-    background-size: contain;
-`;
-const CalendarImageArea = styledCom.div`
-    height:54px;
-    border-radius:10px;  
-    alignItems: "center";
-    margin-right:0.5em;
-    background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-`;
+
 const DataPickerArea = styledCom.div`
-    background: rgba(204, 210, 220, 0.3);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    border-radius:10px;
     height:55px;
     width:380px;
     display:flex;
@@ -379,11 +358,6 @@ const DataPickerArea = styledCom.div`
     }
 `;
 const DataPickerArea1 = styledCom.div`
-    background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    border-radius:10px;
     height:55px;
     width:380px;
     display:flex;
@@ -395,11 +369,12 @@ const DataPickerArea1 = styledCom.div`
     }
 `;
 const DataPicker = styledCom.input`
-    background: rgba(0, 0, 0, 0.0);
+    background: rgba(255, 255, 255, 1.0);
     padding-left:0.5em;
     width:253px !important;
-    height: 55px !important;
+    height:55px !important;
     font-size:20px !important;
+    border-radius:10px;
     color: white;
     border: none;
 `;
