@@ -11,24 +11,24 @@ type FormValues = {
 };
 
 const StrikeFieldArea = styledCom.form`
-  background: rgba(204, 210, 220, 0.3);
+  background: rgba(31, 36, 54, .85);
   backdrop-filter: blur(4px);
   border: 0px solid rgba(${colors.border});
   border-radius:3px;
-  height:31.2px;
-  width:100px;
+  height:33.2px;
+  width:130px;
   font-size:28px !important;
   font-color: white;
 `;
 const StrikeField = styledCom.input`
-    background: rgba(204, 210, 220, 0.3);
+    background: rgba(31, 36, 54, .7);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
     border-radius:10px;
     border-radius:rounded;
     height:40px;
-    width:100px;
+    width:150px;
     font-size:20px !important;
     color: white;
 `;

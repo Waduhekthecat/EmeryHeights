@@ -21,8 +21,6 @@ const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 2%;
-  margin-top: 10em;
-  margin-left: 28em;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
   background-color: rgb(31, 36, 54);

@@ -55,7 +55,7 @@ const [selectedBtn2, setSelectedBtn2] = React.useState(false);
       >{" "}<p
       style={{
         fontSize: 17,
-        fontWeight: 500,
+        fontWeight: 900,
       }}
       >CALL 
         </p>
@@ -68,7 +68,7 @@ const [selectedBtn2, setSelectedBtn2] = React.useState(false);
       >{" "}<p
       style={{
         fontSize: 17,
-        fontWeight: 500,
+        fontWeight: 900,
       }}
       >PUT
         </p>

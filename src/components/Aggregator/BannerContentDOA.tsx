@@ -143,13 +143,13 @@ const useStyles = makeStyles((theme) => ({
   textContTopR: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "2%",
+    marginTop: "4%",
     marginLeft: "-8%",
   },
   textContTopL: {
     display: "flex",
-    marginTop: "2%",
-    marginLeft: "5px !important",
+    marginTop: "4%",
+    marginLeft: "20px !important",
     flexDirection: "row",
   },
   textType: {
@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: "18%",
     marginLeft: "35px",
-    marginBottom: "-40%",
+    marginBottom: "-25%",
   },
   textContD: {
     display: "flex",
@@ -250,24 +250,29 @@ const useStyles = makeStyles((theme) => ({
     width: "325px !important",
     display: "flex",
     flexDirection: "column",
-    marginTop: "10em",
   },
+  Header: {
+  width: "950px !important",
+  height: "250px",
+  display: "flex",  
+  flexDirection: "column",
+  backgroundColor: 'rgb(31, 36, 54)'
+  }
 }));
 
 // styled-components
 const ItemContainer = styledCom.div`
     width: 400px !important; 
-    height: 505px;
+    height: 450px;
     display: flex;  
-    flex-direction: column;
+    flex-direction: column !important;
     padding-left:2%;
-    margin-top:8em;
+    margin-top:0em;
     margin-left:26.2em;
     border-right-radius:none;
     border-bottom-left-radius:20px;
-    border-top-left-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgb(67,179,174);
+    background-color: rgb(67,159,174);
     @media (max-width: 720px) {
         width: 75%;
         height:75%;
@@ -277,15 +282,14 @@ const ItemContainer = styledCom.div`
 `;
 const ItemContainer2 = styledCom.div`
     width: 500px !important;
-    height: 505px;
+    height: 450px;
     display: flex;  
     flex-direction: column !important;
     padding-right:2%;
-    margin-top:8em;
+    margin-top:0em;
     margin-left:74.9px;
     border-left-radius:none;
     border-bottom-right-radius:20px;
-    border-top-right-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
     background-color: #ffffff;
     @media (max-width: 720px) {
@@ -333,6 +337,13 @@ const HeaderText2 = styledCom.p`
     margin-left: 15px;
     width:170px
 `;
+const TitleText = styledCom.p`
+    margin-top: 1em;
+    font-size: 35px;
+    color: white;
+    text-align:center;
+    align-self:center;
+`;
 const ButtonContainer1 = styledCom.div`
     width: 225px;
     display: flex;
@@ -378,14 +389,33 @@ const DataPicker = styledCom.input`
     color: white;
     border: none;
 `;
+
+const StyledHeader = styledCom.div`
+width: 865px !important; 
+height: 120px; 
+flex-direction: column;
+align-self:center;
+padding-left:2%;
+padding-right:2%;
+margin-top:0em;
+margin-left:26.2em;
+margin-right:26.2em;
+border-right-radius:none;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+background-color: rgb(31, 36, 54);
+}
+`;
 const QueryButton = styledCom.a`
-    margin-top:4em;
+    margin-top:9em;
+    margin-left:1em;
     display: flex;
     align-self:center;
     align-items:center;
     justify-content:center;
     border-radius: 10px;
-    width: 80%;
+    width: 375px;
     color:white;
     font-size:20px;
     font-weight:600;
@@ -426,7 +456,15 @@ const BannerContentDOA: React.FC<Props> = () => {
   });
 
   return (
-    <Grid container direction="row">
+  <>
+  <Grid 
+  container direction="column" >
+    <StyledHeader className={classes.Header}>
+    <TitleText>Derivatives Aggregator
+    </TitleText>
+      </StyledHeader>
+    <Grid container direction="row"
+    alignItems="center">
       <Grid item md={5}>
         <ItemContainer className={classes.ItemD}>
           <Grid item xs={2} md={2} className={classes.textCont1}>
@@ -483,10 +521,10 @@ const BannerContentDOA: React.FC<Props> = () => {
               <AmountSlider />
               <FooterText>
             <ThemeProvider theme={theme}>
-                Need a large amount? Try{" "}
+                Need a larger amount?     Try{" "}
                 <em
                   style={{
-                    fontSize: 17,
+                    fontSize: 18,
                     textDecoration: "underline",
                     color: "#05e400",
                     fontStyle: "italic",
@@ -510,6 +548,8 @@ const BannerContentDOA: React.FC<Props> = () => {
         </ItemContainer2>
       </Grid>
     </Grid>
+    </Grid>
+    </>
   );
 };
 

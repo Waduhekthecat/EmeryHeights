@@ -11,9 +11,9 @@ import { createTheme } from '@mui/material/styles';
 import {ThemeProvider} from '@mui/material/styles';
 
 const Input = styled(MuiInput)`
-  width: 100px;
-  color: white;
-  align-items: center;
+  width: 90px;
+  color: blue;
+  fontWeight: 900;
 `;
 
 const Amount = styled(MuiSlider)`
@@ -53,8 +53,8 @@ export default function AmountSlider() {
 
   return (
     
-    <Box sx={{ width: 400 }}>
-      <Grid container flex-row spacing={2} alignItems="center">
+    <Box sx={{ width: 380 }}>
+      <Grid container flex-row spacing={2} marginLeft="1%" alignItems="center">
         <Grid item md={12}>
         <Amount
         defaultValue={0.50}
@@ -77,7 +77,6 @@ export default function AmountSlider() {
               min: 0.01,
               max: 2.00,
               default: 0.50,
-
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
