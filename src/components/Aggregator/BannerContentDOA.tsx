@@ -24,8 +24,6 @@ const MyNativeSelect = withStyles({
     width: "2em !important",
     height: "2em !important",
     marginTop: -10,
-    border: '1px solid #ced4da',
-    boxShadow: '3px 3px 3px rgba(10, 13, 27, 0.5)',
     borderRadius: 10,
   },
   
@@ -203,10 +201,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdown: {
     border: '1px solid black',
-    boxShadow: '3px 3px 3px rgba(0, 13, 27, 0.5)',
+    boxShadow: '5px 5px 5px rgba(0, 13, 27, 0.5)',
     width: "100%",
     height: "100%",
-    opacity: "0.6",
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
