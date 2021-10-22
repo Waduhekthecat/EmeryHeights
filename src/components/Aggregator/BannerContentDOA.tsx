@@ -24,6 +24,7 @@ const MyNativeSelect = withStyles({
     width: "2em !important",
     height: "2em !important",
     marginTop: -10,
+    color: "white !important",
     borderRadius: 10,
   },
   
@@ -34,8 +35,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
   "& .MuiInputBase-input": {
     position: "relative",
-    background: "white !important",
-    color: "black",
+    background: "#3E4251 !important",
+    color: "white !important",
     borderRadius: "10px !important",
     border: `1px solid rgba(${colors.border}) !important`,
     height: 60,
