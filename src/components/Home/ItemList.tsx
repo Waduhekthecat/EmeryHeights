@@ -20,7 +20,7 @@ const ItemContainer = styled.div`
   margin: auto;
   display: flex;
   margin-top: 11em;
-  margin-left: 28em;
+  margin-left: 23em;
   flex-direction: column;
   padding-left: 2%;
   border-radius: 20px;
