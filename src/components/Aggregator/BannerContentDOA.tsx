@@ -448,7 +448,7 @@ const BannerContentDOA: React.FC<Props> = () => {
         contrastText: "#fff", //button text white instead of black
       },
       background: {
-        default: "#394764",
+        default: "#3E4251",
       },
     },
   });
@@ -483,7 +483,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                   <option color="white" value={10}>WBTC</option>
                   <option color="white" value={20}>USDC</option>
                   <option color="white" value={30}>ETH</option>
-                  <option color="white" value={20}>USDT</option>
+                  <option color="white" value={40}>USDT</option>
                 </MyNativeSelect>
               </FormControl>
             </DataPickerArea>
