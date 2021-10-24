@@ -11,12 +11,12 @@ interface Props {
 
 const Container = styled.div`
     width: 100%;
-    background: rgb(94,108,250);
+    background-color: rgb(67,159,174);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(${colors.border});
-    padding:0 1em;
+    padding:3em;
     margin-top: 10px;
 `
 
@@ -24,6 +24,7 @@ const HederTitle = styled.p`
     color: white;
     font-size: 30px;
     font-weight:500
+    background-color:
 `
 const Description1 = styled.p`
     color: white;

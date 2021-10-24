@@ -250,15 +250,33 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   Header: {
-  width: "950px !important",
-  height: "250px",
+  width: "900px !important",
+  height: "120px",
   display: "flex",  
   flexDirection: "column",
   backgroundColor: 'rgb(31, 36, 54)'
-  }
+  },
+
 }));
 
 // styled-components
+const StyledHeader = styledCom.div`
+width: 900px !important; 
+height: 120px; 
+flex-direction: column;
+align-self:center;
+padding-left:2%;
+padding-right:2%;
+margin-top:0em;
+margin-left:26.2em;
+margin-right:26.2em;
+border-right-radius:none;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+background-color: rgb(31, 36, 54);
+}
+`;
 const ItemContainer = styledCom.div`
     width: 400px !important; 
     height: 450px;
@@ -384,23 +402,6 @@ const DataPicker = styledCom.input`
     border: none;
 `;
 
-const StyledHeader = styledCom.div`
-width: 900px !important; 
-height: 120px; 
-flex-direction: column;
-align-self:center;
-padding-left:2%;
-padding-right:2%;
-margin-top:0em;
-margin-left:26.2em;
-margin-right:26.2em;
-border-right-radius:none;
-border-top-left-radius:20px;
-border-top-right-radius:20px;
-box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-background-color: rgb(31, 36, 54);
-}
-`;
 const QueryButton = styledCom.a`
     margin-top:9em;
     margin-left:1em;
