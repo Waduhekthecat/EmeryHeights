@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from "./App";
 import { globalStyle } from "./styles";
-import 'semantic-ui-less/semantic.less'
 const GlobalStyle = createGlobalStyle`
   ${globalStyle}
 `;

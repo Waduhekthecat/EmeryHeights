@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
-import calendarIcon from "../../assets/images/calendarIcon.png";
+import TextField from "@mui/material/TextField";
 import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -13,6 +16,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
+import { cpuUsage } from "process";
+import { color } from "@mui/system";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -20,14 +25,13 @@ interface CustomProps {
 }
 
 const MyNativeSelect = withStyles({
-  icon: { 
+  icon: {
     width: "2em !important",
     height: "2em !important",
     marginTop: -10,
     color: "white !important",
     borderRadius: 10,
   },
-  
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -59,6 +63,29 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      '&:hover fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      color: "white !important",
+      background: "#3E4251 !important",
+      marginLeft: "10px",
+      borderRadius: "10px",
+      marginTop: "-5px",
+      width: "310px",
+      padding: "13px 0px 12.5px 0px",
+      
+    },
+  },
+})(TextField);
 
 const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   function NumberFormatCustom(props, ref) {
@@ -121,6 +148,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     background: "red",
     color: "white",
+  },
+  resize: {
+    fontSize:50,
   },
   textCont: {
     display: "flex",
@@ -201,8 +231,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   dropdown: {
-    border: '1px solid black',
-    boxShadow: '5px 5px 5px rgba(0, 13, 27, 0.5)',
+    border: "1px solid black",
+    boxShadow: "5px 5px 5px rgba(0, 13, 27, 0.5)",
     width: "100%",
     height: "100%",
   },
@@ -239,8 +269,8 @@ const useStyles = makeStyles((theme) => ({
   ItemC: {
     width: "400px !important",
     display: "flex",
-    flexDirection: "column", '& .MuiSlider-valueLabel': {
-  },
+    flexDirection: "column",
+    "& .MuiSlider-valueLabel": {},
     marginTop: "10em",
     marginLeft: "25px",
   },
@@ -250,11 +280,20 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   Header: {
-  width: "950px !important",
-  height: "250px",
-  display: "flex",  
-  flexDirection: "column",
-  backgroundColor: 'rgb(31, 36, 54)'
+    width: "950px !important",
+    height: "250px",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "rgb(31, 36, 54)",
+  },
+  DataPicker: {
+    width: "253px !important",
+    height: "55px !important",
+    color: "white",
+  },
+  notchedOutline: {
+    borderWidth: "1px !important",
+    borderColor: "yellow !important",
   }
 }));
 
@@ -309,6 +348,7 @@ const Title2 = styledCom.p`
     font-size: 23px;
     color: black;
     margin-left:15px;
+    margin-top: -5px;
 `;
 const FooterText = styledCom.p`
     font-size: 16px;
@@ -362,16 +402,16 @@ const DataPickerArea = styledCom.div`
         width: 220px;
     }
 `;
-const DataPickerArea1 = styledCom.div`
-    height:55px;
-    width:380px;
-    display:flex;
-    margin-bottom:5px;
-    justify-content:center;
-    align-items:center;
-    @media (max-width: 550px) {
-        width: 220px;
-    }
+const DataPickerArea1 = styledCom(TextField)`
+    background: #3E4251 !important;
+    margin-left: 8px !important;
+    width:310px !important;
+    height:55px !important;
+    font-size:32 !important;
+    padding-top:0.5em !important;
+    border-radius:10px;
+    color: white;
+    borderColor: white;
 `;
 const DataPicker = styledCom.input`
     background: rgba(255, 255, 255, 1.0);
@@ -425,9 +465,8 @@ const QueryButton = styledCom.a`
 interface Props {}
 
 const BannerContentDOA: React.FC<Props> = () => {
-  const [values, setValues] = React.useState<State>({
-    numberformat: "1320",
-  });
+  const [value, setValue] = React.useState<Date | null>(new Date());
+
   const history = useHistory();
   const classes = useStyles();
   const [age, setAge] = useState("");
@@ -457,68 +496,69 @@ const BannerContentDOA: React.FC<Props> = () => {
       },
     },
   });
-  
-
-
-
-
 
   return (
-
-<Grid container direction="column"> 
-  <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
-    <Grid item>
-    <StyledHeader>
-      <TitleText>Derivatives Aggregator</TitleText>
-    </StyledHeader>
-    </Grid>
-  </Grid>
-  <Grid container direction ="row" justifyContent="center">
-    <Grid item>
-    <ItemContainer>
-    <Grid item xs={2} md={2} className={classes.textCont1}>
-            <HeaderText>Option Type</HeaderText>
-          </Grid>
-          <Grid item xs={2} md={2} className={classes.textContTopL}>
-            <CallPutToggle />
-          </Grid>
-          <Grid item xs={2} md={5} className={classes.textCont1}>
-            <HeaderText>Underlying Asset</HeaderText>
-            <DataPickerArea style={{ width: "310px" }}>
-              <FormControl variant="standard" className={classes.dropdown}>
-                <MyNativeSelect
-                  value={age}
-                  onChange={handleChange2}
-                  input={<BootstrapInput />}
-                >
-                  <option color="white" value={10}>WBTC</option>
-                  <option color="white" value={20}>USDC</option>
-                  <option color="white" value={30}>ETH</option>
-                  <option color="white" value={40}>USDT</option>
-                </MyNativeSelect>
-              </FormControl>
-            </DataPickerArea>
-          </Grid>
-          <Grid item xs={2} md={4} className={classes.textCont}>
-            <Title2>Expiration</Title2>
-            <ButtonContainer1>
-              <DataPickerArea1>
-                <DataPicker
-                  onChange={birthdayHandler}
-                  name="birthday"
+    <Grid container direction="column">
+      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+        <Grid item>
+          <StyledHeader>
+            <TitleText>Derivatives Aggregator</TitleText>
+          </StyledHeader>
+        </Grid>
+      </Grid>
+      <Grid container direction="row" justifyContent="center">
+        <Grid item>
+          <ItemContainer>
+            <Grid item xs={2} md={2} className={classes.textCont1}>
+              <HeaderText>Option Type</HeaderText>
+            </Grid>
+            <Grid item xs={2} md={2} className={classes.textContTopL}>
+              <CallPutToggle />
+            </Grid>
+            <Grid item xs={2} md={5} className={classes.textCont1}>
+              <HeaderText>Underlying Asset</HeaderText>
+              <DataPickerArea style={{ width: "310px" }}>
+                <FormControl variant="standard" className={classes.dropdown}>
+                  <MyNativeSelect
+                    value={age}
+                    onChange={handleChange2}
+                    input={<BootstrapInput />}
+                  >
+                    <option color="white" value={10}>
+                      WBTC
+                    </option>
+                    <option color="white" value={20}>
+                      USDC
+                    </option>
+                    <option color="white" value={30}>
+                      ETH
+                    </option>
+                    <option color="white" value={40}>
+                      USDT
+                    </option>
+                  </MyNativeSelect>
+                </FormControl>
+              </DataPickerArea>
+            </Grid>
+            <Grid item xs={2} md={4} className={classes.textCont}>
+              <Title2>Expiration</Title2>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <CssTextField
+                  variant="outlined"
+                  id="date"
                   type="date"
-                  className="timepickerInput"
-                  placeholder="Date of Birth" 
+                  defaultValue="2017-05-24"
+                  sx={{ width: 310, height: 55}}
+                  inputProps={{style: {fontSize: 24 }}}
+                  
                 />
-                <img src={calendarIcon} alt="arrow" width="20" height="12" style={{marginRight:20}} />
-              </DataPickerArea1>
-            </ButtonContainer1>
-          </Grid>
-    </ItemContainer>
-    </Grid>
-    <ItemContainer2>
-    <Grid item xs={2} md={8} className={classes.textContTopL}>
-           <HeaderText2>Strike Price:</HeaderText2>
+              </LocalizationProvider>
+            </Grid>
+          </ItemContainer>
+        </Grid>
+        <ItemContainer2>
+          <Grid item xs={2} md={8} className={classes.textContTopL}>
+            <HeaderText2>Strike Price:</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
               <StrikeInput />
@@ -526,10 +566,10 @@ const BannerContentDOA: React.FC<Props> = () => {
           </Grid>
           <Grid item xs={4} md={10} className={classes.textCont8}>
             <Title1>Order Amount</Title1>
-              <AmountSlider />
-              <FooterText>
+            <AmountSlider />
+            <FooterText>
               <ThemeProvider theme={theme}>
-                Need a larger amount?     Try{" "}
+                Need a larger amount? Try{" "}
                 <em
                   style={{
                     fontSize: 18,
@@ -541,8 +581,8 @@ const BannerContentDOA: React.FC<Props> = () => {
                 >
                   Smart Order Routing
                 </em>
-                </ThemeProvider>
-              </FooterText>
+              </ThemeProvider>
+            </FooterText>
           </Grid>
           <Grid item xs={4} md={6} className={classes.textCont4}>
             <QueryButton
@@ -553,11 +593,9 @@ const BannerContentDOA: React.FC<Props> = () => {
               Begin Query
             </QueryButton>
           </Grid>
-          
-    </ItemContainer2>
-    
-  </Grid>
-</Grid>
+        </ItemContainer2>
+      </Grid>
+    </Grid>
   );
 };
 
