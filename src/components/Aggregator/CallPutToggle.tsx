@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import styledCom from 'styled-components';
 import { colors } from "../../styles";
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 })
 );
 
-const ButtonEdits = styledCom(Button)`
+const ButtonEdits = styledCom(ToggleButton)`
   background: rgb(255, 255, 255) !important;
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;

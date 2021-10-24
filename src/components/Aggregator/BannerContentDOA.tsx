@@ -27,14 +27,19 @@ const MyNativeSelect = withStyles({
     height: "2em !important",
     fill: "white !important",
     marginTop: -10,
-    color: "white !important",
+    color: "black !important",
     borderRadius: 10,
   },
+  select: {
+    fill: "#3E4251 !important",
+    color: "black"
+  }
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
-    color: "white !important",
+    color: "black !important",
+    background: "#3E4251 !important",
   },
   "& .MuiInputBase-input": {
     position: "relative",
@@ -57,8 +62,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-    "&:focus": {
-      borderRadius: 4,
+    "&:hover": {
+    background: "#3E4251 !important",
+    color: "black !important"
     },
   },
 }));
@@ -85,6 +91,7 @@ const CssTextField = withStyles({
     },
   },
 })(TextField);
+
 
 const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   function NumberFormatCustom(props, ref) {
@@ -231,9 +238,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdown: {
     border: "1px solid black",
+    backgroundColor: "#3E4251 !important",
     boxShadow: "5px 5px 5px rgba(0, 13, 27, 0.5)",
     width: "100%",
-    background: "rbga(255, 255, 255, 0.05)",
     height: "100%",
   },
   HeaderTitle: {
@@ -478,7 +485,7 @@ const BannerContentDOA: React.FC<Props> = () => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#46AD8D",
+        main: "#3E4251",
         contrastText: "#ffffff", //button text white instead of black
       },
       background: {
@@ -516,23 +523,24 @@ const BannerContentDOA: React.FC<Props> = () => {
             </Grid>
             <Grid item xs={2} md={5} className={classes.textCont1}>
               <HeaderText>Underlying Asset</HeaderText>
-              <DataPickerArea style={{ width: "310px" }}>
-                <FormControl variant="standard" className={classes.dropdown}>
+              <DataPickerArea style={{ width: "310px",background: "#3E4251 !important", }}>
+                <FormControl variant="filled" className={classes.dropdown}>
                   <MyNativeSelect
+                    style={{background: "#3E4251 !important",}}
                     value={age}
                     onChange={handleChange2}
                     input={<BootstrapInput />}
                   >
-                    <option color="white" value={10}>
+                    <option  value={10}>
                       WBTC
                     </option>
-                    <option color="white" value={20}>
+                    <option  value={20}>
                       USDC
                     </option>
-                    <option color="white" value={30}>
+                    <option value={30}>
                       ETH
                     </option>
-                    <option color="white" value={40}>
+                    <option value={40}>
                       USDT
                     </option>
                   </MyNativeSelect>
