@@ -2,27 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../styles";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   gridCont: {},
+  input: {
+    background: "rgb(67,159,174)"
+  }
 }));
 
 interface Props {
+  
   // url: string;
   // text: string;
   // onClick:(num: number)=>void;
   // num:number;
 }
-const Description = styled.div`
-    background: rgba(204, 210, 220, 0.3);
+const CardContainer = styled.div`
+    background: white;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     border: 1px solid rgba(${colors.border});
-    justify-content: space-between;
     box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.5);
 &:hover {
     box-shadow: 0 1px 2px 0 rgba(${colors.border}), 0 1px 3px 0 rgba(${colors.border});
@@ -45,15 +49,16 @@ const Description = styled.div`
 const HeaderTitle = styled.p`
   color: white;
   font-size: 27px;
+  margin-left:1em;
 `;
+
 const CompareButton = styled.a`
-    margin-top:-1em;
     display: flex;
     align-self:center;
     align-items:center;
     justify-content:center;
     border-radius: 10px;
-    width: 60%;
+    width: 80%;
     color:white;
     font-size:20px;
     font-weight:600;
@@ -66,8 +71,9 @@ const CompareButton = styled.a`
     }
 `;
 const DescriptionTxt = styled.p`
-  color: white;
-  font-size: 20px;
+  color: black;
+  font-size: 25px;
+  margin-left: 1em;
 `;
 const SnippetArea = styled.div`
   position: relative;
@@ -84,10 +90,19 @@ const SnippetArea = styled.div`
   text-align: center;
 `;
 const HeadertArea = styled.div`
+width:100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  background-color: rgb(31, 36, 54, .9)
 `;
+
+const SelectedCard = styled.div`
+width:100%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(67,159,174).8;
+`;
+
 const ButtonArea = styled.div`
   display: flex;
   flex-direction: row;
@@ -110,23 +125,27 @@ const SelectBtn = styled.button`
   }
 `;
 
+
+
 const Card: React.FC<Props> = ({}) => {
   const classes = useStyles();
   return (
-    <Description>
+    <CardContainer>
       <HeadertArea>
-        <div>
+        <Grid container direction="column">
+          <Grid item>
           <HeaderTitle>Platform X</HeaderTitle>
-          <HeaderTitle
-            style={{ color: "white", marginTop: -10, marginBottom: 30 }}
-          >
-            Strike Price: $48,500
-          </HeaderTitle>
+          </Grid>
+          <Grid item>
+           <HeaderTitle>Option Cost: $48,500</HeaderTitle>
+           </Grid>
+          </Grid>
+          </HeadertArea>
+          
           <DescriptionTxt>Quantity: 2</DescriptionTxt>
           <DescriptionTxt>Strike: $48,000</DescriptionTxt>
           <DescriptionTxt>Expiry: 09/24/2021</DescriptionTxt>
-        </div>
-      </HeadertArea>
+
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}
         <CompareButton>
@@ -134,7 +153,7 @@ const Card: React.FC<Props> = ({}) => {
         </CompareButton>
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'#5e6172'}}>Remove</SelectBtn> */}
       </ButtonArea>
-    </Description>
+      </CardContainer>
   );
 };
 

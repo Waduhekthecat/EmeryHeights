@@ -5,19 +5,21 @@ import Card2 from '../Aggregator/Results/Card2'
 import Card3 from '../Aggregator/Results/Card3'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
-
 import routerIcon from '../../assets/images/routerIcon.png'
 import searchIcon from '../../assets/images/searchIcon.png'
 import chartIcon from '../../assets/images/chartIcon.png'
 import stationImage from '../../assets/images/stationImage.png'
 import { colors } from '../../styles'
+import { render } from 'react-dom';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 
 interface Props {
     // switchContent: (num: number) => void;
 }
 
+
 const ItemContainer = styled.div`
-    width: 80%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -28,7 +30,7 @@ const ItemContainer = styled.div`
     margin-bottom:10em;
     border-radius: 20px;
     box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
-    background-color: rgba(51, 50, 102, 0.87);
+    background-color: rgb(31, 36, 54);
     @media (max-width: 720px) {
         width: 75%;
         height:75%;
@@ -81,9 +83,6 @@ const ResultsContent: React.FC<Props> = ({ }) => {
     const history = useHistory()
     return (
         <div>
-            <HeaderArea>
-                <HeaderTitle>Here is what we've found.</HeaderTitle>
-            </HeaderArea>
             <ItemContainer>
                 <Grid container spacing={2}>
                 <Card3 />

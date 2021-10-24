@@ -4,6 +4,7 @@ import { colors } from '../../../styles'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import ResultsCard from './ResultsCard';
+import SelectedCard  from '../Results/ResultsCard';
 const useStyles = makeStyles((theme) => ({
     gridCont: {
         paddingTop: '0px !important',
@@ -22,7 +23,6 @@ const Container = styled.div`
     width: 100%;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6)
     background: rgba(51, 50, 102, 0.87);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;

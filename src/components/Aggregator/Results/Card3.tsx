@@ -25,12 +25,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Container = styled.div`
   width: 100%;
-  background: rgba(204, 210, 220, 0.3);
+  background: rgb(256,256,256);
+  color:"black";
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    margin-top: -10px;
-    margin-bottom: 7px;
+    margin-top: 25px;
+    margin-left:0.5em;
+    margin-right:0.5em;
+    margin-bottom: 5px;
+    padding-left: 3em;
+    padding-top: .75em;
+    padding-bottom: .75em;
+    padding-right: .75em;
     border: 1px solid rgba(${colors.border});
     box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.5);
     &:hover {
@@ -52,20 +59,20 @@ const Container = styled.div`
   }
 `;
 const Description = styled.p`
-  color: white;
+  color: black;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 0;
 `;
 const Description1 = styled.p`
-  color: white;
+  color: black;
   font-size: 25px;
   font-weight: 400;
   margin-right: 20px;
   padding: 0;
 `;
 const FormGroupArea = styled.div`
-  color: white;
+  color: black;
   display: flex;
   flex-direction: row;
   align-items: center;
