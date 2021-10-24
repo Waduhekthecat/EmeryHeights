@@ -104,10 +104,10 @@ const style = {
 // Material ui style
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "70%",
+    width: "90%",
     marginBottom: "5px",
     display: "flex",
-    marginLeft: "15%",
+    marginLeft: "10%",
     paddingLeft: "3%",
     flexDirection: "row",
     borderRadius: "20px",
@@ -265,15 +265,13 @@ const ItemContainer = styledCom.div`
     display: flex;  
     flex-direction: column !important;
     padding-left:2%;
-    margin-top:0em;
-    margin-left:26.2em;
     border-right-radius:none;
     border-bottom-left-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
     background-color: rgb(67,159,174);
     @media (max-width: 720px) {
         width: 75%;
-        height:75%;
+        height: 75%;
         padding-left:2%;
         padding-right:2%;
     }
@@ -284,15 +282,13 @@ const ItemContainer2 = styledCom.div`
     display: flex;  
     flex-direction: column !important;
     padding-right:2%;
-    margin-top:0em;
-    margin-left:74.9px;
     border-left-radius:none;
     border-bottom-right-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
     background-color: #ffffff;
     @media (max-width: 720px) {
         width: 75%;
-        height:75%;
+        height: 75%;
         padding-right:2%;
         padding-left:2%;
     }
@@ -389,7 +385,7 @@ const DataPicker = styledCom.input`
 `;
 
 const StyledHeader = styledCom.div`
-width: 865px !important; 
+width: 900px !important; 
 height: 120px; 
 flex-direction: column;
 align-self:center;
@@ -451,21 +447,36 @@ const BannerContentDOA: React.FC<Props> = () => {
         default: "#3E4251",
       },
     },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+      },
+    },
   });
+  
+
+
+
+
 
   return (
-  <>
-  <Grid 
-  container direction="column" >
-    <StyledHeader className={classes.Header}>
-    <TitleText>Derivatives Aggregator
-    </TitleText>
-      </StyledHeader>
-    <Grid container direction="row"
-    alignItems="center">
-      <Grid item md={5}>
-        <ItemContainer className={classes.ItemD}>
-          <Grid item xs={2} md={2} className={classes.textCont1}>
+
+<Grid container direction="column"> 
+  <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+    <Grid item>
+    <StyledHeader>
+      <TitleText>Derivatives Aggregator</TitleText>
+    </StyledHeader>
+    </Grid>
+  </Grid>
+  <Grid container direction ="row" justifyContent="center">
+    <Grid item>
+    <ItemContainer>
+    <Grid item xs={2} md={2} className={classes.textCont1}>
             <HeaderText>Option Type</HeaderText>
           </Grid>
           <Grid item xs={2} md={2} className={classes.textContTopL}>
@@ -503,11 +514,10 @@ const BannerContentDOA: React.FC<Props> = () => {
               </DataPickerArea1>
             </ButtonContainer1>
           </Grid>
-        </ItemContainer>
-      </Grid>
-      <Grid item md={5}>
-        <ItemContainer2 className={classes.ItemC}>
-        <Grid item xs={2} md={8} className={classes.textContTopL}>
+    </ItemContainer>
+    </Grid>
+    <ItemContainer2>
+    <Grid item xs={2} md={8} className={classes.textContTopL}>
            <HeaderText2>Strike Price:</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
@@ -518,7 +528,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             <Title1>Order Amount</Title1>
               <AmountSlider />
               <FooterText>
-            <ThemeProvider theme={theme}>
+              <ThemeProvider theme={theme}>
                 Need a larger amount?     Try{" "}
                 <em
                   style={{
@@ -543,11 +553,11 @@ const BannerContentDOA: React.FC<Props> = () => {
               Begin Query
             </QueryButton>
           </Grid>
-        </ItemContainer2>
-      </Grid>
-    </Grid>
-    </Grid>
-    </>
+          
+    </ItemContainer2>
+    
+  </Grid>
+</Grid>
   );
 };
 
