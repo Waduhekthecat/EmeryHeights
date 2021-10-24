@@ -81,10 +81,10 @@ const ImageContainer: React.FC<Props> = ({ url }) => {
                 <Grid item xs={12} md={7} className={classes.textCont}>
                     <Title style={{ width: '100%' }}>Lorem ipsum</Title>
                     <Description>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis in risus vitae rhoncus. Sed eu orci nec ligula ullamcorper porttitor eget ut metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas lacinia elit lectus, nec auctor ipsum efficitur in. Donec vestibulum diam congue, tempor nibh eu, auctor dui.
+                    
                     </Description>
                     <Description>
-                        Duis sapien ex, porta sed eleifend a, mollis dictum mauris. Morbi vehicula gravida magna non commodo.
+                       
                     </Description>
                     {!url.includes("chain") && <OutlineButton>Lorem ipsum</OutlineButton>}
                 </Grid>

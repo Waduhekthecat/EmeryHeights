@@ -33,11 +33,11 @@ const MenuContainer = styled.ul<MenuContainerProps>`
     }
 `
 const MmenuItem = styled.li`
-    color: rgb(${colors.fontColor});
+    color: rgb(${colors.black});
     font-size: 20px;
     font-weight: 400;
     margin: 0 1em;
-    background-color:rgb(${colors.blue});
+    background-color:rgb(255, 255, 255);
     padding: 0.5em 1.5em;
     border-radius:0.2em;
     @media (max-width: 1100px) {

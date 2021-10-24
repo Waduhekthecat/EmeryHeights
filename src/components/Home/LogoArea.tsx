@@ -23,8 +23,9 @@ const imgStyle = {
 
 function LogoArea() {
     return (
-        <LogoContainer>
+        <LogoContainer> <a href = "https://stat.finance">
             <img src={logo} style={imgStyle} alt="logo" />
+            </a>
             {/* <LogoTitle>Buccaneer V3</LogoTitle> */}
         </LogoContainer>
     )

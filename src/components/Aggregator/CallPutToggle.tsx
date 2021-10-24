@@ -6,17 +6,20 @@ import { colors } from "../../styles";
 import { makeStyles } from "@material-ui/core/styles";
 
 
-
 const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
       borderWidth: "2px",
       borderColor: "black",
+      color: "#000000 !important",
+      '&:focus': {
+      fontColor: "white !important",
+    }
   },
 })
 );
 
 const ButtonEdits = styledCom(Button)`
-  background: rgb(204, 210, 220) !important;
+  background: rgb(255, 255, 255) !important;
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;
   border: 1px solid rgba(${colors.border}) !important;
@@ -31,7 +34,8 @@ const ButtonEdits = styledCom(Button)`
     cursor: pointer;
   }
   &:focus {
-    background: rgb(204, 210, 220,) !important;
+    background: #504798 !important;
+    color: #ffffff !important;
   }
 
 `
@@ -46,27 +50,25 @@ const [selectedBtn2, setSelectedBtn2] = React.useState(false);
     <ButtonEdits 
       className={classes.ButtonToggle}
       value="call"
-      //selected={selectedBtn}
-      //onClick={()=>setSelectedBtn(!selectedBtn)}
+      selected={selectedBtn}
+      onClick={()=> setSelectedBtn(!selectedBtn)}
       >{" "}<p
       style={{
         fontSize: 17,
-        color: "#ffffff",
-        fontWeight: 500,
+        fontWeight: 900,
       }}
-      >CALL
+      >CALL 
         </p>
     </ButtonEdits>
     <ButtonEdits 
       className={classes.ButtonToggle}
       value="put"
-      //selected={selectedBtn2}
-      //onClick={()=>setSelectedBtn2(!selectedBtn2)}
+      selected={selectedBtn2}
+      onClick={()=>setSelectedBtn2(!selectedBtn2)}
       >{" "}<p
       style={{
         fontSize: 17,
-        color: "#ffffff",
-        fontWeight: 500,
+        fontWeight: 900,
       }}
       >PUT
         </p>

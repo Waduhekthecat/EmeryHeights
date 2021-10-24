@@ -11,19 +11,26 @@ import { createTheme } from '@mui/material/styles';
 import {ThemeProvider} from '@mui/material/styles';
 
 const Input = styled(MuiInput)`
-  width: 100px;
-  color: white;
-  align-items: center;
+  padding-left: 0.8em;
+  width: 110px;
+  color: rgb(31,36,54);
+  fontWeight: 900;
 `;
 
-const Amount = styled(MuiSlider)`
-  .MuiSlider-thumb: {
-    backgroundColor: rgba(#05e400);
-  }
-  .MuiSlider-track: {
-    backgroundColor: rgba(#05e400);
-  }
-`;
+const Amount = styled(MuiSlider)(({ theme }) => ({
+
+  '.MuiSlider-thumb': {
+    color: 'rgb(67,159,174)',
+  },
+  '.MuiSlider-track': {
+    color: 'rgb(67,159,174)',
+  },
+  '.MuiSlider-rail': {
+    color: 'rgb(31,36,54)',
+  },
+}));
+
+
 
 
 
@@ -39,27 +46,27 @@ export default function AmountSlider() {
     setValue(newValue);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value === '' ? '' : Number(event.target.value));
   };
 
   const handleBlur = () => {
-    if (value < 0) {
+    if (value < 0.00) {
       setValue(0.00);
-    } else if (value > 2.0) { 
-      setValue(2.0);
+    } else if (value > 2.00) { 
+      setValue(2.00);
     }
   };
 
   return (
     
-    <Box sx={{ width: 400 }}>
-      <Grid container flex-row spacing={2} alignItems="center">
+    <Box sx={{ width: 380 }}>
+      <Grid container flex-row spacing={2} marginLeft="1%" alignItems="center">
         <Grid item md={12}>
         <Amount
         defaultValue={0.50}
-        step={0.01}
-        min={0.01}
+        step={0.10}
+        min={0.10}
         max={2.00}
         value={typeof value === 'number' ? value : 0.01}
         onChange={handleSliderChange}
@@ -68,16 +75,16 @@ export default function AmountSlider() {
         </Grid>
         <Grid item marginLeft="38%" marginTop="-7%" md={6}>
           <Input
+            endAdornment="BTC"
             value={value}
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{
-              style: { textAlign: 'center', fontSize: '40px' },
-              step: 0.01,
-              min: 0.01,
+              style: { textAlign: 'center', fontSize: '36px' },
+              step: 0.10,
+              min: 0.10,
               max: 2.00,
               default: 0.50,
-
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}

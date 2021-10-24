@@ -19,35 +19,41 @@ const Container = styled.div`
     width: 85%;
     height: 85%;
     padding: 3em 0em;
-    background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
+    background: rgb(256, 256, 256);
+    &:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 2em teal
+    }
+    backdrop-filter: blur(1px);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    &:hover {
-        box-shadow: 0 1.5px 3px 0 rgba(${colors.border}), 0 1.5px 5px 0 rgba(${colors.border});
-        box-shadow: 0 1.5px 3px 0 rgba(${colors.border}), 0 1.5px 5px 0 rgba(${colors.border});
-        background: gradient(
+    box-shadow: 0 1.5px 3px 0 rgba(${colors.border}), 0 1.5px 5px 0 rgba(${colors.border});
+    box-shadow: 0 1.5px 3px 0 rgba(${colors.border}), 0 1.5px 5px 0 rgba(${colors.border});
+    background: gradient(
             to bottom,
             rgba(192, 159, 87, 0.5),
             rgba(192, 159, 87, 0.5) 1px,
             transparent 0,
-            transparent 2em
+            transparent 1em
           );
+          
     }
 `
 const CardImage = styled.img`
+    color: black;
     width: 48px;
     height: 48px;
     background-size: contain;
-    tint-color: #000000;
+    
+    
 `
 const Description = styled.p`
-    color: white;
-    font-size: 15px;
+    color: black;
+    font-size: 18px;
     text-align: center;
     font-weight:bold
 `

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
-import calendarIcon from "../../assets/images/calendarIcon.png";
+import TextField from "@mui/material/TextField";
 import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -21,11 +23,12 @@ interface CustomProps {
 
 const MyNativeSelect = withStyles({
   icon: {
-    color: "#white !important",
     width: "2em !important",
     height: "2em !important",
     fill: "white !important",
     marginTop: -10,
+    color: "white !important",
+    borderRadius: 10,
   },
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -34,16 +37,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     color: "white !important",
   },
   "& .MuiInputBase-input": {
-    borderRadius: 4,
     position: "relative",
+    background: "#3E4251 !important",
     color: "white !important",
+    borderRadius: "10px !important",
+    border: `1px solid rgba(${colors.border}) !important`,
     height: 60,
-    //   border: '1px solid #ced4da',
-    fontSize: 18,
-    fontWeight: 500,
+    fontSize: 21,
     paddingLeft: "10px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -61,6 +62,29 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      '&:hover fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#3E4251 !important',
+      },
+      color: "white !important",
+      background: "#3E4251 !important",
+      marginLeft: "10px",
+      borderRadius: "10px",
+      marginTop: "-5px",
+      width: "310px",
+      padding: "13px 0px 12.5px 0px",
+      
+    },
+  },
+})(TextField);
 
 const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   function NumberFormatCustom(props, ref) {
@@ -97,8 +121,8 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   height: 300,
-  bgcolor: "#1f2436",
-  border: "0px solid #000",
+  bgcolor: "#ffffff",
+  border: "1px solid #000",
   borderRadius: 5,
   boxShadow: 24,
 };
@@ -106,10 +130,10 @@ const style = {
 // Material ui style
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "70%",
+    width: "90%",
     marginBottom: "5px",
     display: "flex",
-    marginLeft: "15%",
+    marginLeft: "10%",
     paddingLeft: "3%",
     flexDirection: "row",
     borderRadius: "20px",
@@ -123,6 +147,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     background: "red",
     color: "white",
+  },
+  resize: {
+    fontSize:50,
   },
   textCont: {
     display: "flex",
@@ -144,13 +171,13 @@ const useStyles = makeStyles((theme) => ({
   textContTopR: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "2%",
+    marginTop: "4%",
     marginLeft: "-8%",
   },
   textContTopL: {
     display: "flex",
-    marginTop: "2%",
-    marginLeft: "5px !important",
+    marginTop: "4%",
+    marginLeft: "20px !important",
     flexDirection: "row",
   },
   textType: {
@@ -174,7 +201,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: "18%",
     marginLeft: "35px",
-    marginBottom: "-40%",
+    marginBottom: "-25%",
   },
   textContD: {
     display: "flex",
@@ -203,10 +230,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   dropdown: {
+    border: "1px solid black",
+    boxShadow: "5px 5px 5px rgba(0, 13, 27, 0.5)",
     width: "100%",
     background: "rbga(255, 255, 255, 0.05)",
     height: "100%",
-    borderRadius: 10,
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
@@ -241,8 +269,8 @@ const useStyles = makeStyles((theme) => ({
   ItemC: {
     width: "400px !important",
     display: "flex",
-    flexDirection: "column", '& .MuiSlider-valueLabel': {
-  },
+    flexDirection: "column",
+    "& .MuiSlider-valueLabel": {},
     marginTop: "10em",
     marginLeft: "25px",
   },
@@ -250,71 +278,80 @@ const useStyles = makeStyles((theme) => ({
     width: "325px !important",
     display: "flex",
     flexDirection: "column",
-    marginTop: "10em",
   },
+  Header: {
+    width: "950px !important",
+    height: "250px",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "rgb(31, 36, 54)",
+  },
+  DataPicker: {
+    width: "253px !important",
+    height: "55px !important",
+    color: "white",
+  },
+  notchedOutline: {
+    borderWidth: "1px !important",
+    borderColor: "yellow !important",
+  }
 }));
 
 // styled-components
 const ItemContainer = styledCom.div`
     width: 400px !important; 
-    height: 505px;
+    height: 450px;
     display: flex;  
-    flex-direction: column;
+    flex-direction: column !important;
     padding-left:2%;
-    margin-top:8em;
-    margin-left:26.2em;
     border-right-radius:none;
     border-bottom-left-radius:20px;
-    border-top-left-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgba(51, 50, 102, 0.87);
+    background-color: rgb(67,159,174);
     @media (max-width: 720px) {
         width: 75%;
-        height:75%;
+        height: 75%;
         padding-left:2%;
         padding-right:2%;
     }
 `;
 const ItemContainer2 = styledCom.div`
     width: 500px !important;
-    height: 505px;
+    height: 450px;
     display: flex;  
     flex-direction: column !important;
     padding-right:2%;
-    margin-top:8em;
-    margin-left:74.9px;
     border-left-radius:none;
     border-bottom-right-radius:20px;
-    border-top-right-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgba(51, 50, 102, 0.87);
+    background-color: #ffffff;
     @media (max-width: 720px) {
         width: 75%;
-        height:75%;
+        height: 75%;
         padding-right:2%;
         padding-left:2%;
     }
 `;
 const Title = styledCom.p`
-    font-size: 25px;
-    color: white;
+    font-size: 23px;
+    color: black;
     margin-top:50px;
 `;
 const Title1 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-top:-80px;
     margin-bottom:25px;
-    margin-left:-10px;
 `;
 const Title2 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left:15px;
+    margin-top: -5px;
 `;
 const FooterText = styledCom.p`
     font-size: 16px;
-    color: white;
+    color: black;
     text-align:center;
     margin-top:15px;
     margin-bottom:-15px;
@@ -322,16 +359,24 @@ const FooterText = styledCom.p`
 `;
 const HeaderText = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left: 15px;
     margin-top: 30px;
     width:190px
 `;
 const HeaderText2 = styledCom.p`
     font-size: 23px;
-    color: white;
+    color: black;
     margin-left: 15px;
     width:170px
+`;
+const TitleText = styledCom.p`
+    margin-top: 1em;
+    padding-top: 1em;
+    font-size: 35px;
+    color: white;
+    text-align:center;
+    align-self:center;
 `;
 const ButtonContainer1 = styledCom.div`
     width: 225px;
@@ -343,30 +388,8 @@ const ButtonContainer1 = styledCom.div`
         margin-left:0;
     }
 `;
-const CalendarImage = styledCom.img`
-    width: 45px;
-    height: 35px;
-    background-size: contain;
-`;
-const CalendarImageArea = styledCom.div`
-    height:54px;
-    border-radius:10px;  
-    alignItems: "center";
-    margin-right:0.5em;
-    background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-`;
+
 const DataPickerArea = styledCom.div`
-    background: rgba(204, 210, 220, 0.3);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    border-radius:10px;
-    color: white !important;
     height:55px;
     width:380px;
     display:flex;
@@ -379,58 +402,70 @@ const DataPickerArea = styledCom.div`
         width: 220px;
     }
 `;
-const DataPickerArea1 = styledCom.div`
-    background: rgba(204, 210, 220, 0.3);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(${colors.border});
-    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
+const DataPickerArea1 = styledCom(TextField)`
+    background: #3E4251 !important;
+    margin-left: 8px !important;
+    width:310px !important;
+    height:55px !important;
+    font-size:32 !important;
+    padding-top:0.5em !important;
     border-radius:10px;
-    height:55px;
-    width:380px;
-    display:flex;
-    margin-bottom:5px;
-    justify-content:center;
-    align-items:center;
-    @media (max-width: 550px) {
-        width: 220px;
-    }
+    color: white;
+    borderColor: white;
 `;
 const DataPicker = styledCom.input`
-    background: rgba(0, 0, 0, 0.0);
+    background: rgba(255, 255, 255, 1.0);
     padding-left:0.5em;
     width:253px !important;
-    height: 55px !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
+    height:55px !important;
+    font-size:20px !important;
+    border-radius:10px;
     color: white;
     border: none;
 `;
+
+const StyledHeader = styledCom.div`
+width: 900px !important; 
+height: 120px; 
+flex-direction: column;
+align-self:center;
+padding-left:2%;
+padding-right:2%;
+margin-top:0em;
+margin-left:26.2em;
+margin-right:26.2em;
+border-right-radius:none;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+background-color: rgb(31, 36, 54);
+}
+`;
 const QueryButton = styledCom.a`
-    margin-top:4em;
+    margin-top:9em;
+    margin-left:1em;
     display: flex;
     align-self:center;
     align-items:center;
     justify-content:center;
     border-radius: 10px;
-    width: 80%;
+    width: 210px;
     color:white;
     font-size:20px;
     font-weight:600;
     height: 56px;
-    background-color:rgb(94,108,250);
+    background-color:#504798;
     &:hover {
         cursor: pointer;
         color: rgb(${colors.main});
-        background-color:rgb(94,108,250)
     }
 `;
 
 interface Props {}
 
 const BannerContentDOA: React.FC<Props> = () => {
-  const [values, setValues] = React.useState<State>({
-    numberformat: "1320",
-  });
+  const [value, setValue] = React.useState<Date | null>(new Date());
+
   const history = useHistory();
   const classes = useStyles();
   const [age, setAge] = useState("");
@@ -447,60 +482,82 @@ const BannerContentDOA: React.FC<Props> = () => {
         contrastText: "#ffffff", //button text white instead of black
       },
       background: {
-        default: "#394764",
+        default: "#3E4251",
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
       },
     },
   });
 
   return (
-    <Grid container direction="row">
-      <Grid item md={5}>
-        <ItemContainer className={classes.ItemD}>
-          <Grid item xs={2} md={2} className={classes.textCont1}>
-            <HeaderText>Option Type</HeaderText>
-          </Grid>
-          <Grid item xs={2} md={2} className={classes.textContTopL}>
-            <CallPutToggle />
-          </Grid>
-          <Grid item xs={2} md={5} className={classes.textCont1}>
-            <HeaderText>Underlying Asset</HeaderText>
-            <DataPickerArea style={{ width: "310px" }}>
-              <FormControl variant="standard" className={classes.dropdown}>
-                <MyNativeSelect
-                  value={age}
-                  onChange={handleChange2}
-                  input={<BootstrapInput />}
-                  placeholder="WBTC"
-                >
-                  <option color="white" value={10}>WBTC</option>
-                  <option color="white" value={20}>USDC</option>
-                  <option color="white" value={30}>ETH</option>
-                  <option color="white" value={20}>USDT</option>
-                </MyNativeSelect>
-              </FormControl>
-            </DataPickerArea>
-          </Grid>
-          <Grid item xs={2} md={4} className={classes.textCont}>
-            <Title2>Expiration</Title2>
-            <ButtonContainer1>
-              <DataPickerArea1>
-                <DataPicker
-                  onChange={birthdayHandler}
-                  name="birthday"
-                  type="date"
-                  className="timepickerInput"
-                  placeholder="Date of Birth" 
-                />
-                <img src={calendarIcon} alt="arrow" width="20" height="12" style={{marginRight:20}} />
-              </DataPickerArea1>
-            </ButtonContainer1>
-          </Grid>
-        </ItemContainer>
+    <Grid container direction="column">
+      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+        <Grid item>
+          <StyledHeader>
+            <TitleText>Derivatives Aggregator</TitleText>
+          </StyledHeader>
+        </Grid>
       </Grid>
-      <Grid item md={5}>
-        <ItemContainer2 className={classes.ItemC}>
-        <Grid item xs={2} md={8} className={classes.textContTopL}>
-           <HeaderText2>Strike Price</HeaderText2>
+      <Grid container direction="row" justifyContent="center">
+        <Grid item>
+          <ItemContainer>
+            <Grid item xs={2} md={2} className={classes.textCont1}>
+              <HeaderText>Option Type</HeaderText>
+            </Grid>
+            <Grid item xs={2} md={2} className={classes.textContTopL}>
+              <CallPutToggle />
+            </Grid>
+            <Grid item xs={2} md={5} className={classes.textCont1}>
+              <HeaderText>Underlying Asset</HeaderText>
+              <DataPickerArea style={{ width: "310px" }}>
+                <FormControl variant="standard" className={classes.dropdown}>
+                  <MyNativeSelect
+                    value={age}
+                    onChange={handleChange2}
+                    input={<BootstrapInput />}
+                  >
+                    <option color="white" value={10}>
+                      WBTC
+                    </option>
+                    <option color="white" value={20}>
+                      USDC
+                    </option>
+                    <option color="white" value={30}>
+                      ETH
+                    </option>
+                    <option color="white" value={40}>
+                      USDT
+                    </option>
+                  </MyNativeSelect>
+                </FormControl>
+              </DataPickerArea>
+            </Grid>
+            <Grid item xs={2} md={4} className={classes.textCont}>
+              <Title2>Expiration</Title2>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <CssTextField
+                  variant="outlined"
+                  id="date"
+                  type="date"
+                  defaultValue="2017-05-24"
+                  sx={{ width: 310, height: 55}}
+                  inputProps={{style: {fontSize: 24 }}}
+                  
+                />
+              </LocalizationProvider>
+            </Grid>
+          </ItemContainer>
+        </Grid>
+        <ItemContainer2>
+          <Grid item xs={2} md={8} className={classes.textContTopL}>
+            <HeaderText2>Strike Price:</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
               <StrikeInput />
@@ -508,23 +565,23 @@ const BannerContentDOA: React.FC<Props> = () => {
           </Grid>
           <Grid item xs={4} md={10} className={classes.textCont8}>
             <Title1>Order Amount</Title1>
-              <AmountSlider />
-              <FooterText>
-            <ThemeProvider theme={theme}>
-                Need a large amount? Try{" "}
+            <AmountSlider />
+            <FooterText>
+              <ThemeProvider theme={theme}>
+                Need a larger amount? Try{" "}
                 <em
                   style={{
-                    fontSize: 17,
+                    fontSize: 18,
                     textDecoration: "underline",
-                    color: "#05e400",
+                    color: "#439fae",
                     fontStyle: "italic",
                     fontWeight: 500,
                   }}
                 >
                   Smart Order Routing
                 </em>
-                </ThemeProvider>
-              </FooterText>
+              </ThemeProvider>
+            </FooterText>
           </Grid>
           <Grid item xs={4} md={6} className={classes.textCont4}>
             <QueryButton

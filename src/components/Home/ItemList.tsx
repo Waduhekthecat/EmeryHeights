@@ -4,9 +4,9 @@ import Card from "./ServiceCards";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 
-import routerIcon from "../../assets/images/routerIcon.png";
-import searchIcon from "../../assets/images/searchIcon.png";
-import chartIcon from "../../assets/images/chartIcon.png";
+import routerIconblack from "../../assets/images/routerIconblack.png";
+import searchIconblack from "../../assets/images/searchIconblack.png";
+import chartIconblack from "../../assets/images/chartIconblack.png";
 import stationImage from "../../assets/images/stationImage.png";
 import { colors } from "../../styles";
 
@@ -14,18 +14,28 @@ interface Props {
   // switchContent: (num: number) => void;
 }
 
+
+const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
+
 const ItemContainer = styled.div`
   width: 900px;
   height: 500px;
-  margin: auto;
   display: flex;
+  margin-top: 11em;
+  margin-left: 28em;
   flex-direction: column;
   padding-left: 2%;
-  margin-top: 10em;
-  margin-left: 28em;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-  background-color: rgba(51, 50, 102, 0.87);
+  background-color: rgb(31, 36, 54);
 `;
 
 const HeaderArea = styled.div`
@@ -86,7 +96,7 @@ const ItemList: React.FC<Props> = ({}) => {
             history.push("/smartOrder");
           }}
         >
-          <Card url={routerIcon} text="Smart Order Router" />
+          <Card url={routerIconblack} text="Smart Order Router" />
         </Grid>
         <Grid
           item
@@ -96,7 +106,7 @@ const ItemList: React.FC<Props> = ({}) => {
             history.push("/aggregator");
           }}
         >
-          <Card url={searchIcon} text="Derivatives Aggregator" />
+          <Card url={searchIconblack} text="Derivatives Aggregator" />
         </Grid>
         <Grid
           item
@@ -106,7 +116,7 @@ const ItemList: React.FC<Props> = ({}) => {
             history.push("/subgraph");
           }}
         >
-          <Card url={chartIcon} text="Subgraph" />
+          <Card url={chartIconblack} text="Subgraph" />
         </Grid>
       </Grid>
     </ItemContainer>
