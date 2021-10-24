@@ -508,7 +508,7 @@ const BannerContentDOA: React.FC<Props> = () => {
       <Grid item md={5}>
         <ItemContainer2 className={classes.ItemC}>
         <Grid item xs={2} md={8} className={classes.textContTopL}>
-           <HeaderText2>Strike Price</HeaderText2>
+           <HeaderText2>Strike Price:</HeaderText2>
             {/*Strike Price Input*/}
             <Grid item xs={2} md={4} className={classes.textContTopR}>
               <StrikeInput />
