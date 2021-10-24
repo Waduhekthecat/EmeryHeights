@@ -34,7 +34,7 @@ const ButtonEdits = styledCom(Button)`
     cursor: pointer;
   }
   &:focus {
-    background:  rgb(31, 36, 54) !important;
+    background: #504798 !important;
     color: #ffffff !important;
   }
 

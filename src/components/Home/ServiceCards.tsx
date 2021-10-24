@@ -14,9 +14,9 @@ const Container = styled.div`
     background: rgb(256, 256, 256);
     &:hover {
         cursor: pointer;
-        box-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 6em teal
+        box-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 2em teal
     }
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(1px);
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ const Container = styled.div`
             rgba(192, 159, 87, 0.5),
             rgba(192, 159, 87, 0.5) 1px,
             transparent 0,
-            transparent 2em
+            transparent 1em
           );
           
     }

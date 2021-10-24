@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
 import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -16,8 +15,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
-import { cpuUsage } from "process";
-import { color } from "@mui/system";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -342,7 +339,6 @@ const Title1 = styledCom.p`
     color: black;
     margin-top:-80px;
     margin-bottom:25px;
-    margin-left:-10px;
 `;
 const Title2 = styledCom.p`
     font-size: 23px;
@@ -373,6 +369,7 @@ const HeaderText2 = styledCom.p`
 `;
 const TitleText = styledCom.p`
     margin-top: 1em;
+    padding-top: 1em;
     font-size: 35px;
     color: white;
     text-align:center;
@@ -449,16 +446,15 @@ const QueryButton = styledCom.a`
     align-items:center;
     justify-content:center;
     border-radius: 10px;
-    width: 375px;
+    width: 210px;
     color:white;
     font-size:20px;
     font-weight:600;
     height: 56px;
-    background-color:rgb(94,108,250);
+    background-color:#504798;
     &:hover {
         cursor: pointer;
         color: rgb(${colors.main});
-        background-color:rgb(94,108,250)
     }
 `;
 
@@ -574,7 +570,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                   style={{
                     fontSize: 18,
                     textDecoration: "underline",
-                    color: "#05e400",
+                    color: "#439fae",
                     fontStyle: "italic",
                     fontWeight: 500,
                   }}
