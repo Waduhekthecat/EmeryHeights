@@ -63,11 +63,11 @@ const CompareButton = styled.a`
     font-size:20px;
     font-weight:600;
     height: 56px;
-    background-color:rgb(94,108,250);
+    background-color:#3E4251;
     &:hover {
         cursor: pointer;
         color: rgb(${colors.main});
-        background-color:rgb(94,108,250)
+        background-color:rgb(67,159,174)
     }
 `;
 const DescriptionTxt = styled.p`
@@ -149,9 +149,9 @@ const Card: React.FC<Props> = ({}) => {
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}
         <CompareButton>
-          Compare
+          Select
         </CompareButton>
-        {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'#5e6172'}}>Remove</SelectBtn> */}
+        {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>
       </CardContainer>
   );
