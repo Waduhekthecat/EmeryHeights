@@ -113,7 +113,7 @@ const HeadertArea = styled.div`
 width:100%;
 display: flex;
 flex-direction: row;
-background-color: rgba(31, 36, 54, 0.9);;
+background-color: #001a33;
 &:focus {
   background: #504798 
   color: #000000 
