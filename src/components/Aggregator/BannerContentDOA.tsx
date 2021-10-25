@@ -69,6 +69,7 @@ const CssTextField = withStyles({
       },
       '&:hover fieldset': {
         borderColor: '#3E4251 !important',
+        cursor:'pointer'
       },
       '&.Mui-focused fieldset': {
         borderColor: '#3E4251 !important',
@@ -80,7 +81,7 @@ const CssTextField = withStyles({
       marginTop: "-5px",
       width: "310px",
       padding: "13px 0px 12.5px 0px",
-      
+
     },
   },
 })(TextField);
@@ -196,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
   textCont1: {
     display: "flex",
     flexDirection: "column",
+    
   },
   textCont8: {
     display: "flex",
@@ -390,6 +392,9 @@ const TitleText = styledCom.p`
     margin-top: 1em;
     padding-top: 1em;
     font-size: 35px;
+    font-family: fantasy;
+    text-shadow: 1px 1px 1px white,
+               1px 2px 1px gray;
     color: white;
     text-align:center;
     align-self:center;
@@ -402,6 +407,7 @@ const ButtonContainer1 = styledCom.div`
     @media (max-width: 550px) {
         width: 100%;
         margin-left:0;
+        
     }
 `;
 
@@ -455,9 +461,9 @@ const QueryButton = styledCom.a`
     height: 56px;
     background-color:#504798;
     &:hover {
-        cursor: pointer;
-        color: rgb(${colors.main});
-    }
+      cursor: pointer;
+      text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue
+    
 `;
 
     interface Props {}
@@ -547,9 +553,8 @@ const QueryButton = styledCom.a`
                       id="date"
                       type="date"
                       defaultValue="2017-05-24"
-                      sx={{ width: 310, height: 55}}
+                      sx={{ width: 310, height: 55 }}
                       inputProps={{style: {fontSize: 24 }}}
-                      
                     />
                   </LocalizationProvider>
                 </Grid>

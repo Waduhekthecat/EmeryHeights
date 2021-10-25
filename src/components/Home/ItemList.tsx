@@ -50,7 +50,7 @@ const HeaderArea = styled.div`
 `;
 const HeaderTitle = styled.p`
   color: rgb(${colors.fontColor});
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
   font-weight: 200;
   margin: 0;
@@ -89,7 +89,7 @@ const ItemList: React.FC<Props> = ({}) => {
         <HaederImage src={stationImage} />
       </HeaderArea>
       <Description>Select a service to get started</Description>
-      <Grid container spacing={4} align-items-center>
+      <Grid container spacing={4} justify-content="center">
         <Grid
           item
           xs={12}

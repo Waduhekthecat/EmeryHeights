@@ -12,7 +12,7 @@ const WalletContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 15px;
-    background-color: rgba(${colors.gradDark});
+    background-color: "rgba(${colors.selected}");
     border: 1px solid rgb(${colors.border});
     &:hover {
         cursor: pointer;
