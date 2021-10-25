@@ -6,6 +6,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from '@mui/material'
 
 import { colors } from "../../../styles";
 
@@ -21,6 +22,22 @@ const useStyles = makeStyles((theme) => ({
   checkGroup: {
     display: "flex",
   },
+  Container: {
+    width:'100%',
+    background:"rgb(256,256,256)",
+    color: "black",
+    borderRadius: '5px',
+    display: 'flex',
+    flexDirection:'row',
+    marginTop: '25px',
+    marginLeft:'0.5em',
+    marginRight:'0.5em',
+    marginBottom: '5px',
+    paddingLeft:'3em',
+    paddingTop:'.75em',
+    paddingBottom: '.75em',
+    paddingRight: '.75em'
+  }
 }));
 
 const Container = styled.div`
@@ -29,7 +46,7 @@ const Container = styled.div`
   color:"black";
     border-radius: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 25px;
     margin-left:0.5em;
     margin-right:0.5em;
@@ -99,79 +116,89 @@ const Card: React.FC<Props> = ({}) => {
   const { date, period, unchecked, checked, dunchecked, dchecked } = state;
 
   return (
-    <Container>
-      <Description>Advanced Search Options</Description>
-      <FormGroupArea>
-        <Description1>Expiration Filters</Description1>
-        <Box sx={{ display: "flex" }}>
-          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-            <FormGroup row className={classes.checkGroup}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={date}
-                    onChange={handleChange}
-                    name="date"
+  <Grid container 
+    direction="row"
+    className={classes.Container}>
+      
+    <Grid container direction="row">
+        <Grid item><Description>Advanced Search Options</Description></Grid>
+        <Grid item><Description1>Expiration Filters:</Description1></Grid>
+      <Grid item>
+       <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={date}
+                      onChange={handleChange}
+                      name="date"
+                    />
+                  }
+                  label="Date"
+                />
+      </Grid>
+      <Grid item>
+        <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={period}
+                      onChange={handleChange}
+                      name="period"
+                    />
+                  }
+                  label="Period"
+                />
+      </Grid>
+        <Grid item><Description1>Strike Price:</Description1></Grid>
+          <Grid item>
+          <FormControlLabel 
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleChange}
+                      name="checked"
+                    />
+                  }
+                  label="Checked"
                   />
-                }
-                label="Date"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={period}
-                    onChange={handleChange}
-                    name="period"
+          </Grid>
+          <Grid item>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={unchecked}
+                      onChange={handleChange}
+                      name="unchecked"
+                    />
+                  }
+                  label="Unchecked"
                   />
-                }
-                label="Period"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={unchecked}
-                    onChange={handleChange}
-                    name="unchecked"
+          </Grid>
+          <Grid item>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={dunchecked}
+                      onChange={handleChange}
+                      name="dunchecked"
+                    />
+                  }
+                  label="Disable Unchecked"
                   />
-                }
-                label="Unchecked"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    name="checked"
+          </Grid>
+          <Grid item>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={dchecked}
+                      onChange={handleChange}
+                      name="dchecked"
+                    />
+                  }
+                  label="Disable Checked"
                   />
-                }
-                label="Checked"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={dunchecked}
-                    onChange={handleChange}
-                    name="dunchecked"
-                  />
-                }
-                label="Disabled Unchecked"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={dchecked}
-                    onChange={handleChange}
-                    name="dchecked"
-                  />
-                }
-                label="Disabled Checked"
-              />
-            </FormGroup>
-          </FormControl>
-        </Box>
-      </FormGroupArea>
-    </Container>
-  );
-};
+                </Grid>
+          </Grid>
+        </Grid>
+    );
+    };
 
 export default Card;

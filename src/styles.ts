@@ -22,6 +22,7 @@ export const colors: any = {
   pink: '255, 51, 102',
   red: '214, 75, 71',
   purple: '110, 107, 233',
+  selected: '67,159,174'
 }
 
 export const fonts = {

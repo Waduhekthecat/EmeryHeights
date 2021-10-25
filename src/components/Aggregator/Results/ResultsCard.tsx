@@ -1,18 +1,38 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import styled from "styled-components";
+import Button from '@mui/material/Button';
 import { colors } from "../../../styles";
 import { makeStyles } from "@material-ui/core/styles";
+import styledCom from 'styled-components';
 import Grid from "@material-ui/core/Grid";
 
+ 
+
 const useStyles = makeStyles((theme) => ({
-  gridCont: {},
-  input: {
-    background: "rgb(67,159,174)"
+  HeaderToggle: {
+      borderWidth: "2px",
+      color: "rgb(67,159,174)",
+      borderColor: "black",
+      alignSelf:'center',
+      alignItems:'center',
+      justifyContent:'center',
+      borderRadius:"10px",
+      fontSize:'20px',
+      fontWeight:600,
+      height: '56px',
+    },
+    
+  HeaderTheme: {
+    background: "rgb(67,159,174)",
+    width: "80%"
+
   }
 }));
 
+
+
 interface Props {
-  
+  [elementId:string]: any;
   // url: string;
   // text: string;
   // onClick:(num: number)=>void;
@@ -44,6 +64,11 @@ const CardContainer = styled.div`
         padding-right:2%;
         padding-left:2%;
     }
+    h1 {width:100%;
+      display: flex;
+      flex-direction: row;
+
+    }
 
 `;
 const HeaderTitle = styled.p`
@@ -52,22 +77,21 @@ const HeaderTitle = styled.p`
   margin-left:1em;
 `;
 
-const CompareButton = styled.a`
+const CompareButton = styledCom(Button)`
     display: flex;
     align-self:center;
     align-items:center;
     justify-content:center;
     border-radius: 10px;
     width: 80%;
-    color:white;
     font-size:20px;
     font-weight:600;
     height: 56px;
-    background-color:#3E4251;
     &:hover {
         cursor: pointer;
-        color: rgb(${colors.main});
-        background-color:rgb(67,159,174)
+    }
+    &:focus {
+      color: rgb(${colors.selected});
     }
 `;
 const DescriptionTxt = styled.p`
@@ -93,7 +117,11 @@ const HeadertArea = styled.div`
 width:100%;
   display: flex;
   flex-direction: row;
-  background-color: rgb(31, 36, 54, .9)
+  background-color: rgba(31, 36, 54, 0.9);;
+  &:focus {
+    background: #504798 
+    color: #000000 
+  }
 `;
 
 const SelectedCard = styled.div`
@@ -125,13 +153,35 @@ const SelectBtn = styled.button`
   }
 `;
 
-
-
 const Card: React.FC<Props> = ({}) => {
   const classes = useStyles();
+  const [selectedBtn, setSelectedBtn] = React.useState(false);
+  const [selectedColor, setSelectedColor] = React.useState(false);
+  
+  var changeColorTeal = () => {
+    var teal = document.getElementById('selected');
+    teal!.style.background = ("rgb(67,159,174)")
+  };
+  
+  var changeColorBlack = () => {
+    var black = document.getElementById('selected');
+    black!.style.background = ("rgba(31, 36, 54, 0.9)")
+  };
+
+  const selectHandler = () => {
+    setSelectedBtn(!selectedBtn);
+  
+    if(selectedBtn===false) {
+  changeColorTeal()
+ } if(selectedBtn===true) {
+   changeColorBlack()
+ }
+};
+
+
   return (
     <CardContainer>
-      <HeadertArea>
+      <HeadertArea id="selected">
         <Grid container direction="column">
           <Grid item>
           <HeaderTitle>Platform X</HeaderTitle>
@@ -148,8 +198,19 @@ const Card: React.FC<Props> = ({}) => {
 
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}
-        <CompareButton>
-          Select
+        <CompareButton 
+      className={classes.HeaderToggle}
+      selected={selectedBtn}
+      onClick={() => {
+      selectHandler()
+      }}>
+      {" "}<p
+      style={{
+        fontSize: 17,
+        fontWeight: 900,
+      }}
+      >SELECT 
+        </p>
         </CompareButton>
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>

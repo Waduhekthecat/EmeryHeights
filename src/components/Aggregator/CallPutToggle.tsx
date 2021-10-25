@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
       borderWidth: "2px",
       borderColor: "black",
-      color: "#000000 !important",
+      color: "rgb(256,256,256) !important",
       '&:focus': {
       fontColor: "white !important",
     }
@@ -35,7 +35,7 @@ const ButtonEdits = styledCom(Button)`
   }
   &:focus {
     background: #504798 !important;
-    color: #ffffff !important;
+    color: #000000 !important;
   }
 
 `
