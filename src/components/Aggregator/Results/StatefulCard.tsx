@@ -4,6 +4,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
+<<<<<<< HEAD
 import { ClassNames } from '@emotion/react';
 
 
@@ -34,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   const classes = useStyles();
+=======
+import { Data } from 'popper.js';
+import { platform } from 'os';
+
+
+
+>>>>>>> 948c8f2f11ad779e80d9735fc92b9c31f7368a18
   const CardContainer = styled.div`
   background: white;
   width: 100%;
@@ -101,20 +109,7 @@ color: black;
 font-size: 25px;
 margin-left: 1em;
 `;
-const SnippetArea = styled.div`
-position: relative;
-top: 0;
-right: 0;
-width: 120px;
-height: 80px;
-border: 1px solid #fff;
-display: flex;
-justify-content: center;
-align-items: center;
-color: rgb(${colors.fontColor2});
-font-size: 18px;
-text-align: center;
-`;
+
 const HeadertArea = styled.div`
 width:100%;
 display: flex;
@@ -123,13 +118,6 @@ background-color: #001a33;
   background: #504798 
   color: #000000 
 }
-`;
-
-const SelectedCard = styled.div`
-width:100%;
-display: flex;
-flex-direction: row;
-background-color: rgb(67,159,174).8;
 `;
 
 const ButtonArea = styled.div`
@@ -144,20 +132,19 @@ margin-right: 1em;
   flex-direction: column;
 }
 `;
-const SelectBtn = styled.button`
-padding: 0.7em 2em;
-border-radius: 5px;
-font-size: 18px;
-text-decoration: underline;
-&:hover {
-  cursor: pointer;
-}
-`;
 
 
 
 
 interface IProps {
+  data: {
+    platform: string,
+    premium: string,
+    underlying: string,
+    strike: string,
+    amount: string,
+    expiry: string,
+  }
 }
 
 interface IState {
@@ -170,8 +157,10 @@ export class StatCard extends React.Component<IProps, IState>{
         this.state = {
             selectedBtn: false
         };
+        
         this.onClick = this.onClick.bind(this);
     }
+    
         onClick() {
             this.setState((previousState, props) => ({
               selectedBtn: !previousState.selectedBtn,
@@ -185,18 +174,23 @@ export class StatCard extends React.Component<IProps, IState>{
 <CardContainer className={classes.Cards}>
       <HeadertArea id="selected">
         <Grid container direction="column">
+<<<<<<< HEAD
           <Grid item sm={4} md={3} lg={2}>
           <HeaderTitle>Platform X</HeaderTitle>
+=======
+          <Grid item>
+          <HeaderTitle>Platform: {this.props.data.platform}</HeaderTitle>
+>>>>>>> 948c8f2f11ad779e80d9735fc92b9c31f7368a18
           </Grid>
           <Grid item>
-           <HeaderTitle>Option Cost: $48,500</HeaderTitle>
+           <HeaderTitle>Option Cost: {this.props.data.premium}</HeaderTitle>
            </Grid>
           </Grid>
           </HeadertArea>
           
-          <DescriptionTxt>Quantity: 2</DescriptionTxt>
-          <DescriptionTxt>Strike: $48,000</DescriptionTxt>
-          <DescriptionTxt>Expiry: 09/24/2021</DescriptionTxt>
+          <DescriptionTxt>Quantity: {this.props.data.amount}</DescriptionTxt>
+          <DescriptionTxt>Strike: {this.props.data.strike}</DescriptionTxt>
+          <DescriptionTxt>Expiry: {this.props.data.expiry}</DescriptionTxt>
 
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}
