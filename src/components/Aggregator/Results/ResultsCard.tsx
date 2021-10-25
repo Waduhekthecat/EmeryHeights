@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import styled from "styled-components";
-import Button from '@mui/material/Button';
+import ToggleButton from '@mui/material/ToggleButton';
 import { colors } from "../../../styles";
 import { makeStyles } from "@material-ui/core/styles";
 import styledCom from 'styled-components';
@@ -77,7 +77,7 @@ const HeaderTitle = styled.p`
   margin-left:1em;
 `;
 
-const CompareButton = styledCom(Button)`
+const CompareButton = styledCom(ToggleButton)`
     display: flex;
     align-self:center;
     align-items:center;
@@ -199,19 +199,13 @@ const Card: React.FC<Props> = ({}) => {
 
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}
-        <CompareButton 
-      className={classes.HeaderToggle}
-      selected={selectedBtn}
-      onClick={() => {
-      selectHandler()
+        <CompareButton
+        value="Select"
+        className={classes.HeaderToggle}
+        selected={selectedBtn}
+        onClick={() => {
+        selectHandler()
       }}>
-      {" "}<p
-      style={{
-        fontSize: 17,
-        fontWeight: 900,
-      }}
-      >SELECT 
-        </p>
         </CompareButton>
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>
