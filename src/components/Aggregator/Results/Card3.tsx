@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
     borderWidth: "2px",
     borderColor: "gray",
+    paddingRight: "10px",
     color: "rgb(256,256,256) !important",
     '&:focus': {
     fontColor: "rgb(256,256,256) !important",
   }},
   Container: {
     width:'100%',
-    background:"#fff8e0",
+    background:"lightgray",
     color: "black",
     borderRadius: '5px',
     display: 'flex',
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     float:'left'
   }}))
 
-const CheckboxButton = styledCom(Button)`
+const AdvancedButton = styledCom(Button)`
   
 
 
@@ -161,15 +162,11 @@ const Card: React.FC<Props> = ({}) => {
   
 
   return (
-  <Grid container 
-    direction="row"
+  <Grid container
     className={classes.Container}>
-      
-    <Grid container 
-    className={classes.Advanced}
-    direction="row">
-        <Grid item sm={2} md={2}><Description>
-          <CheckboxButton
+      <Grid item sm={4} md={3} lg={3}>
+          <Description>
+          <AdvancedButton
           className={classes.ButtonToggle}
       value="call"
       selected={selectedBtn}
@@ -181,13 +178,16 @@ const Card: React.FC<Props> = ({}) => {
       }}
       >Advanced 
         </p>
-  </CheckboxButton>
+  </AdvancedButton>
   </Description>
-  </Grid></Grid>
-  {/* hidden */}
-  <Grid container sx={{ display: { xs: 'none', md: 'none' } }}>
-        <Grid item sm={2} md={2}><Description1>Expiration Filters:</Description1></Grid>
-      <Grid item>
+  </Grid>
+  <Grid item sm={4} md={4} lg={3}>
+    <Grid item>
+          <Description1>
+            Expiration Filters:
+            </Description1>
+ </Grid>
+ <Grid item sm={4} md={4} lg={3}>
        <FormControlLabel
                   control={
                     <Checkbox
@@ -198,8 +198,6 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Date"
                 />
-      </Grid>
-      <Grid item>
         <FormControlLabel
                   control={
                     <Checkbox
@@ -210,9 +208,24 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Period"
                 />
-      </Grid><Grid item sm={8} md={1}></Grid>
-        <Grid item sm={2} md={2}><Description1>Strike Price:</Description1></Grid>
+                </Grid>
+   </Grid>
+        <Grid item>
           <Grid item>
+          <Description1>Strike Price:</Description1>
+       </Grid>
+         <Grid item>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleChange}
+                      name="round up"
+                    />
+                  }
+                  label="Round Up"
+                  />
+        
           <FormControlLabel 
                   control={
                     <Checkbox
@@ -223,33 +236,18 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Exact Match"
                   />
-          </Grid>
-          <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={unchecked}
-                      onChange={handleChange}
-                      name="round up"
-                    />
-                  }
-                  label="Round Up"
-                  />
-          </Grid>
-          <Grid item sm={7} md={9}/>
-          <Grid item>
+</Grid><Grid item>
+          
           <FormControlLabel
                   control={
                     <Checkbox
-                      checked={unchecked}
+                      checked={checked}
                       onChange={handleChange}
                       name="round down"
                     />
                   }
                   label="Round Down"
                   />
-          </Grid>
-          <Grid item>
           <FormControlLabel
                   control={
                     <Checkbox
@@ -260,33 +258,12 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Display All"
                   />
-                </Grid>
-          </Grid>
-        </Grid>
+                  </Grid>
+                  </Grid>
+                  </Grid>
     );
-    };
+                };
 
 export default Card;
 
 
-{/* <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={dunchecked}
-                      onChange={handleChange}
-                      name="disable unchecked"
-                    />
-                  }
-                  label="disabled unchecked"
-                  /> */}
-                //   <Grid item>
-                // <FormControlLabel
-                //   control={
-                //     <Checkbox
-                //       checked={dchecked}
-                //       onChange={handleChange}
-                //       name="dchecked"
-                //     />
-                //   }
-                //   label="Disable Checked"
-                //   />

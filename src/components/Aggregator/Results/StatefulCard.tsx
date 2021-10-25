@@ -4,6 +4,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
+import { ClassNames } from '@emotion/react';
 
 
 
@@ -20,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight:600,
         height: '56px',
       },
+    Cards: {
+      height: '400px',
+      width:"300px",
+      alignSelf: 'center',
+    },
       
     HeaderTheme: {
       background: "rgb(67,159,174)",
@@ -27,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
   
     }
   }));
-
+  const classes = useStyles();
   const CardContainer = styled.div`
   background: white;
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  display: flex;
+  display: relative;
   flex-direction: column;
   margin-top: 20px;
   border: 1px solid rgba(${colors.border});
@@ -112,7 +118,6 @@ text-align: center;
 const HeadertArea = styled.div`
 width:100%;
 display: flex;
-flex-direction: row;
 background-color: #001a33;
 &:focus {
   background: #504798 
@@ -172,12 +177,15 @@ export class StatCard extends React.Component<IProps, IState>{
               selectedBtn: !previousState.selectedBtn,
             }));
           }
+          
     render(){
         return(
-<CardContainer>
+          
+          <Grid container>
+<CardContainer className={classes.Cards}>
       <HeadertArea id="selected">
         <Grid container direction="column">
-          <Grid item>
+          <Grid item sm={4} md={3} lg={2}>
           <HeaderTitle>Platform X</HeaderTitle>
           </Grid>
           <Grid item>
@@ -207,6 +215,7 @@ export class StatCard extends React.Component<IProps, IState>{
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>
       </CardContainer>
+      </Grid>
         )
 
     }

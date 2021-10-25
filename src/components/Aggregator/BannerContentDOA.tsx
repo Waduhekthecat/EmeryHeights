@@ -471,7 +471,9 @@ const QueryButton = styledCom.a`
     background-color:#504798;
     &:hover {
       cursor: pointer;
+      border: 1px solid rgb(${colors.fontColor});
       text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue
+  }
     
 `;
 
@@ -489,6 +491,7 @@ const QueryButton = styledCom.a`
         setAge(event.target.value);
       };
 
+        
       const theme = createTheme({
         palette: {
           primary: {
@@ -538,16 +541,16 @@ const QueryButton = styledCom.a`
                         input={<BootstrapInput />}
                       >
                         <option className={classes.dropdownMenu} value={10}>
-                          WBTC
+                        BTC
                         </option>
                         <option className={classes.dropdownMenu} value={20}>
-                          USDC
+                        USDC
                         </option>
                         <option className={classes.dropdownMenu} value={30}>
-                          ETH
+                        ETH
                         </option>
                         <option className={classes.dropdownMenu} value={40}>
-                          USDT
+                        USDT
                         </option>
                       </MyNativeSelect>
                     </FormControl>
