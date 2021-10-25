@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { colors } from '../../../styles'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import ResultsCard from './ResultsCard';
-import SelectedCard  from '../Results/ResultsCard';
+import {StatCard} from './StatefulCard';
+
 const useStyles = makeStyles((theme) => ({
     gridCont: {
         paddingTop: '0px !important',
@@ -55,31 +55,31 @@ const Card: React.FC<Props> = ({ }) => {
         <Container>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <ResultsCard />
+                    <StatCard />
                 </Grid>
             </Grid>
         </Container>

@@ -205,8 +205,14 @@ const Card: React.FC<Props> = ({}) => {
         selected={selectedBtn}
         onClick={() => {
         selectHandler()
-      }}>
-        </CompareButton>
+      }}>{" "}<p
+      style={{
+        fontSize: 17,
+        fontWeight: 900,
+      }}
+      >SELECT 
+        </p>
+      </CompareButton>
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>
       </CardContainer>
