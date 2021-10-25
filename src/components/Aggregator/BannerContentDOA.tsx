@@ -468,142 +468,141 @@ const QueryButton = styledCom.a`
     }
 `;
 
-interface Props {}
+    interface Props {}
 
-const BannerContentDOA: React.FC<Props> = () => {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+    const BannerContentDOA: React.FC<Props> = () => {
+      const [value, setValue] = React.useState<Date | null>(new Date());
 
-  const history = useHistory();
-  const classes = useStyles();
-  const [age, setAge] = useState("");
-  const birthdayHandler = () => {};
+      const history = useHistory();
+      const classes = useStyles();
+      const [age, setAge] = useState("");
+      const birthdayHandler = () => {};
 
-  const handleChange2 = (event: { target: { value: string } }) => {
-    setAge(event.target.value);
-  };
+      const handleChange2 = (event: { target: { value: string } }) => {
+        setAge(event.target.value);
+      };
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#3E4251",
-        contrastText: "#ffffff", //button text white instead of black
-      },
-      background: {
-        default: "#3E4251",
-      },
-    },
-    breakpoints: {
-      values: {
-        xs: 0,
-        sm: 600,
-        md: 900,
-        lg: 1200,
-        xl: 1536,
-      },
-    },
-  });
+      const theme = createTheme({
+        palette: {
+          primary: {
+            main: "#46AD8D",
+            contrastText: "#ffffff", //button text white instead of black
+          },
+          background: {
+            default: "#3E4251",
+          },
+        },
+        breakpoints: {
+          values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+          },
+        },
+      });
 
-  return (
-    <Grid container direction="column">
-      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
-        <Grid item>
-          <StyledHeader>
-            <TitleText>Derivatives Aggregator</TitleText>
-          </StyledHeader>
-        </Grid>
-      </Grid>
-      <Grid container direction="row" justifyContent="center">
-        <Grid item>
-          <ItemContainer>
-            <Grid item xs={2} md={2} className={classes.textCont1}>
-              <HeaderText>Option Type</HeaderText>
-            </Grid>
-            <Grid item xs={2} md={2} className={classes.textContTopL}>
-              <CallPutToggle />
-            </Grid>
-            <Grid item xs={2} md={5} className={classes.textCont1}>
-              <HeaderText>Underlying Asset</HeaderText>
-              <DataPickerArea style={{ width: "310px",background: "#3E4251 !important", }}>
-                <FormControl variant="filled" className={classes.dropdown}>
-                  <MyNativeSelect
-                    style={{background: "#3E4251 !important",}}
-                    value={age}
-                    onChange={handleChange2}
-                    input={<BootstrapInput />}
-                  >
-                    <option  value={10}>
-                      WBTC
-                    </option>
-                    <option  value={20}>
-                      USDC
-                    </option>
-                    <option value={30}>
-                      ETH
-                    </option>
-                    <option value={40}>
-                      USDT
-                    </option>
-                  </MyNativeSelect>
-                </FormControl>
-              </DataPickerArea>
-            </Grid>
-            <Grid item xs={2} md={4} className={classes.textCont}>
-              <Title2>Expiration</Title2>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <CssTextField
-                  variant="outlined"
-                  id="date"
-                  type="date"
-                  defaultValue="2017-05-24"
-                  sx={{ width: 310, height: 55}}
-                  inputProps={{style: {fontSize: 24 }}}
-                  
-                />
-              </LocalizationProvider>
-            </Grid>
-          </ItemContainer>
-        </Grid>
-        <ItemContainer2>
-          <Grid item xs={2} md={8} className={classes.textContTopL}>
-            <HeaderText2>Strike Price:</HeaderText2>
-            {/*Strike Price Input*/}
-            <Grid item xs={2} md={4} className={classes.textContTopR}>
-              <StrikeInput />
+      return (
+        <Grid container direction="column">
+          <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+            <Grid item>
+              <StyledHeader>
+                <TitleText>Derivatives Aggregator</TitleText>
+              </StyledHeader>
             </Grid>
           </Grid>
-          <Grid item xs={4} md={10} className={classes.textCont8}>
-            <Title1>Order Amount</Title1>
-            <AmountSlider />
-            <FooterText>
-              <ThemeProvider theme={theme}>
-                Need a larger amount? Try{" "}
-                <em
-                  style={{
-                    fontSize: 18,
-                    textDecoration: "underline",
-                    color: "#439fae",
-                    fontStyle: "italic",
-                    fontWeight: 500,
+          <Grid container direction="row" justifyContent="center">
+            <Grid item>
+              <ItemContainer>
+                <Grid item xs={2} md={2} className={classes.textCont1}>
+                  <HeaderText>Option Type</HeaderText>
+                </Grid>
+                <Grid item xs={2} md={2} className={classes.textContTopL}>
+                  <CallPutToggle />
+                </Grid>
+                <Grid item xs={2} md={5} className={classes.textCont1}>
+                  <HeaderText>Underlying Asset</HeaderText>
+                  <DataPickerArea style={{ width: "310px" }}>
+                    <FormControl variant="standard" className={classes.dropdown}>
+                      <MyNativeSelect
+                        value={age}
+                        onChange={handleChange2}
+                        input={<BootstrapInput />}
+                      >
+                        <option color="white" value={10}>
+                          WBTC
+                        </option>
+                        <option color="white" value={20}>
+                          USDC
+                        </option>
+                        <option color="white" value={30}>
+                          ETH
+                        </option>
+                        <option color="white" value={40}>
+                          USDT
+                        </option>
+                      </MyNativeSelect>
+                    </FormControl>
+                  </DataPickerArea>
+                </Grid>
+                <Grid item xs={2} md={4} className={classes.textCont}>
+                  <Title2>Expiration</Title2>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <CssTextField
+                      variant="outlined"
+                      id="date"
+                      type="date"
+                      defaultValue="2017-05-24"
+                      sx={{ width: 310, height: 55}}
+                      inputProps={{style: {fontSize: 24 }}}
+                      
+                    />
+                  </LocalizationProvider>
+                </Grid>
+              </ItemContainer>
+            </Grid>
+            <ItemContainer2>
+              <Grid item xs={2} md={8} className={classes.textContTopL}>
+                <HeaderText2>Strike Price:</HeaderText2>
+                {/*Strike Price Input*/}
+                <Grid item xs={2} md={4} className={classes.textContTopR}>
+                  <StrikeInput />
+                </Grid>
+              </Grid>
+              <Grid item xs={4} md={10} className={classes.textCont8}>
+                <Title1>Order Amount</Title1>
+                <AmountSlider />
+                <FooterText>
+                  <ThemeProvider theme={theme}>
+                    Need a larger amount? Try{" "}
+                    <em
+                      style={{
+                        fontSize: 18,
+                        textDecoration: "underline",
+                        color: "#439fae",
+                        fontStyle: "italic",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Smart Order Routing
+                    </em>
+                  </ThemeProvider>
+                </FooterText>
+              </Grid>
+              <Grid item xs={4} md={6} className={classes.textCont4}>
+                <QueryButton
+                  onClick={() => {
+                    history.push("/advanced");
                   }}
                 >
-                  Smart Order Routing
-                </em>
-              </ThemeProvider>
-            </FooterText>
+                  Begin Query
+                </QueryButton>
+              </Grid>
+            </ItemContainer2>
           </Grid>
-          <Grid item xs={4} md={6} className={classes.textCont4}>
-            <QueryButton
-              onClick={() => {
-                history.push("/advanced");
-              }}
-            >
-              Begin Query
-            </QueryButton>
-          </Grid>
-        </ItemContainer2>
-      </Grid>
-    </Grid>
-  );
-};
+        </Grid>
+      );
+    };
 
 export default BannerContentDOA;
