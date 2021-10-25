@@ -29,8 +29,8 @@ const ItemContainer = styled.div`
   width: 900px;
   height: 500px;
   display: flex;
-  margin-top: 11em;
-  margin-left: 28em;
+  margin-top: 7%;
+  justify-content: center;
   flex-direction: column;
   padding-left: 2%;
   border-radius: 20px;
@@ -81,6 +81,8 @@ const ItemList: React.FC<Props> = ({}) => {
   const history = useHistory();
 
   return (
+    <Grid container>
+      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
     <ItemContainer>
       <HeaderArea>
         <HeaderTitle>Welcome to</HeaderTitle>
@@ -120,6 +122,8 @@ const ItemList: React.FC<Props> = ({}) => {
         </Grid>
       </Grid>
     </ItemContainer>
+    </Grid>
+    </Grid>
   );
 };
 

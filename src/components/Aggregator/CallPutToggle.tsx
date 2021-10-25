@@ -9,10 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
       borderWidth: "2px",
-      borderColor: "black",
-      color: "rgb(256,256,256) !important",
+      borderColor: "white",
+      color: "rgb(0,0,0) !important",
       '&:focus': {
-      fontColor: "white !important",
+      fontColor: "rgb(256,256,256) !important",
     }
   },
 })
@@ -35,7 +35,7 @@ const ButtonEdits = styledCom(Button)`
   }
   &:focus {
     background: #504798 !important;
-    color: #000000 !important;
+    color: rgb(256,256,256) !important;
   }
 
 `

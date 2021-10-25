@@ -23,8 +23,8 @@ interface CustomProps {
 
 const MyNativeSelect = withStyles({
   icon: {
-    width: "2em !important",
-    height: "2em !important",
+    width: "2.1em !important",
+    height: "2.1em !important",
     fill: "white !important",
     marginTop: -10,
     color: "white !important",
@@ -34,7 +34,6 @@ const MyNativeSelect = withStyles({
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
-    color: "white !important",
   },
   "& .MuiInputBase-input": {
     position: "relative",
@@ -44,7 +43,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     border: `1px solid rgba(${colors.border}) !important`,
     height: 60,
     fontSize: 21,
-    paddingLeft: "10px",
+    paddingLeft: "20px",
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -153,6 +152,8 @@ const useStyles = makeStyles((theme) => ({
   },
   textCont: {
     display: "flex",
+    marginLeft: "10px",
+    marginBottom: "20px",
     flexDirection: "column",
     justifyContent: "center",
   },
@@ -231,10 +232,13 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdown: {
     border: "1px solid black",
-    boxShadow: "5px 5px 5px rgba(0, 13, 27, 0.5)",
     width: "100%",
-    background: "rbga(255, 255, 255, 0.05)",
+    background: "rbga(0,0,0, 0.05)",
     height: "100%",
+  },
+  dropdownMenu: {
+    color:"white",
+    backgroundColor:"black"
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
@@ -299,15 +303,10 @@ const useStyles = makeStyles((theme) => ({
 
 // styled-components
 const StyledHeader = styledCom.div`
-width: 900px !important; 
+width: 900px;
 height: 120px; 
-flex-direction: column;
-align-self:center;
 padding-left:2%;
 padding-right:2%;
-margin-top:0em;
-margin-left:26.2em;
-margin-right:26.2em;
 border-right-radius:none;
 border-top-left-radius:20px;
 border-top-right-radius:20px;
@@ -408,11 +407,11 @@ const ButtonContainer1 = styledCom.div`
 
 const DataPickerArea = styledCom.div`
     height:55px;
-    width:380px;
+    width:400px;
     display:flex;
     margin-top:12px;
     margin-bottom:5px;
-    margin-left:10px;
+    margin-left:20px;
     justify-content:center;
     align-items:center;
     @media (max-width: 550px) {
@@ -523,16 +522,16 @@ const QueryButton = styledCom.a`
                         onChange={handleChange2}
                         input={<BootstrapInput />}
                       >
-                        <option color="white" value={10}>
+                        <option className={classes.dropdownMenu} value={10}>
                           WBTC
                         </option>
-                        <option color="white" value={20}>
+                        <option className={classes.dropdownMenu} value={20}>
                           USDC
                         </option>
-                        <option color="white" value={30}>
+                        <option className={classes.dropdownMenu} value={30}>
                           ETH
                         </option>
-                        <option color="white" value={40}>
+                        <option className={classes.dropdownMenu} value={40}>
                           USDT
                         </option>
                       </MyNativeSelect>
@@ -541,7 +540,8 @@ const QueryButton = styledCom.a`
                 </Grid>
                 <Grid item xs={2} md={4} className={classes.textCont}>
                   <Title2>Expiration</Title2>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <LocalizationProvider 
+                  dateAdapter={AdapterDateFns}>
                     <CssTextField
                       variant="outlined"
                       id="date"
