@@ -4,29 +4,10 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
+import { Data } from 'popper.js';
+import { platform } from 'os';
 
 
-
-const useStyles = makeStyles((theme) => ({
-    HeaderToggle: {
-        borderWidth: "2px",
-        color: "rgb(67,159,174)",
-        borderColor: "black",
-        alignSelf:'center',
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:"10px",
-        fontSize:'20px',
-        fontWeight:600,
-        height: '56px',
-      },
-      
-    HeaderTheme: {
-      background: "rgb(67,159,174)",
-      width: "80%"
-  
-    }
-  }));
 
   const CardContainer = styled.div`
   background: white;
@@ -95,20 +76,7 @@ color: black;
 font-size: 25px;
 margin-left: 1em;
 `;
-const SnippetArea = styled.div`
-position: relative;
-top: 0;
-right: 0;
-width: 120px;
-height: 80px;
-border: 1px solid #fff;
-display: flex;
-justify-content: center;
-align-items: center;
-color: rgb(${colors.fontColor2});
-font-size: 18px;
-text-align: center;
-`;
+
 const HeadertArea = styled.div`
 width:100%;
 display: flex;
@@ -118,13 +86,6 @@ background-color: rgba(31, 36, 54, 0.9);;
   background: #504798 
   color: #000000 
 }
-`;
-
-const SelectedCard = styled.div`
-width:100%;
-display: flex;
-flex-direction: row;
-background-color: rgb(67,159,174).8;
 `;
 
 const ButtonArea = styled.div`
@@ -139,20 +100,19 @@ margin-right: 1em;
   flex-direction: column;
 }
 `;
-const SelectBtn = styled.button`
-padding: 0.7em 2em;
-border-radius: 5px;
-font-size: 18px;
-text-decoration: underline;
-&:hover {
-  cursor: pointer;
-}
-`;
 
 
 
 
 interface IProps {
+  data: {
+    platform: string,
+    premium: string,
+    underlying: string,
+    strike: string,
+    amount: string,
+    expiry: string,
+  }
 }
 
 interface IState {
@@ -165,8 +125,10 @@ export class StatCard extends React.Component<IProps, IState>{
         this.state = {
             selectedBtn: false
         };
+        
         this.onClick = this.onClick.bind(this);
     }
+    
         onClick() {
             this.setState((previousState, props) => ({
               selectedBtn: !previousState.selectedBtn,
@@ -178,17 +140,17 @@ export class StatCard extends React.Component<IProps, IState>{
       <HeadertArea id="selected">
         <Grid container direction="column">
           <Grid item>
-          <HeaderTitle>Platform X</HeaderTitle>
+          <HeaderTitle>Platform: {this.props.data.platform}</HeaderTitle>
           </Grid>
           <Grid item>
-           <HeaderTitle>Option Cost: $48,500</HeaderTitle>
+           <HeaderTitle>Option Cost: {this.props.data.premium}</HeaderTitle>
            </Grid>
           </Grid>
           </HeadertArea>
           
-          <DescriptionTxt>Quantity: 2</DescriptionTxt>
-          <DescriptionTxt>Strike: $48,000</DescriptionTxt>
-          <DescriptionTxt>Expiry: 09/24/2021</DescriptionTxt>
+          <DescriptionTxt>Quantity: {this.props.data.amount}</DescriptionTxt>
+          <DescriptionTxt>Strike: {this.props.data.strike}</DescriptionTxt>
+          <DescriptionTxt>Expiry: {this.props.data.expiry}</DescriptionTxt>
 
       <ButtonArea>
         {/* <SelectBtn>Select</SelectBtn> */}

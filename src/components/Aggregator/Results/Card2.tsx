@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 interface Props {
     // url: string;
     // text: string;
@@ -34,7 +35,7 @@ const CardImage = styled.img`
 `
 const Description = styled.div`
     color: white;
-    font-size: 20px;
+    font-size: 20px;this.props.data.
     text-align: center;
     font-weight:bold;
     background-color: rgba(51, 50, 102, 0.87);
@@ -50,36 +51,65 @@ const Description = styled.div`
 // }
 
 const Card: React.FC<Props> = ({ }) => {
+
+    const data = [
+        {
+          platform: 'Hegic',
+          underlying: 'WBTC',
+          strike: '$60,000',
+          amount: '1wbtc',
+          expiry: '11/01/21',
+          premium: '$1825',
+        },
+        {
+          platform: 'Premia',
+          underlying: 'WBTC',
+          strike: '$60,000',
+          amount: '1wbtc',
+          expiry: '11/01/21',
+          premium: '$2000',
+        },
+        {
+          platform: 'Auctus',
+          underlying: 'WBTC',
+          strike: '$60,000',
+          amount: '1wbtc',
+          expiry: '11/01/21',
+          premium: '$2350',
+        },
+      ];
+
     const classes = useStyles();
+    
     return (
         <Container>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard />
+                    <StatCard data={data[0]} />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard />
+                    <StatCard data={data[1]} />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard />
+                    <StatCard data={data[2]} />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard />
+                    <StatCard data={data[0]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard />
+                    <StatCard data={data[1]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard />
+                    <StatCard data={data[2]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard />
+                    <StatCard data={data[0]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard />
+                    <StatCard data={data[1]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard />
+                    <StatCard data={data[2]}/>
                 </Grid>
             </Grid>
         </Container>
