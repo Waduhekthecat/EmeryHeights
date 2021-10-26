@@ -33,11 +33,14 @@ const MenuContainer = styled.ul<MenuContainerProps>`
     }
 `
 const MmenuItem = styled.li`
-    color: rgb(${colors.black});
-    font-size: 20px;
+    color: rgb(256,256,256);
+    font-size: 25px;
     font-weight: 400;
     margin: 0 1em;
-    background-color:rgb(255, 255, 255);
+    border: 2px solid rgba(${colors.selected});
+    border-shadow: 0 4px 3px 0
+    background: rgb(66,61,149);
+    background: linear-gradient(90deg, rgba(66,61,149,1) 0%, rgba(122,113,185,1) 0%, rgba(66,51,145,1) 44%, rgba(76,59,156,1) 58%, rgba(147,118,238,1) 100%, rgba(131,213,230,1) 100%);
     padding: 0.5em 1.5em;
     border-radius:0.2em;
     @media (max-width: 1100px) {

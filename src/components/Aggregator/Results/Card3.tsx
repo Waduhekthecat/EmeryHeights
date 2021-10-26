@@ -7,6 +7,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@mui/material'
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import styledCom from 'styled-components';
 
 import { colors } from "../../../styles";
 
@@ -15,16 +18,24 @@ interface Props {
   // text: string;
   // onClick:(num: number)=>void;
   // num:number;
-}
+};
 
 // Material ui style
 const useStyles = makeStyles((theme) => ({
   checkGroup: {
     display: "flex",
   },
+  ButtonToggle: {
+    borderWidth: "2px",
+    borderColor: "gray",
+    paddingRight: "10px",
+    color: "rgb(256,256,256) !important",
+    '&:focus': {
+    fontColor: "rgb(256,256,256) !important",
+  }},
   Container: {
     width:'100%',
-    background:"rgb(256,256,256)",
+    background:"lightgray",
     color: "black",
     borderRadius: '5px',
     display: 'flex',
@@ -37,9 +48,39 @@ const useStyles = makeStyles((theme) => ({
     paddingTop:'.75em',
     paddingBottom: '.75em',
     paddingRight: '.75em'
-  }
-}));
+  },
+  Advanced: {
+    borderColor: "black",
+    marginBottom:'15px',
+    float:'left'
+  }}))
 
+const AdvancedButton = styledCom(Button)`
+  
+
+
+
+
+background: #485778 !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 10px !important;
+  border: 2px solid rgba(${colors.border}) !important;
+  height:47px !important;
+  width:140px !important;
+  display:flex !important;
+  margin-right: 35px !important;
+  align-items:center !important;
+  justify-content:space-around !important;
+  box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    background: #504798 !important;
+    color: rgb(256,256,256) !important;
+  }
+
+`
 const Container = styled.div`
   width: 100%;
   background: rgb(256,256,256);
@@ -95,8 +136,12 @@ const FormGroupArea = styled.div`
   align-items: center;
 `;
 
+
+
+
 const Card: React.FC<Props> = ({}) => {
   const classes = useStyles();
+  const [selectedBtn, setSelectedBtn] = React.useState(false);
   const [state, setState] = React.useState({
     date: true,
     period: false,
@@ -114,16 +159,35 @@ const Card: React.FC<Props> = ({}) => {
   };
 
   const { date, period, unchecked, checked, dunchecked, dchecked } = state;
+  
 
   return (
-  <Grid container 
-    direction="row"
+  <Grid container
     className={classes.Container}>
-      
-    <Grid container direction="row">
-        <Grid item><Description>Advanced Search Options</Description></Grid>
-        <Grid item><Description1>Expiration Filters:</Description1></Grid>
-      <Grid item>
+      <Grid item sm={4} md={3} lg={3}>
+          <Description>
+          <AdvancedButton
+          className={classes.ButtonToggle}
+      value="call"
+      selected={selectedBtn}
+      onClick={()=> setSelectedBtn(!selectedBtn)}
+      >{" "}<p
+      style={{
+        fontSize: 17,
+        fontWeight: 800,
+      }}
+      >Advanced 
+        </p>
+  </AdvancedButton>
+  </Description>
+  </Grid>
+  <Grid item sm={4} md={4} lg={3}>
+    <Grid item>
+          <Description1>
+            Expiration Filters:
+            </Description1>
+ </Grid>
+ <Grid item sm={4} md={4} lg={3}>
        <FormControlLabel
                   control={
                     <Checkbox
@@ -134,8 +198,6 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Date"
                 />
-      </Grid>
-      <Grid item>
         <FormControlLabel
                   control={
                     <Checkbox
@@ -146,59 +208,62 @@ const Card: React.FC<Props> = ({}) => {
                   }
                   label="Period"
                 />
-      </Grid>
-        <Grid item><Description1>Strike Price:</Description1></Grid>
+                </Grid>
+   </Grid>
+        <Grid item>
           <Grid item>
+          <Description1>Strike Price:</Description1>
+       </Grid>
+         <Grid item>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleChange}
+                      name="round up"
+                    />
+                  }
+                  label="Round Up"
+                  />
+        
           <FormControlLabel 
                   control={
                     <Checkbox
                       checked={checked}
                       onChange={handleChange}
-                      name="checked"
+                      name="exact match"
                     />
                   }
-                  label="Checked"
+                  label="Exact Match"
                   />
-          </Grid>
-          <Grid item>
-                <FormControlLabel
+</Grid><Grid item>
+          
+          <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleChange}
+                      name="round down"
+                    />
+                  }
+                  label="Round Down"
+                  />
+          <FormControlLabel
                   control={
                     <Checkbox
                       checked={unchecked}
                       onChange={handleChange}
-                      name="unchecked"
+                      name="display all"
                     />
                   }
-                  label="Unchecked"
+                  label="Display All"
                   />
-          </Grid>
-          <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={dunchecked}
-                      onChange={handleChange}
-                      name="dunchecked"
-                    />
-                  }
-                  label="Disable Unchecked"
-                  />
-          </Grid>
-          <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={dchecked}
-                      onChange={handleChange}
-                      name="dchecked"
-                    />
-                  }
-                  label="Disable Checked"
-                  />
-                </Grid>
-          </Grid>
-        </Grid>
+                  </Grid>
+                  </Grid>
+                  </Grid>
     );
-    };
+                };
 
 export default Card;
+
+

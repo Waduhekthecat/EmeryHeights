@@ -7,7 +7,7 @@ import ToggleMenuIcon from './ToggleMenuIcon'
 
 const Wrapper = styled.div`
     position: relative;
-    width: 80%;
+    width: 95%;
     height: 100px;
     display: flex;
     flex-direction: row;

@@ -79,22 +79,22 @@ const Card: React.FC<Props> = ({ }) => {
                     <StatCard data={data[2]} />
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard data={data[0]}/>
+                    <StatCard data={data[3]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard data={data[1]}/>
+                    <StatCard data={data[4]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard data={data[2]}/>
+                    <StatCard data={data[5]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont}>
-                    <StatCard data={data[0]}/>
+                    <StatCard data={data[6]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard data={data[1]}/>
+                    <StatCard data={data[7]}/>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.gridCont} >
-                    <StatCard data={data[2]}/>
+                    <StatCard data={data[8]}/>
                 </Grid>
             </Grid>
         </Container>

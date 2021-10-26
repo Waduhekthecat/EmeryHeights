@@ -4,17 +4,42 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
-import { Data } from 'popper.js';
-import { platform } from 'os';
+import { ClassNames } from '@emotion/react';
 
 
 
+const useStyles = makeStyles((theme) => ({
+    HeaderToggle: {
+        borderWidth: "2px",
+        color: "rgb(67,159,174)",
+        borderColor: "black",
+        alignSelf:'center',
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:"10px",
+        fontSize:'20px',
+        fontWeight:600,
+        height: '56px',
+      },
+    Cards: {
+      height: '400px',
+      width:"300px",
+      alignSelf: 'center',
+    },
+      
+    HeaderTheme: {
+      background: "rgb(67,159,174)",
+      width: "80%"
+  
+    }
+  }));
+  const classes = useStyles();
   const CardContainer = styled.div`
   background: white;
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  display: flex;
+  display: relative;
   flex-direction: column;
   margin-top: 20px;
   border: 1px solid rgba(${colors.border});
@@ -80,8 +105,7 @@ margin-left: 1em;
 const HeadertArea = styled.div`
 width:100%;
 display: flex;
-flex-direction: row;
-background-color: rgba(31, 36, 54, 0.9);;
+background-color: #001a33;
 &:focus {
   background: #504798 
   color: #000000 
@@ -131,9 +155,12 @@ export class StatCard extends React.Component<IProps, IState>{
               selectedBtn: !previousState.selectedBtn,
             }));
           }
+          
     render(){
         return(
-<CardContainer>
+          
+          <Grid container>
+<CardContainer className={classes.Cards}>
       <HeadertArea id="selected">
         <Grid container direction="column">
           <Grid item>
@@ -166,6 +193,7 @@ export class StatCard extends React.Component<IProps, IState>{
         {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
       </ButtonArea>
       </CardContainer>
+      </Grid>
         )
 
     }

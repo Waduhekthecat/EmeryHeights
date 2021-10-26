@@ -29,8 +29,8 @@ const ItemContainer = styled.div`
   width: 900px;
   height: 500px;
   display: flex;
-  margin-top: 11em;
-  margin-left: 28em;
+  margin-top: 7%;
+  justify-content: center;
   flex-direction: column;
   padding-left: 2%;
   border-radius: 20px;
@@ -50,7 +50,7 @@ const HeaderArea = styled.div`
 `;
 const HeaderTitle = styled.p`
   color: rgb(${colors.fontColor});
-  font-size: 45px;
+  font-size: 40px;
   text-align: center;
   font-weight: 200;
   margin: 0;
@@ -81,13 +81,15 @@ const ItemList: React.FC<Props> = ({}) => {
   const history = useHistory();
 
   return (
+    <Grid container>
+      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
     <ItemContainer>
       <HeaderArea>
         <HeaderTitle>Welcome to</HeaderTitle>
         <HaederImage src={stationImage} />
       </HeaderArea>
       <Description>Select a service to get started</Description>
-      <Grid container spacing={4} align-items-center>
+      <Grid container spacing={4} justify-content="center">
         <Grid
           item
           xs={12}
@@ -120,6 +122,8 @@ const ItemList: React.FC<Props> = ({}) => {
         </Grid>
       </Grid>
     </ItemContainer>
+    </Grid>
+    </Grid>
   );
 };
 
