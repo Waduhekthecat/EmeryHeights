@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       display: 'flex',
+      margin: 0,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,

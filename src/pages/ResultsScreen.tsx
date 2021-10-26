@@ -4,7 +4,7 @@ import { IAssetData, IBoxProfile } from "../helpers/types";
 
 import PageHeader from '../components/Home/PageHeader'
 import ResultsContent from '../components/Home/ResultsContent'
-import ScreenWrapper2 from '../components/Home/ScreenWrapper2'
+import ScreenWrapper from '../components/Home/ScreenWrapper2'
 import Container from '@material-ui/core/Container';
 import chain from './assets/images/chain.png';
 import cubic from './assets/images/cubic.png';
@@ -80,13 +80,13 @@ function App() {
   }
 
   return (
-    <ScreenWrapper2>
+    <ScreenWrapper>
       <PageHeader
         isHide={isHide}
         setIsHide={(e) => _onHideMenu(e)}
       />
       <ResultsContent/>  
-    </ScreenWrapper2>
+    </ScreenWrapper>
   );
 }
 

@@ -10,11 +10,12 @@ const AppContainer = styled.div`
     background-color: rgba(80, 71, 152, 1);
     margin-left: auto;
     margin-right: auto;
-    background-position: top;
+    background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 100%;
-    flex:1;
+    height: 100vh;
+    flex: 1;
+    min-height: 750px;
 `
 
 const ScreenWrapper2: React.FC<Props> = ({ children }) => {
