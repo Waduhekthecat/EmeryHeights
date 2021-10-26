@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
       borderWidth: "2px",
       borderColor: "black",
-      color: "rgb(256,256,256) !important",
+      color: "rgb(0,0,0) !important",
       '&:focus': {
       fontColor: "white !important",
     }

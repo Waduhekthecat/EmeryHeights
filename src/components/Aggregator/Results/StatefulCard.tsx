@@ -101,9 +101,6 @@ margin-right: 1em;
 }
 `;
 
-
-
-
 interface IProps {
   data: {
     platform: string,
@@ -143,7 +140,7 @@ export class StatCard extends React.Component<IProps, IState>{
           <HeaderTitle>Platform: {this.props.data.platform}</HeaderTitle>
           </Grid>
           <Grid item>
-           <HeaderTitle>Option Cost: {this.props.data.premium}</HeaderTitle>
+           <HeaderTitle>Premium: {this.props.data.premium}</HeaderTitle>
            </Grid>
           </Grid>
           </HeadertArea>

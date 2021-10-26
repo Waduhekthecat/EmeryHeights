@@ -74,7 +74,7 @@ export default function AmountSlider() {
       
         </Grid>
         <Grid item marginLeft="38%" marginTop="-7%" md={6}>
-          <Input
+          <Input                                                                                                                                                                                                                                                                                                                                                                                                        
             endAdornment="BTC"
             value={value}
             onChange={handleInputChange}

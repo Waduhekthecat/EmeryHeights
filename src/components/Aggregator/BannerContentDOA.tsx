@@ -83,10 +83,10 @@ const CssTextField = withStyles({
       color: "white !important",
       background: "#3E4251 !important",
       marginLeft: "10px",
-      borderRadius: "10px",
+      borderRadius: "8px",
       marginTop: "-5px",
       width: "310px",
-      padding: "13px 0px 12.5px 0px",
+      padding: "10px 10px 10px 10px",
       
     },
   },
@@ -297,10 +297,6 @@ const useStyles = makeStyles((theme) => ({
     width: "253px !important",
     height: "55px !important",
     color: "white",
-  },
-  notchedOutline: {
-    borderWidth: "1px !important",
-    borderColor: "yellow !important",
   }
 }));
 
@@ -553,7 +549,7 @@ const QueryButton = styledCom.a`
                       variant="outlined"
                       id="date"
                       type="date"
-                      defaultValue="2017-05-24"
+                      defaultValue="2009-01-03"
                       sx={{ width: 310, height: 55}}
                       inputProps={{style: {fontSize: 24 }}}
                       

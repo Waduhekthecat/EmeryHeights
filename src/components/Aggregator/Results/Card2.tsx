@@ -53,31 +53,16 @@ const Description = styled.div`
 const Card: React.FC<Props> = ({ }) => {
 
     const data = [
-        {
-          platform: 'Hegic',
-          underlying: 'WBTC',
-          strike: '$60,000',
-          amount: '1wbtc',
-          expiry: '11/01/21',
-          premium: '$1825',
-        },
-        {
-          platform: 'Premia',
-          underlying: 'WBTC',
-          strike: '$60,000',
-          amount: '1wbtc',
-          expiry: '11/01/21',
-          premium: '$2000',
-        },
-        {
-          platform: 'Auctus',
-          underlying: 'WBTC',
-          strike: '$60,000',
-          amount: '1wbtc',
-          expiry: '11/01/21',
-          premium: '$2350',
-        },
-      ];
+        { platform: 'Hegic', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$1825'},
+        { platform: 'Premia', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2000'},
+        { platform: 'Auctus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2350'},
+        { platform: 'Phoenix', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2375'},
+        { platform: 'Opyn', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2420'},
+        { platform: 'Heget', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2500'},
+        { platform: 'Opium', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2750'},
+        { platform: 'Finnexus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2950'},
+        { platform: 'Ribbon', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$3000'},
+    ];
 
     const classes = useStyles();
     
