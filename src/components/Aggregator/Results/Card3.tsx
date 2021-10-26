@@ -7,8 +7,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from '@mui/material'
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import styledCom from 'styled-components';
 
 import { colors } from "../../../styles";
@@ -27,15 +27,16 @@ const useStyles = makeStyles((theme) => ({
   },
   ButtonToggle: {
     borderWidth: "2px",
-    borderColor: "gray",
+    borderColor: "black",
     paddingRight: "10px",
-    color: "rgb(256,256,256) !important",
+    color: "rgb(0,0,0) !important",
+    backgroundColor: `rgb(${colors.grey}) !important`,
     '&:focus': {
-    fontColor: "rgb(256,256,256) !important",
+    color: "rgb(256,256,256) !important",
   }},
   Container: {
     width:'100%',
-    background:"lightgray",
+    background:"white !important",
     color: "black",
     borderRadius: '5px',
     display: 'flex',
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     float:'left'
   }}))
 
-const AdvancedButton = styledCom(Button)`
+const AdvancedButton = styledCom(ToggleButton)`
   
 
 
@@ -83,7 +84,7 @@ background: #485778 !important;
 `
 const Container = styled.div`
   width: 100%;
-  background: rgb(256,256,256);
+  background: rgb(255,255,255);
   color:"black";
     border-radius: 5px;
     display: flex;

@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   
     }
   }));
-  const classes = useStyles();
   const CardContainer = styled.div`
   background: white;
   width: 100%;
@@ -80,7 +79,7 @@ const CompareButton = styled(ToggleButton)`
   justify-content:center;
   border-width: 2px;
   border-radius: 10px;
-  color: "rgb(67,159,174)";
+  color: rgb(67,159,174);
   border-color: black;
   align-self: center;
   align-items: center;
@@ -160,7 +159,7 @@ export class StatCard extends React.Component<IProps, IState>{
         return(
           
           <Grid container>
-<CardContainer className={classes.Cards}>
+<CardContainer>
       <HeadertArea id="selected">
         <Grid container direction="column">
           <Grid item>
