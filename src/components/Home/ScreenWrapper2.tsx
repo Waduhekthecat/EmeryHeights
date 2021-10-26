@@ -15,7 +15,7 @@ const AppContainer = styled.div`
     background-repeat: no-repeat;
     height: 100vh;
     flex: 1;
-    min-height: 750px;
+    min-height: 700px;
 `
 
 const ScreenWrapper2: React.FC<Props> = ({ children }) => {
