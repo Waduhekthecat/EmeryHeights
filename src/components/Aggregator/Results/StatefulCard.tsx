@@ -4,7 +4,6 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
-import { ClassNames } from '@emotion/react';
 
 
 
@@ -170,13 +169,10 @@ export class StatCard extends React.Component<IProps, IState>{
            </Grid>
           </Grid>
           </HeadertArea>
-          
           <DescriptionTxt>Quantity: {this.props.data.amount}</DescriptionTxt>
           <DescriptionTxt>Strike: {this.props.data.strike}</DescriptionTxt>
           <DescriptionTxt>Expiry: {this.props.data.expiry}</DescriptionTxt>
-
       <ButtonArea>
-        {/* <SelectBtn>Select</SelectBtn> */}
         <CompareButton
         value="Select"
         selected={this.state.selectedBtn}
