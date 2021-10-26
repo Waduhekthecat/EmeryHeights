@@ -15,6 +15,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
+import { Input, InputAdornment } from "@material-ui/core";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -401,17 +402,6 @@ const TitleText = styledCom.p`
     text-align:center;
     align-self:center;
 `;
-const ButtonContainer1 = styledCom.div`
-    width: 225px;
-    display: flex;
-    margin-bottom:30px;
-    margin-left:10px;
-    @media (max-width: 550px) {
-        width: 100%;
-        margin-left:0;
-        
-    }
-`;
 
 const DataPickerArea = styledCom.div`
     height:55px;
@@ -425,27 +415,6 @@ const DataPickerArea = styledCom.div`
     @media (max-width: 550px) {
         width: 220px;
     }
-`;
-const DataPickerArea1 = styledCom(TextField)`
-    background: #3E4251 !important;
-    margin-left: 8px !important;
-    width:310px !important;
-    height:55px !important;
-    font-size:32 !important;
-    padding-top:0.5em !important;
-    border-radius:10px;
-    color: white;
-    borderColor: white;
-`;
-const DataPicker = styledCom.input`
-    background: rgba(255, 255, 255, 1.0);
-    padding-left:0.5em;
-    width:253px !important;
-    height:55px !important;
-    font-size:20px !important;
-    border-radius:10px;
-    color: white;
-    border: none;
 `;
 
 const QueryButton = styledCom.a`
@@ -477,11 +446,20 @@ const QueryButton = styledCom.a`
 
       const history = useHistory();
       const classes = useStyles();
-      const [age, setAge] = useState("");
-      const birthdayHandler = () => {};
+      const [expiry, setExpiry] = useState("");
+      const [underlying, setUnderlying] = useState("");
 
+      const data = [
+        "BTC",
+        "BNB",
+        "LUNA",
+        "ETH"       
+      ]
+      const handleChange = (event: { target: { value: string } }) =>{
+        setUnderlying(event.target.value);
+      };
       const handleChange2 = (event: { target: { value: string } }) => {
-        setAge(event.target.value);
+        setExpiry(event.target.value);
       };
 
         
@@ -529,21 +507,21 @@ const QueryButton = styledCom.a`
                   <DataPickerArea style={{ width: "310px" }}>
                     <FormControl variant="standard" className={classes.dropdown}>
                       <MyNativeSelect
-                        value={age}
-                        onChange={handleChange2}
+                        value={underlying}
+                        onChange={handleChange}
                         input={<BootstrapInput />}
                       >
                         <option className={classes.dropdownMenu} value={10}>
-                        BTC
+                        {data[0]}
                         </option>
                         <option className={classes.dropdownMenu} value={20}>
-                        USDC
+                        {data[1]}
                         </option>
                         <option className={classes.dropdownMenu} value={30}>
-                        ETH
+                        {data[2]}
                         </option>
                         <option className={classes.dropdownMenu} value={40}>
-                        USDT
+                        {data[3]}
                         </option>
                       </MyNativeSelect>
                     </FormControl>
