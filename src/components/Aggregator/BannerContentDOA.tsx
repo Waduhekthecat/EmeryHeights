@@ -62,24 +62,21 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-    "&:hover": {
-    background: "#3E4251 !important",
-    color: "black !important"
-    },
+
   },
 }));
 const CssTextField = withStyles({
   root: {
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#3E4251 !important',
+        borderColor: 'rgb(67,159,174) !important',
       },
       '&:hover fieldset': {
-        borderColor: '#3E4251 !important',
+        borderColor: 'rgb(67,159,174) !important',
         cursor:'pointer'
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#3E4251 !important',
+        borderColor: 'rgb(67,159,174) !important',
       },
       color: "white !important",
       background: "#3E4251 !important",
@@ -87,6 +84,7 @@ const CssTextField = withStyles({
       borderRadius: "8px",
       marginTop: "-5px",
       width: "310px",
+      height: "100px",
       padding: "10px 10px 10px 10px",
       
     },
@@ -248,8 +246,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   dropdownMenu: {
-    color:"white",
-    backgroundColor:"black"
+    color:"white important",
+    backgroundColor:"#3E4251 !important"
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
@@ -397,7 +395,6 @@ const TitleText = styledCom.p`
     margin-top: 1em;
     padding-top: 1em;
     font-size: 35px;
-    font-family: fantasy;
     text-shadow: 1px 1px 1px white,
                1px 2px 1px gray;
     color: white;
