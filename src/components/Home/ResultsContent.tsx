@@ -30,6 +30,8 @@ const ItemContainer = styled.div`
     margin-bottom:10em;
     border-radius: 20px;
     box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
+    border:4px
+     rgb(${colors.gradLight});
     background-color: rgb(31, 36, 54);
     @media (max-width: 720px) {
         width: 75%;

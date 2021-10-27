@@ -18,6 +18,8 @@ import AmountSlider from "./AmountSlider";
 import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
 
+//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
+
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
@@ -25,6 +27,7 @@ interface CustomProps {
 
 const MyNativeSelect = withStyles({
   icon: {
+    weight: "800",
     width: "2.1em !important",
     height: "2.1em !important",
     fill: "white !important",
@@ -47,11 +50,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     position: "relative",
     background: "#3E4251 !important",
     color: "white !important",
-    borderRadius: "10px !important",
-    border: `1px solid rgba(${colors.border}) !important`,
+    borderRadius: "5px !important",
+    border: `0px solid rgba(${colors.border}) !important`,
     height: 60,
-    fontSize: 21,
+    fontWeight: 600,
+    fontSize: 23,
+    width:'320px',
     paddingLeft: "20px",
+    font: "Apple Color Emoji",
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -73,7 +79,7 @@ const CssTextField = withStyles({
       '& fieldset': {
         borderColor: 'rgb(67,159,174) !important',
       },
-      '&:hover fieldset': {
+      '&!:hover fieldset': {
         borderColor: 'rgb(67,159,174) !important',
         cursor:'pointer'
       },
@@ -85,9 +91,9 @@ const CssTextField = withStyles({
       marginLeft: "10px",
       borderRadius: "8px",
       marginTop: "-5px",
-      width: "310px",
-      height: "100px",
-      padding: "10px 10px 10px 10px",
+      width: "323px",
+      height: "104px",
+      padding: "6x 3px 10px 8px",
       
     },
   },
@@ -311,7 +317,7 @@ const useStyles = makeStyles((theme) => ({
 // styled-components
 const StyledHeader = styledCom.div`
 width: 900px;
-height: 120px; 
+height: 150px; 
 padding-left:2%;
 padding-right:2%;
 border-right-radius:none;
@@ -319,6 +325,9 @@ border-top-left-radius:20px;
 border-top-right-radius:20px;
 box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
 background-color: rgb(31, 36, 54);
+border:9px
+     rgb(${colors.gradLight});
+
 }
 `;
 const ItemContainer = styledCom.div`
@@ -329,8 +338,11 @@ const ItemContainer = styledCom.div`
     padding-left:2%;
     border-right-radius:none;
     border-bottom-left-radius:20px;
+    border-outline: white;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: rgb(67,159,174);
+    background-color: #2D93A6;
+    border:4px
+     rgb(${colors.gradLight});
     @media (max-width: 720px) {
         width: 75%;
         height: 75%;
@@ -348,6 +360,8 @@ const ItemContainer2 = styledCom.div`
     border-bottom-right-radius:20px;
     box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
     background-color: #ffffff;
+    border:4px
+     rgb(${colors.gradDark});
     @media (max-width: 720px) {
         width: 75%;
         height: 75%;
@@ -394,11 +408,11 @@ const HeaderText2 = styledCom.p`
     width:170px
 `;
 const TitleText = styledCom.p`
-    margin-top: 1em;
+    margin-top: .5em;
     padding-top: 1em;
-    font-size: 35px;
-    text-shadow: 1px 1px 1px white,
-               1px 2px 1px gray;
+    font-size: 40px;
+    text-shadow: 1px 1px 0px gray,
+                 1px 2px 0px blue;
     color: white;
     text-align:center;
     align-self:center;
@@ -406,7 +420,7 @@ const TitleText = styledCom.p`
 
 const DataPickerArea = styledCom.div`
     height:55px;
-    width:400px;
+    width: 320px !important;
     display:flex;
     margin-top:12px;
     margin-bottom:5px;
@@ -420,13 +434,13 @@ const DataPickerArea = styledCom.div`
 
 const QueryButton = styledCom.a`
     margin-top:9em;
-    margin-left:1em;
+    margin-left:3em;
     display: flex;
     align-self:center;
     align-items:center;
     justify-content:center;
-    border-radius: 10px;
-    width: 210px;
+    border-radius: 5px;
+    width: 380px;
     color:white;
     font-size:20px;
     font-weight:600;
@@ -434,8 +448,8 @@ const QueryButton = styledCom.a`
     background-color:#504798;
     &:hover {
       cursor: pointer;
-      border: 1px solid rgb(${colors.fontColor});
-      text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue
+      background-color: 3px solid rgb(${colors.fontColor});
+      text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
   }
     
 `;
@@ -464,6 +478,8 @@ const QueryButton = styledCom.a`
       const handleChange2 = (event: { target: { value: string } }) => {
         setExpiry(event.target.value);
       };
+      
+
 
         
       const theme = createTheme({
@@ -505,7 +521,7 @@ const QueryButton = styledCom.a`
                 <Grid item xs={2} md={2} className={classes.textContTopL}>
                   <CallPutToggle />
                 </Grid>
-                <Grid item xs={2} md={5} className={classes.textCont1}>
+                <Grid item xs={2} md={4} className={classes.textCont1}>
                   <HeaderText>Underlying Asset</HeaderText>
                   <DataPickerArea style={{ width: "310px" }}>
                     <FormControl variant="standard" className={classes.dropdown}>
@@ -550,7 +566,7 @@ const QueryButton = styledCom.a`
               <Grid item xs={2} md={8} className={classes.textContTopL}>
                 <HeaderText2>Strike Price:</HeaderText2>
                 {/*Strike Price Input*/}
-                <Grid item xs={2} md={4} className={classes.textContTopR}>
+                <Grid item xs={4} md={5} className={classes.textContTopR}>
                   <StrikeInput />
                 </Grid>
               </Grid>
@@ -564,7 +580,7 @@ const QueryButton = styledCom.a`
                       style={{
                         fontSize: 18,
                         textDecoration: "underline",
-                        color: "#439fae",
+                        color: "#139A6A",
                         fontStyle: "italic",
                         fontWeight: 500,
                       }}

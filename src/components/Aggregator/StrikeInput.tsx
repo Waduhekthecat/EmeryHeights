@@ -21,13 +21,13 @@ const StrikeArea = styled(MuiInput)(({ theme }) => ({
     position: "relative",
     background: "#3E4251 !important",
     color: "white !important",
-    borderRadius: "10px !important",
+    borderRadius: "5px !important",
     border: `1px solid rgba(${colors.border}) !important`,
     height: "45px",
-    width: "110px",
+    width: "260px",
     fontSize: 26,
     type: "number",
-    paddingLeft: "0.4em",
+    paddingLeft: "0.5em",
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -49,19 +49,20 @@ const StrikeFieldArea = styledCom.form`
   border: 0px solid rgba(${colors.border});
   border-radius:3px;
   height:33.2px;
-  width:130px;
+  width:230px;
   font-size:28px !important;
   font-color: white;
+  font-weight: '600'
 `;
 const StrikeField = styledCom.input`
-    background: rgba(31, 36, 54, .7);
+    background: #3E4251;
     backdrop-filter: blur(4px);
     border: 1px solid rgba(${colors.border});
     box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
-    border-radius:10px;
+    border-radius:5px;
     border-radius:rounded;
     height:40px;
-    width:150px;
+    width:200px; !important;
     font-size:20px !important;
     color: white;
 `;

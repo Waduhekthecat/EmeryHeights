@@ -10,8 +10,9 @@ import { Grid } from '@mui/material'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import styledCom from 'styled-components';
-
 import { colors } from "../../../styles";
+
+//#2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
 interface Props {
   // url: string;
@@ -57,10 +58,6 @@ const useStyles = makeStyles((theme) => ({
   }}))
 
 const AdvancedButton = styledCom(ToggleButton)`
-  
-
-
-
 
 background: #485778 !important;
   backdrop-filter: blur(4px) !important;
@@ -150,6 +147,7 @@ const Card: React.FC<Props> = ({}) => {
     checked: false,
     dunchecked: false,
     dchecked: false,
+    filtered: false
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,111 +157,111 @@ const Card: React.FC<Props> = ({}) => {
     });
   };
 
-  const { date, period, unchecked, checked, dunchecked, dchecked } = state;
+  const { date, period, unchecked, checked, dunchecked, dchecked, filtered } = state;
   
 
-  return (
-  <Grid container
-    className={classes.Container}>
-      <Grid item sm={4} md={3} lg={3}>
-          <Description>
-          <AdvancedButton
-          className={classes.ButtonToggle}
-      value="call"
-      selected={selectedBtn}
-      onClick={()=> setSelectedBtn(!selectedBtn)}
-      >{" "}<p
-      style={{
-        fontSize: 17,
-        fontWeight: 800,
-      }}
-      >Advanced 
-        </p>
-  </AdvancedButton>
-  </Description>
-  </Grid>
-  <Grid item sm={4} md={4} lg={3}>
-    <Grid item>
-          <Description1>
-            Expiration Filters:
-            </Description1>
- </Grid>
- <Grid item sm={4} md={4} lg={3}>
-       <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={date}
-                      onChange={handleChange}
-                      name="date"
-                    />
-                  }
-                  label="Date"
-                />
-        <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={period}
-                      onChange={handleChange}
-                      name="period"
-                    />
-                  }
-                  label="Period"
-                />
-                </Grid>
-   </Grid>
-        <Grid item>
+    return (
+      <Grid container direction="row"
+        className={classes.Container}>
           <Grid item>
-          <Description1>Strike Price:</Description1>
-       </Grid>
-         <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleChange}
-                      name="round up"
-                    />
-                  }
-                  label="Round Up"
-                  />
+              <AdvancedButton
+              className={classes.ButtonToggle}
+          value="call"
+          selected={selectedBtn}
+          onClick={()=> setSelectedBtn(!selectedBtn)}
+          >{" "}<p
+          style={{
+            fontSize: 17,
+            fontWeight: 800,
+          }}
+          >Advanced 
+            </p>
+      </AdvancedButton>
+      </Grid></Grid>
+
+
+//   <Grid item sm={4} md={4} lg={3}>
+//     <Grid item>
+//           <Description1>
+//             Expiration Filters:
+//             </Description1>
+//  </Grid>
+//  <Grid item sm={4} md={4} lg={3}>
+//        <FormControlLabel
+//                   control={
+//                     <Checkbox
+//                       checked={date}
+//                       onChange={handleChange}
+//                       name="date"
+//                     />
+//                   }
+//                   label="Date"
+//                 />
+//         <FormControlLabel
+//                   control={
+//                     <Checkbox
+//                       checked={period}
+//                       onChange={handleChange}
+//                       name="period"
+//                     />
+//                   }
+//                   label="Period"
+//                 />
+//                 </Grid>
+//    </Grid>
+//         <Grid item>
+//           <Grid item>
+//           <Description1>Strike Price:</Description1>
+//        </Grid>
+//          <Grid item>
+//                 <FormControlLabel
+//                   control={
+//                     <Checkbox
+//                       checked={checked}
+//                       onChange={handleChange}
+//                       name="round up"
+//                     />
+//                   }
+//                   label="Round Up"
+//                   />
         
-          <FormControlLabel 
-                  control={
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleChange}
-                      name="exact match"
-                    />
-                  }
-                  label="Exact Match"
-                  />
-</Grid><Grid item>
+//           <FormControlLabel 
+//                   control={
+//                     <Checkbox
+//                       checked={checked}
+//                       onChange={handleChange}
+//                       name="exact match"
+//                     />
+//                   }
+//                   label="Exact Match"
+//                   />
+// </Grid><Grid item>
           
-          <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleChange}
-                      name="round down"
-                    />
-                  }
-                  label="Round Down"
-                  />
-          <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={unchecked}
-                      onChange={handleChange}
-                      name="display all"
-                    />
-                  }
-                  label="Display All"
-                  />
-                  </Grid>
-                  </Grid>
-                  </Grid>
-    );
-                };
+//           <FormControlLabel
+//                   control={
+//                     <Checkbox
+//                       checked={checked}
+//                       onChange={handleChange}
+//                       name="round down"
+//                     />
+//                   }
+//                   label="Round Down"
+//                   />
+//           <FormControlLabel
+//                   control={
+//                     <Checkbox
+//                       checked={unchecked}
+//                       onChange={handleChange}
+//                       name="display all"
+//                     />
+//                   }
+//                   label="Display All"
+//                   />
+//                   </Grid>
+//                   </Grid>
+//                   </Grid>
+    )
+};
 
 export default Card;
 

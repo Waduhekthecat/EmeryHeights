@@ -25,8 +25,8 @@ const ButtonEdits = styledCom(ToggleButton)`
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;
   border: 1px solid rgba(${colors.border}) !important;
-  height:47px !important;
-  width:140px !important;
+  height:50px !important;
+  width:145px !important;
   display:flex !important;
   margin-right: 35px !important;
   align-items:center !important;

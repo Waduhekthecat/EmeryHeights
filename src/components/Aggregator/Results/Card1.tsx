@@ -6,12 +6,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import styledCom from 'styled-components';
 import { Grid } from '@mui/material'
 
+//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
+
 interface Props {
-    // url: string;
-    // text: string;
-    // onClick:(num: number)=>void;
-    // num:number;
-};
+    //  platformD = {api.platform};
+    //  underlyingD = {api.underlying};
+    //  strikeD = {api.strike};
+    //  expiryD = {api.expiry};
+    //  amountD = {api.amount};
+    //  gasD = {api.gas};
+    //  premiumD = {api.premium}
+
+   };
+
 const useStyles = makeStyles((theme) => ({
     Hidden: {
         borderWidth: "2px",
@@ -21,26 +28,27 @@ const useStyles = makeStyles((theme) => ({
 const Container = styled.div`
     width: 100%;
     background-color: rgb(67,159,174);
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(${colors.border});
-    padding:3em;
+    padding:2em;
     margin-top: 10px;
 `
 
 const HederTitle = styled.p`
     color: white;
     font-size: 30px;
-    font-weight:500
+    font-weight:600
     background-color:
 `
 const Description1 = styled.p`
-    color: white;
-    font-size: 14px;
+    color: black;
+    font-size: 17px;
     text-decoration:underline;
     margin-top:-20px;
     margin-bottom:30px;
+    margin-left: 2em;
 `
 const Description = styled.p`
     color: white;
@@ -51,11 +59,12 @@ const Description = styled.p`
 const PurchaseBtn = styled.button`
     height:70px;
     width:200px;
-    font-size:32px;
-    color:#5e6cfa;
+    font-size:30px;
+    color: rgb(256,256,256);
+    background-color:#504798;
     font-weight:bold;
     align-self:center;
-    border-radius:10px;
+    border-radius:15px;
     margin-top:30px;
     margin-bottom:30px;
     &:hover {
@@ -67,30 +76,38 @@ const Card: React.FC<Props> = ({ }) => {
     return (
         <Grid container sx={{ display: { xs: 'none', md: 'none' } }}>
         <Container>
-            <Grid container>
-            <Grid item>
-            <HederTitle>Platform Y</HederTitle>
-            </Grid>
-            <Grid item>
+        <Grid container direction="row" xs={2} sm={3} md={4} lg={4}>
+            <Grid item  xs={6} sm={3} md={4} lg={4}>
+            <HederTitle>{/*api.platformD*/}</HederTitle>
+
             <Description1>View historical chart</Description1>
             </Grid>
             <Grid item>
-            <Description>Expires: 09/24/2021</Description>
+            <Description>Underlying: {/*api.underlyingD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Strike Price: $48,000</Description>
+            <Description>Strike Price: {/*api.strikeD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Qty: 2</Description>
+            <Description>Expires: {/*api.expiryD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Gas Fee: 108 Wei</Description>
+            <Description>Qty: {/*api.amountD*/}</Description>
             </Grid>
             <Grid item>
-            <Description style={{ marginTop: 80 }}>Price to Break even</Description>
+            <Description>Gas Fee: {/*api.gasD*/}</Description>
             </Grid>
             <Grid item>
-            <Description style={{ fontSize: 25 }}>Total Cost:</Description>
+            {<Description>({/*x*/} days left for expiry)</Description> }
+
+            <br/>
+            <br/>
+            </Grid>
+{/* <Grid item>
+<Description>Price to Break even</Description>
+</Grid> */}
+            <Grid item>
+            <Description>Total Cost: {/*premium from from transaction*/}</Description>
             </Grid>
             <Grid item>
             <PurchaseBtn>Purchase</PurchaseBtn>
