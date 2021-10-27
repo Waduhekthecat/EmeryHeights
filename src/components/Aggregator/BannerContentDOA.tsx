@@ -16,6 +16,7 @@ import { colors } from "../../styles";
 import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
 import { Input, InputAdornment } from "@material-ui/core";
+import { string } from "prop-types";
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -455,6 +456,8 @@ const QueryButton = styledCom.a`
         "LUNA",
         "ETH"       
       ]
+
+  
       const handleChange = (event: { target: { value: string } }) =>{
         setUnderlying(event.target.value);
       };

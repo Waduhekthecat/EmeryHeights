@@ -30,11 +30,6 @@ const Amount = styled(MuiSlider)(({ theme }) => ({
   },
 }));
 
-
-
-
-
-
 export default function AmountSlider() {
 
   const [value, setValue] = React.useState<number | string | Array<number | string>>(
