@@ -165,6 +165,7 @@ const Card: React.FC<Props> = ({ }) => {
 //until we hook it up to the API call for populating data fields
 
 const DetailCard: React.FC<Props> = ({ }) => {
+    const classes = useStyles();
     return (
         <Grid container>
         <Container2>

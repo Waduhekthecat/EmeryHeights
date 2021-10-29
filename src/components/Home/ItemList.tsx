@@ -3,39 +3,39 @@ import styled from "styled-components";
 import Card from "./ServiceCards";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
-
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import routerIconblack from "../../assets/images/routerIconblack.png";
 import searchIconblack from "../../assets/images/searchIconblack.png";
 import chartIconblack from "../../assets/images/chartIconblack.png";
 import stationImage from "../../assets/images/stationImage.png";
 import { colors } from "../../styles";
+import { Container } from "@material-ui/core";
+import {BreakpointOverrides} from "@material-ui/core/styles/createBreakpoints"
 
 interface Props {
   // switchContent: (num: number) => void;
 }
 
 
-const size = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '425px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2560px'
-}
+const ScreenSize = styled.div`
+width:100%;
+height:100%;
+margin: 0 'auto';
+`;
 
 const ItemContainer = styled.div`
   width: 900px;
-  height: 500px;
+  height: 90%;
   display: flex;
-  margin-top: 7%;
-  justify-content: center;
+  margin-top: 5%;
   flex-direction: column;
   padding-left: 2%;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
   background-color: rgb(31, 36, 54);
+  
+  };
+ 
 `;
 
 const HeaderArea = styled.div`
@@ -55,7 +55,7 @@ const HeaderTitle = styled.p`
   font-weight: 200;
   margin: 0;
   margin-right: 15px;
-  @media (max-width: 1300px) {
+  @media (minWidth: 1300px) {
     font-size: 30px;
   }
   @media (max-width: 550px) {
@@ -81,17 +81,18 @@ const ItemList: React.FC<Props> = ({}) => {
   const history = useHistory();
 
   return (
-    <Grid container>
-      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+    <Grid container className={ScreenSize}>
+      <Grid container direction ="row" justifyContent="center" xs={12} sm={12} md={12} lg="auto">
     <ItemContainer>
       <HeaderArea>
         <HeaderTitle>Welcome to</HeaderTitle>
         <HaederImage src={stationImage} />
       </HeaderArea>
       <Description>Select a service to get started</Description>
-      <Grid container spacing={4} justify-content="center">
+      <Grid container className={ScreenSize} spacing={4} justify-content="center">
         <Grid
           item
+          justify-content="center"
           xs={12}
           md={4}
           onClick={() => {
@@ -102,6 +103,7 @@ const ItemList: React.FC<Props> = ({}) => {
         </Grid>
         <Grid
           item
+          justify-content="center"
           xs={12}
           md={4}
           onClick={() => {
@@ -112,6 +114,7 @@ const ItemList: React.FC<Props> = ({}) => {
         </Grid>
         <Grid
           item
+          justify-content="center"
           xs={12}
           md={4}
           onClick={() => {

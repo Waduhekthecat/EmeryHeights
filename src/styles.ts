@@ -22,7 +22,8 @@ export const colors: any = {
   pink: '255, 51, 102',
   red: '214, 75, 71',
   purple: '110, 107, 233',
-  selected: 'rgb(67, 159, 174)'
+  selected: 'rgb(67, 159, 174)',
+  selected2: '504798'
 }
 
 export const fonts = {
@@ -159,6 +160,16 @@ export const globalStyle = `
   h6 {
     font-size: ${fonts.size.h6}
   }
+  background1 {
+
+    background-color: rgb(${colors.white})
+  }
+
+  backgroundCard2{
+
+    background-color: rgb(${colors.selected2})
+  }  
+  
 
   a {
     background-color: transparent;

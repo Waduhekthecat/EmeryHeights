@@ -4,45 +4,17 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { white } from 'material-ui/styles/colors';
+import { rgbToHex } from '@mui/system';
+import { ClassNames } from '@emotion/react';
 
 //#2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1)
-    }
-  },
-  textarea: {
-    resize: "both"
-  },
-  HeaderToggle: {
-        borderWidth: "2px",
-        color: "rgb(67,159,174)",
-        borderColor: "black",
-        alignSelf:'center',
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:"10px",
-        fontSize:'20px',
-        fontWeight:600,
-        height: '56px',
-      },
-    Cards: {
-      height: '400px',
-      width:"300px",
-      alignSelf: 'center',
-    }, 
-    HeaderTheme: {
-      background: "rgb(67,159,174)",
-      width: "80%"
-  
-    }
-  }));
+
   const CardContainer = styled.div`
-  display: flex;
-  background: white;
-  width: 98%;
+ background: white;
+  width: 100%;
   height: 98%;
   border-radius: 20px;
   display: relative;
@@ -87,13 +59,13 @@ margin-left:2em;
 
 const CompareButton = styled(ToggleButton)`
   display: flex;
-  border-width: 2px;
-  border-radius: 10px;
-  background: rgb(80,71,152);
-  border-color: black;
-  width: 80%;
-  font-size:20px;
-  font-weight:600;
+  border-width: 4px  border-radius: 15px;
+  background-color: #504798 !important;
+  color: white !important;
+  border-color: rgb(${colors.selected}) !important;
+  width: 100% !important;
+  font-size:40px;
+  font-weight:800 !important;
   height: 56px;
   &:hover {
       cursor: pointer;
@@ -103,14 +75,12 @@ const CompareButton = styled(ToggleButton)`
   }
 `;
 //ChangeStateButton
-const CompareButton2 = styled(ToggleButton)`
-align-content: flex-end
-   height: 65%; 
-   width: 50%;
-   box-shadow: 8px 8px 0px 3E4251 !important;
-   border-radius: 7px !important;
+const CompareButton2 = styled(ToggleButton)` 
+align-self:"right" !important;
+   width:250px; 
   font-size:20px;
   font-weight:600;
+margin-left: 3em;
   background-color: #504798 !important;
   color: white !important;
   &:hover {
@@ -135,9 +105,14 @@ margin-left: 1em;
 `;
 
 const HeadertArea = styled.div`
-width:100%;
+width:70%;
 display: flex;
+margin-left:1em;
+margin-right:0em;
 background-color: #2D93A6;
+border-radius: 80px;
+border: 2px solid rgba(${colors.border});
+box-shadow: 3px 4px 0px rgb(10, 13, 27);
 &:focus {
   background: #504798 
   color: #000000 
@@ -145,13 +120,8 @@ background-color: #2D93A6;
 `;
 
 const ButtonArea = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
-margin-top: 1em;
-margin-bottom: 0.5em;
-margin-left: 1em;
-margin-right: 1em;
+width=100%;
+margin-bottom: 10px;
 @media (max-width: 400px) {
 }
 `;
@@ -187,50 +157,56 @@ export class StatCard extends React.Component<IProps, IState>{
             }));
           }
           
+          useStyles = makeStyles((theme) => ({
+            palette: {
+              primary: 'rgbToHex(256,256,256)',
+              secondary: '504798'
+              }
+            }));
+
     render(){
         return(
           <Grid container>   
-      <CardContainer>
-        
-        <Grid container direction="column">
-          <Grid item xs={12} sm={12} md={6} lg={1}>
-          <DescriptionTxt2>Platform: {this.props.data.platform}</DescriptionTxt2>
-          </Grid>
-          <Grid item xs={12} sm={12} md={2} lg={1}>
-          <HeadertArea>
-           <HeaderTitle>
-            Premium: {this.props.data.premium}</HeaderTitle></HeadertArea>
+          <CardContainer>
+            
+            <Grid container direction="column">
+              <Grid item xs={6} sm={6} md={4} lg={5}>
+              <DescriptionTxt2>Platform: {this.props.data.platform}</DescriptionTxt2>
+              </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={5}>
+              <HeadertArea>
+               <HeaderTitle>
+                Premium: {this.props.data.premium}</HeaderTitle></HeadertArea>
+              </Grid>
           
+            <Grid item>
+              <DescriptionTxt>
+                   Quantity: {this.props.data.amount}
+              <br/>Strike: {this.props.data.strike}
+              <br/>Expiry: {this.props.data.expiry}
+              </DescriptionTxt>
+              </Grid>
+            </Grid>
+            <Grid container direction = "column" xs={6} sm={4} md={4} lg={6}>
+            <ButtonArea>
+              
+            <CompareButton            
+            value="Select"
+            selected={this.state.selectedBtn}
+            onClick={this.onClick}
+            >{" "}<p
+          style={{
+            fontSize: 17,
+            fontWeight: 900,
+          }}
+          >SELECT 
+            </p>
+          </CompareButton >
+          
+          </ButtonArea>
           </Grid>
-      
-        <Grid item>
-          <DescriptionTxt>
-               Quantity: {this.props.data.amount}
-          <br/>Strike: {this.props.data.strike}
-          <br/>Expiry: {this.props.data.expiry}
-          </DescriptionTxt>
-          </Grid>
-        </Grid>
-        
-        <Grid container>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-        <CompareButton2
-        value="Select"
-        selected={this.state.selectedBtn}
-        onClick={this.onClick}
-        >{" "}<p
-      style={{
-        fontSize: 17,
-        fontWeight: 900,
-      }}
-      >SELECT 
-        </p>
-      </CompareButton2 >
-        {/* <SelectBtn style={{color:'#ae5a72', backgroundColor:'rgb(67,159,174)'}}>Remove</SelectBtn> */}
-      </Grid></Grid>
-      </CardContainer>
-</Grid>
-      )
-
+          </CardContainer>
+    </Grid>
+          )
     }
 }
