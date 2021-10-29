@@ -1,16 +1,47 @@
 import React, {useState } from 'react';
 import styled from 'styled-components';
 import ToggleButton from '@mui/material/ToggleButton';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { white } from 'material-ui/styles/colors';
 import { rgbToHex } from '@mui/system';
 import { ClassNames } from '@emotion/react';
+import Modal from './DetailsModal'
 
 //#2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
+
+
+const modal = styled.div`
+ .modal {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width:100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.6);
+   }
+
+   .modal-main {
+     position:fixed;
+     background: white;
+     width: 80%;
+     height: auto;
+     top:50%;
+     left:50%;
+     transform: translate(-50%,-50%);
+   }
+
+   .display-block {
+     display: block;
+   }
+
+   .display-none {
+     display: none;
+  }
+`
 
   const CardContainer = styled.div`
  background: white;
@@ -46,6 +77,48 @@ import { ClassNames } from '@emotion/react';
   }
 
 `;
+const HederTitle = styled.h1`
+   color: rgb(256,256,256) !important;
+   font-style: bold !important;
+   font-size: 34px;
+   font-weight:600
+`
+
+const Description = styled.div`
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight:bold;
+    background-color: rgba(51, 50, 102, 0.87);
+`
+const Description1 = styled.p`
+    color: black;
+    font-size: 17px;
+    text-decoration:underline;
+    margin-top:-20px;
+    margin-bottom:30px;
+`
+const Description2 = styled.p`
+    color: white;
+    font-size: 19px;
+    margin:0.3em;
+    font-weigh:200;
+`
+const PurchaseBtn = styled.button`
+justify-content: center;
+    background-color:#504798;   
+    height:70px;
+    width:80%;
+    font-size:30px;
+    color:white;
+    align-self:center;
+    border-radius:10px;
+    margin-top:30px;
+    margin-bottom:30px;
+    &:hover {
+        cursor: pointer;
+    }
+`
 const HeaderTitle = styled.h1`
 font-weight: 900;
 color: white;
@@ -74,6 +147,18 @@ const CompareButton = styled(ToggleButton)`
     color: rgb(${colors.selected});
   }
 `;
+
+const Container2 = styled.div`
+    width: 100%;
+    background-color: rgb(67,159,174);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(${colors.border});
+    padding:2em;
+    margin-top: 10px;
+`
+
 //ChangeStateButton
 const CompareButton2 = styled(ToggleButton)` 
 align-self:"right" !important;
@@ -125,7 +210,22 @@ margin-bottom: 10px;
 @media (max-width: 400px) {
 }
 `;
+// sets purchase state: 
+interface DState {
+  purchasedBtn?: boolean
+};
 
+interface DProps {
+  data: {
+  platform: string;
+  underlying: string;
+  strike: string;
+  amount: string;
+  expiry: string;
+  premium: string;
+  // gas: string;
+ };
+};
 interface IProps {
   data: {
     platform: string,
@@ -139,36 +239,42 @@ interface IProps {
 
 interface IState {
     selectedBtn?: boolean
-}
+};
 
-export class StatCard extends React.Component<IProps, IState>{
+
+
+export default class StatCard extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
         this.state = {
             selectedBtn: false
         };
-        
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
         this.onClick = this.onClick.bind(this);
-    }
+      }
+      showModal = () => {
+        this.setState({ selectedBtn: true });
+      };
+      hideModal = () => {
+        this.setState({ selectedBtn: false });
+      };
     
         onClick() {
             this.setState((previousState, props) => ({
               selectedBtn: !previousState.selectedBtn,
-            }));
-          }
-          
-          useStyles = makeStyles((theme) => ({
-            palette: {
-              primary: 'rgbToHex(256,256,256)',
-              secondary: '504798'
-              }
-            }));
+            }),
+            this.showModal
+            );
+      };
 
+     //if selectedBtn:true, then change color and 
     render(){
+      
         return(
+          
           <Grid container>   
           <CardContainer>
-            
             <Grid container direction="column">
               <Grid item xs={6} sm={6} md={4} lg={5}>
               <DescriptionTxt2>Platform: {this.props.data.platform}</DescriptionTxt2>
@@ -210,3 +316,5 @@ export class StatCard extends React.Component<IProps, IState>{
           )
     }
 }
+
+

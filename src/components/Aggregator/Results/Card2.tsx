@@ -3,9 +3,20 @@ import styled from 'styled-components'
 import { colors } from '../../../styles'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import {StatCard} from './StatefulCard';
+import StatCard from './StatefulCard';
 
 //brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
+
+interface Props {
+    //  platformD = {api.platform};
+    //  underlyingD = {api.underlying};
+    //  strikeD = {api.strike};
+    //  expiryD = {api.expiry};
+    //  amountD = {api.amount};
+    //  gasD = {api.gas};
+    //  premiumD = {api.premium}
+
+   };
 
 const useStyles = makeStyles((theme) => ({
     gridCont: {
@@ -14,6 +25,24 @@ const useStyles = makeStyles((theme) => ({
     CardContainer: {
         paddingTop: '0px !important',
     },
+    primary: {
+        background: "rgbToHex(256,256,256)",
+        border: 0,
+        borderRadius: 3,
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+        color: "white",
+        height: 48,
+        padding: "0 30px"
+    },
+      secondary: {
+        background: "#504798",
+        border: 0,
+        borderRadius: 3,
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+        color: "white",
+        height: 48,
+        padding: "0 30px"
+      }
 }));
 
 interface Props {
@@ -127,7 +156,7 @@ const Card: React.FC<Props> = ({ }) => {
     
     return (
         <Container>
-            <Grid container spacing={2}>
+            <Grid container className={classes.primary} spacing={2}>
                 <Grid item xs={4} md={4} className={classes.CardContainer}>
                     <StatCard data={data[0]} />
                 </Grid>
@@ -165,7 +194,6 @@ const Card: React.FC<Props> = ({ }) => {
 //until we hook it up to the API call for populating data fields
 
 const DetailCard: React.FC<Props> = ({ }) => {
-    const classes = useStyles();
     return (
         <Grid container>
         <Container2>
@@ -210,5 +238,4 @@ const DetailCard: React.FC<Props> = ({ }) => {
 
 )
 };
-
-export default Card
+export default DetailCard

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card1 from '../Aggregator/Results/Card1'
+import Modal from '../Aggregator/Results/DetailsModal'
 import Card2 from '../Aggregator/Results/Card2'
 import Card3 from '../Aggregator/Results/Card3'
 import Grid from '@material-ui/core/Grid';
@@ -92,7 +93,7 @@ const ResultsContent: React.FC<Props> = ({ }) => {
                         <Card1 />
                     </Grid>
                     <Grid item xs={12} md={9} onClick={() => { }}>
-                        <Card2 />
+                        <Card2/>
                     </Grid>
                 </Grid>
             </ItemContainer>

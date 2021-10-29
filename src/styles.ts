@@ -165,7 +165,7 @@ export const globalStyle = `
     background-color: rgb(${colors.white})
   }
 
-  backgroundCard2{
+  background2{
 
     background-color: rgb(${colors.selected2})
   }  
