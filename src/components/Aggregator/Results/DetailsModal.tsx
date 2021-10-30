@@ -1,47 +1,21 @@
-import React, {useState } from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { Grid } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Grid from "@mui/material/Grid";
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { colors } from "../../../styles";
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import { white } from 'material-ui/styles/colors';
-import { rgbToHex } from '@mui/system';
-import { ClassNames } from '@emotion/react';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
-//#2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
-
-
-
-const modal = styled.div`
- .modal {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width:100%;
-     height: 100%;
-     background: rgba(0, 0, 0, 0.6);
-   }
-
-   .modal-main {
-     position:fixed;
-     background: white;
-     width: 80%;
-     height: auto;
-     top:50%;
-     left:50%;
-     transform: translate(-50%,-50%);
-   }
-
-   .display-block {
-     display: block;
-   }
-
-   .display-none {
-     display: none;
-  }
+const Container = styled.div`
+    width: 100%;
+    background-color: rgb(67,159,174);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(${colors.border});
+    padding:2em;
+    margin-top: 10px;
 `
-
   const CardContainer = styled.div`
  background: white;
   width: 100%;
@@ -211,103 +185,67 @@ margin-bottom: 10px;
 `;
 
 
-interface IProps {
-  data: {
-    platform: string,
-    premium: string,
-    underlying: string,
-    strike: string,
-    amount: string,
-    expiry: string,
-  }
-}
+interface Props {
+    // data: {
+    //   platform: string,
+    //   underlying: string,
+    //   strike: string,
+    //   amount: string,
+    //   expiry: string,
+    //   premium: string,
+    //   gas:string,
+    // };
+  };
 
-interface IState {
-    selectedBtn?: boolean,
-    modalActive?: boolean
-
-};
-
-export default class StatCard extends React.Component<IProps, IState>{
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            selectedBtn: false,
-            modalActive: false
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-        this.onClick = this.onClick.bind(this);
-      };
-      showModal = () => {
-        this.setState({ selectedBtn: true });
-      };
-      hideModal = () => {
-        this.setState({ selectedBtn: false });
-      };
-
-      toggleModalActive() {
-        this.setState(prevState => {
-          return ({ modalActive: !prevState.modalActive,
-          });
-        },
-      );
-      };
-    
-        onClick() {
-            this.setState(previousState => {
-              return ({
-                selectedBtn: !previousState.selectedBtn,
-                modalActive: !previousState.modalActive
-            });
-          },
-        );
-      };
-
-    render(){
-        return(
-          <Grid container>   
-          <CardContainer>
-            <Grid container direction="column">
-              <Grid item xs={6} sm={6} md={4} lg={5}>
-              <DescriptionTxt2>Platform: {this.props.data.platform}</DescriptionTxt2>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={5}>
-              <HeadertArea>
-              <HeaderTitle>
-              Premium: {this.props.data.premium}</HeaderTitle></HeadertArea>
-              </Grid>
-          
-            <Grid item>
-              <DescriptionTxt>
-                   Quantity: {this.props.data.amount}
-              <br/>Strike: {this.props.data.strike}
-              <br/>Expiry: {this.props.data.expiry}
-              </DescriptionTxt>
-              </Grid>
+  const Details: React.FC<Props> = ({}) => {
+    return (
+        <Grid container>
+        <Container>
+        <Grid container direction="column" xs={2} sm={3} md={4} lg={12}>
+            <Grid item  xs={6} sm={3} md={4} lg={4}>
+            <HederTitle>{} </HederTitle>
             </Grid>
-            <Grid container direction = "column" xs={6} sm={4} md={4} lg={6}>
-            <ButtonArea>
-              
-            <CompareButton            
-            value="Select"
-            selected={this.state.selectedBtn}
-            onClick={this.onClick}
-            >{" "}<p
-          style={{
-            fontSize: 17,
-            fontWeight: 900,
-          }}
-          >SELECT 
-            </p>
-          </CompareButton >
-          
-          </ButtonArea>
-          </Grid>
-          </CardContainer>
-    </Grid>
-          )
-    }
-}
+            <Description1>View historical chart</Description1>
+            </Grid>
+            <Grid item>
+            <Description>Underlying: {} </Description>
+            </Grid>
+            <Grid item>
+            <Description>Strike Price: {} </Description>
+            </Grid>
+            <Grid item>
+            <Description>Expires: {} </Description>
+            </Grid>
+            <Grid item>
+            <Description>Qty: {} </Description>
+            </Grid>
+            <Grid item>
+            <Description>Gas Fee: {} </Description>
+            </Grid>
+            <Grid item>
+            {<Description>({} days left for expiry)</Description> }
+            </Grid>
+            <br/>
+            <br/>
+            <Grid item>
+            <Description>Total Cost: {} </Description>
+            </Grid>
+            <Grid item>
+            <PurchaseBtn>Purchase</PurchaseBtn>
+            </Grid>
+            </Container>
+        </Grid>    
+  
+  )
+  };
 
 
+  const DetailsModal = () => {
+  <div>
+  <Details/>
+  </div>
+  };
+
+  
+
+export default Details

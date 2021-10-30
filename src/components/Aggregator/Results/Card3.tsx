@@ -81,6 +81,7 @@ background: #485778 !important;
 `
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   background: rgb(255,255,255);
   color:"black";
     border-radius: 5px;
@@ -177,89 +178,89 @@ const Card: React.FC<Props> = ({}) => {
           >Advanced 
             </p>
       </AdvancedButton>
-      </Grid></Grid>
+      </Grid>
 
 
-//   <Grid item sm={4} md={4} lg={3}>
-//     <Grid item>
-//           <Description1>
-//             Expiration Filters:
-//             </Description1>
-//  </Grid>
-//  <Grid item sm={4} md={4} lg={3}>
-//        <FormControlLabel
-//                   control={
-//                     <Checkbox
-//                       checked={date}
-//                       onChange={handleChange}
-//                       name="date"
-//                     />
-//                   }
-//                   label="Date"
-//                 />
-//         <FormControlLabel
-//                   control={
-//                     <Checkbox
-//                       checked={period}
-//                       onChange={handleChange}
-//                       name="period"
-//                     />
-//                   }
-//                   label="Period"
-//                 />
-//                 </Grid>
-//    </Grid>
-//         <Grid item>
-//           <Grid item>
-//           <Description1>Strike Price:</Description1>
-//        </Grid>
-//          <Grid item>
-//                 <FormControlLabel
-//                   control={
-//                     <Checkbox
-//                       checked={checked}
-//                       onChange={handleChange}
-//                       name="round up"
-//                     />
-//                   }
-//                   label="Round Up"
-//                   />
+   <Grid item sm={4} md={4} lg={3}>
+     <Grid item>
+           <Description1>
+             Expiration Filters:
+             </Description1>
+  </Grid>
+  <Grid item sm={4} md={4} lg={3}>
+        <FormControlLabel
+                   control={
+                     <Checkbox
+                       checked={date}
+                       onChange={handleChange}
+                       name="date"
+                     />
+                   }
+                   label="Date"
+                 />
+         <FormControlLabel
+                   control={
+                     <Checkbox
+                       checked={period}
+                       onChange={handleChange}
+                       name="period"
+                     />
+                   }
+                   label="Period"
+                 />
+                 </Grid>
+    </Grid>
+         <Grid item>
+           <Grid item>
+           <Description1>Strike Price:</Description1>
+        </Grid>
+          <Grid item>
+                 <FormControlLabel
+                   control={
+                     <Checkbox
+                       checked={checked}
+                       onChange={handleChange}
+                       name="round up"
+                     />
+                   }
+                   label="Round Up"
+                   />
+      
+           <FormControlLabel 
+                   control={
+                     <Checkbox
+                       checked={checked}
+                       onChange={handleChange}
+                       name="exact match"
+                     />
+                   }
+                   label="Exact Match"
+                   />
+ </Grid><Grid item>
         
-//           <FormControlLabel 
-//                   control={
-//                     <Checkbox
-//                       checked={checked}
-//                       onChange={handleChange}
-//                       name="exact match"
-//                     />
-//                   }
-//                   label="Exact Match"
-//                   />
-// </Grid><Grid item>
-          
-//           <FormControlLabel
-//                   control={
-//                     <Checkbox
-//                       checked={checked}
-//                       onChange={handleChange}
-//                       name="round down"
-//                     />
-//                   }
-//                   label="Round Down"
-//                   />
-//           <FormControlLabel
-//                   control={
-//                     <Checkbox
-//                       checked={unchecked}
-//                       onChange={handleChange}
-//                       name="display all"
-//                     />
-//                   }
-//                   label="Display All"
-//                   />
-//                   </Grid>
-//                   </Grid>
-//                   </Grid>
+           <FormControlLabel
+                   control={
+                     <Checkbox
+                       checked={checked}
+                       onChange={handleChange}
+                       name="round down"
+                     />
+                   }
+                   label="Round Down"
+                   />
+           <FormControlLabel
+                   control={
+                     <Checkbox
+                       checked={unchecked}
+                       onChange={handleChange}
+                       name="display all"
+                     />
+                   }
+                   label="Display All"
+                   />
+                   </Grid>
+                   </Grid>
+                   </Grid>
     )
 };
 

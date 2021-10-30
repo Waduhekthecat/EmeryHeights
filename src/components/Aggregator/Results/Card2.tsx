@@ -1,61 +1,46 @@
-import React from 'react'
-import styled from 'styled-components'
-import { colors } from '../../../styles'
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import StatCard from './StatefulCard';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { Grid } from '@mui/material';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { colors } from "../../../styles";
+import Details from './DetailsModal'
 
-//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
-interface Props {
-    //  platformD = {api.platform};
-    //  underlyingD = {api.underlying};
-    //  strikeD = {api.strike};
-    //  expiryD = {api.expiry};
-    //  amountD = {api.amount};
-    //  gasD = {api.gas};
-    //  premiumD = {api.premium}
+  const CardContainer = styled.div`
+ background: white;
+  width: 100%;
+  height: 98%;
+  border-radius: 20px;
+  display: relative;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-left: 8x;
+  border: 9px 8px solid rgba(${colors.white});
+  box-shadow: 8px 8px 0px 3E4251;
+&:hover {
+  box-shadow: 0 1px 2px 0 rgba(${colors.border}), 0 1px 3px 0 rgba(${colors.border});
+  box-shadow: 0 1px 2px 0 rgba(${colors.border}), 0 1px 3px 0 rgba(${colors.border});
+  background: gradient(
+      to bottom,
+      rgba(192, 159, 87, 0.5),
+      rgba(192, 159, 87, 0.5) 1px,
+      transparent 0,
+      transparent 2em
+    );
+@media (max-width: 720px) {
+      width: 75%;
+      height:75%;
+      padding-right:2%;
+      padding-left:2%;
+  }
+  h1 {width:90%;
+    display: flex;
+    flex-direction: row;
 
-   };
+  }
 
-const useStyles = makeStyles((theme) => ({
-    gridCont: {
-        paddingTop: '0px !important',
-    },
-    CardContainer: {
-        paddingTop: '0px !important',
-    },
-    primary: {
-        background: "rgbToHex(256,256,256)",
-        border: 0,
-        borderRadius: 3,
-        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-        color: "white",
-        height: 48,
-        padding: "0 30px"
-    },
-      secondary: {
-        background: "#504798",
-        border: 0,
-        borderRadius: 3,
-        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-        color: "white",
-        height: 48,
-        padding: "0 30px"
-      }
-}));
-
-interface Props {
-    //  platformD = {api.platform};
-    //  underlyingD = {api.underlying};
-    //  strikeD = {api.strike};
-    //  expiryD = {api.expiry};
-    //  amountD = {api.amount};
-    //  gasD = {api.gas};
-    //  premiumD = {api.premium}
-
-   };
-
+`;
 const HederTitle = styled.h1`
    color: rgb(256,256,256) !important;
    font-style: bold !important;
@@ -63,36 +48,6 @@ const HederTitle = styled.h1`
    font-weight:600
 `
 
-const Container = styled.div`
-    
-    width: 100%;
-    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6)
-    background: rgba(51, 50, 102, 0.87);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-const Container2 = styled.div`
-    width: 100%;
-    background-color: rgb(67,159,174);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid rgba(${colors.border});
-    padding:2em;
-    margin-top: 10px;
-`
-const CardContainer = styled.div`
-@media (min-height: 300px) {
-    text-size: 20px
-    flex-direction: column;
-  }
-`
-const CardImage = styled.img`
-    width: 50px;
-    height: 50px;
-    background-size: contain;
-`
 const Description = styled.div`
     color: white;
     font-size: 20px;
@@ -128,114 +83,105 @@ justify-content: center;
         cursor: pointer;
     }
 `
+const HeaderTitle = styled.h1`
+font-weight: 900;
+color: white;
+padding-right:1%;
+padding-top:2%;
+padding-left:1%;
+padding-bottom:2%;
+font-size: 25px;
+margin-left:2em;
+`;
 
-// const Card: React.FC<Props> = ({ url, text, onClick, num }) => {
-//     return (
-//         <Container onClick={()=>{onClick(num)}}>
-//             <CardImage src={url} />
-//             <Description>{text}</Description>
-//         </Container>
-//     )
-// }
+const CompareButton = styled(ToggleButton)`
+  display: flex;
+  border-width: 4px  border-radius: 15px;
+  background-color: #504798 !important;
+  color: white !important;
+  border-color: rgb(${colors.selected}) !important;
+  width: 100% !important;
+  font-size:40px;
+  font-weight:800 !important;
+  height: 56px;
+  &:hover {
+      cursor: pointer;
+  }
+  &:focus {
+    color: rgb(${colors.selected});
+  }
+`;
 
-const Card: React.FC<Props> = ({ }) => {
+const Container2 = styled.div`
+    width: 100%;
+    background-color: rgb(67,159,174);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(${colors.border});
+    padding:2em;
+    margin-top: 10px;
+`
 
-    const data = [
-        { platform: 'Hegic', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$1825'},
-        { platform: 'Premia', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2000'},
-        { platform: 'Auctus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2350'},
-        { platform: 'Phoenix', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2375'},
-        { platform: 'Opyn', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2420'},
-        { platform: 'Heget', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2500'},
-        { platform: 'Opium', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2750'},
-        { platform: 'Finnexus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2950'},
-        { platform: 'Ribbon', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$3000'},
-    ];
+//ChangeStateButton
+const CompareButton2 = styled(ToggleButton)` 
+align-self:"right" !important;
+   width:250px; 
+  font-size:20px;
+  font-weight:600;
+margin-left: 3em;
+  background-color: #504798 !important;
+  color: white !important;
+  &:hover {
+    cursor: pointer;
+}
+  &:focus {
+    color: rgb(${colors.selected});
+  }
+`;
 
-    const classes = useStyles();
-    
+const DescriptionTxt = styled.p`
+color: black;
+font-size: 23px;
+margin-left: 1em;
+`;
+
+const DescriptionTxt2 = styled.p`
+color: black;
+font-size: 40px;
+font-weight:bold;
+margin-left: 1em;
+`;
+
+const HeadertArea = styled.div`
+width:70%;
+display: flex;
+margin-left:1em;
+margin-right:0em;
+background-color: #2D93A6;
+border-radius: 80px;
+border: 2px solid rgba(${colors.border});
+box-shadow: 3px 4px 0px rgb(10, 13, 27);
+&:focus {
+  background: #504798 
+  color: #000000 
+}
+`;
+
+const ButtonArea = styled.div`
+width=100%;
+margin-bottom: 10px;
+@media (max-width: 400px) {
+}
+`;
+
+class Card2 extends Component {
+  render() {
     return (
-        <Container>
-            <Grid container className={classes.primary} spacing={2}>
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[0]} />
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[1]} />
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[2]} />
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[3]}/>
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[4]}/>
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[5]}/>
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[6]}/>
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[7]}/>
-                </Grid>
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[8]}/>
-                </Grid>
-            </Grid>
-        </Container>
-    )
+        <Details/> 
+    );
+  }
 }
 
-//Changes made - brought in the function for the field that will display 
-//details from the search query. should be hidden on the user end for now
-//until we hook it up to the API call for populating data fields
-
-const DetailCard: React.FC<Props> = ({ }) => {
-    return (
-        <Grid container>
-        <Container2>
-            <Grid container direction="column">
-            <Grid item>
-            <HederTitle>{/*api.platformD*/}</HederTitle>
-            </Grid>
-            <Grid item>
-            <Description1>View historical chart</Description1>
-            </Grid>
-            <Grid item>
-            <Description2>Underlying: {/*api.underlyingD*/}</Description2>
-            </Grid>
-            <Grid item>
-            <Description2>Strike Price: {/*api.strikeD*/}</Description2>
-            </Grid>
-            <Grid item>
-            <Description2>Expires: {/*api.expiryD*/}</Description2>
-            </Grid>
-            <Grid item>
-            <Description2>Qty: {/*api.amountD*/}</Description2>
-            </Grid>
-            <Grid item>
-            <Description2>Gas Fee: {/*api.gasD*/}</Description2>
-            </Grid>
-            <Grid item>
-            {<Description2>({/*x*/} days left for expiry)</Description2> }
-
-            <br/>
-            <br/>
-            </Grid>
-{/* <Grid item>
-<Description>Price to Break even</Description>
-</Grid> */}
-            <Grid item>
-            <Description2>Total Cost: {/*premium from from transaction*/}</Description2>
-            </Grid>
-            <Grid item>
-            <PurchaseBtn>Purchase</PurchaseBtn>
-            </Grid></Grid></Container2>
-        </Grid>    
-
-)
-};
-export default DetailCard
+  
+export default Card2

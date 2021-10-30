@@ -1,18 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card1 from '../Aggregator/Results/Card1'
-// import Modal from '../Aggregator/Results/DetailsModal'
-import Card2 from '../Aggregator/Results/Card2'
 import Card3 from '../Aggregator/Results/Card3'
+import Card2 from '../Aggregator/Results/Card2'
+import Card1 from '../Aggregator/Results/Card1'
+import ResultsContainer from '../Aggregator/Results/ResultsContainer'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
-import routerIcon from '../../assets/images/routerIcon.png'
-import searchIcon from '../../assets/images/searchIcon.png'
-import chartIcon from '../../assets/images/chartIcon.png'
-import stationImage from '../../assets/images/stationImage.png'
 import { colors } from '../../styles'
-import { render } from 'react-dom';
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 
 interface Props {
     // switchContent: (num: number) => void;
@@ -90,10 +84,10 @@ const ResultsContent: React.FC<Props> = ({ }) => {
                 <Grid container spacing={2}>
                 <Card3 />
                     <Grid item xs={12} md={3} onClick={() => { }}>
-                        <Card1 />
+                        <Card2 />
                     </Grid>
                     <Grid item xs={12} md={9} onClick={() => { }}>
-                        <Card2/>
+                        <ResultsContainer/>
                     </Grid>
                 </Grid>
             </ItemContainer>

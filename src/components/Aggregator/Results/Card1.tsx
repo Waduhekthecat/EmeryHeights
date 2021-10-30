@@ -73,49 +73,44 @@ const PurchaseBtn = styled.button`
     }
 `
 
-const Card: React.FC<Props> = ({ }) => {
+const Details: React.FC<Props> = ({}) => {
     return (
-        <Grid container sx={{ display: { xs: 'none', md: 'none' } }}>
+        <Grid container>
         <Container>
         <Grid container direction="row" xs={2} sm={3} md={4} lg={4}>
             <Grid item  xs={6} sm={3} md={4} lg={4}>
-            <HederTitle>{/*api.platformD*/}</HederTitle>
-
+            <HederTitle>{} </HederTitle>
+  
             <Description1>View historical chart</Description1>
             </Grid>
             <Grid item>
-            <Description>Underlying: {/*api.underlyingD*/}</Description>
+            <Description>Underlying: {} </Description>
             </Grid>
             <Grid item>
-            <Description>Strike Price: {/*api.strikeD*/}</Description>
+            <Description>Strike Price: {} </Description>
             </Grid>
             <Grid item>
-            <Description>Expires: {/*api.expiryD*/}</Description>
+            <Description>Expires: {} </Description>
             </Grid>
             <Grid item>
-            <Description>Qty: {/*api.amountD*/}</Description>
+            <Description>Qty: {} </Description>
             </Grid>
             <Grid item>
-            <Description>Gas Fee: {/*api.gasD*/}</Description>
+            <Description>Gas Fee: {} </Description>
             </Grid>
             <Grid item>
-            {<Description>({/*x*/} days left for expiry)</Description> }
-
+            {<Description>({} days left for expiry)</Description> }
+  
             <br/>
             <br/>
-            </Grid>
-{/* <Grid item>
-<Description>Price to Break even</Description>
-</Grid> */}
-            <Grid item>
-            <Description>Total Cost: {/*premium from from transaction*/}</Description>
+            <Description>Total Cost: {} </Description>
             </Grid>
             <Grid item>
             <PurchaseBtn>Purchase</PurchaseBtn>
             </Grid></Grid></Container>
-        </Grid>    
+        </Grid>      
 
 )
 };
 
-export default Card
+export default Details
