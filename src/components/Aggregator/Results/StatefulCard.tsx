@@ -8,7 +8,7 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { white } from 'material-ui/styles/colors';
 import { rgbToHex } from '@mui/system';
 import { ClassNames } from '@emotion/react';
-import Modal from './DetailsModal'
+// import Modal from './DetailsModal'
 
 //#2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
@@ -238,7 +238,9 @@ interface IProps {
 }
 
 interface IState {
-    selectedBtn?: boolean
+    selectedBtn?: boolean,
+    modalActive?: boolean
+
 };
 
 
@@ -247,7 +249,8 @@ export default class StatCard extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
         this.state = {
-            selectedBtn: false
+            selectedBtn: false,
+            modalActive: false
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -259,20 +262,28 @@ export default class StatCard extends React.Component<IProps, IState>{
       hideModal = () => {
         this.setState({ selectedBtn: false });
       };
+
+      toggleModalActive() {
+        this.setState(prevState => {
+          return ({ modalActive: !prevState.modalActive,
+          });
+        },
+      );
+      };
     
         onClick() {
-            this.setState((previousState, props) => ({
-              selectedBtn: !previousState.selectedBtn,
-            }),
-            this.showModal
-            );
+            this.setState(previousState => {
+              return ({
+                selectedBtn: !previousState.selectedBtn,
+                modalActive: !previousState.modalActive
+            });
+          },
+        );
       };
 
-     //if selectedBtn:true, then change color and 
     render(){
-      
+      const modalActive = this.state
         return(
-          
           <Grid container>   
           <CardContainer>
             <Grid container direction="column">
@@ -281,8 +292,8 @@ export default class StatCard extends React.Component<IProps, IState>{
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={5}>
               <HeadertArea>
-               <HeaderTitle>
-                Premium: {this.props.data.premium}</HeaderTitle></HeadertArea>
+              <HeaderTitle>
+              Premium: {this.props.data.premium}</HeaderTitle></HeadertArea>
               </Grid>
           
             <Grid item>

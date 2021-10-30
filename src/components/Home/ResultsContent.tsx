@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card1 from '../Aggregator/Results/Card1'
-import Modal from '../Aggregator/Results/DetailsModal'
+// import Modal from '../Aggregator/Results/DetailsModal'
 import Card2 from '../Aggregator/Results/Card2'
 import Card3 from '../Aggregator/Results/Card3'
 import Grid from '@material-ui/core/Grid';
