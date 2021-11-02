@@ -23,8 +23,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(${colors.border});
-  padding:1.5em;
-  margin-top: 5%;
+  padding:1em;
   @media (max-width: 950px) {
       width:1000px;
       height: 300px;
@@ -34,9 +33,8 @@ const Container = styled.div`
 
 const HederTitle = styled.h1`
   color: rgb(256,256,256) !important;
-  font-weight: bold !important;
+  font-style: "bold" !important;
   font-size: 34px;
-  font-weight:600
 `
 const Description1 = styled.p`
   color: black;
@@ -48,7 +46,7 @@ const Description1 = styled.p`
 `
 const Description = styled.p`
   color: white;
-  font-size: 19px;
+  font-size: 25px;
   margin:0.3em;
   font-weigh:200;
 `
@@ -86,49 +84,44 @@ interface Props {
 const Details = (props: {results: Props}) => {
 
   return (
-      <Grid container>
+      <Grid container direction="column">
       <Container>
-          <Grid container direction="row" xs={4} sm={4} md={4} lg={3}>
-          <Grid item  xs={6} sm={3} md={4} lg={4}>
-          <HederTitle>Platform: {props.results.platformD} </HederTitle>
+      
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
+          <HederTitle> Platform: {props.results.platformD}</HederTitle>
           </Grid>
-          <Grid item>
-          <Description>{props.results.optionD} on </Description>
-          <Description>{props.results.underlyingD}</Description>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
+          <Description>{props.results.optionD} on {props.results.underlyingD}</Description>
           </Grid>
-          <Grid item>
+          <br></br>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description1>View historical chart {props.results.chartD}</Description1>
           </Grid>
-          <Grid item>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Strike Price: {props.results.strikeD}</Description>
           </Grid>
-          <Grid item>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Expires: {props.results.expiryD}</Description>
           </Grid>
-          <Grid item>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Qty: {props.results.amountD}</Description>
           </Grid>
-          <Grid item>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Gas Fee: {props.results.gasD}</Description>
           </Grid>
-          <Grid item>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>({props.results.countdownD} days left for expiry)</Description> 
-
           <br/>
           <br/>
           </Grid>
-          <Grid item>
-          <Description>Total Cost: {props.results.premiumD}</Description>
+          <Grid item  xs={6} sm={3} md={3} lg={12}>
+            <HederTitle>Total Cost: {props.results.premiumD}</HederTitle>
           </Grid>
-          <Grid item>
-          <PurchaseBtn>Purchase</PurchaseBtn>
-          </Grid></Grid>
-          </Container>
-
-      </Grid>  
-
-)
-};
-  
-
+          <Grid item  xs={12} sm={12} md={12} lg={12}>
+            <PurchaseBtn>Purchase</PurchaseBtn>
+          </Grid>
+      </Container>
+    </Grid>  
+    )
+  };
 export default Details

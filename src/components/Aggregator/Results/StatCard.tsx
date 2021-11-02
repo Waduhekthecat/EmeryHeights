@@ -194,8 +194,17 @@ interface Props {
 
 }
 
-
-
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '132px',
+  left: '3%',
+  width: '350px',
+  height: '600px',
+  borderRadius: '15px',
+  bgcolor: '#2D93A6',
+  border: '2px solid #000',
+};
+  
     const StatCard: React.FC<Props> = (props: Props) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -226,9 +235,9 @@ interface Props {
       countdownD: '40',
       premiumD: '$1400',
     };
-      
+    
     return(
-          <Grid container>   
+      <Grid container>   
       <CardContainer>
         <Grid container direction="column">
           <Grid item xs={12} sm={12} md={6} lg={1}>
@@ -261,21 +270,22 @@ interface Props {
       }}
       >SELECT 
         </p>
-      </CompareButton2 >
+      </CompareButton2>
+      
       </Grid></Grid>
       </CardContainer>
-      <Modal 
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={CardContainer2}>
-          <Details results={Results}/>
-        </Box>
-      </Modal>
-      </Grid>
-    
-    );};
+    <Modal 
+    hideBackdrop={true}
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <Box sx={style}>
+      <Details results={Results}/>
+    </Box>
+  </Modal>
+  </Grid>
+    )};
 
     export default StatCard
