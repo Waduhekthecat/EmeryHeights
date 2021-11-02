@@ -8,7 +8,7 @@ import { Grid } from '@mui/material'
 
 //brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
-interface Props {
+ interface Props {
     //  platformD = {api.platform};
     //  underlyingD = {api.underlying};
     //  strikeD = {api.strike};
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         color: "rgb(67,159,174)",
     }}));
 
-
 const Container = styled.div`
     width: 100%;
     background-color: rgb(67,159,174);
@@ -33,15 +32,20 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(${colors.border});
-    padding:2em;
+    padding:1.5em;
     margin-top: 10px;
+    @media (max-width: 950px) {
+        width:1000px;
+        height: 300px;
+        flex-direction:row;
+  }; 
 `
 
-const HederTitle = styled.p`
-    color: white;
-    font-size: 30px;
+const HederTitle = styled.h1`
+    color: rgb(256,256,256) !important;
+    font-weight: bold !important;
+    font-size: 34px;
     font-weight:600
-    background-color:
 `
 const Description1 = styled.p`
     color: black;
@@ -59,13 +63,13 @@ const Description = styled.p`
 `
 const PurchaseBtn = styled.button`
     height:70px;
-    width:200px;
-    font-size:30px;
-    color: rgb(256,256,256);
-    background-color:#504798;
-    font-weight:bold;
+    width:170px;
+    background-color:#504798;   
+    font-size:25px;
+    
+    color:white;
     align-self:center;
-    border-radius:15px;
+    border-radius:10px;
     margin-top:30px;
     margin-bottom:30px;
     &:hover {
@@ -73,44 +77,56 @@ const PurchaseBtn = styled.button`
     }
 `
 
-const Details: React.FC<Props> = ({}) => {
+
+interface Props {
+}
+
+const Card: React.FC<Props> = ({ }) => {
     return (
         <Grid container>
         <Container>
-        <Grid container direction="row" xs={2} sm={3} md={4} lg={4}>
+            <Grid container direction="row" xs={4} sm={4} md={4} lg={3}>
             <Grid item  xs={6} sm={3} md={4} lg={4}>
-            <HederTitle>{} </HederTitle>
-  
+            <HederTitle>{/*api.platformD*/}</HederTitle>
+            </Grid>
+            <Grid item>
             <Description1>View historical chart</Description1>
             </Grid>
             <Grid item>
-            <Description>Underlying: {} </Description>
+            <Description>Underlying: {/*api.underlyingD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Strike Price: {} </Description>
+            <Description>Strike Price: {/*api.strikeD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Expires: {} </Description>
+            <Description>Expires: {/*api.expiryD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Qty: {} </Description>
+            <Description>Qty: {/*api.amountD*/}</Description>
             </Grid>
             <Grid item>
-            <Description>Gas Fee: {} </Description>
+            <Description>Gas Fee: {/*api.gasD*/}</Description>
             </Grid>
             <Grid item>
-            {<Description>({} days left for expiry)</Description> }
-  
+            <Description>({/*x*/} days left for expiry)</Description> 
+
             <br/>
             <br/>
-            <Description>Total Cost: {} </Description>
+            </Grid>
+{/* <Grid item>
+<Description>Price to Break even</Description>
+</Grid> */}
+            <Grid item>
+            <Description>Total Cost: {/*premium from from transaction*/}</Description>
             </Grid>
             <Grid item>
             <PurchaseBtn>Purchase</PurchaseBtn>
-            </Grid></Grid></Container>
-        </Grid>      
+            </Grid></Grid>
+            </Container>
+         
+        </Grid>  
 
 )
 };
 
-export default Details
+export default Card 

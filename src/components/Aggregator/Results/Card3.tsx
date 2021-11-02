@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     color: "rgb(256,256,256) !important",
   }},
   Container: {
-    width:'100%',
+    width:'80%',
+    height:'200px',
     background:"white !important",
     color: "black",
     borderRadius: '5px',
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   }}))
 
 const AdvancedButton = styledCom(ToggleButton)`
-
+  
 background: #485778 !important;
   backdrop-filter: blur(4px) !important;
   border-radius: 10px !important;
@@ -80,8 +81,7 @@ background: #485778 !important;
 
 `
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 80%;
   background: rgb(255,255,255);
   color:"black";
     border-radius: 5px;
@@ -135,135 +135,125 @@ const FormGroupArea = styled.div`
   align-items: center;
 `;
 
-
-
-
-const Card: React.FC<Props> = ({}) => {
-  const classes = useStyles();
-  const [selectedBtn, setSelectedBtn] = React.useState(false);
-  const [state, setState] = React.useState({
-    date: true,
-    period: false,
-    unchecked: false,
-    checked: false,
-    dunchecked: false,
-    dchecked: false,
-    filtered: false
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  const { date, period, unchecked, checked, dunchecked, dchecked, filtered } = state;
-  
-
-    return (
-      <Grid container direction="row"
-        className={classes.Container}>
-          <Grid item>
-              <AdvancedButton
-              className={classes.ButtonToggle}
-          value="call"
-          selected={selectedBtn}
-          onClick={()=> setSelectedBtn(!selectedBtn)}
-          >{" "}<p
-          style={{
-            fontSize: 17,
-            fontWeight: 800,
-          }}
-          >Advanced 
-            </p>
-      </AdvancedButton>
-      </Grid>
-
-
-   <Grid item sm={4} md={4} lg={3}>
-     <Grid item>
-           <Description1>
-             Expiration Filters:
-             </Description1>
-  </Grid>
-  <Grid item sm={4} md={4} lg={3}>
-        <FormControlLabel
-                   control={
-                     <Checkbox
-                       checked={date}
-                       onChange={handleChange}
-                       name="date"
-                     />
-                   }
-                   label="Date"
-                 />
-         <FormControlLabel
-                   control={
-                     <Checkbox
-                       checked={period}
-                       onChange={handleChange}
-                       name="period"
-                     />
-                   }
-                   label="Period"
-                 />
-                 </Grid>
-    </Grid>
-         <Grid item>
-           <Grid item>
-           <Description1>Strike Price:</Description1>
-        </Grid>
-          <Grid item>
-                 <FormControlLabel
-                   control={
-                     <Checkbox
-                       checked={checked}
-                       onChange={handleChange}
-                       name="round up"
-                     />
-                   }
-                   label="Round Up"
-                   />
+//  const Card: React.FC<Props> = ({}) => {
+//    const classes = useStyles();
+//    const [selectedBtn, setSelectedBtn] = React.useState(false);
+//    const [state, setState] = React.useState({
+//      date: true,
+//      period: false,
+//      unchecked: false,
+//      checked: false,
+//      dunchecked: false,
+//      dchecked: false,
+//    });
+//  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//    setState({
+//      ...state,
+//      [event.target.name]: event.target.checked,
+//    });
+//  };
+//  const { date, period, unchecked, checked, dunchecked, dchecked } = state;
+//  return (
+//        <Grid container>
+//            <AdvancedButton
+//            className={classes.ButtonToggle}
+//        value="call"
+//        selected={selectedBtn}
+//        onClick={()=> setSelectedBtn(!selectedBtn)}
+//        >{" "}<p
+//        style={{
+//          fontSize: 17,
+//          fontWeight: 800,
+//        }}
+//        >Advanced 
+//          </p>
+//    </AdvancedButton>
+//     </Grid>)};
+//    <Grid item xs={4} sm={4} md={2} lg={1}>
+//      <Grid item>
+//            <Description1>
+//              Expiration 
+//              <br/>
+//            Filters:
+//            </Description1>
+//         <FormControlLabel
+//                    control={
+//                      <Checkbox
+//                        checked={date}
+//                        onChange={handleChange}
+//                        name="date"
+//                      />
+//                    }
+//                    label="Date"
+//                  />
+//          <FormControlLabel
+//                    control={
+//                      <Checkbox
+//                        checked={period}
+//                        onChange={handleChange}
+//                        name="period"
+//                      />
+//                    }
+//                    label="Period"
+//                  />
+//                  </Grid>
+//     </Grid>
+//          <Grid item>
+//            <Grid item>
+//            <Description1>Strike Price:</Description1>
+//         </Grid>
+//           <Grid item>
+//                  <FormControlLabel
+//                    control={
+//                      <Checkbox
+//                        checked={checked}
+//                        onChange={handleChange}
+//                        name="round up"
+//                      />
+//                    }
+//                    label="Round Up"
+//                    />
       
-           <FormControlLabel 
-                   control={
-                     <Checkbox
-                       checked={checked}
-                       onChange={handleChange}
-                       name="exact match"
-                     />
-                   }
-                   label="Exact Match"
-                   />
- </Grid><Grid item>
+//            <FormControlLabel 
+//                    control={
+//                      <Checkbox
+//                        checked={checked}
+//                        onChange={handleChange}
+//                        name="exact match"
+//                      />
+//                    }
+//                    label="Exact Match"
+//                    />
+//  </Grid><Grid item>
         
-           <FormControlLabel
-                   control={
-                     <Checkbox
-                       checked={checked}
-                       onChange={handleChange}
-                       name="round down"
-                     />
-                   }
-                   label="Round Down"
-                   />
-           <FormControlLabel
-                   control={
-                     <Checkbox
-                       checked={unchecked}
-                       onChange={handleChange}
-                       name="display all"
-                     />
-                   }
-                   label="Display All"
-                   />
-                   </Grid>
-                   </Grid>
-                   </Grid>
-    )
-};
+//            <FormControlLabel
+//                    control={
+//                      <Checkbox
+//                        checked={checked}
+//                        onChange={handleChange}
+//                        name="round down"
+//                      />
+//                    }
+//                    label="Round Down"
+//                    />
+//            <FormControlLabel
+//                    control={
+//                      <Checkbox
+//                        checked={unchecked}
+//                        onChange={handleChange}
+//                        name="display all"
+//                      />
+//                    }
+//                    label="Display All"
+//                    />
+//                    </Grid>
+//                    </Grid>
+                  
+    //  );
+    //              }; 
 
-export default Card;
+//  export default Card;
+export {}
+
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styledCom from "styled-components";
 import { useForm, useWatch, Control } from "react-hook-form";
 import { colors } from "../../styles";
@@ -90,11 +90,14 @@ interface Props {}
 
 const StrikeInput: React.FC<Props> = () => {
   const classes = useStyles();
-  const { register } = useForm<FormValues>();
-
+  const [strike, setStrike] = useState("");
+  const handleChange3 = (event: { target: { value: string } }) =>{
+    setStrike(event.target.value);
+  };
   return (
     <ThemeProvider theme={theme}>
     <StrikeArea 
+    onChange={handleChange3}
     disableUnderline
     style={{
       width: "110px",
@@ -110,5 +113,6 @@ const StrikeInput: React.FC<Props> = () => {
     </ThemeProvider>
   );
 };
+
 
 export default StrikeInput;

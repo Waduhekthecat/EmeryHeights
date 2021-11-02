@@ -369,11 +369,6 @@ const ItemContainer2 = styledCom.div`
         padding-left:2%;
     }
 `;
-const Title = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-top:50px;
-`;
 const Title1 = styledCom.p`
     font-size: 23px;
     color: black;
@@ -454,6 +449,27 @@ const QueryButton = styledCom.a`
     
 `;
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#46AD8D",
+      contrastText: "#ffffff", //button text white instead of black
+    },
+    background: {
+      default: "#3E4251",
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
+
     interface Props {}
 
     const BannerContentDOA: React.FC<Props> = () => {
@@ -461,49 +477,60 @@ const QueryButton = styledCom.a`
 
       const history = useHistory();
       const classes = useStyles();
-      const [expiry, setExpiry] = useState("");
-      const [underlying, setUnderlying] = useState("");
 
+      // const [platform, setPlatform] = useState("");
+      // const [chart, setChart] = useState("");
+      const [underlying, setUnderlying] = useState("");
+      // const [strike, setStrike] = useState("");
+      const [expiry, setExpiry] = useState("");
+      // const [amount, setAmount] = useState("");
+      // const [gas, setGas] = useState("");
+      // const [countdown, setCountdown] = useState("");
+      // const [premium, setPremium] = useState("");
+      
+      // const handleChange = (event: { target: { value: string } }) =>{
+      //   setPlatform(event.target.value);
+      // };
+      const handleChange2 = (event: { target: { value: string } }) => {
+        setUnderlying(event.target.value);
+      };
+      // const handleChange3 = (event: { target: { value: string } }) =>{
+      //   setStrike(event.target.value);
+      // };
+      const handleChange4 = (event: { target: { value: string } }) =>{
+        setExpiry(event.target.value);
+      };
+      // const handleChange5 = (event: { target: { value: string } }) =>{
+      //   setAmount(event.target.value);
+      // };
+      // const handleChange6 = (event: { target: { value: string } }) =>{
+      //   setGas(event.target.value);
+      // };
+      // const handleChange7 = (event: { target: { value: string } }) =>{
+      //   setCountdown(event.target.value);
+      // };
+      // const handleChange8 = (event: { target: { value: string } }) =>{
+      //   setPremium(event.target.value);
+      // };
+      
       const data = [
         "BTC",
         "BNB",
         "LUNA",
         "ETH"       
-      ]
+      ];
 
-  
-      const handleChange = (event: { target: { value: string } }) =>{
-        setUnderlying(event.target.value);
-      };
-      const handleChange2 = (event: { target: { value: string } }) => {
-        setExpiry(event.target.value);
-      };
-      
-
-
-        
-      const theme = createTheme({
-        palette: {
-          primary: {
-            main: "#46AD8D",
-            contrastText: "#ffffff", //button text white instead of black
-          },
-          background: {
-            default: "#3E4251",
-          },
-        },
-        breakpoints: {
-          values: {
-            xs: 0,
-            sm: 600,
-            md: 900,
-            lg: 1200,
-            xl: 1536,
-          },
-        },
-      });
-
+      const handleQuerry = () => {
+      const values = [
+        // [option],  
+        [underlying], 
+        // [strike], 
+        [expiry], 
+        [value]
+      ];
+    }
       return (
+        
         <Grid container direction="column">
           <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
             <Grid item>
@@ -527,19 +554,19 @@ const QueryButton = styledCom.a`
                     <FormControl variant="standard" className={classes.dropdown}>
                       <MyNativeSelect
                         value={underlying}
-                        onChange={handleChange}
+                        onChange={handleChange2}
                         input={<BootstrapInput />}
                       >
-                        <option className={classes.dropdownMenu} value={10}>
+                        <option className={classes.dropdownMenu} value={'BTC'}>
                         {data[0]}
                         </option>
-                        <option className={classes.dropdownMenu} value={20}>
+                        <option className={classes.dropdownMenu} value={'BNB'}>
                         {data[1]}
                         </option>
-                        <option className={classes.dropdownMenu} value={30}>
+                        <option className={classes.dropdownMenu} value={'LUNA'}>
                         {data[2]}
                         </option>
-                        <option className={classes.dropdownMenu} value={40}>
+                        <option className={classes.dropdownMenu} value={'ETH'}>
                         {data[3]}
                         </option>
                       </MyNativeSelect>
@@ -552,11 +579,13 @@ const QueryButton = styledCom.a`
                   dateAdapter={AdapterDateFns}>
                     <CssTextField
                       variant="outlined"
+                      value={expiry}
                       id="date"
                       type="date"
                       defaultValue="2009-01-03"
                       sx={{ width: 310, height: 55}}
                       inputProps={{style: {fontSize: 24 }}}
+                      onChange={handleChange4}
                     />
                   </LocalizationProvider>
                 </Grid>
@@ -565,7 +594,6 @@ const QueryButton = styledCom.a`
             <ItemContainer2>
               <Grid item xs={2} md={8} className={classes.textContTopL}>
                 <HeaderText2>Strike Price:</HeaderText2>
-                {/*Strike Price Input*/}
                 <Grid item xs={4} md={5} className={classes.textContTopR}>
                   <StrikeInput />
                 </Grid>
@@ -594,6 +622,7 @@ const QueryButton = styledCom.a`
                 <QueryButton
                   onClick={() => {
                     history.push("/advanced");
+                    //strike, underlying, expiry, amount, optiontype
                   }}
                 >
                   Begin Query
@@ -604,5 +633,7 @@ const QueryButton = styledCom.a`
         </Grid>
       );
     };
+
+
 
 export default BannerContentDOA;

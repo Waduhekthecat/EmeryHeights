@@ -37,12 +37,13 @@ export default function AmountSlider() {
   );
 
 
-  const handleSliderChange = (e: Event, newValue: number | number[]) => {
-    setValue(newValue);
+  const handleSliderChange = (e: Event, amount: number | number[]) => {
+    setValue(amount);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value === '' ? '' : Number(event.target.value));
+
   };
 
   const handleBlur = () => {

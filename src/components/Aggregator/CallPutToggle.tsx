@@ -42,20 +42,19 @@ const ButtonEdits = styledCom(ToggleButton)`
 
 `
 
-
 export default function CallPutToggle() {
 
 const classes = useStyles();
-const [selectedBtn, setSelectedBtn] = React.useState(false);
-const [selectedBtn2, setSelectedBtn2] = React.useState(false);
+const [call, setCall] = React.useState(false);
+const [put, setPut] = React.useState(false);
+
   return (
-    <ButtonGroup
-    >
+    <ButtonGroup>
     <ButtonEdits 
       className={classes.ButtonToggle}
-      value="call"
-      selected={selectedBtn}
-      onClick={()=> setSelectedBtn(!selectedBtn)}
+      value={call}
+      selected={call}
+      onClick={()=> setCall(!call)}
       >{" "}<p
       style={{
         fontSize: 17,
@@ -66,9 +65,9 @@ const [selectedBtn2, setSelectedBtn2] = React.useState(false);
     </ButtonEdits>
     <ButtonEdits 
       className={classes.ButtonToggle}
-      value="put"
-      selected={selectedBtn2}
-      onClick={()=>setSelectedBtn2(!selectedBtn2)}
+      value={put}
+      selected={put}
+      onClick={()=>setPut(!put)}
       >{" "}<p
       style={{
         fontSize: 17,

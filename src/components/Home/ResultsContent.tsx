@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import Card3 from '../Aggregator/Results/Card3'
-import Card2 from '../Aggregator/Results/Card2'
 import Card1 from '../Aggregator/Results/Card1'
 import ResultsContainer from '../Aggregator/Results/ResultsContainer'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
 import { colors } from '../../styles'
 
+
 interface Props {
     // switchContent: (num: number) => void;
-}
-
+};
 
 const ItemContainer = styled.div`
     width: 100%;
+    height: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -28,7 +27,7 @@ const ItemContainer = styled.div`
     border:4px
      rgb(${colors.gradLight});
     background-color: rgb(31, 36, 54);
-    @media (max-width: 720px) {
+    @media (max-width: 1200px) {
         width: 75%;
         height:75%;
         padding-right:2%;
@@ -74,23 +73,22 @@ const HaederImage = styled.img`
         width:350px;
     }
 `
-
-// const ItemList: React.FC<Props> = ({ switchContent }) => {
-const ResultsContent: React.FC<Props> = ({ }) => {
+    const ResultsContent: React.FC<Props> = ({ }) => {
     const history = useHistory()
     return (
         <div>
+            <Grid container>
             <ItemContainer>
                 <Grid container spacing={2}>
-                <Card3 />
-                    <Grid item xs={12} md={3} onClick={() => { }}>
-                        <Card2 />
+                    <Grid item xs={12} sm={3} md={3} onClick={() => { }}>
+                    {/*blank for now*/}
                     </Grid>
-                    <Grid item xs={12} md={9} onClick={() => { }}>
-                        <ResultsContainer/>
+                    <Grid item xs={12} sm={9} md={9} onClick={() => { }}>
+                        <ResultsContainer />
                     </Grid>
                 </Grid>
             </ItemContainer>
+            </Grid>
         </div>
     )
 }
