@@ -1,13 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../../styles'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import StatCard from './StatCard';
 
-
-//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
-
+// Interface for passing props to cards //
 interface Props {
     // data: {
     //  platform: 'String';
@@ -20,7 +17,7 @@ interface Props {
     // };
    };
 
-
+// Themes //
 const useStyles = makeStyles((theme) => ({
     gridCont: {
         paddingTop: '0px !important',
@@ -31,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
       }
 }));
 
-const Container2 = styled.div`
+// Styling for container to hold option cards
+const Container = styled.div`
     width: 100%;
     height: 100%;
     background-color: 3E4251;
@@ -41,9 +39,9 @@ const Container2 = styled.div`
     margin-top: 10px;
 `
 
-
+// Takes props from data arrays and creates a grid of cards from all matching options latforms //
 const Card: React.FC<Props> = ({ }) => {
-
+    const classes = useStyles();
     const data = [
         { platform: 'Hegic', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$1825'},
         { platform: 'Premia', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2000'},
@@ -55,42 +53,48 @@ const Card: React.FC<Props> = ({ }) => {
         { platform: 'Finnexus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2950'},
         { platform: 'Ribbon', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$3000'},
     ];
-
-
-    const classes = useStyles();
     
     return (
-        <Container2>
+        <Container>
             <Grid container spacing={2}>
                 <Grid item xs={4} md={4} className={classes.CardContainer}>
                     <StatCard data={data[0]} />
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer} >
                     <StatCard data={data[1]} />
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer}>
                     <StatCard data={data[2]} />
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer} >
                     <StatCard data={data[3]}/>
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer}>
                     <StatCard data={data[4]}/>
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer} >
                     <StatCard data={data[5]}/>
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer}>
                     <StatCard data={data[6]}/>
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer} >
                     <StatCard data={data[7]}/>
                 </Grid>
+
                 <Grid item xs={4} md={4} className={classes.CardContainer} >
                     <StatCard data={data[8]}/>
                 </Grid>
+
             </Grid>
-        </Container2>
+        </Container>
     )
 }
 

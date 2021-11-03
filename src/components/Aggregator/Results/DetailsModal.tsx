@@ -1,21 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid } from '@mui/material';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { colors } from "../../../styles";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import values from '../BannerContentDOA';
+import styledCom from "styled-components";
 
-//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
-
-
+// Themes //
 const useStyles = makeStyles((theme) => ({
   Hidden: {
       borderWidth: "2px",
       color: "rgb(67,159,174)",
   }}));
 
+// Styles //
 const Container = styled.div`
   width: 100%;
   background-color: rgb(67,159,174);
@@ -30,7 +27,6 @@ const Container = styled.div`
       flex-direction:row;
 }; 
 `
-
 const HederTitle = styled.h1`
   color: rgb(256,256,256) !important;
   font-style: "bold" !important;
@@ -42,31 +38,37 @@ const Description1 = styled.p`
   text-decoration:underline;
   margin-top:-20px;
   margin-bottom:30px;
-  margin-left: 2em;
+  margin-left:0.6em;
 `
 const Description = styled.p`
   color: white;
-  font-size: 25px;
+  font-size: 22px;
   margin:0.3em;
   font-weigh:200;
 `
-const PurchaseBtn = styled.button`
-  height:70px;
-  width:170px;
-  background-color:#504798;   
-  font-size:25px;
-  
-  color:white;
-  align-self:center;
-  border-radius:10px;
-  margin-top:30px;
-  margin-bottom:30px;
-  &:hover {
+const QueryButton = styledCom.a`
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content:center;
+    border-radius: 5px;
+    width: 90%;
+    marginLeft:
+    color:white;
+    font-size:20px;
+    font-weight:600;
+    font-weight:600;
+    box-shadow: 3px 4px 0px rgb(10, 13, 27);
+    height: 56px;
+    background-color:#504798;
+    &:hover {
       cursor: pointer;
+      background-color: 3px solid rgb(${colors.fontColor});
+      text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
   }
 `
 
-
+// Selected Card fills this interface to populate the Details Modal via props //
 interface Props {
      platformD: String, 
      optionD: String,
@@ -80,48 +82,88 @@ interface Props {
      premiumD: String,
   }
 
+// Modal CSS //
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '132px',
+    left: '3%',
+    width: '350px',
+    height: '600px',
+    zIndex: '1',
+    borderRadius: '15px',
+    bgcolor: '#2D93A6',
+    border: '2px solid #000',
+  };
 
+// Uses interface to return container with details on selected card - allows purchase // 
 const Details = (props: {results: Props}) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-      <Grid container direction="column">
+    <Grid container direction="column">
       <Container>
-      
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+
+          {/* Platform Name */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <HederTitle> Platform: {props.results.platformD}</HederTitle>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Option type and Underlying asset */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>{props.results.optionD} on {props.results.underlyingD}</Description>
-          </Grid>
-          <br></br>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+        <br />
+        
+          {/* Historical Chart     */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description1>View historical chart {props.results.chartD}</Description1>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Strike Price */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Strike Price: {props.results.strikeD}</Description>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Date of Expiry */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Expires: {props.results.expiryD}</Description>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Option amount */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Qty: {props.results.amountD}</Description>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Gas fee */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>Gas Fee: {props.results.gasD}</Description>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
+        </Grid>
+
+          {/* Days left until expiry */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
           <Description>({props.results.countdownD} days left for expiry)</Description> 
-          <br/>
-          <br/>
-          </Grid>
-          <Grid item  xs={6} sm={3} md={3} lg={12}>
-            <HederTitle>Total Cost: {props.results.premiumD}</HederTitle>
-          </Grid>
-          <Grid item  xs={12} sm={12} md={12} lg={12}>
-            <PurchaseBtn>Purchase</PurchaseBtn>
-          </Grid>
+        <br/>
+        <br/>
+        </Grid>
+        
+          {/* Premium  */}
+        <Grid item  xs={6} sm={3} md={3} lg={12}>
+          <HederTitle>Total Cost: {props.results.premiumD}</HederTitle>
+        </Grid>
+
+          {/* Purchase Button */}
+        <Grid item  xs={12} sm={12} md={12} lg={12}>
+            <QueryButton 
+            onClick={handleOpen}>
+              Purchase
+            </QueryButton>
+        </Grid>
+
       </Container>
     </Grid>  
-    )
-  };
+  )
+};
+
 export default Details

@@ -45,8 +45,10 @@ const ButtonEdits = styledCom(ToggleButton)`
 export default function CallPutToggle() {
 
 const classes = useStyles();
-const [call, setCall] = React.useState(false);
-const [put, setPut] = React.useState(false);
+  const [call, setCall] = React.useState(false);
+  const [put, setPut] = React.useState(false);
+  // const [option, setOption] = React.useState(option);
+  
 
   return (
     <ButtonGroup>

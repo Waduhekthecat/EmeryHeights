@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../styles'
 import BannerContentDOA from './BannerContentDOA'
 
 const BannerContainer = styled.div`

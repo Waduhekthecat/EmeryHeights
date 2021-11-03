@@ -27,25 +27,21 @@ const Amount = styled(MuiSlider)(({ theme }) => ({
   },
   '.MuiSlider-rail': {
     color: 'rgb(31,36,54)',
-  },
-}));
+  }, 
+  }
+));
+
 
 export default function AmountSlider() {
-
   const [value, setValue] = React.useState<number | string | Array<number | string>>(
     0.50,
   );
-
-
   const handleSliderChange = (e: Event, amount: number | number[]) => {
     setValue(amount);
   };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value === '' ? '' : Number(event.target.value));
-
   };
-
   const handleBlur = () => {
     if (value < 0.00) {
       setValue(0.00);
@@ -54,10 +50,13 @@ export default function AmountSlider() {
     }
   };
 
+
   return (
     
     <Box sx={{ width: 380 }}>
       <Grid container flex-row spacing={2} marginLeft="1%" alignItems="center">
+        
+        {/* Amount Slider */}
         <Grid item md={12}>
         <Amount
         defaultValue={0.50}
@@ -69,14 +68,15 @@ export default function AmountSlider() {
       />
       
         </Grid>
-        <Grid item marginLeft="38%" marginTop="-7%" md={6}>
+
+        <Grid item marginLeft="37%" marginTop="-7%" md={6}>
           <Input                                                                                                                                                                                                                                                                                                                                                                                                        
-            endAdornment="BTC"
+            endAdornment='BTC'
             value={value}
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{
-              style: { textAlign: 'center', fontSize: '36px' },
+              style: { textAlign: 'center', fontSize: '32px' },
               step: 0.10,
               min: 0.10,
               max: 2.00,

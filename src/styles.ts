@@ -1,4 +1,12 @@
+// Styling shortcuts and hotkeys
+
 export const colors: any = {
+  // brand palette: 
+  primary: 'rgb(67, 159, 174)',
+  secondary: '#504798',
+  effect: '#5E6CFA',
+  shading: '#3E4251',
+  // other colors:
   main: "54, 60, 79",
   gradDark: "31,36,54",
   gradLight: "61, 66, 81",
@@ -23,8 +31,7 @@ export const colors: any = {
   red: '214, 75, 71',
   purple: '110, 107, 233',
   selected: 'rgb(67, 159, 174)',
-  selected2: '504798'
-}
+};
 
 export const fonts = {
   size: {
@@ -49,14 +56,14 @@ export const fonts = {
   family: {
     OpenSans: '"Open Sans", sans-serif'
   }
-}
+};
 
 export const transitions = {
   short: 'all 0.1s ease-in-out',
   base: 'all 0.2s ease-in-out',
   long: 'all 0.3s ease-in-out',
   button: 'all 0.15s ease-in-out'
-}
+};
 
 export const shadows = {
   soft:
@@ -90,7 +97,7 @@ export const responsive = {
     min: 'min-width: 1399px',
     max: 'max-width: 1400px'
   }
-}
+};
 
 export const globalStyle = `
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800');

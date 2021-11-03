@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Card1 from '../Aggregator/Results/Card1'
-import ResultsContainer from '../Aggregator/Results/ResultsContainer'
+import ResultsContainer from '../Aggregator/Results/OptionCards'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
 import { colors } from '../../styles'
