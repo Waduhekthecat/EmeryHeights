@@ -2,7 +2,6 @@ import React, {useState } from 'react';
 import styled from 'styled-components';
 import Grid from "@mui/material/Grid";
 import { colors } from "../../../styles";
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Details from './DetailsModal';
@@ -120,7 +119,7 @@ const Container = styled.div`
   flex-direction: column;
   border: 1px solid rgba(${colors.border});
   padding:1.5em;
-  margin-top: 5%;
+  margin-top: 5%;        </Grid>
   @media (max-width: 950px){
     width:1000px;
     height: 300px;
@@ -145,11 +144,10 @@ const CompareButton = styled(ToggleButton)`
   }
 `;
 const CompareButton2 = styled(ToggleButton)`
-
-   height: 60%; 
+  height: 60%; 
    width: 50%;
    box-shadow: 8px 8px 0px 3E4251 !important;
-   border-radius: 20px !important;
+   border-radius: 20px !        </Grid>important;
    margin-bottom:20px !important;
   font-size:20px;
   font-weight:600;
@@ -178,7 +176,7 @@ const DescriptionTxt2 = styled.p`
 const HeadertArea = styled.div`
   width:70%;
   display: flex;
-  margin-left:1em;
+  margin-left:1em;        
   margin-right:0em;
   background-color: #2D93A6;
   border-radius: 45px;
@@ -204,13 +202,17 @@ const ButtonArea = styled.div`
   }
 `;
 
+
 // Takes props from interface and fills the fields on the option cards with data returned from API //
 // *Also declares Modal for Details card on click of select button //
 const StatCard= (props: {data: Props}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(false);
+  
+  let closeImg = { cursor: 'pointer', marginTop: '5px', width: '20px' };
     
+  
     interface Props {
          platformD: String, 
          optionD: String,
@@ -235,16 +237,16 @@ const StatCard= (props: {data: Props}) => {
       countdownD: '40',
       premiumD: '$1400',
     };
-    
+  
     return(
       <Grid container>   
       <CardContainer>
           <Grid container direction="column">
-
+            
             {/* Platform Name */}
               <Grid item xs={12} sm={12} md={6} lg={1}>
-                <DescriptionTxt2>Platform: {props.data.platform}</DescriptionTxt2>
-              </Grid>
+               <DescriptionTxt2>Platform: {props.data.platform}</DescriptionTxt2>
+            </Grid>
             
             {/* Premium */}
               <Grid item xs={12} sm={12} md={2} lg={1}>
@@ -254,7 +256,10 @@ const StatCard= (props: {data: Props}) => {
               </Grid>
             
             {/* Amount, Strike Price, and Expiry */}
-              <Grid item>
+            <Grid item>
+            
+            
+
                 <DescriptionTxt>
                     Quantity: {props.data.amount}
                 <br/>Strike: {props.data.strike}
@@ -288,14 +293,14 @@ const StatCard= (props: {data: Props}) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style}>
+              <Box sx={style}>
                   <Details results={Results}/>
-                </Box>
+            </Box>
             </Modal>
             </Grid>
-        
     </Grid>
   )
 };
 
 export default StatCard
+

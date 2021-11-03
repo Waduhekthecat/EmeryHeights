@@ -3,15 +3,13 @@ import styled from "styled-components";
 import { Grid } from '@mui/material';
 import { colors } from "../../../styles";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import styledCom from "styled-components";
+import styledCom from "styled-components/";
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { white } from "material-ui/styles/colors";
+import PurchaseModal from './PurchaseModal';
 
 // Themes //
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +33,7 @@ const Container = styled.div`
       flex-direction:row;
 }; 
 `
+
 const HederTitle = styled.h1`
   color: rgb(256,256,256) !important;
   font-style: "bold" !important;
@@ -74,7 +73,7 @@ const QueryButton = styledCom.a`
       background-color: 3px solid rgb(${colors.fontColor});
       text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
   }
-`
+`;
 
 // Selected Card fills this interface to populate the Details Modal via props //
 interface Props {
@@ -101,29 +100,61 @@ const style = {
     borderRadius: '15px',
     bgcolor: '#2D93A6',
     border: '2px solid #000',
-  };
+};
+  
+const styles = {
+  position: 'absolute' as 'absolute',
+    top: '20%',
+    left: '22%',
+    width: '950px',
+    height: '375px',
+    zIndex: '10',
+    borderRadius: '20px',
+    bgcolor: 'rgb(113, 119, 138)',
+    color: white,
+    border: '6px solid #000',
+};
 
 // Uses interface to return container with details on selected card - allows purchase // 
 const Details = (props: {results: Props}) => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-      children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-  ) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
+  
+  interface Props {
+    platformD: String, 
+    optionD: String,
+    chartD: String,
+    underlyingD: String, 
+    strikeD: String, 
+    expiryD: String,
+    amountD: String, 
+    gasD: String,
+    countdownD: String,
+    premiumD: String,
+};
+const Results: Props = {
+ platformD: 'Hegic',
+ optionD: 'Call',
+ chartD: 'coming soon',
+ underlyingD: 'BTC',
+ strikeD: '61000',
+ expiryD: '12/12/2021',
+ amountD: '3', 
+ gasD: '124 gwei',
+ countdownD: '40',
+ premiumD: '$1400',
+};
 
   return (
     <Grid container direction="column">
       <Container>
-
+      
           {/* Platform Name */}
         <Grid item  xs={6} sm={3} md={3} lg={12}>
-          <HederTitle> Platform: {props.results.platformD}</HederTitle>
+          <HederTitle> Platform: {props.results.platformD}
+            <Button> </Button>
+          </HederTitle>
         </Grid>
 
           {/* Option type and Underlying asset */}
@@ -158,7 +189,8 @@ const Details = (props: {results: Props}) => {
         </Grid>
 
           {/* Days left until expiry */}
-        <Grid item  xs={6} sm={3} md={3} lg={12}>
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          
           <Description>({props.results.countdownD} days left for expiry)</Description> 
         <br/>
         <br/>
@@ -172,32 +204,25 @@ const Details = (props: {results: Props}) => {
           {/* Purchase Button */}
         <Grid item  xs={12} sm={12} md={12} lg={12}>
             <QueryButton 
-            onClick={handleOpen}>
+            onClick={handleClickOpen}>
               Purchase
-            </QueryButton>
-        </Grid>
-      </Container>
-      <Grid item>
-        <Dialog
+          </QueryButton>
+          <Modal
         open={open}
-        keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <DialogTitle>{"STATION"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-              Confirm your purchase of this option. 
-
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Confirm</Button>
-        </DialogActions>
-      </Dialog>
-      </Grid>
-    </Grid>  
+            <Box sx={styles}>
+            <PurchaseModal submit={Results}/>
+            </Box>
+      </Modal>
+        </Grid>
+        <Grid item>
+          </Grid>
+      </Container>
+    </Grid>
+    
   )
 };
 

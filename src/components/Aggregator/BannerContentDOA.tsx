@@ -18,8 +18,11 @@ import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-
+import btc from "../../assets/images/btc.png";
+import bnb from "../../assets/images/bnb.png";
+import luna from "../../assets/images/luna.png";
+import eth from "../../assets/images/eth.png";
+import AltRouteIcon from '@mui/icons-material/AltRoute';
 
 // Themes //
 const theme = createTheme({
@@ -542,6 +545,19 @@ const BannerContentDOA: React.FC<Props> = () => {
   ) => {
     setOption(newOption);
   };
+
+  const BTC = () => {
+    <img src={btc} alt='' />
+  };
+  const BNB = () => {
+    <img src={bnb} alt='' />
+  };
+  const LUNA = () => {
+    <img src={luna} alt='' />
+  };
+  const ETH = () => {
+    <img src={eth} alt='' />
+  };
     
     // Array of tokens for underlying asset dropdown //
     const data = [
@@ -628,16 +644,17 @@ const BannerContentDOA: React.FC<Props> = () => {
                       input={<BootstrapInput />}
                     >
                       <option className={classes.dropdownMenu} value={'BTC'}>
-                      {data[0]}
+                       {data[0]}
                       </option>
                       <option className={classes.dropdownMenu} value={'BNB'}>
-                      {data[1]}
+                       {data[1]}
                       </option>
                       <option className={classes.dropdownMenu} value={'LUNA'}>
                       {data[2]}
                       </option>
                       <option className={classes.dropdownMenu} value={'ETH'}>
                       {data[3]}
+                      
                       </option>
                     </MyNativeSelect>
                   </FormControl>
