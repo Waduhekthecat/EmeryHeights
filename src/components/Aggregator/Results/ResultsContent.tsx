@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import ResultsContainer from '../Aggregator/Results/OptionCards'
+import OptionCards from './OptionCards'
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom'
-import { colors } from '../../styles'
+import { colors } from '../../../styles'
 
 
 interface Props {
@@ -83,7 +83,7 @@ const HaederImage = styled.img`
                     {/*blank for now*/}
                     </Grid>
                     <Grid item xs={12} sm={9} md={9} onClick={() => { }}>
-                        <ResultsContainer />
+                        <OptionCards />
                     </Grid>
                 </Grid>
             </ItemContainer>

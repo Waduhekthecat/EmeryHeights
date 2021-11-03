@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 // StatCard interface //
 interface Props {
-  data: {
     platform: string,
     premium: string,
     underlying: string,
@@ -54,14 +53,14 @@ interface Props {
     amount: string,
     expiry: string,
   };
-}
+
 
 // Modal CSS //
 const style = {
   position: 'absolute' as 'absolute',
   top: '14%',
-  left: '3%',
-  width: '350px',
+  left: '1.8%',
+  width: '22%',
   height: '600px',
   zIndex: '1',
   borderRadius: '15px',
@@ -207,7 +206,7 @@ const ButtonArea = styled.div`
 
 // Takes props from interface and fills the fields on the option cards with data returned from API //
 // *Also declares Modal for Details card on click of select button //
-const StatCard: React.FC<Props> = (props: Props) => {
+const StatCard= (props: {data: Props}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -281,7 +280,7 @@ const StatCard: React.FC<Props> = (props: Props) => {
       </CardContainer>
       
           {/* Details Modal declaration */}
-          <Grid item xs={12} sm={8} md={3} lg={4}>
+          <Grid item xs={3} sm={3} md={3} lg={3}>
             <Modal 
                 hideBackdrop={true}
                 open={open}

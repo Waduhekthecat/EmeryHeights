@@ -12,11 +12,12 @@ import InputBase from "@mui/material/InputBase";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
-import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
 import MuiInput from '@mui/material/Input';
 import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
 
@@ -211,7 +212,15 @@ const useStyles = makeStyles((theme) => ({
     width: "253px !important",
     height: "55px !important",
     color: "white",
+  },
+  ButtonToggle: {
+    borderWidth: "2px",
+    borderColor: "white",
+    color: "rgb(0,0,0) !important",
+    '&:focus': {
+    fontColor: "rgb(256,256,256) !important",
   }
+},
 }));
 
 
@@ -219,6 +228,7 @@ interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
+
 const StrikeArea = styled(MuiInput)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
@@ -400,6 +410,26 @@ const ItemContainer2 = styledCom.div`
     padding-left:2%;
   }
 `;
+  const ButtonEdits = styledCom(ToggleButton)`
+    background: rgb(255, 255, 255) !important;
+    backdrop-filter: blur(4px) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(${colors.border}) !important;
+    height:50px !important;
+    width:145px !important;
+    display:flex !important;
+    margin-right: 35px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      background: #504798 !important;
+      color: rgb(256,256,256) !important;
+    }
+`;
 const Title1 = styledCom.p`
   font-size: 23px;
   color: black;
@@ -482,7 +512,7 @@ interface Props {}
 // returns a form that allows query parameters to be selected for defi options //
 const BannerContentDOA: React.FC<Props> = () => {
 
-    const [value, setValue] = React.useState<Date | null>(new Date());
+    const value = useState('');
     const history = useHistory();
     const classes = useStyles();
 
@@ -490,7 +520,9 @@ const BannerContentDOA: React.FC<Props> = () => {
     const [underlying, setUnderlying] = useState("");
     const [expiry, setExpiry] = useState("");
     const [strike, setStrike] = useState("");
-    
+    const [option, setOption] = React.useState<string | null>('');
+    const [amount, setAmount] = useState(0.5);
+
     const handleChange = (event: { target: { value: string } }) => {
       setUnderlying(event.target.value);
     };
@@ -500,6 +532,17 @@ const BannerContentDOA: React.FC<Props> = () => {
     const handleChange3 = (event: { target: { value: string } }) =>{
       setStrike(event.target.value);
     };
+    const handleChange4 = (event: { target: { value: number }}) =>{
+      setAmount(Number(event.target.value));
+    };
+  
+  const handleOption = (
+    event: React.MouseEvent<HTMLElement>,
+    newOption: string | null,
+  ) => {
+    setOption(newOption);
+  };
+    
     // Array of tokens for underlying asset dropdown //
     const data = [
       "BTC",
@@ -509,16 +552,14 @@ const BannerContentDOA: React.FC<Props> = () => {
     ];
 
     // Creates an array of values selected in the aggregator form to submit //
-    const handleQuery = () => {
-      const values = [
-        // option,  
-        { underlying },
-        { strike },
-        { expiry },
-        { value }
-      ];
-    }
-    
+  
+  
+  const handleQuery = (submitParameters: any) => {
+    alert(JSON.stringify([submitParameters]))
+  };
+
+  const submitParameters = [option, underlying, strike, expiry, amount];
+
     return ( 
       <Grid container direction="column">
         
@@ -543,9 +584,39 @@ const BannerContentDOA: React.FC<Props> = () => {
 
               {/* Call/put buttons */}
               <Grid item xs={2} md={2} className={classes.textContTopL}>
-                <CallPutToggle />
-              </Grid>
-
+              <ToggleButtonGroup
+                  value={option}
+                  exclusive
+                  onChange={handleOption}
+                  aria-label="option select"
+              >
+              <ButtonEdits 
+                    className={classes.ButtonToggle}
+                    value="call"
+                    aria-label="call"
+                >{" "}<p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 900,
+                }}
+                >CALL 
+                  </p>
+              </ButtonEdits>
+              <ButtonEdits 
+                className={classes.ButtonToggle}
+                value="put"
+                aria-label="put"
+                >{" "}<p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 900,
+                }}
+                >PUT
+                  </p>
+              </ButtonEdits>
+              </ToggleButtonGroup>
+            </Grid>
+            
               {/* Underlysing Asset dropdown selector*/}
               <Grid item xs={2} md={4} className={classes.textCont1}>
                 <HeaderText>Underlying Asset</HeaderText>
@@ -556,16 +627,16 @@ const BannerContentDOA: React.FC<Props> = () => {
                       onChange={handleChange}
                       input={<BootstrapInput />}
                     >
-                      <option className={classes.dropdownMenu} value={'10'}>
+                      <option className={classes.dropdownMenu} value={'BTC'}>
                       {data[0]}
                       </option>
-                      <option className={classes.dropdownMenu} value={'20'}>
+                      <option className={classes.dropdownMenu} value={'BNB'}>
                       {data[1]}
                       </option>
-                      <option className={classes.dropdownMenu} value={'30'}>
+                      <option className={classes.dropdownMenu} value={'LUNA'}>
                       {data[2]}
                       </option>
-                      <option className={classes.dropdownMenu} value={'40'}>
+                      <option className={classes.dropdownMenu} value={'ETH'}>
                       {data[3]}
                       </option>
                     </MyNativeSelect>
@@ -622,7 +693,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             {/* Order amount slider  */}
             <Grid item xs={4} md={10} className={classes.textCont8}>
               <Title1>Order Amount</Title1>
-              <AmountSlider />
+              <AmountSlider amount={amount} setAmount={setAmount}/>
               <FooterText>
                 <ThemeProvider theme={theme}>
                   Need a larger amount? Try{" "}
@@ -644,8 +715,8 @@ const BannerContentDOA: React.FC<Props> = () => {
             <Grid item xs={4} md={6} className={classes.textCont4}>
               <QueryButton
                 onClick={() => {
+                  handleQuery(submitParameters);
                   history.push("/advanced");
-                  //strike, underlying, expiry, amount, optiontype
                 }}>
                 Begin Query
               </QueryButton>
@@ -657,4 +728,4 @@ const BannerContentDOA: React.FC<Props> = () => {
     );
   };
 
-export default BannerContentDOA;
+  export default BannerContentDOA;
