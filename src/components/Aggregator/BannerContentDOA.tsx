@@ -623,7 +623,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                 <DataPickerArea style={{ width: "310px" }}>
                   <FormControl variant="standard" className={classes.dropdown}>
                     <MyNativeSelect
-                      value={''}
+                      value={underlying}
                       onChange={handleChange}
                       input={<BootstrapInput />}
                     >
