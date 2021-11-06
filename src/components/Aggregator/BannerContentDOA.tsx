@@ -22,7 +22,6 @@ import btc from "../../assets/images/btc.png";
 import bnb from "../../assets/images/bnb.png";
 import luna from "../../assets/images/luna.png";
 import eth from "../../assets/images/eth.png";
-import AltRouteIcon from '@mui/icons-material/AltRoute';
 
 // Themes //
 const theme = createTheme({
@@ -219,7 +218,7 @@ const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
     borderWidth: "2px",
     borderColor: "white",
-    color: "rgb(0,0,0) !important",
+    color: "rgb(87,87,87) !important",
     '&:focus': {
     fontColor: "rgb(256,256,256) !important",
   }
@@ -505,7 +504,7 @@ const QueryButton = styledCom.a`
   background-color:#504798;
   &:hover {
     cursor: pointer;
-    background-color: 3px solid rgb(${colors.primary});
+    background-color: 3px solid 'rgb(67, 159, 174)' !important;
     text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
   }
 `;
@@ -609,7 +608,7 @@ const BannerContentDOA: React.FC<Props> = () => {
               <ButtonEdits 
                     className={classes.ButtonToggle}
                     value="call"
-                    aria-label="call"
+                  aria-label="call"
                 >{" "}<p
                 style={{
                   fontSize: 17,

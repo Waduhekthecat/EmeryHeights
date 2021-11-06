@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { IAssetData, IBoxProfile } from "../helpers/types";
+import PageHeader from "../components/Home/PageHeader";
+import ResultsContent from "../components/Aggregator/Results/ResultsContent";
+import ScreenWrapper from "../components/Home/ScreenWrapper";
+import Container from "@material-ui/core/Container";
+import chain from "./assets/images/chain.png";
+import cubic from "./assets/images/cubic.png";
+import dot from "./assets/images/dot.png";
 
-import PageHeader from '../components/Home/PageHeader'
-import ResultsContent from '../components/Aggregator/Results/ResultsContent'
-import ScreenWrapper from '../components/Home/ScreenWrapper'
-import Container from '@material-ui/core/Container';
-import chain from './assets/images/chain.png';
-import cubic from './assets/images/cubic.png';
-import dot from './assets/images/dot.png';
-
+interface Props1 {
+  Results: {
+    platformD: String;
+    optionD: any;
+    chartD: any;
+    underlyingD: String;
+    strikeD: String;
+    expiryD: String;
+    amountD: String;
+    gasD: any;
+    countdownD: any;
+    premiumD: String;
+  };
+}
 interface IAppState {
   fetching: boolean;
   address: string;
@@ -38,54 +51,49 @@ const INITIAL_STATE: IAppState = {
   showModal: false,
   pendingRequest: false,
   result: null,
-  isHide: true
+  isHide: true,
 };
 
-function App() {
-
+function App(xResults: Props1) {
   const [showModal, setShowModal] = useState(false);
   const [switchRouter, setSwitchRouter] = useState(false);
   const [switchAggregator, setSwitchAggregator] = useState(false);
   const [switchSubgraph, setSwitchSubgraph] = useState(false);
   const [isHide, setIsHide] = useState(false);
 
-  const toggleModal = () =>
-    setShowModal(!showModal);
+  const toggleModal = () => setShowModal(!showModal);
 
   const _onHideMenu = (bool: boolean) => {
-    setIsHide(bool)
-  }
+    setIsHide(bool);
+  };
 
   const switchContent = (num: number) => {
-    console.log("switchContent>>>>>", num)
+    console.log("switchContent>>>>>", num);
     switch (num) {
       case 1:
-        setSwitchRouter(true)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(false)
+        setSwitchRouter(true);
+        setSwitchAggregator(false);
+        setSwitchSubgraph(false);
         break;
       case 2:
-        setSwitchRouter(false)
-        setSwitchAggregator(true)
-        setSwitchSubgraph(false)
+        setSwitchRouter(false);
+        setSwitchAggregator(true);
+        setSwitchSubgraph(false);
         break;
       case 3:
-        setSwitchRouter(false)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(true)
+        setSwitchRouter(false);
+        setSwitchAggregator(false);
+        setSwitchSubgraph(true);
         break;
       default:
         break;
     }
-  }
+  };
 
   return (
     <ScreenWrapper>
-      <PageHeader
-        isHide={isHide}
-        setIsHide={(e) => _onHideMenu(e)}
-      />
-      <ResultsContent/>  
+      <PageHeader isHide={isHide} setIsHide={(e) => _onHideMenu(e)} />
+      <ResultsContent Results={xResults.Results} />
     </ScreenWrapper>
   );
 }
