@@ -1,101 +1,218 @@
-import React from 'react'
-import styled from 'styled-components'
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import StatCard from './StatCard';
+import React from "react";
+import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import StatCard from "./DetailsModal";
 
 // Interface for passing props to cards //
-interface Props {
-    // data: {
-    //  platform: 'String';
-    //  underlying: 'String';
-    //  strike: 'String';
-    //  expiry: 'String';
-    //  amount:'String';
-    //  gas: 'String';
-    //  premium: 'String';
-    // };
-   };
+interface Props1 {
+  Results: {
+    platformD: String;
+    optionD: any;
+    chartD: any;
+    underlyingD: String;
+    strikeD: String;
+    expiryD: String;
+    amountD: String;
+    gasD: any;
+    countdownD: any;
+    premiumD: String;
+  };
+}
 
 // Themes //
 const useStyles = makeStyles((theme) => ({
-    gridCont: {
-        paddingTop: '0px !important',
-    },
-    CardContainer: {
-        paddingTop: '0px !important',
-
-      }
+  gridCont: {
+    paddingTop: "0px !important",
+  },
+  CardContainer: {
+    paddingTop: "0px !important",
+  },
 }));
 
 // Styling for container to hold option cards
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: 3E4251;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-`
+  width: 100%;
+  height: 100%;
+  background-color: 3e4251;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+`;
 
 // Takes props from data arrays and creates a grid of cards from all matching options latforms //
-const Card: React.FC<Props> = ({ }) => {
-    const classes = useStyles();
-    const data = [
-        { platform: 'Hegic', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$1825'},
-        { platform: 'Premia', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2000'},
-        { platform: 'Auctus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2350'},
-        { platform: 'Phoenix', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2375'},
-        { platform: 'Opyn', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2420'},
-        { platform: 'Heget', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2500'},
-        { platform: 'Opium', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2750'},
-        { platform: 'Finnexus', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$2950'},
-        { platform: 'Ribbon', underlying: 'WBTC', strike: '$60,000', amount: '1.0wbtc', expiry: '11/01/21', premium: '$3000'},
-    ];
-    
-    return (
-        <Container>
-            <Grid container spacing={2}>
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[0]} />
-                </Grid>
+const Card: React.FC<Props1> = ({ Results }) => {
+  const classes = useStyles();
+  const data: Props1[] = [
+    {
+      Results: {
+        platformD: "Hegic",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$1825",
+      },
+    },
+    {
+      Results: {
+        platformD: "Premia",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2000",
+      },
+    },
+    {
+      Results: {
+        platformD: "Auctus",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2350",
+      },
+    },
+    {
+      Results: {
+        platformD: "Phoenix",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2375",
+      },
+    },
+    {
+      Results: {
+        platformD: "Opyn",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2420",
+      },
+    },
+    {
+      Results: {
+        platformD: "Heget",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2500",
+      },
+    },
+    {
+      Results: {
+        platformD: "Opium",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2750",
+      },
+    },
+    {
+      Results: {
+        platformD: "Finnexus",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$2950",
+      },
+    },
+    {
+      Results: {
+        platformD: "Ribbon",
+        optionD: " ",
+        chartD: " ",
+        underlyingD: "WBTC",
+        strikeD: "$60,000",
+        amountD: "1.0wbtc",
+        expiryD: "11/01/21",
+        gasD: " ",
+        countdownD: " ",
+        premiumD: "$3000",
+      },
+    },
+  ];
+  return (
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[0]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[1]} />
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[1]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[2]} />
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[2]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[3]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[3]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[4]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[4]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[5]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[5]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer}>
-                    <StatCard data={data[6]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[6]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[7]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[7]} />
+        </Grid>
 
-                <Grid item xs={4} md={4} className={classes.CardContainer} >
-                    <StatCard data={data[8]}/>
-                </Grid>
+        <Grid item xs={4} md={4} className={classes.CardContainer}>
+          <StatCard xResults={data[8]} />
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
 
-            </Grid>
-        </Container>
-    )
-}
-
-export default Card
+export default Card;

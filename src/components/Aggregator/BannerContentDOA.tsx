@@ -18,7 +18,10 @@ import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
+import btc from "../../assets/images/btc.png";
+import bnb from "../../assets/images/bnb.png";
+import luna from "../../assets/images/luna.png";
+import eth from "../../assets/images/eth.png";
 
 // Themes //
 const theme = createTheme({
@@ -215,7 +218,7 @@ const useStyles = makeStyles((theme) => ({
   ButtonToggle: {
     borderWidth: "2px",
     borderColor: "white",
-    color: "rgb(0,0,0) !important",
+    color: "rgb(87,87,87) !important",
     '&:focus': {
     fontColor: "rgb(256,256,256) !important",
   }
@@ -521,7 +524,7 @@ const QueryButton = styledCom.a`
   background-color:#504798;
   &:hover {
     cursor: pointer;
-    background-color: 3px solid rgb(${colors.primary});
+    background-color: 3px solid 'rgb(67, 159, 174)' !important;
     text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
   }
 `;
@@ -560,6 +563,19 @@ const BannerContentDOA: React.FC<Props> = () => {
     optionType == "call" ? (setSelected(!selected), setSelected2(!setSelected)) : (setSelected2(!selected2), setSelected(!setSelected2));
   };
 
+  const BTC = () => {
+    <img src={btc} alt='' />
+  };
+  const BNB = () => {
+    <img src={bnb} alt='' />
+  };
+  const LUNA = () => {
+    <img src={luna} alt='' />
+  };
+  const ETH = () => {
+    <img src={eth} alt='' />
+  };
+    
     // Array of tokens for underlying asset dropdown //
     const data = [
       "BTC",
@@ -611,7 +627,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                     selected={selected}
                     className={classes.ButtonToggle}
                     value="call"
-                    aria-label="call"
+                  aria-label="call"
                 >{" "}<p
                 style={{
                   fontSize: 17,
@@ -647,16 +663,17 @@ const BannerContentDOA: React.FC<Props> = () => {
                       input={<BootstrapInput />}
                     >
                       <option className={classes.dropdownMenu} value={'BTC'}>
-                      {data[0]}
+                       {data[0]}
                       </option>
                       <option className={classes.dropdownMenu} value={'BNB'}>
-                      {data[1]}
+                       {data[1]}
                       </option>
                       <option className={classes.dropdownMenu} value={'LUNA'}>
                       {data[2]}
                       </option>
                       <option className={classes.dropdownMenu} value={'ETH'}>
                       {data[3]}
+                      
                       </option>
                     </MyNativeSelect>
                   </FormControl>
