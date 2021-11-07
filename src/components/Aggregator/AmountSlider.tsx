@@ -32,7 +32,7 @@ const Amount = styled(MuiSlider)(({ theme }) => ({
 }));
 
 
-export default function AmountSlider(props: { amount: number, setAmount: any}){
+export default function AmountSlider(props: { amount: number, setAmount: any, end: string}){
 
   const [value, setValue] = React.useState<number | string | Array<number | string>>(
     0.50,
@@ -73,7 +73,7 @@ export default function AmountSlider(props: { amount: number, setAmount: any}){
         </Grid>
         <Grid item marginLeft="38%" marginTop="-7%" md={6}>
           <Input
-            endAdornment="BTC"
+            endAdornment={props.end}
             value={value}
             onChange={handleInputChange}
             onBlur={handleBlur}

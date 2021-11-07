@@ -170,12 +170,14 @@ interface Props1 {
 
 const PurchaseModal = (props: { submit: Props1 }) => {
   const classes = useStyles();
-
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleSubmit = () => {};
-  const onClose = () => {};
+  const handleSelected = (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    setOpen(false);
+};
 
   <Grid
     item
@@ -201,7 +203,7 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           <Title> Confirm your purchase </Title>
         </Grid>
         <Grid item sm={1} md={1} lg={1}>
-          <IconButton aria-label="close" onClick={onClose}>
+          <IconButton aria-label="close" onClick={handleClose}>
             <XClose />
           </IconButton>
         </Grid>

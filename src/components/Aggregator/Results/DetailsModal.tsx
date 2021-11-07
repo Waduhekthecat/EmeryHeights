@@ -101,23 +101,15 @@ const style = {
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
-const Details = (props: { xResults: Props1; sOpen: boolean }) => {
+const Details = (props: { xResults: Props1, sOpen: boolean}) => {
   const [open, setOpen] = React.useState(props.sOpen);
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose = () => setOpen(false);
   const handleClose2 = () => setOpen2(false);
+  
 
   return (
-    <div>
-      <Modal
-        hideBackdrop={true}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style1}>
           <Grid container direction="column">
             <Container>
               <IconButton
@@ -205,7 +197,7 @@ const Details = (props: { xResults: Props1; sOpen: boolean }) => {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
-                  <Box sx={style}>
+                  <Box sx={style1}>
                     <PurchaseModal submit={props.xResults} />
                   </Box>
                 </Modal>
@@ -213,9 +205,6 @@ const Details = (props: { xResults: Props1; sOpen: boolean }) => {
               <Grid item></Grid>
             </Container>
           </Grid>
-        </Box>
-      </Modal>
-    </div>
   );
 };
 
@@ -274,6 +263,7 @@ const HeaderTitle = styled.h1`
   }
 `;
 const Container = styled.div`
+  position: absolute;
   width: 100%;
   background-color: rgb(67, 159, 174);
   border-radius: 15px;
@@ -353,6 +343,13 @@ const StatCard = (props: { xResults: Props1 }) => {
   const [selected, setSelected] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleSelected = (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    setSelected(!selected);
+    setOpen(true);
+  };
 
   return (
     <Grid container>
@@ -393,10 +390,7 @@ const StatCard = (props: { xResults: Props1 }) => {
             <CompareButton2
               value="selected"
               selected={selected}
-              onClick={() => {
-                handleOpen();
-                setSelected(true);
-              }}
+              onClick={handleSelected}
             >
               {" "}
               <p style={{ fontSize: 17, fontWeight: 900 }}>SELECT</p>
@@ -406,7 +400,17 @@ const StatCard = (props: { xResults: Props1 }) => {
       </CardContainer>
       {/* Details Modal declaration */}
       <Grid item xs={3} sm={3} md={3} lg={3}>
-        <Details xResults={props.xResults} sOpen={open} />
+      <Modal
+        hideBackdrop={true}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+         <Box sx={style}>
+        <Details xResults={props.xResults} sOpen={open}/>
+        </Box>
+      </Modal>
       </Grid>
     </Grid>
   );

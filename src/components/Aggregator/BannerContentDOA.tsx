@@ -534,124 +534,124 @@ interface Props {}
 // returns a form that allows query parameters to be selected for defi options //
 const BannerContentDOA: React.FC<Props> = () => {
 
-    const value = useState('');
-    const history = useHistory();
-    const classes = useStyles();
 
-    // Set state and value for form selections //
-    const [underlying, setUnderlying] = useState("");
-    const [expiry, setExpiry] = useState("");
-    const [selected, setSelected] = React.useState<boolean>(false);
-    const [selected2, setSelected2] = React.useState<boolean>(false);
-    const [strike, setStrike] = useState("");
-    const [amount, setAmount] = useState(0.5);
-    const [optionType, setOptionType] = useState("");
+  const value = useState('');
+  const history = useHistory();
+  const classes = useStyles();
 
-    const handleChange = (event: { target: { value: string } }) => {
-      setUnderlying(event.target.value);
-    };
-    const handleChange2 = (event: { target: { value: string } }) =>{
-      setExpiry(event.target.value);
-    };
-    const handleChange3 = (event: { target: { value: string } }) =>{
-      setStrike(event.target.value);
-    };
+  // Set state and value for form selections //
+  const [underlying, setUnderlying] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [strike, setStrike] = useState("");
+  const [option, setOption] = React.useState<string | null>('');
+  const [amount, setAmount] = useState(0.5);
+
+  const handleChange = (event: { target: { value: string } }) => {
+    setUnderlying(event.target.value);
+  };
+  const handleChange2 = (event: { target: { value: string } }) =>{
+    setExpiry(event.target.value);
+  };
+  const handleChange3 = (event: { target: { value: string } }) =>{
+    setStrike(event.target.value);
+  };
+  const handleChange4 = (event: { target: { value: number }}) =>{
+    setAmount(Number(event.target.value));
+  };
+
+const handleOption = (
+  event: React.MouseEvent<HTMLElement>,
+  newOption: string | null,
+) => {
+  setOption(newOption);
+};
+
+const BTC = () => {
+  <img src={btc} alt='' />
+};
+const BNB = () => {
+  <img src={bnb} alt='' />
+};
+const LUNA = () => {
+  <img src={luna} alt='' />
+};
+const ETH = () => {
+  <img src={eth} alt='' />
+};
   
-  const handleSelected = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: string ) =>{
-    setOptionType(value);
-    /* eslint-disable  @typescript-eslint/no-unused-expressions */
-    optionType == "call" ? (setSelected(!selected), setSelected2(!setSelected)) : (setSelected2(!selected2), setSelected(!setSelected2));
-  };
+  // Array of tokens for underlying asset dropdown //
+  const data = [
+    "BTC",
+    "BNB",
+    "LUNA",
+    "ETH"       
+  ];
 
-  const BTC = () => {
-    <img src={btc} alt='' />
-  };
-  const BNB = () => {
-    <img src={bnb} alt='' />
-  };
-  const LUNA = () => {
-    <img src={luna} alt='' />
-  };
-  const ETH = () => {
-    <img src={eth} alt='' />
-  };
-    
-    // Array of tokens for underlying asset dropdown //
-    const data = [
-      "BTC",
-      "BNB",
-      "LUNA",
-      "ETH"       
-    ];
+  // Creates an array of values selected in the aggregator form to submit //
 
-    // Creates an array of values selected in the aggregator form to submit //
-  
-  
-  const handleQuery = (submitParameters: any) => {
-    alert(JSON.stringify([submitParameters]))
-  };
 
-  const submitParameters = [optionType, underlying, strike, expiry, amount];
+const handleQuery = (submitParameters: any) => {
+  alert(JSON.stringify([submitParameters]))
+};
 
-    return ( 
-      <Grid container direction="column">
-        
-        {/* Derivatives Aggregator title container */}
-        <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
-          <Grid item>
-            <StyledHeader>
-              <TitleText>Derivatives Aggregator</TitleText>
-            </StyledHeader>
-          </Grid>
+const submitParameters = [option, underlying, strike, expiry, amount];
+
+  return ( 
+    <Grid container direction="column">
+      
+      {/* Derivatives Aggregator title container */}
+      <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+        <Grid item>
+          <StyledHeader>
+            <TitleText>Derivatives Aggregator</TitleText>
+          </StyledHeader>
         </Grid>
+      </Grid>
 
-        <Grid container direction="row" justifyContent="center">
-            
-          {/* Left side of container */}
-          <ItemContainer>
-            
-              {/* Option type */}
-              <Grid item xs={2} md={2} className={classes.textCont1}>
-                <HeaderText>Option Type</HeaderText>
-              </Grid>
-
-              {/* Call/put buttons */}
-              <Grid item xs={2} md={2} className={classes.textContTopL}>
-              <ToggleButtonGroup
-                  value={optionType}
-                  exclusive
-                  onChange={handleSelected}
-                  aria-label="option select"
-              >
-              <ButtonEdits
-                    selected={selected}
-                    className={classes.ButtonToggle}
-                    value="call"
-                  aria-label="call"
-                >{" "}<p
-                style={{
-                  fontSize: 17,
-                  fontWeight: 900,
-                }}
-                >CALL 
-                  </p>
-              </ButtonEdits>
-              <ButtonEdits2
-                selected={selected2}
-                className={classes.ButtonToggle}
-                value="put"
-                aria-label="put"
-                >{" "}<p
-                style={{
-                  fontSize: 17,
-                  fontWeight: 900,
-                }}
-                >PUT
-                  </p>
-              </ButtonEdits2>
-              </ToggleButtonGroup>
+      <Grid container direction="row" justifyContent="center">
+          
+        {/* Left side of container */}
+        <ItemContainer>
+          
+            {/* Option type */}
+            <Grid item xs={2} md={2} className={classes.textCont1}>
+              <HeaderText>Option Type</HeaderText>
             </Grid>
-            
+
+            {/* Call/put buttons */}
+            <Grid item xs={2} md={2} className={classes.textContTopL}>
+            <ToggleButtonGroup
+                value={option}
+                exclusive
+                onChange={handleOption}
+                aria-label="option select"
+            >
+            <ButtonEdits 
+                  className={classes.ButtonToggle}
+                  value="call"
+                aria-label="call"
+              >{" "}<p
+              style={{
+                fontSize: 17,
+                fontWeight: 900,
+              }}
+              >CALL 
+                </p>
+            </ButtonEdits>
+            <ButtonEdits 
+              className={classes.ButtonToggle}
+              value="put"
+              aria-label="put"
+              >{" "}<p
+              style={{
+                fontSize: 17,
+                fontWeight: 900,
+              }}
+              >PUT
+                </p>
+            </ButtonEdits>
+            </ToggleButtonGroup>
+          </Grid>
               {/* Underlysing Asset dropdown selector*/}
               <Grid item xs={2} md={4} className={classes.textCont1}>
                 <HeaderText>Underlying Asset</HeaderText>
@@ -729,7 +729,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             {/* Order amount slider  */}
             <Grid item xs={4} md={10} className={classes.textCont8}>
               <Title1>Order Amount</Title1>
-              <AmountSlider amount={amount} setAmount={setAmount}/>
+              <AmountSlider amount={amount} setAmount={setAmount} end={underlying}/>
               <FooterText>
                 <ThemeProvider theme={theme}>
                   Need a larger amount? Try{" "}
