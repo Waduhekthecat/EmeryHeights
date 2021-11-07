@@ -93,7 +93,7 @@ const style = {
   top: "14%",
   left: "1.8%",
   width: "22%",
-  height: "600px",
+  height: "800px",
   zIndex: "1",
   borderRadius: "15px",
   bgcolor: "#2D93A6",
@@ -101,110 +101,100 @@ const style = {
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
-const Details = (props: { xResults: Props1, sOpen: boolean}) => {
+const Details = (props: { xResults: Props1; sOpen: boolean }) => {
   const [open, setOpen] = React.useState(props.sOpen);
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
   const handleClose = () => setOpen(false);
   const handleClose2 = () => setOpen2(false);
-  
 
   return (
-          <Grid container direction="column">
-            <Container>
-              <IconButton
-                onClick={handleClose}
-                sx={{
-                  cursor: "pointer",
-                  marginTop: "5px",
-                  marginLeft: "93%",
-                  width: "20px",
-                }}
-              ></IconButton>
+    <Grid container direction="column">
+      <Container>
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            cursor: "pointer",
+            marginTop: "5px",
+            marginLeft: "93%",
+            width: "20px",
+          }}
+        ></IconButton>
 
-              {/* Platform Name */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <HederTitle>
-                  {" "}
-                  Platform: {props.xResults.Results.platformD}
-                </HederTitle>
-              </Grid>
+        {/* Platform Name */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <HederTitle> Platform: {props.xResults.Results.platformD}</HederTitle>
+        </Grid>
 
-              {/* Option type and Underlying asset */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>
-                  {props.xResults.Results.optionD} on{" "}
-                  {props.xResults.Results.underlyingD}
-                </Description>
-              </Grid>
-              <br />
+        {/* Option type and Underlying asset */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>
+            {props.xResults.Results.optionD} on{" "}
+            {props.xResults.Results.underlyingD}
+          </Description>
+        </Grid>
+        <br />
 
-              {/* Historical Chart     */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description1>
-                  View historical chart {props.xResults.Results.chartD}
-                </Description1>
-              </Grid>
+        {/* Historical Chart     */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description1>
+            View historical chart {props.xResults.Results.chartD}
+          </Description1>
+        </Grid>
 
-              {/* Strike Price */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>
-                  Strike Price: {props.xResults.Results.strikeD}
-                </Description>
-              </Grid>
+        {/* Strike Price */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>
+            Strike Price: {props.xResults.Results.strikeD}
+          </Description>
+        </Grid>
 
-              {/* Date of Expiry */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>
-                  Expires: {props.xResults.Results.expiryD}
-                </Description>
-              </Grid>
+        {/* Date of Expiry */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>Expires: {props.xResults.Results.expiryD}</Description>
+        </Grid>
 
-              {/* Option amount */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>Qty: {props.xResults.Results.amountD}</Description>
-              </Grid>
+        {/* Option amount */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>Qty: {props.xResults.Results.amountD}</Description>
+        </Grid>
 
-              {/* Gas fee */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>
-                  Gas Fee: {props.xResults.Results.gasD}
-                </Description>
-              </Grid>
+        {/* Gas fee */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>Gas Fee: {props.xResults.Results.gasD}</Description>
+        </Grid>
 
-              {/* Days left until expiry */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <Description>
-                  ({props.xResults.Results.countdownD} days left for expiry)
-                </Description>
-                <br />
-                <br />
-              </Grid>
+        {/* Days left until expiry */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <Description>
+            ({props.xResults.Results.countdownD} days left for expiry)
+          </Description>
+          <br />
+          <br />
+        </Grid>
 
-              {/* Premium  */}
-              <Grid item xs={6} sm={3} md={3} lg={12}>
-                <HederTitle>
-                  Total Cost: {props.xResults.Results.premiumD}
-                </HederTitle>
-              </Grid>
+        {/* Premium  */}
+        <Grid item xs={6} sm={3} md={3} lg={12}>
+          <HederTitle>Total Cost: {props.xResults.Results.premiumD}</HederTitle>
+        </Grid>
 
-              {/* Purchase Button */}
-              <Grid item xs={12} sm={12} md={12} lg={12}>
-                <QueryButton onClick={handleOpen2}>Purchase</QueryButton>
-                <Modal
-                  open={open2}
-                  onClose={handleClose2}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style1}>
-                    <PurchaseModal submit={props.xResults} />
-                  </Box>
-                </Modal>
-              </Grid>
-              <Grid item></Grid>
-            </Container>
-          </Grid>
+        {/* Purchase Button */}
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <QueryButton onClick={handleOpen2}>Purchase</QueryButton>
+          <Modal
+            open={open2}
+            onClose={handleClose2}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style1}>
+              <PurchaseModal submit={props.xResults} />
+            </Box>
+          </Modal>
+        </Grid>
+        <Grid item></Grid>
+      </Container>
+    </Grid>
   );
 };
 
@@ -344,9 +334,7 @@ const StatCard = (props: { xResults: Props1 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleSelected = (
-    event: React.MouseEvent<HTMLElement>
-  ) => {
+  const handleSelected = (event: React.MouseEvent<HTMLElement>) => {
     setSelected(!selected);
     setOpen(true);
   };
@@ -400,17 +388,17 @@ const StatCard = (props: { xResults: Props1 }) => {
       </CardContainer>
       {/* Details Modal declaration */}
       <Grid item xs={3} sm={3} md={3} lg={3}>
-      <Modal
-        hideBackdrop={true}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-         <Box sx={style}>
-        <Details xResults={props.xResults} sOpen={open}/>
-        </Box>
-      </Modal>
+        <Modal
+          hideBackdrop={true}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Details xResults={props.xResults} sOpen={open} />
+          </Box>
+        </Modal>
       </Grid>
     </Grid>
   );
