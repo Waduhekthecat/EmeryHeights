@@ -13,11 +13,11 @@ import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
 import AmountSlider from "./AmountSlider";
-import MuiInput from '@mui/material/Input';
+import MuiInput from "@mui/material/Input";
 import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import btc from "../../assets/images/btc.png";
 import bnb from "../../assets/images/bnb.png";
 import luna from "../../assets/images/luna.png";
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   resize: {
-    fontSize:50,
+    fontSize: 50,
   },
   textCont: {
     display: "flex",
@@ -114,7 +114,6 @@ const useStyles = makeStyles((theme) => ({
   textCont1: {
     display: "flex",
     flexDirection: "column",
-    
   },
   textCont8: {
     display: "flex",
@@ -157,8 +156,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
   dropdownMenu: {
-    color:"white important",
-    backgroundColor:"#3E4251 !important"
+    color: "white important",
+    backgroundColor: "#3E4251 !important",
   },
   HeaderTitle: {
     borderTopRightRadius: 10,
@@ -219,12 +218,11 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "2px",
     borderColor: "white",
     color: "rgb(87,87,87) !important",
-    '&:focus': {
-    fontColor: "rgb(256,256,256) !important",
-  }
-},
+    "&:focus": {
+      fontColor: "rgb(256,256,256) !important",
+    },
+  },
 }));
-
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -272,8 +270,8 @@ const MyNativeSelect = withStyles({
   },
   select: {
     fill: "#3E4251 !important",
-    color: "black"
-  }
+    color: "black",
+  },
 })(NativeSelect);
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
@@ -290,7 +288,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     height: 60,
     fontWeight: 600,
     fontSize: 23,
-    width:'320px',
+    width: "320px",
     paddingLeft: "20px",
     font: "Apple Color Emoji",
     fontFamily: [
@@ -305,21 +303,20 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-
   },
 }));
 const CssTextField = withStyles({
   root: {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "rgb(67,159,174) !important",
       },
-      '&!:hover fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
-        cursor:'pointer'
+      "&!:hover fieldset": {
+        borderColor: "rgb(67,159,174) !important",
+        cursor: "pointer",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
+      "&.Mui-focused fieldset": {
+        borderColor: "rgb(67,159,174) !important",
       },
       color: "white !important",
       background: "#3E4251 !important",
@@ -329,7 +326,6 @@ const CssTextField = withStyles({
       width: "323px",
       height: "104px",
       padding: "6x 3px 10px 8px",
-      
     },
   },
 })(TextField);
@@ -357,7 +353,7 @@ const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   }
 );
 
-// Styles // 
+// Styles //
 const StyledHeader = styledCom.div`
   width: 900px;
   height: 150px; 
@@ -412,7 +408,7 @@ const ItemContainer2 = styledCom.div`
     padding-left:2%;
   }
 `;
-  const ButtonEdits = styledCom(ToggleButton)`
+const ButtonEdits = styledCom(ToggleButton)`
     background: rgb(255, 255, 255) !important;
     backdrop-filter: blur(4px) !important;
     border-radius: 10px !important;
@@ -533,9 +529,7 @@ interface Props {}
 
 // returns a form that allows query parameters to be selected for defi options //
 const BannerContentDOA: React.FC<Props> = () => {
-
-
-  const value = useState('');
+  const value = useState("");
   const history = useHistory();
   const classes = useStyles();
 
@@ -543,62 +537,55 @@ const BannerContentDOA: React.FC<Props> = () => {
   const [underlying, setUnderlying] = useState("");
   const [expiry, setExpiry] = useState("");
   const [strike, setStrike] = useState("");
-  const [option, setOption] = React.useState<string | null>('');
+  const [option, setOption] = React.useState<string | null>("");
   const [amount, setAmount] = useState(0.5);
 
   const handleChange = (event: { target: { value: string } }) => {
     setUnderlying(event.target.value);
   };
-  const handleChange2 = (event: { target: { value: string } }) =>{
+  const handleChange2 = (event: { target: { value: string } }) => {
     setExpiry(event.target.value);
   };
-  const handleChange3 = (event: { target: { value: string } }) =>{
+  const handleChange3 = (event: { target: { value: string } }) => {
     setStrike(event.target.value);
   };
-  const handleChange4 = (event: { target: { value: number }}) =>{
+  const handleChange4 = (event: { target: { value: number } }) => {
     setAmount(Number(event.target.value));
   };
 
-const handleOption = (
-  event: React.MouseEvent<HTMLElement>,
-  newOption: string | null,
-) => {
-  setOption(newOption);
-};
+  const handleOption = (
+    event: React.MouseEvent<HTMLElement>,
+    newOption: string | null
+  ) => {
+    setOption(newOption);
+  };
 
-const BTC = () => {
-  <img src={btc} alt='' />
-};
-const BNB = () => {
-  <img src={bnb} alt='' />
-};
-const LUNA = () => {
-  <img src={luna} alt='' />
-};
-const ETH = () => {
-  <img src={eth} alt='' />
-};
-  
+  const BTC = () => {
+    <img src={btc} alt="" />;
+  };
+  const BNB = () => {
+    <img src={bnb} alt="" />;
+  };
+  const LUNA = () => {
+    <img src={luna} alt="" />;
+  };
+  const ETH = () => {
+    <img src={eth} alt="" />;
+  };
+
   // Array of tokens for underlying asset dropdown //
-  const data = [
-    "BTC",
-    "BNB",
-    "LUNA",
-    "ETH"       
-  ];
+  const data = ["BTC", "BNB", "XRP", "ETH"];
 
   // Creates an array of values selected in the aggregator form to submit //
 
+  const handleQuery = (submitParameters: any) => {
+    alert(JSON.stringify([submitParameters]));
+  };
 
-const handleQuery = (submitParameters: any) => {
-  alert(JSON.stringify([submitParameters]))
-};
+  const submitParameters = [option, underlying, strike, expiry, amount];
 
-const submitParameters = [option, underlying, strike, expiry, amount];
-
-  return ( 
+  return (
     <Grid container direction="column">
-      
       {/* Derivatives Aggregator title container */}
       <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
         <Grid item>
@@ -609,159 +596,165 @@ const submitParameters = [option, underlying, strike, expiry, amount];
       </Grid>
 
       <Grid container direction="row" justifyContent="center">
-          
         {/* Left side of container */}
         <ItemContainer>
-          
-            {/* Option type */}
-            <Grid item xs={2} md={2} className={classes.textCont1}>
-              <HeaderText>Option Type</HeaderText>
-            </Grid>
+          {/* Option type */}
+          <Grid item xs={2} md={2} className={classes.textCont1}>
+            <HeaderText>Option Type</HeaderText>
+          </Grid>
 
-            {/* Call/put buttons */}
-            <Grid item xs={2} md={2} className={classes.textContTopL}>
+          {/* Call/put buttons */}
+          <Grid item xs={2} md={2} className={classes.textContTopL}>
             <ToggleButtonGroup
-                value={option}
-                exclusive
-                onChange={handleOption}
-                aria-label="option select"
+              value={option}
+              exclusive
+              onChange={handleOption}
+              aria-label="option select"
             >
-            <ButtonEdits 
-                  className={classes.ButtonToggle}
-                  value="call"
+              <ButtonEdits
+                className={classes.ButtonToggle}
+                value="call"
                 aria-label="call"
-              >{" "}<p
-              style={{
-                fontSize: 17,
-                fontWeight: 900,
-              }}
-              >CALL 
+              >
+                {" "}
+                <p
+                  style={{
+                    fontSize: 17,
+                    fontWeight: 900,
+                  }}
+                >
+                  CALL
                 </p>
-            </ButtonEdits>
-            <ButtonEdits 
-              className={classes.ButtonToggle}
-              value="put"
-              aria-label="put"
-              >{" "}<p
-              style={{
-                fontSize: 17,
-                fontWeight: 900,
-              }}
-              >PUT
+              </ButtonEdits>
+              <ButtonEdits
+                className={classes.ButtonToggle}
+                value="put"
+                aria-label="put"
+              >
+                {" "}
+                <p
+                  style={{
+                    fontSize: 17,
+                    fontWeight: 900,
+                  }}
+                >
+                  PUT
                 </p>
-            </ButtonEdits>
+              </ButtonEdits>
             </ToggleButtonGroup>
           </Grid>
-              {/* Underlysing Asset dropdown selector*/}
-              <Grid item xs={2} md={4} className={classes.textCont1}>
-                <HeaderText>Underlying Asset</HeaderText>
-                <DataPickerArea style={{ width: "310px" }}>
-                  <FormControl variant="standard" className={classes.dropdown}>
-                    <MyNativeSelect
-                      value={underlying}
-                      onChange={handleChange}
-                      input={<BootstrapInput />}
-                    >
-                      <option className={classes.dropdownMenu} value={'BTC'}>
-                       {data[0]}
-                      </option>
-                      <option className={classes.dropdownMenu} value={'BNB'}>
-                       {data[1]}
-                      </option>
-                      <option className={classes.dropdownMenu} value={'LUNA'}>
-                      {data[2]}
-                      </option>
-                      <option className={classes.dropdownMenu} value={'ETH'}>
-                      {data[3]}
-                      
-                      </option>
-                    </MyNativeSelect>
-                  </FormControl>
-                </DataPickerArea>
-              </Grid>
+          {/* Underlysing Asset dropdown selector*/}
+          <Grid item xs={2} md={4} className={classes.textCont1}>
+            <HeaderText>Underlying Asset</HeaderText>
+            <DataPickerArea style={{ width: "310px" }}>
+              <FormControl variant="standard" className={classes.dropdown}>
+                <MyNativeSelect
+                  value={underlying}
+                  onChange={handleChange}
+                  input={<BootstrapInput />}
+                >
+                  <option className={classes.dropdownMenu} value={"BTC"}>
+                    {data[0]}
+                  </option>
+                  <option className={classes.dropdownMenu} value={"BNB"}>
+                    {data[1]}
+                  </option>
+                  <option className={classes.dropdownMenu} value={"XRP"}>
+                    {data[2]}
+                  </option>
+                  <option className={classes.dropdownMenu} value={"ETH"}>
+                    {data[3]}
+                  </option>
+                </MyNativeSelect>
+              </FormControl>
+            </DataPickerArea>
+          </Grid>
 
-              {/* Expiry date selector */}
-              <Grid item xs={2} md={4} className={classes.textCont}>
-                <Title2>Expiration</Title2>
-                <LocalizationProvider 
-                dateAdapter={AdapterDateFns}>
-                  <CssTextField
-                    variant="outlined"
-                    value={expiry}
-                    id="date"
-                    type="date"
-                    defaultValue="2009-01-03"
-                    sx={{ width: 310, height: 55}}
-                    inputProps={{style: {fontSize: 24 }}}
-                    onChange={handleChange2}
-                  />
-                </LocalizationProvider>
-              </Grid>
-          </ItemContainer>
-          
-          {/* Right side of container */}
-          <ItemContainer2>
-            
-            {/* Strike price text input */}
-            <Grid item xs={2} md={8} className={classes.textContTopL}>
-              <HeaderText2>Strike Price:</HeaderText2>
-              <Grid item xs={4} md={5} className={classes.textContTopR}>
+          {/* Expiry date selector */}
+          <Grid item xs={2} md={4} className={classes.textCont}>
+            <Title2>Expiration</Title2>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <CssTextField
+                variant="outlined"
+                value={expiry}
+                id="date"
+                type="date"
+                defaultValue="2009-01-03"
+                sx={{ width: 310, height: 55 }}
+                inputProps={{ style: { fontSize: 24 } }}
+                onChange={handleChange2}
+              />
+            </LocalizationProvider>
+          </Grid>
+        </ItemContainer>
+
+        {/* Right side of container */}
+        <ItemContainer2>
+          {/* Strike price text input */}
+          <Grid item xs={2} md={8} className={classes.textContTopL}>
+            <HeaderText2>Strike Price:</HeaderText2>
+            <Grid item xs={4} md={5} className={classes.textContTopR}>
               <ThemeProvider theme={theme}>
-                <StrikeArea 
-                onChange={handleChange3}
-                disableUnderline
-                    style={{
-                  marginLeft: "20px",
-                  width: "160px",
-                }}
-                inputProps={{
-                          defaultValue: 60000,
-                          step: 100,
-                          min: 1000,
-                          max: 100000,
-                          type: 'number',
-                          'aria-labelledby': 'input-slider',
-                        }} />
-                </ThemeProvider>
-              </Grid>
+                <StrikeArea
+                  onChange={handleChange3}
+                  disableUnderline
+                  style={{
+                    marginLeft: "20px",
+                    width: "160px",
+                  }}
+                  inputProps={{
+                    defaultValue: 60000,
+                    step: 100,
+                    min: 1000,
+                    max: 100000,
+                    type: "number",
+                    "aria-labelledby": "input-slider",
+                  }}
+                />
+              </ThemeProvider>
             </Grid>
+          </Grid>
 
-            {/* Order amount slider  */}
-            <Grid item xs={4} md={10} className={classes.textCont8}>
-              <Title1>Order Amount</Title1>
-              <AmountSlider amount={amount} setAmount={setAmount} end={underlying}/>
-              <FooterText>
-                <ThemeProvider theme={theme}>
-                  Need a larger amount? Try{" "}
-                  <em
-                    style={{
-                      fontSize: 19,
-                      color: "#139A6A",
-                      fontStyle: "italic",
-                      fontWeight: 900,
-                    }}
-                  >
-                    Smart Order Routing
-                  </em>
-                </ThemeProvider>
-              </FooterText>
-            </Grid>
+          {/* Order amount slider  */}
+          <Grid item xs={4} md={10} className={classes.textCont8}>
+            <Title1>Order Amount</Title1>
+            <AmountSlider
+              amount={amount}
+              setAmount={setAmount}
+              end={underlying}
+            />
+            <FooterText>
+              <ThemeProvider theme={theme}>
+                Need a larger amount? Try{" "}
+                <em
+                  style={{
+                    fontSize: 19,
+                    color: "#139A6A",
+                    fontStyle: "italic",
+                    fontWeight: 900,
+                  }}
+                >
+                  Smart Order Routing
+                </em>
+              </ThemeProvider>
+            </FooterText>
+          </Grid>
 
-            {/* Query Button */}
-            <Grid item xs={4} md={6} className={classes.textCont4}>
-              <QueryButton
-                onClick={() => {
-                  handleQuery(submitParameters);
-                  history.push("/advanced");
-                }}>
-                Begin Query
-              </QueryButton>
-            </Grid>
-          </ItemContainer2>
-
-        </Grid>
+          {/* Query Button */}
+          <Grid item xs={4} md={6} className={classes.textCont4}>
+            <QueryButton
+              onClick={() => {
+                handleQuery(submitParameters);
+                history.push("/advanced");
+              }}
+            >
+              Begin Query
+            </QueryButton>
+          </Grid>
+        </ItemContainer2>
       </Grid>
-    );
-  };
+    </Grid>
+  );
+};
 
-  export default BannerContentDOA;
+export default BannerContentDOA;
