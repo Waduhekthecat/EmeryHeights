@@ -81,7 +81,7 @@ const ItemList: React.FC<Props> = ({}) => {
   const history = useHistory();
 
   return (
-    <Grid container className={ScreenSize}>
+    <Grid container>
       <Grid container direction ="row" justifyContent="center" xs={12} sm={12} md={12} lg="auto">
     <ItemContainer>
       <HeaderArea>
@@ -89,7 +89,7 @@ const ItemList: React.FC<Props> = ({}) => {
         <HaederImage src={stationImage} />
       </HeaderArea>
       <Description>Select a service to get started</Description>
-      <Grid container className={ScreenSize} spacing={4} justify-content="center">
+      <Grid container spacing={4} justify-content="center">
         <Grid
           item
           justify-content="center"

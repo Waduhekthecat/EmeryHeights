@@ -9,139 +9,39 @@ import NumberFormat from "react-number-format";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import InputBase from "@mui/material/InputBase";
-import StrikeInput from "./StrikeInput";
 import { useHistory } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { colors } from "../../styles";
-import CallPutToggle from "./CallPutToggle";
 import AmountSlider from "./AmountSlider";
+import MuiInput from '@mui/material/Input';
 import { Input, InputAdornment } from "@material-ui/core";
 import { string } from "prop-types";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-//brand palette #2D93A6 green, #504798 dark purp, #5E6CFA blue, 3E4251 border shadow drop down right 
 
-interface CustomProps {
-  onChange: (event: { target: { name: string; value: string } }) => void;
-  name: string;
-}
-
-const MyNativeSelect = withStyles({
-  icon: {
-    weight: "800",
-    width: "2.1em !important",
-    height: "2.1em !important",
-    fill: "white !important",
-    marginTop: -10,
-    color: "black !important",
-    borderRadius: 10,
-  },
-  select: {
-    fill: "#3E4251 !important",
-    color: "black"
-  }
-})(NativeSelect);
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-    color: "black !important",
-    background: "#3E4251 !important",
-  },
-  "& .MuiInputBase-input": {
-    position: "relative",
-    background: "#3E4251 !important",
-    color: "white !important",
-    borderRadius: "5px !important",
-    border: `0px solid rgba(${colors.border}) !important`,
-    height: 60,
-    fontWeight: 600,
-    fontSize: 23,
-    width:'320px',
-    paddingLeft: "20px",
-    font: "Apple Color Emoji",
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
-
-  },
-}));
-const CssTextField = withStyles({
-  root: {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
-      },
-      '&!:hover fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
-        cursor:'pointer'
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'rgb(67,159,174) !important',
-      },
-      color: "white !important",
-      background: "#3E4251 !important",
-      marginLeft: "10px",
-      borderRadius: "8px",
-      marginTop: "-5px",
-      width: "323px",
-      height: "104px",
-      padding: "6x 3px 10px 8px",
-      
+// Themes //
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#46AD8D",
+      contrastText: "#ffffff", //button text white instead of black
+    },
+    background: {
+      default: "#3E4251",
     },
   },
-})(TextField);
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
-
-const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
-  function NumberFormatCustom(props, ref) {
-    const { onChange, ...other } = props;
-
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={ref}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        isNumericString
-        prefix="$"
-      />
-    );
-  }
-);
-
-interface State {
-  numberformat: string;
-}
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  height: 300,
-  bgcolor: "#ffffff",
-  border: "1px solid #000",
-  borderRadius: 5,
-  boxShadow: 24,
-};
-
-// Material ui style
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "90%",
@@ -311,298 +211,540 @@ const useStyles = makeStyles((theme) => ({
     width: "253px !important",
     height: "55px !important",
     color: "white",
+  },
+  ButtonToggle: {
+    borderWidth: "2px",
+    borderColor: "white",
+    color: "rgb(0,0,0) !important",
+    '&:focus': {
+    fontColor: "rgb(256,256,256) !important",
   }
+},
 }));
 
-// styled-components
-const StyledHeader = styledCom.div`
-width: 900px;
-height: 150px; 
-padding-left:2%;
-padding-right:2%;
-border-right-radius:none;
-border-top-left-radius:20px;
-border-top-right-radius:20px;
-box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-background-color: rgb(31, 36, 54);
-border:9px
-     rgb(${colors.gradLight});
 
+interface CustomProps {
+  onChange: (event: { target: { name: string; value: string } }) => void;
+  name: string;
 }
+
+const StrikeArea = styled(MuiInput)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+  },
+  "& .MuiInputBase-input": {
+    position: "relative",
+    background: "#3E4251 !important",
+    color: "white !important",
+    borderRadius: "5px !important",
+    border: `1px solid rgba(${colors.border}) !important`,
+    height: "45px",
+    width: "260px",
+    fontSize: 28,
+    type: "number",
+    paddingLeft: "1.2em",
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
+}));
+const MyNativeSelect = withStyles({
+  icon: {
+    weight: "800",
+    width: "2.1em !important",
+    height: "2.1em !important",
+    fill: "white !important",
+    marginTop: -10,
+    color: "black !important",
+    borderRadius: 10,
+  },
+  select: {
+    fill: "#3E4251 !important",
+    color: "black"
+  }
+})(NativeSelect);
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3),
+    color: "black !important",
+    background: "#3E4251 !important",
+  },
+  "& .MuiInputBase-input": {
+    position: "relative",
+    background: "#3E4251 !important",
+    color: "white !important",
+    borderRadius: "5px !important",
+    border: `0px solid rgba(${colors.border}) !important`,
+    height: 60,
+    fontWeight: 600,
+    fontSize: 23,
+    width:'320px',
+    paddingLeft: "20px",
+    font: "Apple Color Emoji",
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+
+  },
+}));
+const CssTextField = withStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'rgb(67,159,174) !important',
+      },
+      '&!:hover fieldset': {
+        borderColor: 'rgb(67,159,174) !important',
+        cursor:'pointer'
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'rgb(67,159,174) !important',
+      },
+      color: "white !important",
+      background: "#3E4251 !important",
+      marginLeft: "10px",
+      borderRadius: "8px",
+      marginTop: "-5px",
+      width: "323px",
+      height: "104px",
+      padding: "6x 3px 10px 8px",
+      
+    },
+  },
+})(TextField);
+const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
+    );
+  }
+);
+
+// Styles // 
+const StyledHeader = styledCom.div`
+  width: 900px;
+  height: 150px; 
+  padding-left:2%;
+  padding-right:2%;
+  border-right-radius:none;
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+  box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+  background-color: rgb(31, 36, 54);
+  border:9px
+    rgb(${colors.gradLight});
+
+  }
 `;
 const ItemContainer = styledCom.div`
-    width: 400px !important; 
-    height: 450px;
-    display: flex;  
-    flex-direction: column !important;
+  width: 400px !important; 
+  height: 450px;
+  display: flex;  
+  flex-direction: column !important;
+  padding-left:1%;
+  border-right-radius:none;
+  border-bottom-left-radius:20px;
+  border-outline: white;
+  box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+  background-color: #2D93A6;
+  border:4px
+    rgb(${colors.gradLight});
+  @media (max-width: 720px) {
+    width: 75%;
+    height: 75%;
     padding-left:2%;
-    border-right-radius:none;
-    border-bottom-left-radius:20px;
-    border-outline: white;
-    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: #2D93A6;
-    border:4px
-     rgb(${colors.gradLight});
-    @media (max-width: 720px) {
-        width: 75%;
-        height: 75%;
-        padding-left:2%;
-        padding-right:2%;
-    }
+    padding-right:2%;
+  }
 `;
 const ItemContainer2 = styledCom.div`
-    width: 500px !important;
-    height: 450px;
-    display: flex;  
-    flex-direction: column !important;
+  width: 500px !important;
+  height: 450px;
+  display: flex;  
+  flex-direction: column !important;
+  padding-right:2%;
+  border-left-radius:none;
+  border-bottom-right-radius:20px;
+  box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
+  background-color: #ffffff;
+  border:4px
+    rgb(${colors.gradDark});
+  @media (max-width: 720px) {
+    width: 75%;
+    height: 75%;
     padding-right:2%;
-    border-left-radius:none;
-    border-bottom-right-radius:20px;
-    box-shadow: 5px 5px 5px rgba(10, 13, 27, 0.6);
-    background-color: #ffffff;
-    border:4px
-     rgb(${colors.gradDark});
-    @media (max-width: 720px) {
-        width: 75%;
-        height: 75%;
-        padding-right:2%;
-        padding-left:2%;
-    }
+    padding-left:2%;
+  }
 `;
-const Title = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-top:50px;
-`;
-const Title1 = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-top:-80px;
-    margin-bottom:25px;
-`;
-const Title2 = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-left:15px;
-    margin-top: -5px;
-`;
-const FooterText = styledCom.p`
-    font-size: 16px;
-    color: black;
-    text-align:center;
-    margin-top:15px;
-    margin-bottom:-15px;
-    margin-left:10px;
-`;
-const HeaderText = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-left: 15px;
-    margin-top: 30px;
-    width:190px
-`;
-const HeaderText2 = styledCom.p`
-    font-size: 23px;
-    color: black;
-    margin-left: 15px;
-    width:170px
-`;
-const TitleText = styledCom.p`
-    margin-top: .5em;
-    padding-top: 1em;
-    font-size: 40px;
-    text-shadow: 1px 1px 0px gray,
-                 1px 2px 0px blue;
-    color: white;
-    text-align:center;
-    align-self:center;
-`;
-
-const DataPickerArea = styledCom.div`
-    height:55px;
-    width: 320px !important;
-    display:flex;
-    margin-top:12px;
-    margin-bottom:5px;
-    margin-left:20px;
-    justify-content:center;
-    align-items:center;
-    @media (max-width: 550px) {
-        width: 220px;
-    }
-`;
-
-const QueryButton = styledCom.a`
-    margin-top:9em;
-    margin-left:3em;
-    display: flex;
-    align-self:center;
-    align-items:center;
-    justify-content:center;
-    border-radius: 5px;
-    width: 380px;
-    color:white;
-    font-size:20px;
-    font-weight:600;
-    height: 56px;
-    background-color:#504798;
+  const ButtonEdits = styledCom(ToggleButton)`
+    background: rgb(255, 255, 255) !important;
+    backdrop-filter: blur(4px) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(${colors.border}) !important;
+    height:50px !important;
+    width:145px !important;
+    display:flex !important;
+    margin-right: 35px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
     &:hover {
       cursor: pointer;
-      background-color: 3px solid rgb(${colors.fontColor});
-      text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
+    }
+    &.Mui-selected {
+      background: #504798 !important;
+      color: rgb(256,256,256) !important;
+    }
+`;
+const ButtonEdits2 = styledCom(ToggleButton)`
+    background: rgb(255, 255, 255) !important;
+    backdrop-filter: blur(4px) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(${colors.border}) !important;
+    height:50px !important;
+    width:145px !important;
+    display:flex !important;
+    margin-right: 35px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
+    &:hover {
+      cursor: pointer;
+    }
+    &.Mui-selected {
+      background: #504798 !important;
+      color: rgb(256,256,256) !important;
+    }
+`;
+const Title1 = styledCom.p`
+  font-size: 23px;
+  color: black;
+  margin-top:-60px;
+  margin-left: 15px;
+  margin-bottom:25px;
+`;
+const Title2 = styledCom.p`
+  font-size: 23px;
+  color: black;
+  margin-left:15px;
+  margin-top: -5px;
+`;
+const FooterText = styledCom.p`
+  font-size: 16px;
+  color: black;
+  text-align:center;
+  margin-top:15px;
+  margin-bottom:-15px;
+`;
+const HeaderText = styledCom.p`
+  font-size: 23px;
+  color: black;
+  margin-left: 15px;
+  margin-top: 30px;
+  width:190px
+`;
+const HeaderText2 = styledCom.p`
+  font-size: 23px;
+  color: black;
+  margin-left: 30px;
+  width:170px
+`;
+const TitleText = styledCom.p`
+  margin-top: .5em;
+  padding-top: 1em;
+  font-size: 40px;
+  text-shadow: 1px 1px 0px gray,
+                1px 2px 0px blue;
+  color: white;
+  text-align:center;
+  align-self:center;
+`;
+const DataPickerArea = styledCom.div`
+  height:55px;
+  width: 320px !important;
+  display:flex;
+  margin-top:12px;
+  margin-bottom:5px;
+  margin-left:20px;
+  justify-content:center;
+  align-items:center;
+  @media (max-width: 550px) {
+      width: 220px;
   }
-    
+`;
+const QueryButton = styledCom.a`
+  margin-top:9em;
+  margin-left:2em;
+  display: flex;
+  align-self:center;
+  align-items:center;
+  justify-content:center;
+  border-radius: 5px;
+  width: 380px;
+  color:white;
+  font-size:20px;
+  font-weight:600;
+  height: 56px;
+  background-color:#504798;
+  &:hover {
+    cursor: pointer;
+    background-color: 3px solid rgb(${colors.primary});
+    text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
+  }
 `;
 
-    interface Props {}
+interface Props {}
 
-    const BannerContentDOA: React.FC<Props> = () => {
-      const [value, setValue] = React.useState<Date | null>(new Date());
+// returns a form that allows query parameters to be selected for defi options //
+const BannerContentDOA: React.FC<Props> = () => {
 
-      const history = useHistory();
-      const classes = useStyles();
-      const [expiry, setExpiry] = useState("");
-      const [underlying, setUnderlying] = useState("");
+    const value = useState('');
+    const history = useHistory();
+    const classes = useStyles();
 
-      const data = [
-        "BTC",
-        "BNB",
-        "LUNA",
-        "ETH"       
-      ]
+    // Set state and value for form selections //
+    const [underlying, setUnderlying] = useState("");
+    const [expiry, setExpiry] = useState("");
+    const [selected, setSelected] = React.useState<boolean>(false);
+    const [selected2, setSelected2] = React.useState<boolean>(false);
+    const [strike, setStrike] = useState("");
+    const [amount, setAmount] = useState(0.5);
+    const [optionType, setOptionType] = useState("");
 
+    const handleChange = (event: { target: { value: string } }) => {
+      setUnderlying(event.target.value);
+    };
+    const handleChange2 = (event: { target: { value: string } }) =>{
+      setExpiry(event.target.value);
+    };
+    const handleChange3 = (event: { target: { value: string } }) =>{
+      setStrike(event.target.value);
+    };
   
-      const handleChange = (event: { target: { value: string } }) =>{
-        setUnderlying(event.target.value);
-      };
-      const handleChange2 = (event: { target: { value: string } }) => {
-        setExpiry(event.target.value);
-      };
-      
+  const handleSelected = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: string ) =>{
+    setOptionType(value);
+    /* eslint-disable  @typescript-eslint/no-unused-expressions */
+    optionType == "call" ? (setSelected(!selected), setSelected2(!setSelected)) : (setSelected2(!selected2), setSelected(!setSelected2));
+  };
 
+    // Array of tokens for underlying asset dropdown //
+    const data = [
+      "BTC",
+      "BNB",
+      "LUNA",
+      "ETH"       
+    ];
 
+    // Creates an array of values selected in the aggregator form to submit //
+  
+  
+  const handleQuery = (submitParameters: any) => {
+    alert(JSON.stringify([submitParameters]))
+  };
+
+  const submitParameters = [optionType, underlying, strike, expiry, amount];
+
+    return ( 
+      <Grid container direction="column">
         
-      const theme = createTheme({
-        palette: {
-          primary: {
-            main: "#46AD8D",
-            contrastText: "#ffffff", //button text white instead of black
-          },
-          background: {
-            default: "#3E4251",
-          },
-        },
-        breakpoints: {
-          values: {
-            xs: 0,
-            sm: 600,
-            md: 900,
-            lg: 1200,
-            xl: 1536,
-          },
-        },
-      });
-
-      return (
-        <Grid container direction="column">
-          <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
-            <Grid item>
-              <StyledHeader>
-                <TitleText>Derivatives Aggregator</TitleText>
-              </StyledHeader>
-            </Grid>
-          </Grid>
-          <Grid container direction="row" justifyContent="center">
-            <Grid item>
-              <ItemContainer>
-                <Grid item xs={2} md={2} className={classes.textCont1}>
-                  <HeaderText>Option Type</HeaderText>
-                </Grid>
-                <Grid item xs={2} md={2} className={classes.textContTopL}>
-                  <CallPutToggle />
-                </Grid>
-                <Grid item xs={2} md={4} className={classes.textCont1}>
-                  <HeaderText>Underlying Asset</HeaderText>
-                  <DataPickerArea style={{ width: "310px" }}>
-                    <FormControl variant="standard" className={classes.dropdown}>
-                      <MyNativeSelect
-                        value={underlying}
-                        onChange={handleChange}
-                        input={<BootstrapInput />}
-                      >
-                        <option className={classes.dropdownMenu} value={10}>
-                        {data[0]}
-                        </option>
-                        <option className={classes.dropdownMenu} value={20}>
-                        {data[1]}
-                        </option>
-                        <option className={classes.dropdownMenu} value={30}>
-                        {data[2]}
-                        </option>
-                        <option className={classes.dropdownMenu} value={40}>
-                        {data[3]}
-                        </option>
-                      </MyNativeSelect>
-                    </FormControl>
-                  </DataPickerArea>
-                </Grid>
-                <Grid item xs={2} md={4} className={classes.textCont}>
-                  <Title2>Expiration</Title2>
-                  <LocalizationProvider 
-                  dateAdapter={AdapterDateFns}>
-                    <CssTextField
-                      variant="outlined"
-                      id="date"
-                      type="date"
-                      defaultValue="2009-01-03"
-                      sx={{ width: 310, height: 55}}
-                      inputProps={{style: {fontSize: 24 }}}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-              </ItemContainer>
-            </Grid>
-            <ItemContainer2>
-              <Grid item xs={2} md={8} className={classes.textContTopL}>
-                <HeaderText2>Strike Price:</HeaderText2>
-                {/*Strike Price Input*/}
-                <Grid item xs={4} md={5} className={classes.textContTopR}>
-                  <StrikeInput />
-                </Grid>
-              </Grid>
-              <Grid item xs={4} md={10} className={classes.textCont8}>
-                <Title1>Order Amount</Title1>
-                <AmountSlider />
-                <FooterText>
-                  <ThemeProvider theme={theme}>
-                    Need a larger amount? Try{" "}
-                    <em
-                      style={{
-                        fontSize: 18,
-                        textDecoration: "underline",
-                        color: "#139A6A",
-                        fontStyle: "italic",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Smart Order Routing
-                    </em>
-                  </ThemeProvider>
-                </FooterText>
-              </Grid>
-              <Grid item xs={4} md={6} className={classes.textCont4}>
-                <QueryButton
-                  onClick={() => {
-                    history.push("/advanced");
-                  }}
-                >
-                  Begin Query
-                </QueryButton>
-              </Grid>
-            </ItemContainer2>
+        {/* Derivatives Aggregator title container */}
+        <Grid container justifyContent="center" xs={12} sm={12} md={12} lg="auto">
+          <Grid item>
+            <StyledHeader>
+              <TitleText>Derivatives Aggregator</TitleText>
+            </StyledHeader>
           </Grid>
         </Grid>
-      );
-    };
 
-export default BannerContentDOA;
+        <Grid container direction="row" justifyContent="center">
+            
+          {/* Left side of container */}
+          <ItemContainer>
+            
+              {/* Option type */}
+              <Grid item xs={2} md={2} className={classes.textCont1}>
+                <HeaderText>Option Type</HeaderText>
+              </Grid>
+
+              {/* Call/put buttons */}
+              <Grid item xs={2} md={2} className={classes.textContTopL}>
+              <ToggleButtonGroup
+                  value={optionType}
+                  exclusive
+                  onChange={handleSelected}
+                  aria-label="option select"
+              >
+              <ButtonEdits
+                    selected={selected}
+                    className={classes.ButtonToggle}
+                    value="call"
+                    aria-label="call"
+                >{" "}<p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 900,
+                }}
+                >CALL 
+                  </p>
+              </ButtonEdits>
+              <ButtonEdits2
+                selected={selected2}
+                className={classes.ButtonToggle}
+                value="put"
+                aria-label="put"
+                >{" "}<p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 900,
+                }}
+                >PUT
+                  </p>
+              </ButtonEdits2>
+              </ToggleButtonGroup>
+            </Grid>
+            
+              {/* Underlysing Asset dropdown selector*/}
+              <Grid item xs={2} md={4} className={classes.textCont1}>
+                <HeaderText>Underlying Asset</HeaderText>
+                <DataPickerArea style={{ width: "310px" }}>
+                  <FormControl variant="standard" className={classes.dropdown}>
+                    <MyNativeSelect
+                      value={underlying}
+                      onChange={handleChange}
+                      input={<BootstrapInput />}
+                    >
+                      <option className={classes.dropdownMenu} value={'BTC'}>
+                      {data[0]}
+                      </option>
+                      <option className={classes.dropdownMenu} value={'BNB'}>
+                      {data[1]}
+                      </option>
+                      <option className={classes.dropdownMenu} value={'LUNA'}>
+                      {data[2]}
+                      </option>
+                      <option className={classes.dropdownMenu} value={'ETH'}>
+                      {data[3]}
+                      </option>
+                    </MyNativeSelect>
+                  </FormControl>
+                </DataPickerArea>
+              </Grid>
+
+              {/* Expiry date selector */}
+              <Grid item xs={2} md={4} className={classes.textCont}>
+                <Title2>Expiration</Title2>
+                <LocalizationProvider 
+                dateAdapter={AdapterDateFns}>
+                  <CssTextField
+                    variant="outlined"
+                    value={expiry}
+                    id="date"
+                    type="date"
+                    defaultValue="2009-01-03"
+                    sx={{ width: 310, height: 55}}
+                    inputProps={{style: {fontSize: 24 }}}
+                    onChange={handleChange2}
+                  />
+                </LocalizationProvider>
+              </Grid>
+          </ItemContainer>
+          
+          {/* Right side of container */}
+          <ItemContainer2>
+            
+            {/* Strike price text input */}
+            <Grid item xs={2} md={8} className={classes.textContTopL}>
+              <HeaderText2>Strike Price:</HeaderText2>
+              <Grid item xs={4} md={5} className={classes.textContTopR}>
+              <ThemeProvider theme={theme}>
+                <StrikeArea 
+                onChange={handleChange3}
+                disableUnderline
+                    style={{
+                  marginLeft: "20px",
+                  width: "160px",
+                }}
+                inputProps={{
+                          defaultValue: 60000,
+                          step: 100,
+                          min: 1000,
+                          max: 100000,
+                          type: 'number',
+                          'aria-labelledby': 'input-slider',
+                        }} />
+                </ThemeProvider>
+              </Grid>
+            </Grid>
+
+            {/* Order amount slider  */}
+            <Grid item xs={4} md={10} className={classes.textCont8}>
+              <Title1>Order Amount</Title1>
+              <AmountSlider amount={amount} setAmount={setAmount}/>
+              <FooterText>
+                <ThemeProvider theme={theme}>
+                  Need a larger amount? Try{" "}
+                  <em
+                    style={{
+                      fontSize: 19,
+                      color: "#139A6A",
+                      fontStyle: "italic",
+                      fontWeight: 900,
+                    }}
+                  >
+                    Smart Order Routing
+                  </em>
+                </ThemeProvider>
+              </FooterText>
+            </Grid>
+
+            {/* Query Button */}
+            <Grid item xs={4} md={6} className={classes.textCont4}>
+              <QueryButton
+                onClick={() => {
+                  handleQuery(submitParameters);
+                  history.push("/advanced");
+                }}>
+                Begin Query
+              </QueryButton>
+            </Grid>
+          </ItemContainer2>
+
+        </Grid>
+      </Grid>
+    );
+  };
+
+  export default BannerContentDOA;

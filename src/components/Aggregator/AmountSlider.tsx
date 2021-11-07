@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { withStyles, makeStyles, createStyles } from "@material-ui/core/styles";
 import {styled} from '@mui/material/styles'
 import Box from '@mui/material/Box';
@@ -9,6 +9,7 @@ import Slider from '@mui/material/Slider';
 import { colors } from "../../styles";
 import { createTheme } from '@mui/material/styles';
 import {ThemeProvider} from '@mui/material/styles';
+
 
 const Input = styled(MuiInput)`
   padding-left: 0.8em;
@@ -30,28 +31,30 @@ const Amount = styled(MuiSlider)(({ theme }) => ({
   },
 }));
 
-export default function AmountSlider() {
+
+export default function AmountSlider(props: { amount: number, setAmount: any}){
 
   const [value, setValue] = React.useState<number | string | Array<number | string>>(
     0.50,
   );
-
-
-  const handleSliderChange = (e: Event, newValue: number | number[]) => {
-    setValue(newValue);
+  const handleSliderChange = (e: Event, amt: number | number[]) => {
+    setValue(amt);
+    props.setAmount(value);
   };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
+    setValue(event.target.value === '' ? 0.5 : Number(event.target.value));
+    props.setAmount(value);
   };
-
   const handleBlur = () => {
     if (value < 0.00) {
-      setValue(0.00);
+      setValue (0.00);
     } else if (value > 2.00) { 
-      setValue(2.00);
+      setValue  (2.00);
     }
   };
+
+
+
 
   return (
     
@@ -69,7 +72,7 @@ export default function AmountSlider() {
       
         </Grid>
         <Grid item marginLeft="38%" marginTop="-7%" md={6}>
-          <Input                                                                                                                                                                                                                                                                                                                                                                                                        
+          <Input
             endAdornment="BTC"
             value={value}
             onChange={handleInputChange}
