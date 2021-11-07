@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
 import TextField from "@mui/material/TextField";
+import {floor} from "mathjs";
 import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -536,18 +537,26 @@ const BannerContentDOA: React.FC<Props> = () => {
   // Set state and value for form selections //
   const [underlying, setUnderlying] = useState("");
   const [expiry, setExpiry] = useState("");
-  const [strike, setStrike] = useState("");
+  const [strike, setStrike] = React.useState<number>();
   const [option, setOption] = React.useState<string | null>("");
   const [amount, setAmount] = useState(0.5);
 
+    // Array of tokens for underlying asset dropdown //
+  const data = ["BTC", "BNB", "XRP", "ETH"];
+  const data1 = [60000, 400, 1.20, 4000];
+  const [sData, setSData] = React.useState<number>(60000);
+
   const handleChange = (event: { target: { value: string } }) => {
     setUnderlying(event.target.value);
+    setSData(Number(data1[data.indexOf(event.target.value)]));
+    setStrike(sData);
+    
   };
   const handleChange2 = (event: { target: { value: string } }) => {
     setExpiry(event.target.value);
   };
   const handleChange3 = (event: { target: { value: string } }) => {
-    setStrike(event.target.value);
+    setStrike(Number(event.target.value));
   };
   const handleChange4 = (event: { target: { value: number } }) => {
     setAmount(Number(event.target.value));
@@ -572,9 +581,6 @@ const BannerContentDOA: React.FC<Props> = () => {
   const ETH = () => {
     <img src={eth} alt="" />;
   };
-
-  // Array of tokens for underlying asset dropdown //
-  const data = ["BTC", "BNB", "XRP", "ETH"];
 
   // Creates an array of values selected in the aggregator form to submit //
 
@@ -653,16 +659,16 @@ const BannerContentDOA: React.FC<Props> = () => {
                   onChange={handleChange}
                   input={<BootstrapInput />}
                 >
-                  <option className={classes.dropdownMenu} value={"BTC"}>
+                  <option className={classes.dropdownMenu} value={data[0]}>
                     {data[0]}
                   </option>
-                  <option className={classes.dropdownMenu} value={"BNB"}>
+                  <option className={classes.dropdownMenu} value={data[1]}>
                     {data[1]}
                   </option>
-                  <option className={classes.dropdownMenu} value={"XRP"}>
+                  <option className={classes.dropdownMenu} value={data[2]}>
                     {data[2]}
                   </option>
-                  <option className={classes.dropdownMenu} value={"ETH"}>
+                  <option className={classes.dropdownMenu} value={data[3]}>
                     {data[3]}
                   </option>
                 </MyNativeSelect>
@@ -696,6 +702,7 @@ const BannerContentDOA: React.FC<Props> = () => {
             <Grid item xs={4} md={5} className={classes.textContTopR}>
               <ThemeProvider theme={theme}>
                 <StrikeArea
+                  type="number"
                   onChange={handleChange3}
                   disableUnderline
                   style={{
@@ -703,10 +710,10 @@ const BannerContentDOA: React.FC<Props> = () => {
                     width: "160px",
                   }}
                   inputProps={{
-                    defaultValue: 60000,
-                    step: 100,
-                    min: 1000,
-                    max: 100000,
+                    defaultValue: sData.toString(),
+                    step: floor(sData/(sData/100)).toString(),
+                    min: floor(sData/20).toString(),
+                    max: floor(sData*5).toString(),
                     type: "number",
                     "aria-labelledby": "input-slider",
                   }}
