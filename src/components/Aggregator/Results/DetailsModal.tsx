@@ -95,9 +95,8 @@ const style = {
   width: "22%",
   height: "600px",
   zIndex: "1",
-  borderRadius: "15px",
-  bgcolor: "#2D93A6",
-  border: "2px solid #000",
+  borderRadius: "0px",
+  
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
@@ -407,9 +406,9 @@ const StatCard = (props: { xResults: Props1 }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-         <Box sx={style}>
+         <Grid container sx={style}>
         <Details xResults={props.xResults} sOpen={open}/>
-        </Box>
+        </Grid>
       </Modal>
       </Grid>
     </Grid>
