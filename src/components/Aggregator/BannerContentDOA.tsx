@@ -20,7 +20,6 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
-
 // Themes //
 const theme = createTheme({
   palette: {
@@ -425,7 +424,27 @@ const ItemContainer2 = styledCom.div`
     &:hover {
       cursor: pointer;
     }
-    &:focus {
+    &.Mui-selected {
+      background: #504798 !important;
+      color: rgb(256,256,256) !important;
+    }
+`;
+const ButtonEdits2 = styledCom(ToggleButton)`
+    background: rgb(255, 255, 255) !important;
+    backdrop-filter: blur(4px) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(${colors.border}) !important;
+    height:50px !important;
+    width:145px !important;
+    display:flex !important;
+    margin-right: 35px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5) !important;
+    &:hover {
+      cursor: pointer;
+    }
+    &.Mui-selected {
       background: #504798 !important;
       color: rgb(256,256,256) !important;
     }
@@ -519,9 +538,11 @@ const BannerContentDOA: React.FC<Props> = () => {
     // Set state and value for form selections //
     const [underlying, setUnderlying] = useState("");
     const [expiry, setExpiry] = useState("");
+    const [selected, setSelected] = React.useState<boolean>(false);
+    const [selected2, setSelected2] = React.useState<boolean>(false);
     const [strike, setStrike] = useState("");
-    const [option, setOption] = React.useState<string | null>('');
     const [amount, setAmount] = useState(0.5);
+    const [optionType, setOptionType] = useState("");
 
     const handleChange = (event: { target: { value: string } }) => {
       setUnderlying(event.target.value);
@@ -532,17 +553,13 @@ const BannerContentDOA: React.FC<Props> = () => {
     const handleChange3 = (event: { target: { value: string } }) =>{
       setStrike(event.target.value);
     };
-    const handleChange4 = (event: { target: { value: number }}) =>{
-      setAmount(Number(event.target.value));
-    };
   
-  const handleOption = (
-    event: React.MouseEvent<HTMLElement>,
-    newOption: string | null,
-  ) => {
-    setOption(newOption);
+  const handleSelected = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: string ) =>{
+    setOptionType(value);
+    /* eslint-disable  @typescript-eslint/no-unused-expressions */
+    optionType == "call" ? (setSelected(!selected), setSelected2(!setSelected)) : (setSelected2(!selected2), setSelected(!setSelected2));
   };
-    
+
     // Array of tokens for underlying asset dropdown //
     const data = [
       "BTC",
@@ -558,7 +575,7 @@ const BannerContentDOA: React.FC<Props> = () => {
     alert(JSON.stringify([submitParameters]))
   };
 
-  const submitParameters = [option, underlying, strike, expiry, amount];
+  const submitParameters = [optionType, underlying, strike, expiry, amount];
 
     return ( 
       <Grid container direction="column">
@@ -585,12 +602,13 @@ const BannerContentDOA: React.FC<Props> = () => {
               {/* Call/put buttons */}
               <Grid item xs={2} md={2} className={classes.textContTopL}>
               <ToggleButtonGroup
-                  value={option}
+                  value={optionType}
                   exclusive
-                  onChange={handleOption}
+                  onChange={handleSelected}
                   aria-label="option select"
               >
-              <ButtonEdits 
+              <ButtonEdits
+                    selected={selected}
                     className={classes.ButtonToggle}
                     value="call"
                     aria-label="call"
@@ -602,7 +620,8 @@ const BannerContentDOA: React.FC<Props> = () => {
                 >CALL 
                   </p>
               </ButtonEdits>
-              <ButtonEdits 
+              <ButtonEdits2
+                selected={selected2}
                 className={classes.ButtonToggle}
                 value="put"
                 aria-label="put"
@@ -613,7 +632,7 @@ const BannerContentDOA: React.FC<Props> = () => {
                 }}
                 >PUT
                   </p>
-              </ButtonEdits>
+              </ButtonEdits2>
               </ToggleButtonGroup>
             </Grid>
             
