@@ -93,10 +93,9 @@ const style = {
   top: "14%",
   left: "1.8%",
   width: "22%",
-  height: "800px",
+  height: "screen",
   zIndex: "1",
   borderRadius: "0px",
-  
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
@@ -275,7 +274,7 @@ const CompareButton2 = styled(ToggleButton)`
   margin-right: "3%" !important;
   font-size: 20px;
   font-weight: 600;
-  box-shadow: 3px 4px 0px rgb(10, 13, 27);
+  box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
   background-color: #504798 !important;
   color: rgb(256, 256, 256) !important;
   &:hover {
@@ -298,17 +297,17 @@ const DescriptionTxt2 = styled.p`
   }
 `;
 const HeadertArea = styled.div`
-  width:70%;
+  width: 70%;
   display: flex;
-  margin-left:1em;        </Grid>
-  margin-right:0em;
-  background-color: #2D93A6;
+  margin-left: 1em;
+  margin-right: 0em;
+  background-color: #2d93a6;
   border-radius: 45px;
   border: 2px solid rgba(${colors.border});
-  box-shadow: 3px 4px 0px rgb(10, 13, 27);
+  box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
   @media (max-width: 1200px) {
-    padding-left:0;
-    width:65%;
+    padding-left: 0;
+    width: 65%;
   }
 `;
 const ButtonArea = styled.div`
@@ -337,7 +336,6 @@ const StatCard = (props: { xResults: Props1 }) => {
     setSelected(!selected);
     setOpen(true);
   };
-
   return (
     <Grid container>
       <CardContainer>
@@ -386,18 +384,20 @@ const StatCard = (props: { xResults: Props1 }) => {
         </Grid>
       </CardContainer>
       {/* Details Modal declaration */}
+
       <Grid item xs={3} sm={3} md={3} lg={3}>
-      <Modal
-        hideBackdrop={true}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-         <Grid container sx={style}>
-        <Details xResults={props.xResults} sOpen={open}/>
-        </Grid>
-      </Modal>
+        <Modal
+          disableScrollLock={true}
+          hideBackdrop={true}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Grid container sx={style}>
+            <Details xResults={props.xResults} sOpen={open} />
+          </Grid>
+        </Modal>
       </Grid>
     </Grid>
   );

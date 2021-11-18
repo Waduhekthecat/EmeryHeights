@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import styledCom from "styled-components";
 import TextField from "@mui/material/TextField";
-import {floor} from "mathjs";
+import { floor } from "mathjs";
 import { makeStyles, styled, withStyles } from "@material-ui/core/styles";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -541,16 +541,15 @@ const BannerContentDOA: React.FC<Props> = () => {
   const [option, setOption] = React.useState<string | null>("");
   const [amount, setAmount] = useState(0.5);
 
-    // Array of tokens for underlying asset dropdown //
+  // Array of tokens for underlying asset dropdown //
   const data = ["BTC", "BNB", "XRP", "ETH"];
-  const data1 = [60000, 400, 1.20, 4000];
+  const data1 = [60000, 400, 1.2, 4000];
   const [sData, setSData] = React.useState<number>(60000);
 
   const handleChange = (event: { target: { value: string } }) => {
     setUnderlying(event.target.value);
     setSData(Number(data1[data.indexOf(event.target.value)]));
     setStrike(sData);
-    
   };
   const handleChange2 = (event: { target: { value: string } }) => {
     setExpiry(event.target.value);
@@ -711,9 +710,9 @@ const BannerContentDOA: React.FC<Props> = () => {
                   }}
                   inputProps={{
                     defaultValue: sData.toString(),
-                    step: floor(sData/(sData/100)).toString(),
-                    min: floor(sData/20).toString(),
-                    max: floor(sData*5).toString(),
+                    step: floor(sData / (sData / 100)).toString(),
+                    min: floor(sData / 20).toString(),
+                    max: floor(sData * 5).toString(),
                     type: "number",
                     "aria-labelledby": "input-slider",
                   }}

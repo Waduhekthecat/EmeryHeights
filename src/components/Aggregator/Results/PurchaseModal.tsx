@@ -143,7 +143,7 @@ const ConfirmButton = styled(Button)`
   font-weight: 600;
   background-color: #504798 !important;
   color: rgb(256, 256, 256) !important;
-  box-shadow: 1px 3px 0px rgb(10, 13, 27);
+  box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
   &:hover {
     cursor: pointer;
     width: 220px !important;
@@ -173,20 +173,17 @@ const PurchaseModal = (props: { submit: Props1 }) => {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const handleSubmit = () => {};
-  const handleSelected = (
-    event: React.MouseEvent<HTMLElement>
-  ) => {
+  const handleSelected = (event: React.MouseEvent<HTMLElement>) => {
     setOpen(false);
-};
-
-  <Grid
-    item
-    className={classes.AmountArea}
-    md={4}
-    direction="column"
-    display="flex"
-    justifyContent="center"
-  ></Grid>;
+  };
+  // <Grid
+  //   item
+  //   className={classes.AmountArea}
+  //   md={4}
+  //   direction="column"
+  //   display="flex"
+  //   justifyContent="center"
+  // ></Grid>;
 
   return (
     <div>
