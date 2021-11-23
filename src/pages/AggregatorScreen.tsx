@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { IAssetData, IBoxProfile } from "../helpers/types";
 
-import PageHeader from '../components/Home/PageHeader'
-import AggregatorContainer from '../components/Aggregator/AggregatorContainer'
-import ScreenWrapper from '../components/Home/ScreenWrapper'
+import PageHeader from "../components/Home/PageHeader";
+import AggregatorContainer from "../components/Aggregator/AggregatorContainer";
+import ScreenWrapper from "../components/Home/ScreenWrapper";
 
 interface IAppState {
   fetching: boolean;
@@ -33,35 +33,29 @@ const INITIAL_STATE: IAppState = {
   showModal: false,
   pendingRequest: false,
   result: null,
-  isHide: true
+  isHide: true,
 };
 
 function App() {
-
   const [isHide, setIsHide] = useState(false);
 
   const _onHideMenu = (bool: boolean) => {
-    setIsHide(bool)
-  }
+    setIsHide(bool);
+  };
 
   return (
     <ScreenWrapper>
-      {/* <Container maxWidth="lg"> */}
+      {/* <Container maxWidth="lg">  */}
       {/* <PreLoader /> */}
-      <PageHeader
-        isHide={isHide}
-        setIsHide={(e) => _onHideMenu(e)}
-      />
+      {/* <PageHeader isHide={isHide} setIsHide={(e) => _onHideMenu(e)} /> */}
       {/* {!switchRouter && !switchAggregator && !switchSubgraph && <ItemList switchContent={switchContent} />}
       {switchAggregator && <AggregatorContainer />} */}
-      
       <AggregatorContainer />
       {/* <ImageContainer url={chain} /> */}
       {/* <ImageContainer url={cubic} />
           <ImageContainer url={dot} /> */}
       {/* </Container> */}
-      {/* <Footer /> */}
-
+      {/* // <Footer /> */}
     </ScreenWrapper>
   );
 }

@@ -9,6 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import { CloseOutline } from "@styled-icons/zondicons/CloseOutline";
 import { Hidden } from "@material-ui/core";
 import Modal from "@mui/material/Modal";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 //rgb(75,169,156) teal rgb(108,81,152) purp rgb(73,73,74) gray//
 
@@ -158,53 +160,54 @@ const ConfirmButton = styled(Button)`
 interface Props1 {
   Results: {
     platformD: String;
-    optionD: any;
-    chartD: any;
+    optionD: String;
+    chartD: String;
     underlyingD: String;
     strikeD: String;
     expiryD: String;
     amountD: String;
-    gasD: any;
-    countdownD: any;
+    gasD: String;
+    countdownD: String;
     premiumD: String;
   };
 }
 
-const PurchaseModal = (props: { submit: Props1 }) => {
+const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const handleSubmit = () => {};
-  const handleSelected = (event: React.MouseEvent<HTMLElement>) => {
-    setOpen(false);
+  const [pOpen, setpOpen] = React.useState(false);
+  const handlePurchaseModal = () => {
+    setpOpen(false);
   };
 
-  // <Modal
-  //   onEscapeKeyDown={handleEscapeKeyDown}
-  //   onClose={(event: any, reason: any) => {
-  //     if (reason === "escapeKeyDown") {
-  //       handleEscapeKeyDown(event);
-  //     }
-  //   }}
-  // ></Modal>;
+  const handleSubmit = (submitPurchase: any) => {
+    alert(JSON.stringify([submitPurchase]));
+  };
+
+  const submitPurchase = [
+    props.Submit.Results.platformD,
+    props.Submit.Results.optionD,
+    props.Submit.Results.underlyingD,
+    props.Submit.Results.strikeD,
+    props.Submit.Results.expiryD,
+    props.Submit.Results.amountD,
+  ];
 
   return (
     <div>
       <Grid
         container
-        sx={{ display: "none" }}
         className={classes.HeaderArea}
         xs={12}
         sm={12}
         md={12}
         lg="auto"
       >
-        <Grid item sm={4} md={4} lg={4}></Grid>
+        <Grid item sm={4} md={4} lg={4} />
         <Grid item sm={7} md={7} lg={7}>
           <Title> Confirm your purchase </Title>
         </Grid>
         <Grid item sm={1} md={1} lg={1}>
-          <IconButton aria-label="close" onClick={handleClose}>
+          <IconButton aria-label="close" onClick={handlePurchaseModal}>
             <XClose />
           </IconButton>
         </Grid>
@@ -221,7 +224,9 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Title2 className={classes.AmountArea}>0.5 BTC</Title2>
+          <Title2 className={classes.AmountArea}>
+            {props.Submit.Results.amountD} {props.Submit.Results.underlyingD}
+          </Title2>
         </Grid>
         <Grid
           item
@@ -232,7 +237,7 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Data>Contract Type: Call</Data>
+          <Data>Contract Type: {props.Submit.Results.optionD}</Data>
         </Grid>
         <Grid
           item
@@ -243,7 +248,7 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Data2>Strike Price: $48,000 </Data2>
+          <Data2>Strike Price: {props.Submit.Results.strikeD} </Data2>
         </Grid>
       </Grid>
 
@@ -257,7 +262,9 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Title3 className={classes.AmountArea}>Platform Y</Title3>
+          <Title3 className={classes.AmountArea}>
+            {props.Submit.Results.platformD}
+          </Title3>
         </Grid>
         <Grid
           item
@@ -279,7 +286,7 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Data4>Expiry: 09/24/2021</Data4>
+          <Data4>Expiry: {props.Submit.Results.expiryD}</Data4>
         </Grid>
       </Grid>
 
@@ -295,7 +302,7 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           sx={{ marginTop: "14%", marginLeft: "1%" }}
           justifyContent="center"
         >
-          <CancelButton onClick={handleClose}> Cancel </CancelButton>
+          <CancelButton onClick={handlePurchaseModal}> Cancel </CancelButton>
         </Grid>
         <Grid
           item
@@ -310,7 +317,9 @@ const PurchaseModal = (props: { submit: Props1 }) => {
           <ConfirmButton
             size="large"
             style={{ minHeight: "50px", marginBottom: "50px" }}
-            onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit(submitPurchase);
+            }}
           >
             {" "}
             Confirm Purchase

@@ -7,14 +7,11 @@ interface Props {}
 const AppContainer = styled.div`
   background-image: url(${BackImage});
   background-color: rgb(80, 71, 152);
-  margin-left: auto;
-  margin-right: auto;
-  background-position: contain;
+  background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-  flex: 1;
-  min-height: 800px;
+  min-height: screen;
 `;
 
 const ScreenWrapper: React.FC<Props> = ({ children }) => {

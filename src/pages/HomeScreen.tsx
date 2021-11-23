@@ -93,7 +93,7 @@ function App() {
   return (
     <ScreenWrapper>
       <Container maxWidth="lg">
-        {/* <PreLoader /> */}
+        <PreLoader />
         {/* <PageHeader isHide={isHide} setIsHide={(e) => _onHideMenu(e)} />
         {!switchRouter && !switchAggregator && !switchSubgraph && (
           <ItemList switchContent={switchContent} />
