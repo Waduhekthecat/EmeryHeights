@@ -12,23 +12,11 @@ import { ThemeProvider, useTheme, makeStyles } from "@mui/styles";
 import { render } from "blockies-ts";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { colors } from "../../../styles";
 import { ModalUnstyled } from "@mui/core";
-import pOpen from "./PurchaseModal";
-
-const StyledModal = styled(ModalUnstyled)`
-  position: fixed;
-  z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const HederTitle = styled.h1`
   color: rgb(256, 256, 256) !important;
@@ -97,7 +85,7 @@ const style1 = {
   left: "22%",
   width: "900px",
   height: "350px",
-  zIndex: "2",
+  zIndex: "1400",
   borderRadius: "20px",
   color: white,
   border: "6px solid #000",
@@ -110,18 +98,17 @@ const style = {
   top: "14%",
   left: "1.8%",
   width: "22%",
-  height: "screen",
-  zIndex: "1",
+  height: "600px",
+  zIndex: "1300",
   borderRadius: "0px",
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
 const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
   const [sOpen, setsOpen] = React.useState(false);
-  const [isOpen, setIsOpen] = React.useState(false);
   const [pOpen, setpOpen] = React.useState(false);
   const handleModal = () => {
-    setIsOpen(!isOpen);
+    setsOpen(false);
     setpOpen(!pOpen);
   };
 
@@ -200,12 +187,13 @@ const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <QueryButton onClick={handleModal}>Purchase</QueryButton>
           <Modal
-            hideBackdrop={false}
             open={pOpen}
+            disableScrollLock={false}
+            hideBackdrop={false}
+            BackdropComponent={Backdrop}
             onClose={handleModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-            onBackdropClick={handleModal}
           >
             <Box sx={style1}>
               <PurchaseModal Submit={props.xResults} pOpen={sOpen} />
@@ -288,12 +276,14 @@ const Container = styled.div`
     flex-direction: row;
   }
 `;
+
+// SelectedDiv = styled(div)``;
+
 const CompareButton2 = styled(ToggleButton)`
   height: 50% !important;
   width: 90% !important;
-  border-radius: 7px !important;
-  margin-bottom: 20px !important;
-  margin-right: "3%" !important;
+  border-radius: 8px !important;
+
   font-size: 20px;
   font-weight: 600;
   box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
@@ -360,44 +350,72 @@ const ButtonArea = styled.div`
   }
 `;
 
+// -webkit-tap-highlight-color: ;
+
 const Backdrop = styled("div")`
-  z-index: 1;
+  z-index: 75;
   position: fixed;
   right: 0;
   bottom: 0;
   top: 0;
   left: 0;
-  background-color: none;
-  -webkit-tap-highlight-color: transparent;
+  background-color: ;
+`;
+const Backdrop2 = styled("div")`
+  z-index: 100;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: ;
 `;
 // Takes props from interface and fills the fields on the option cards with data returned from API //
 // *Also declares Modal for Details card on click of select button //
 const StatCard = (props: { xResults: Props1 }) => {
-  const [bgColor, setBackground] = useState(colors.grey);
+  const [visible, setVisible] = React.useState(false);
+  const [bgColor, setBackground] = useState(colors.white);
+  const [bgColor2, setBackground2] = useState(colors.primary);
+  const [bgColor3, setBackground3] = useState(
+    "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
+  );
   const [selected, setSelected] = useState(false);
   const [sOpen, setsOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const key = (String: any) => "";
   const handleSelected = () => {
     setSelected(!selected);
     setsOpen(!sOpen);
     setOpen(!open);
-    bgColor == colors.grey
+    selected == true ? setVisible(true) : setVisible(false);
+    bgColor == colors.white
       ? setBackground(colors.primary)
-      : setBackground(colors.grey);
+      : setBackground(colors.white);
+    bgColor2 == colors.primary
+      ? setBackground2(colors.white)
+      : setBackground2(colors.primary);
+    bgColor3 ==
+    "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
+      ? setBackground3(
+          "linear-gradient(to right, rgb(89, 92, 151), rgb(88, 20, 107))"
+        )
+      : setBackground3(
+          "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
+        );
+    visible == false ? key("none") : key("visible");
   };
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
     handleSelected();
   };
-
   return (
     <Grid container>
-      <CardContainer>
+      <CardContainer style={{ background: bgColor }}>
         <Grid container direction="column">
           {/* Platform Name */}
           <Grid
             item
             style={{
-              background: bgColor,
+              background: bgColor3,
               borderTopLeftRadius: "18px",
               borderTopRightRadius: "18px",
             }}
@@ -408,14 +426,13 @@ const StatCard = (props: { xResults: Props1 }) => {
           >
             <DescriptionTxt2>
               Platform: {props.xResults.Results.platformD}
-              <DescriptionTxt>
-                Premium: {props.xResults.Results.premiumD}
-              </DescriptionTxt>
             </DescriptionTxt2>
           </Grid>
           {/* Premium, Amount, Strike Price, and Expiry */}
           <Grid item>
             <DescriptionTxt3>
+              Premium: {props.xResults.Results.premiumD}
+              <br />
               Quantity: {props.xResults.Results.amountD}
               <br />
               Strike: {props.xResults.Results.strikeD}
@@ -425,19 +442,36 @@ const StatCard = (props: { xResults: Props1 }) => {
           </Grid>
         </Grid>
 
-        <Grid container direction="row">
+        <Grid container direction="row" style={{ boxShadow: "10, 10, 10, 5" }}>
           {/* Select Button */}
-          <Grid item xs={5} sm={5} md={5} lg={5}></Grid>
-          <Grid item xs={6} sm={6} md={6} lg={6}>
-            <CompareButton2
-              value={sOpen}
-              selected={selected}
-              onClick={handleSelected}
+          <ButtonGroup
+            style={{
+              background: bgColor2,
+              borderBottomLeftRadius: "18px",
+              borderBottomRightRadius: "18px",
+            }}
+          >
+            <Grid item xs={5} sm={5} md={5} lg={5}>
+              <div style={{ display: "none" }}>Selected</div>
+            </Grid>
+            <Grid
+              item
+              sx={{ display: { lg: "key", md: "key" } }}
+              xs={6}
+              sm={6}
+              md={6}
+              lg={6}
             >
-              {" "}
-              <p style={{ fontSize: 17, fontWeight: 900 }}>SELECT</p>
-            </CompareButton2>
-          </Grid>
+              <CompareButton2
+                sx={{ display: { lg: "key", md: "key" } }}
+                value={sOpen}
+                selected={selected}
+                onClick={handleSelected}
+              >
+                <p style={{ fontSize: 17, fontWeight: 900 }}>SELECT</p>
+              </CompareButton2>
+            </Grid>
+          </ButtonGroup>
         </Grid>
       </CardContainer>
       <Grid item xs={3} sm={3} md={3} lg={3}>
@@ -450,9 +484,9 @@ const StatCard = (props: { xResults: Props1 }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Grid sx={style}>
             <Details xResults={props.xResults} sOpen={open} />
-          </Box>
+          </Grid>
         </Modal>
       </Grid>
     </Grid>

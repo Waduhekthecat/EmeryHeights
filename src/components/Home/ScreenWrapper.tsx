@@ -7,10 +7,10 @@ interface Props {}
 const AppContainer = styled.div`
   background-image: url(${BackImage});
   background-color: rgb(80, 71, 152);
-  background-position: center;
+  background-position: fill;
   background-repeat: no-repeat;
   width: 100vw;
-  height: 100vh;
+  height: 180vh;
   min-height: screen;
 `;
 
