@@ -34,11 +34,10 @@ const useStyles = makeStyles((theme) => ({
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: 3e4251;
+  background-color: #3e4251;
   border-radius: 5px;
-  display: flex;
+  display: fixed;
   flex-direction: row;
-  margin-top: 10px;
 `;
 
 // Takes props from data arrays and creates a grid of cards from all matching options latforms //
@@ -173,7 +172,7 @@ const Card: React.FC<Props1> = ({ Results }) => {
     },
   ];
   return (
-    <Container>
+    <>
       <Grid container spacing={2}>
         <Grid item xs={4} md={4} className={classes.CardContainer}>
           <StatCard xResults={data[0]} />
@@ -211,7 +210,7 @@ const Card: React.FC<Props1> = ({ Results }) => {
           <StatCard xResults={data[8]} />
         </Grid>
       </Grid>
-    </Container>
+    </>
   );
 };
 

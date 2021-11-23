@@ -8,20 +8,20 @@ import {
   PERSONAL_SIGN,
   BOX_GET_PROFILE,
   DAI_BALANCE_OF,
-  DAI_TRANSFER
+  DAI_TRANSFER,
 } from "../constants";
 import { callBalanceOf, callTransfer } from "../helpers/web3";
 
-import PreLoader from '../components/Home/PreLoader'
-import PageHeader from '../components/Home/PageHeader'
-import ItemList from '../components/Home/ItemList'
-import ImageContainer from '../components/Home/ImageContainer'
-import Footer from '../components/Home/Footer'
-import ScreenWrapper from '../components/Home/ScreenWrapper'
-import Container from '@material-ui/core/Container';
-import chain from './assets/images/chain.png';
-import cubic from './assets/images/cubic.png';
-import dot from './assets/images/dot.png';
+import PreLoader from "../components/Home/PreLoader";
+import PageHeader from "../components/Home/PageHeader";
+import ItemList from "../components/Home/ItemList";
+import ImageContainer from "../components/Home/ImageContainer";
+import Footer from "../components/Home/Footer";
+import ScreenWrapper from "../components/Home/ScreenWrapper";
+import Container from "@material-ui/core/Container";
+import chain from "../assets/components/images/chain.png";
+import cubic from "../assets/components/images/cubic.png";
+import dot from "../assets/components/images/dot.png";
 
 interface IAppState {
   fetching: boolean;
@@ -51,67 +51,61 @@ const INITIAL_STATE: IAppState = {
   showModal: false,
   pendingRequest: false,
   result: null,
-  isHide: true
+  isHide: true,
 };
 
 function App() {
-
   const [showModal, setShowModal] = useState(false);
   const [switchRouter, setSwitchRouter] = useState(false);
   const [switchAggregator, setSwitchAggregator] = useState(false);
   const [switchSubgraph, setSwitchSubgraph] = useState(false);
   const [isHide, setIsHide] = useState(false);
 
-  const toggleModal = () =>
-    setShowModal(!showModal);
+  const toggleModal = () => setShowModal(!showModal);
 
   const _onHideMenu = (bool: boolean) => {
-    setIsHide(bool)
-  }
+    setIsHide(bool);
+  };
 
   const switchContent = (num: number) => {
-    console.log("switchContent>>>>>", num)
+    console.log("switchContent>>>>>", num);
     switch (num) {
       case 1:
-        setSwitchRouter(true)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(false)
+        setSwitchRouter(true);
+        setSwitchAggregator(false);
+        setSwitchSubgraph(false);
         break;
       case 2:
-        setSwitchRouter(false)
-        setSwitchAggregator(true)
-        setSwitchSubgraph(false)
+        setSwitchRouter(false);
+        setSwitchAggregator(true);
+        setSwitchSubgraph(false);
         break;
       case 3:
-        setSwitchRouter(false)
-        setSwitchAggregator(false)
-        setSwitchSubgraph(true)
+        setSwitchRouter(false);
+        setSwitchAggregator(false);
+        setSwitchSubgraph(true);
         break;
       default:
         break;
     }
-  }
+  };
 
   return (
     <ScreenWrapper>
-      {/* <Container maxWidth="lg"> */}
-      {/* <PreLoader /> */}
-      <PageHeader
-        isHide={isHide}
-        setIsHide={(e) => _onHideMenu(e)}
-      />
-      {/* {!switchRouter && !switchAggregator && !switchSubgraph && <ItemList switchContent={switchContent} />}
-      {switchAggregator && <AggregatorContainer />} */}
+      <Container maxWidth="lg">
+        {/* <PreLoader /> */}
+        {/* <PageHeader isHide={isHide} setIsHide={(e) => _onHideMenu(e)} />
+        {!switchRouter && !switchAggregator && !switchSubgraph && (
+          <ItemList switchContent={switchContent} />
+        )}
+        {switchAggregator && <ItemList />} */}
 
-      <ItemList/>  
+        <ItemList />
 
-
-      {/* <ImageContainer url={chain} /> */}
-      {/* <ImageContainer url={cubic} />
-          <ImageContainer url={dot} /> */}
-      {/* </Container> */}
-      {/* <Footer /> */}
-
+        {/* <ImageContainer url={chain} />
+        <ImageContainer url={cubic} />
+        <ImageContainer url={dot} /> */}
+      </Container>
     </ScreenWrapper>
   );
 }

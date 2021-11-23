@@ -51,7 +51,7 @@ const INITIAL_STATE: IAppState = {
   showModal: false,
   pendingRequest: false,
   result: null,
-  isHide: true,
+  isHide: false,
 };
 
 function App(xResults: Props1) {
@@ -63,7 +63,7 @@ function App(xResults: Props1) {
 
   const toggleModal = () => setShowModal(!showModal);
 
-  const _onHideMenu = (bool: boolean) => {
+  const onMenuClick = (bool: boolean) => {
     setIsHide(bool);
   };
 
@@ -92,7 +92,7 @@ function App(xResults: Props1) {
 
   return (
     <ScreenWrapper>
-      <PageHeader isHide={isHide} setIsHide={(e) => _onHideMenu(e)} />
+      <PageHeader isHide={isHide} setIsHide={(e) => onMenuClick(e)} />
       <ResultsContent Results={xResults.Results} />
     </ScreenWrapper>
   );

@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "material-ui/styles/typography";
 import IconButton from "@mui/material/IconButton";
 import { CloseOutline } from "@styled-icons/zondicons/CloseOutline";
+import { Hidden } from "@material-ui/core";
+import Modal from "@mui/material/Modal";
 
 //rgb(75,169,156) teal rgb(108,81,152) purp rgb(73,73,74) gray//
 
@@ -176,19 +178,21 @@ const PurchaseModal = (props: { submit: Props1 }) => {
   const handleSelected = (event: React.MouseEvent<HTMLElement>) => {
     setOpen(false);
   };
-  // <Grid
-  //   item
-  //   className={classes.AmountArea}
-  //   md={4}
-  //   direction="column"
-  //   display="flex"
-  //   justifyContent="center"
-  // ></Grid>;
+
+  // <Modal
+  //   onEscapeKeyDown={handleEscapeKeyDown}
+  //   onClose={(event: any, reason: any) => {
+  //     if (reason === "escapeKeyDown") {
+  //       handleEscapeKeyDown(event);
+  //     }
+  //   }}
+  // ></Modal>;
 
   return (
     <div>
       <Grid
         container
+        sx={{ display: "none" }}
         className={classes.HeaderArea}
         xs={12}
         sm={12}
