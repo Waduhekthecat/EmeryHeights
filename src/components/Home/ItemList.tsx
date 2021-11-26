@@ -48,7 +48,7 @@ const HeaderArea = styled.div`
   }
 `;
 const HeaderTitle = styled.p`
-  color: rgb(${colors.fontColor});
+  color: white;
   font-size: 40px;
   text-align: center;
   font-weight: 200;
@@ -62,7 +62,7 @@ const HeaderTitle = styled.p`
   }
 `;
 const Description = styled.p`
-  color: rgb(${colors.fontColor});
+  color: white;
   font-size: 20px;
   text-align: center;
   margin-bottom: 3.5em;

@@ -379,6 +379,7 @@ const StatCard = (props: { xResults: Props1 }) => {
   const [bgColor3, setBackground3] = useState(
     "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
   );
+  const [bgColor4, setBackground4] = useState(colors.secondary);
   const [selected, setSelected] = useState(false);
   const [sOpen, setsOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -402,6 +403,9 @@ const StatCard = (props: { xResults: Props1 }) => {
       : setBackground3(
           "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
         );
+    bgColor4 == colors.secondary
+      ? setBackground4(colors.white)
+      : setBackground4(colors.secondary);
     visible == false ? key("none") : key("visible");
   };
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
@@ -409,7 +413,7 @@ const StatCard = (props: { xResults: Props1 }) => {
   };
   return (
     <Grid container>
-      <CardContainer style={{ background: bgColor }}>
+      <CardContainer>
         <Grid container direction="column">
           {/* Platform Name */}
           <Grid
@@ -429,7 +433,7 @@ const StatCard = (props: { xResults: Props1 }) => {
             </DescriptionTxt2>
           </Grid>
           {/* Premium, Amount, Strike Price, and Expiry */}
-          <Grid item>
+          <Grid item style={{ background: bgColor }}>
             <DescriptionTxt3>
               Premium: {props.xResults.Results.premiumD}
               <br />
@@ -452,18 +456,11 @@ const StatCard = (props: { xResults: Props1 }) => {
             }}
           >
             <Grid item xs={5} sm={5} md={5} lg={5}>
-              <div style={{ display: "none" }}>Selected</div>
+              <div></div>
             </Grid>
-            <Grid
-              item
-              sx={{ display: { lg: "key", md: "key" } }}
-              xs={6}
-              sm={6}
-              md={6}
-              lg={6}
-            >
+            <Grid item xs={6} sm={6} md={6} lg={6}>
               <CompareButton2
-                sx={{ display: { lg: "key", md: "key" } }}
+                sx={{ background: bgColor4 }}
                 value={sOpen}
                 selected={selected}
                 onClick={handleSelected}
