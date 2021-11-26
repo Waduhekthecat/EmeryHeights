@@ -105,27 +105,18 @@ const style = {
 
 // Uses interface to return container with details on selected card - allows purchase //
 const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
-  const [sOpen, setsOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.sOpen);
   const [pOpen, setpOpen] = React.useState(false);
-  const handleModal = () => {
-    setsOpen(false);
-    setpOpen(!pOpen);
+ 
+  const handleClose = () => setOpen(false);
+  const handleModal2 = () => {
+    setpOpen(true);
   };
-
+  const handleClose2 = () => setpOpen(false);
+  
   return (
     <Grid container direction="column">
       <Container>
-        <button onClick={handleModal}>
-          <XClose
-            style={{
-              position: "absolute",
-              cursor: "pointer",
-              marginTop: "5px",
-              marginLeft: "36%",
-              width: "40px",
-            }}
-          ></XClose>
-        </button>
         {/* Platform Name */}
         <Grid item xs={6} sm={3} md={3} lg={12}>
           <HederTitle> Platform: {props.xResults.Results.platformD}</HederTitle>
@@ -185,18 +176,18 @@ const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
 
         {/* Purchase Button */}
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <QueryButton onClick={handleModal}>Purchase</QueryButton>
+          <QueryButton onClick={handleModal2}>Purchase</QueryButton>
           <Modal
             open={pOpen}
             disableScrollLock={false}
             hideBackdrop={false}
             BackdropComponent={Backdrop}
-            onClose={handleModal}
+            onClose={handleClose2}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
             <Box sx={style1}>
-              <PurchaseModal Submit={props.xResults} pOpen={sOpen} />
+              <PurchaseModal Submit={props.xResults} pOpen={pOpen} handlePurchaseModal={handleClose2}/>
             </Box>
           </Modal>
         </Grid>

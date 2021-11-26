@@ -172,13 +172,9 @@ interface Props1 {
   };
 }
 
-const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean }) => {
+const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean; handlePurchaseModal: () => void}) => {
   const classes = useStyles();
-  const [pOpen, setpOpen] = React.useState(false);
-  const handlePurchaseModal = () => {
-    setpOpen(false);
-  };
-
+ 
   const handleSubmit = (submitPurchase: any) => {
     alert(JSON.stringify([submitPurchase]));
   };
@@ -205,11 +201,6 @@ const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean }) => {
         <Grid item sm={4} md={4} lg={4} />
         <Grid item sm={7} md={7} lg={7}>
           <Title> Confirm your purchase </Title>
-        </Grid>
-        <Grid item sm={1} md={1} lg={1}>
-          <IconButton aria-label="close" onClick={handlePurchaseModal}>
-            <XClose />
-          </IconButton>
         </Grid>
       </Grid>
 
@@ -302,7 +293,7 @@ const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean }) => {
           sx={{ marginTop: "14%", marginLeft: "1%" }}
           justifyContent="center"
         >
-          <CancelButton onClick={handlePurchaseModal}> Cancel </CancelButton>
+          <CancelButton onClick={props.handlePurchaseModal}> Cancel </CancelButton>
         </Grid>
         <Grid
           item
