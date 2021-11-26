@@ -364,9 +364,10 @@ const Backdrop2 = styled("div")`
 // Takes props from interface and fills the fields on the option cards with data returned from API //
 // *Also declares Modal for Details card on click of select button //
 const StatCard = (props: { xResults: Props1 }) => {
-  const [visible, setVisible] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
   const [bgColor, setBackground] = useState(colors.white);
   const [bgColor2, setBackground2] = useState(colors.primary);
+  const [sText, setSText] = React.useState()
   const [bgColor3, setBackground3] = useState(
     "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
   );
@@ -379,7 +380,7 @@ const StatCard = (props: { xResults: Props1 }) => {
     setSelected(!selected);
     setsOpen(!sOpen);
     setOpen(!open);
-    selected == true ? setVisible(true) : setVisible(false);
+    setDisabled(!disabled);
     bgColor == colors.white
       ? setBackground(colors.primary)
       : setBackground(colors.white);
@@ -394,14 +395,19 @@ const StatCard = (props: { xResults: Props1 }) => {
       : setBackground3(
           "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
         );
+<<<<<<< HEAD
     bgColor4 == colors.secondary
       ? setBackground4(colors.white)
       : setBackground4(colors.secondary);
     visible == false ? key("none") : key("visible");
+=======
+  
+>>>>>>> 5b6e3f0acbe86ff1ac04165d4081ff87d8bfed62
   };
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
     handleSelected();
   };
+
   return (
     <Grid container>
       <CardContainer>
@@ -451,10 +457,14 @@ const StatCard = (props: { xResults: Props1 }) => {
             </Grid>
             <Grid item xs={6} sm={6} md={6} lg={6}>
               <CompareButton2
+<<<<<<< HEAD
                 sx={{ background: bgColor4 }}
+=======
+>>>>>>> 5b6e3f0acbe86ff1ac04165d4081ff87d8bfed62
                 value={sOpen}
                 selected={selected}
                 onClick={handleSelected}
+                disabled={disabled}
               >
                 <p style={{ fontSize: 17, fontWeight: 900 }}>SELECT</p>
               </CompareButton2>
