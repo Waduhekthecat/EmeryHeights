@@ -132,6 +132,7 @@ const CancelButton = styled(Button)`
     color: Red !important;
     &:hover {
     cursor: pointer;
+    transform: scale(1.3);
     }
   
 }`;
@@ -141,7 +142,7 @@ const ConfirmButton = styled(Button)`
   width: 215px !important;
   box-shadow: 8px 8px 0px 3e4251 !important;
   border-radius: 5px !important;
-  margin-bottom: 160px !important;
+  margin-bottom: 150px !important;
   margin-left: 130px !important;
   font-size: 60px;
   font-weight: 600;
@@ -150,10 +151,9 @@ const ConfirmButton = styled(Button)`
   box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
   &:hover {
     cursor: pointer;
-    width: 220px !important;
-    background-color: #504798 !important;
-    color: "rgb(67, 159, 174)" !important;
-    box-shadow: 2px 4px 2px rgb(10, 13, 27);
+    color: #add8e6 !important;
+    transform: scale(1.1);
+    text-shadow: 1px 1px 2px white, 0 0 1em white;
   }
 `;
 
@@ -172,9 +172,13 @@ interface Props1 {
   };
 }
 
-const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean; handlePurchaseModal: () => void}) => {
+const PurchaseModal = (props: {
+  Submit: Props1;
+  pOpen: Boolean;
+  handlePurchaseModal: () => void;
+}) => {
   const classes = useStyles();
- 
+
   const handleSubmit = (submitPurchase: any) => {
     alert(JSON.stringify([submitPurchase]));
   };
@@ -216,7 +220,7 @@ const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean; handlePurchaseMo
           justifyContent="center"
         >
           <Title2 className={classes.AmountArea}>
-            {props.Submit.Results.amountD} {props.Submit.Results.underlyingD}
+            {props.Submit.Results.platformD}
           </Title2>
         </Grid>
         <Grid
@@ -254,7 +258,7 @@ const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean; handlePurchaseMo
           justifyContent="center"
         >
           <Title3 className={classes.AmountArea}>
-            {props.Submit.Results.platformD}
+            {props.Submit.Results.amountD}
           </Title3>
         </Grid>
         <Grid
@@ -293,7 +297,10 @@ const PurchaseModal = (props: { Submit: Props1; pOpen: Boolean; handlePurchaseMo
           sx={{ marginTop: "14%", marginLeft: "1%" }}
           justifyContent="center"
         >
-          <CancelButton onClick={props.handlePurchaseModal}> Cancel </CancelButton>
+          <CancelButton onClick={props.handlePurchaseModal}>
+            {" "}
+            Cancel{" "}
+          </CancelButton>
         </Grid>
         <Grid
           item

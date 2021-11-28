@@ -4,6 +4,17 @@ import OptionCards from "./OptionCards";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 import { colors } from "../../../styles";
+import Filter from "./AdvancedFilter";
+import Collapsible from "react-collapsible";
+import { Collapse } from "@mui/material";
+import Button from "@mui/material/Button";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import Box from "@mui/material/Box";
+import Switch from "@mui/material/Switch";
+import Slide from "@mui/material/Slide";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { Fade } from "@material-ui/core";
 
 interface Props1 {
   Results: {
@@ -19,18 +30,58 @@ interface Props1 {
     premiumD: String;
   };
 }
-
+{
+  /* height must be adjusted for variance in stat cards returned from query */
+}
 const ItemContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  height: 165vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
+  border: 4px rgb(${colors.gradLight});
+  background-color: rgb(31, 36, 54);
+  @media (max-width: 1200px) {
+  }
+`;
+const HeaderBgArea = styled.div`
+position: absolute;
+padding 2px;
+background: grey;
+border-radius:6px;
+align-items:center;
+width: 100vh;
+height: 150px`;
+
+const HeaderArea = styled.div`
+  width: auto;
+  height: auto;
+  padding: 5px;
+  background: white;
+  display: flex;
+  border-radius: 12px;
+  flex-direction: row;
+  align-items: center;
+  font-style: italic;
+  @media (max-width: 1400px) {
+  }
+`;
+
+const CardArea = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;
   padding-left: 1%;
   padding-right: 1%;
   padding-top: 1em;
-  padding-bottom: 7em;
-  margin-bottom: 10em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
   border-radius: 20px;
   box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
   border: 4px rgb(${colors.gradLight});
@@ -42,18 +93,7 @@ const ItemContainer = styled.div`
     padding-left: 2%;
   }
 `;
-const HeaderArea = styled.div`
-  padding-top: 4em;
-  margin-bottom: 2em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-style: italic;
-  @media (max-width: 1400px) {
-    flex-direction: column;
-  }
-`;
+
 const HeaderTitle = styled.p`
   color: rgb(${colors.fontColor});
   font-size: 35px;
@@ -68,30 +108,54 @@ const HeaderTitle = styled.p`
     width: 350px;
   }
 `;
-const Description = styled.p`
-  color: rgb(${colors.grey});
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 5em;
-`;
-const HaederImage = styled.img`
-  width: 550px;
-  background-size: contain;
-  @media (max-width: 550px) {
-    width: 350px;
-  }
-`;
 
 // React.FC<Props1> = ({platformD, optionD, chartD, underlyingD, strikeD, expiryD, amountD, gasD, countdownD, premiumD});
+
 const ResultsContent: React.FC<Props1> = ({ Results }) => {
-  const history = useHistory();
+  const [toggled, setToggled] = React.useState(true);
+  const [isHide, setIsHide] = React.useState(false);
+  const containerRef = React.useRef(null);
+
+  const handleFilterSwitch = () => {
+    setToggled(!toggled);
+    setIsHide(!isHide);
+  };
   return (
     <div>
       <Grid container>
         <ItemContainer>
-          <Grid container spacing={2}>
+          <Box
+            style={{
+              borderRadius: "6px",
+              background:
+                "linear-gradient(to right, rgba(98, 99, 117, 0.4), rgba(174, 175, 184, 0.4))",
+              padding: "10px",
+              marginTop: "1%",
+            }}
+            ref={containerRef}
+          >
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={toggled}
+                  onChange={() => handleFilterSwitch()}
+                />
+              }
+              label="Advanced Options"
+              labelPlacement="start"
+              sx={{ color: "white" }}
+            />
+
+            <Fade in={toggled}>
+              <HeaderArea hidden={isHide}>
+                <Filter></Filter>
+              </HeaderArea>
+            </Fade>
+          </Box>
+
+          <Grid container spacing={2} className={CardArea}>
             <Grid item xs={12} sm={3} md={3} onClick={() => {}}>
-              {/*blank for now*/}
+              {/*details modal area */}
             </Grid>
             <Grid item xs={12} sm={9} md={9} onClick={() => {}}>
               <OptionCards Results={Results} />

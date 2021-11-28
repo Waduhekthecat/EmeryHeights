@@ -6,9 +6,10 @@ import ToggleButton from "@mui/material/ToggleButton";
 import { black, white } from "material-ui/styles/colors";
 import PurchaseModal from "./PurchaseModal";
 import IconButton from "@mui/material/IconButton";
+import CancelPresentationTwoToneIcon from "@mui/icons-material/CancelPresentationTwoTone";
 import { Close } from "@styled-icons/evaicons-solid";
 import { createTheme } from "@mui/material/styles";
-import { ThemeProvider, useTheme, makeStyles } from "@mui/styles";
+import { ThemeProvider, useTheme } from "@mui/styles";
 import { render } from "blockies-ts";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -17,6 +18,14 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { colors } from "../../../styles";
 import { ModalUnstyled } from "@mui/core";
+import { FormControl, Icon } from "@material-ui/core";
+import { flexbox } from "@mui/system";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { makeStyles } from "@material-ui/core/styles";
+import Switch from "@mui/material/Switch";
+import Slide from "@mui/material/Slide";
+import { Fade } from "@material-ui/core";
 
 const HederTitle = styled.h1`
   color: rgb(256, 256, 256) !important;
@@ -37,30 +46,42 @@ const Description = styled.p`
   margin: 0.3em;
   font-weigh: 200;
 `;
-const QueryButton = styledCom.a`
-
-    display: flex;
-    align-self: center;
-    align-items: center;
-    justify-content:center;
-    border-radius: 5px;
-    width: 90%;
-    color:white;
-    font-size:20px;
-    font-weight:600;
-    box-shadow: 3px 4px 0px rgb(10, 13, 27);
-    height: 56px;
-    background-color:#504798;
-    &:hover {
-      cursor: pointer;
-      background-color: 3px solid rgb(${colors.primary});
-      text-shadow: 3px 1px 0px white, 0 2 1em white, 0 0 0.2em darkblue
+const QueryButton = styled(Button)`
+  position: relative;
+  border-radius: 5px;
+  width: 80%;
+  color: #ffffff !important;
+  background-color: #504798 !important;
+  box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
+  height: 56px;
+  &:hover {
+    cursor: pointer;
+    color: #add8e6 !important;
+    transform: scale(1.1);
+    text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue;
   }
 `;
-const XClose = styled(Close)`
-  color: "black";
-  width: "15px" !important;
-  height: "15px" !important;
+
+const XClose = styled(CancelPresentationTwoToneIcon)`
+  width: 1em;
+  height: 1em;
+  transition: fill 200ms cubic-bezier(0.9, 0, 0.2, 1) 0ms !important;
+  background-color: background: linear-gradient(90deg, rgba(68,140,175,1) 0%, rgba(219,227,231,0.9710259103641457) 0%, rgba(240,240,240,1) 0%, rgba(66,148,149,1) 48%, rgba(228,228,230,1) 97%) !important;
+  border-radius: 4px !important;
+  color: black;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.4);
+    color: 'white' !important;
+  }
+`;
+
+const CancelButton = styled(Button)`
+  position: inline-flex;
+  width: 1em;
+  height: 1em;
+  
+  }
 `;
 
 // Selected Card fills this interface to populate the Details Modal via props //
@@ -86,42 +107,63 @@ const style1 = {
   width: "900px",
   height: "350px",
   zIndex: "1400",
-  borderRadius: "20px",
+  borderRadius: "15px",
   color: white,
-  border: "6px solid #000",
+  border: "4px solid #000",
   overflow: "scrollable",
   bgcolor: colors.main,
 };
 
 const style = {
   position: "absolute" as "absolute",
-  top: "14%",
+  top: "37%",
   left: "1.8%",
   width: "22%",
-  height: "600px",
+  height: "37%",
   zIndex: "1300",
   borderRadius: "0px",
 };
 
 // Uses interface to return container with details on selected card - allows purchase //
-const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
+const Details = (props: {
+  xResults: Props1;
+  sOpen: Boolean;
+  handleSelected: () => void;
+}) => {
   const [open, setOpen] = React.useState(props.sOpen);
   const [pOpen, setpOpen] = React.useState(false);
- 
+
   const handleClose = () => setOpen(false);
   const handleModal2 = () => {
     setpOpen(true);
   };
   const handleClose2 = () => setpOpen(false);
-  
-  return (
-    <Grid container direction="column">
-      <Container>
-        {/* Platform Name */}
-        <Grid item xs={6} sm={3} md={3} lg={12}>
-          <HederTitle> Platform: {props.xResults.Results.platformD}</HederTitle>
-        </Grid>
 
+  return (
+    <Container>
+      <CancelButton
+        style={{
+          top: "1%",
+          left: "90%",
+          zIndex: 1,
+          position: "relative",
+          fontSize: "8px",
+        }}
+        onClick={props.handleSelected}
+      >
+        <XClose />
+      </CancelButton>
+      <Grid container direction="column">
+        {/* Platform Name */}
+        <Grid container direction="row">
+          <Grid item xs={10} sm={10} md={10} lg={10}>
+            <HederTitle>
+              {" "}
+              Platform: {props.xResults.Results.platformD}
+            </HederTitle>
+          </Grid>
+          <Grid item xs={2} sm={2} md={2} lg={2}></Grid>
+        </Grid>
         {/* Option type and Underlying asset */}
         <Grid item xs={6} sm={3} md={3} lg={12}>
           <Description>
@@ -175,25 +217,37 @@ const Details = (props: { xResults: Props1; sOpen: Boolean }) => {
         </Grid>
 
         {/* Purchase Button */}
-        <Grid item xs={12} sm={12} md={12} lg={12}>
-          <QueryButton onClick={handleModal2}>Purchase</QueryButton>
-          <Modal
-            open={pOpen}
-            disableScrollLock={false}
-            hideBackdrop={false}
-            BackdropComponent={Backdrop}
-            onClose={handleClose2}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style1}>
-              <PurchaseModal Submit={props.xResults} pOpen={pOpen} handlePurchaseModal={handleClose2}/>
-            </Box>
-          </Modal>
+
+        <Grid container direction="row" spacing={1}>
+          <Grid item md={2}></Grid>
+          <Grid item md={10}>
+            <QueryButton
+              disableRipple={true}
+              disableFocusRipple={true}
+              onClick={handleModal2}
+            >
+              Purchase
+            </QueryButton>
+          </Grid>
         </Grid>
-        <Grid item></Grid>
-      </Container>
-    </Grid>
+
+        <Modal
+          style={{ zIndex: 8000 }}
+          open={pOpen}
+          disableScrollLock={false}
+          BackdropComponent={Backdrop2}
+          onClose={handleClose2}
+        >
+          <Grid item sx={style1}>
+            <PurchaseModal
+              Submit={props.xResults}
+              pOpen={pOpen}
+              handlePurchaseModal={handleClose2}
+            />
+          </Grid>
+        </Modal>
+      </Grid>
+    </Container>
   );
 };
 
@@ -219,7 +273,6 @@ const CardContainer = styled.div`
   border-radius: 17px;
   flex-direction: column;
   border: 6px 6px solid "rgb(212, 212, 212)";
-  box-shadow: 40px 40px 0px "rgb(212, 212, 212)" !important;
   @media (max-width: 1500px) {
     width: "400px" !important;
     height: "400px" !important;
@@ -254,6 +307,7 @@ const HeaderTitle = styled.h1`
 const Container = styled.div`
   position: absolute;
   width: 100%;
+  height: auto;
   background-color: rgb(67, 159, 174);
   border-radius: 15px;
   display: flex;
@@ -261,27 +315,40 @@ const Container = styled.div`
   border: 1px solid rgba(${colors.border});
   padding: 1.5em;
   margin-top: 5%;
-  </Grid > @media (max-width: 950px) {
+  @media (max-width: 950px) {
     width: 1000px;
     height: 300px;
-    flex-direction: row;
+    flex-direction: column;
   }
 `;
 
 // SelectedDiv = styled(div)``;
 
 const CompareButton2 = styled(ToggleButton)`
-  height: 50% !important;
-  width: 90% !important;
-  border-radius: 8px !important;
-
-  font-size: 20px;
-  font-weight: 600;
+  height: 70% !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+  margin-top: 5px !important;
+  margin-left: 60% !important;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 100%;
   box-shadow: 3px 3px 3px rgba(10, 13, 27, 0.5);
   background-color: #504798 !important;
-  color: rgb(256, 256, 256) !important;
+  color: #ffffff !important;
   &:hover {
     cursor: pointer;
+    color: #add8e6 !important;
+    transform: scale(1.1);
+    text-shadow: 1px 1px 2px white, 0 0 1em white, 0 0 0.2em darkblue;
+  }
+  &.Mui-selected {
+    color: black !important;
+    font-size: 120%;
+    border: transparent !important;
+    background: transparent !important;
+    margin-left: 30% !important;
+    box-shadow: 0px 0px 0px transparent !important;
   }
 `;
 const DescriptionTxt = styled.p`
@@ -300,10 +367,17 @@ const DescriptionTxt2 = styled.p`
   }
 `;
 const DescriptionTxt3 = styled.p`
-  color: black;
-  font-size: 22px;
-  padding-left: 5%;
+  font-size: 20px;
+  padding-left: 7%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-weight: 500;
 `;
+const DescriptionTxt4 = styled.p`
+  font-size: 21px;
+  background: rgba(${colors.lightGrey});
+`;
+
 //  background: rgb(68, 140, 175);
 //    background: linear-gradient(
 //      20deg,
@@ -350,24 +424,25 @@ const Backdrop = styled("div")`
   bottom: 0;
   top: 0;
   left: 0;
-  background-color: ;
 `;
 const Backdrop2 = styled("div")`
-  z-index: 100;
+  z-index: 500;
   position: fixed;
+  background: rgba(56, 56, 56, 0.8);
   right: 0;
   bottom: 0;
   top: 0;
   left: 0;
-  background-color: ;
 `;
 // Takes props from interface and fills the fields on the option cards with data returned from API //
 // *Also declares Modal for Details card on click of select button //
 const StatCard = (props: { xResults: Props1 }) => {
+  const textS = ["SELECT", "SELECTED"];
+  const [sText, setSText] = React.useState(textS[0]);
   const [disabled, setDisabled] = React.useState(false);
+  const [tColor, setTColor] = React.useState(colors.black);
   const [bgColor, setBackground] = useState(colors.white);
   const [bgColor2, setBackground2] = useState(colors.primary);
-  const [sText, setSText] = React.useState()
   const [bgColor3, setBackground3] = useState(
     "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
   );
@@ -375,12 +450,17 @@ const StatCard = (props: { xResults: Props1 }) => {
   const [selected, setSelected] = useState(false);
   const [sOpen, setsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const key = (String: any) => "";
+  const [toggled, setToggled] = React.useState(false);
+  const [isHide, setIsHide] = React.useState(true);
   const handleSelected = () => {
     setSelected(!selected);
     setsOpen(!sOpen);
     setOpen(!open);
     setDisabled(!disabled);
+    setToggled(!toggled);
+    setIsHide(!isHide);
+    disabled == false ? setSText(textS[1]) : setSText(textS[0]);
+    tColor == colors.black ? setTColor(colors.white) : setTColor(colors.black);
     bgColor == colors.white
       ? setBackground(colors.primary)
       : setBackground(colors.white);
@@ -395,98 +475,104 @@ const StatCard = (props: { xResults: Props1 }) => {
       : setBackground3(
           "linear-gradient(to right, rgb(98, 99, 117), rgb(174, 175, 184))"
         );
-<<<<<<< HEAD
-    bgColor4 == colors.secondary
-      ? setBackground4(colors.white)
-      : setBackground4(colors.secondary);
-    visible == false ? key("none") : key("visible");
-=======
-  
->>>>>>> 5b6e3f0acbe86ff1ac04165d4081ff87d8bfed62
   };
+  const containerRef = React.useRef(null);
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
     handleSelected();
   };
 
   return (
-    <Grid container>
-      <CardContainer>
-        <Grid container direction="column">
+    <Grid container style={{ paddingBottom: "5px" }}>
+      <CardContainer
+        style={{ boxShadow: "10px 5px 2px 2px rgba(117 , 121, 129, 0.6)" }}
+      >
+        <Grid container direction="row">
           {/* Platform Name */}
           <Grid
             item
+            md={12}
             style={{
               background: bgColor3,
               borderTopLeftRadius: "18px",
               borderTopRightRadius: "18px",
             }}
-            xs={12}
-            sm={12}
-            md={6}
-            lg={1}
           >
             <DescriptionTxt2>
               Platform: {props.xResults.Results.platformD}
             </DescriptionTxt2>
           </Grid>
           {/* Premium, Amount, Strike Price, and Expiry */}
-          <Grid item style={{ background: bgColor }}>
+          <Grid item md={12} style={{ color: tColor, background: bgColor }}>
             <DescriptionTxt3>
               Premium: {props.xResults.Results.premiumD}
-              <br />
+            </DescriptionTxt3>
+          </Grid>
+          <Grid item md={12} style={{ color: tColor, background: bgColor }}>
+            <DescriptionTxt3>
               Quantity: {props.xResults.Results.amountD}
-              <br />
+            </DescriptionTxt3>
+          </Grid>
+          <Grid item md={12} style={{ color: tColor, background: bgColor }}>
+            <DescriptionTxt3>
               Strike: {props.xResults.Results.strikeD}
-              <br />
+            </DescriptionTxt3>
+          </Grid>
+          <Grid item md={12} style={{ color: tColor, background: bgColor }}>
+            <DescriptionTxt3>
               Expiry: {props.xResults.Results.expiryD}
             </DescriptionTxt3>
           </Grid>
-        </Grid>
-
-        <Grid container direction="row" style={{ boxShadow: "10, 10, 10, 5" }}>
-          {/* Select Button */}
-          <ButtonGroup
+          <Grid
+            container
+            direction="row"
             style={{
+              height: "80px",
               background: bgColor2,
               borderBottomLeftRadius: "18px",
               borderBottomRightRadius: "18px",
             }}
           >
-            <Grid item xs={5} sm={5} md={5} lg={5}>
-              <div></div>
-            </Grid>
-            <Grid item xs={6} sm={6} md={6} lg={6}>
-              <CompareButton2
-<<<<<<< HEAD
-                sx={{ background: bgColor4 }}
-=======
->>>>>>> 5b6e3f0acbe86ff1ac04165d4081ff87d8bfed62
-                value={sOpen}
-                selected={selected}
-                onClick={handleSelected}
-                disabled={disabled}
+            <Grid item sm={12} md={12} lg={12}>
+              <FormControl
+                style={{ marginLeft: "15%", width: "45%", marginTop: "2%" }}
               >
-                <p style={{ fontSize: 17, fontWeight: 900 }}>SELECT</p>
-              </CompareButton2>
+                <CompareButton2
+                  value={sOpen}
+                  selected={selected}
+                  onClick={handleSelected}
+                >
+                  {" "}
+                  {sText}{" "}
+                </CompareButton2>
+              </FormControl>
+
+              <Box ref={containerRef}>
+                <Fade in={toggled}>
+                  <Box
+                    sx={style}
+                    style={{ zIndex: 1500, position: "absolute" }}
+                    hidden={isHide}
+                  >
+                    <Details
+                      xResults={props.xResults}
+                      sOpen={open}
+                      handleSelected={handleSelected}
+                    />
+                  </Box>
+                </Fade>{" "}
+              </Box>
             </Grid>
-          </ButtonGroup>
+          </Grid>
         </Grid>
-      </CardContainer>
-      <Grid item xs={3} sm={3} md={3} lg={3}>
         <Modal
           open={open}
           disableScrollLock={true}
-          hideBackdrop={false}
           BackdropComponent={Backdrop}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
         >
-          <Grid sx={style}>
-            <Details xResults={props.xResults} sOpen={open} />
-          </Grid>
+          <div></div>
         </Modal>
-      </Grid>
+      </CardContainer>
     </Grid>
   );
 };

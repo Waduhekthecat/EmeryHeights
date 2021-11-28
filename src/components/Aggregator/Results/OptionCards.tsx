@@ -173,7 +173,14 @@ const Card: React.FC<Props1> = ({ Results }) => {
   ];
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        style={{
+          marginTop: "20px",
+          paddingRight: "20px",
+        }}
+      >
         <Grid item xs={4} md={4} className={classes.CardContainer}>
           <StatCard xResults={data[0]} />
         </Grid>
