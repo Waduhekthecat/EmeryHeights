@@ -25,6 +25,8 @@ interface Props1 {
     gasD: any;
     countdownD: any;
     premiumD: String;
+    pColor: String;
+    styleX: String;
   };
 }
 
@@ -53,6 +55,8 @@ const xResults: Props1 = {
     gasD: "000",
     countdownD: "000",
     premiumD: "000",
+    pColor: "000",
+    styleX: "000",
   },
 };
 

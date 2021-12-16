@@ -19,6 +19,8 @@ interface Props1 {
     gasD: any;
     countdownD: any;
     premiumD: String;
+    pColor: String;
+    styleX: String;
   };
 }
 const drawerWidth = 240;

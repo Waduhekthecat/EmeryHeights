@@ -3,7 +3,7 @@ import styled from "styled-components";
 import OptionCards from "./OptionCards";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
-import { colors } from "../../../styles";
+import { colors, styleX } from "../../../styles";
 import Filter from "./AdvancedFilter";
 import Collapsible from "react-collapsible";
 import { Collapse } from "@mui/material";
@@ -15,6 +15,7 @@ import Switch from "@mui/material/Switch";
 import Slide from "@mui/material/Slide";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Fade } from "@material-ui/core";
+import { StylesContext } from "@material-ui/styles";
 
 interface Props1 {
   Results: {
@@ -28,6 +29,8 @@ interface Props1 {
     gasD: any;
     countdownD: any;
     premiumD: String;
+    pColor: String;
+    styleX: String;
   };
 }
 {
@@ -43,13 +46,14 @@ const ItemContainer = styled.div`
   padding-top: 0.5em;
   padding-bottom: 1em;
   margin-bottom: 1em;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
   border: 4px rgb(${colors.gradLight});
-  background-color: rgb(31, 36, 54);
+  background-color: #111;
   @media (max-width: 1200px) {
   }
 `;
+
 const HeaderBgArea = styled.div`
 position: absolute;
 padding 2px;
@@ -80,7 +84,7 @@ const CardArea = styled.div`
   padding-left: 1%;
   padding-right: 1%;
   padding-top: 1em;
-  padding-bottom: 1em;
+  padding-bottom: 5em;
   margin-bottom: 1em;
   border-radius: 20px;
   box-shadow: 2px 2px 2px rgba(10, 13, 27, 0.6);
@@ -112,13 +116,17 @@ const HeaderTitle = styled.p`
 // React.FC<Props1> = ({platformD, optionD, chartD, underlyingD, strikeD, expiryD, amountD, gasD, countdownD, premiumD});
 
 const ResultsContent: React.FC<Props1> = ({ Results }) => {
-  const [toggled, setToggled] = React.useState(true);
-  const [isHide, setIsHide] = React.useState(false);
+  const [toggled, setToggled] = React.useState(false);
+  const [isHide, setIsHide] = React.useState(true);
+  const [containerUp, setContainerUp] = React.useState(styleX.topx);
   const containerRef = React.useRef(null);
 
   const handleFilterSwitch = () => {
     setToggled(!toggled);
     setIsHide(!isHide);
+    containerUp == styleX.topx
+      ? setContainerUp(styleX.top)
+      : setContainerUp(styleX.topx);
   };
   return (
     <div>

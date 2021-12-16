@@ -11,6 +11,7 @@ export const colors: any = {
     'rgb(0, 153, 215)':'40%',
     'rgb(240, 240, 200)':'80%'
   },
+  cardBg: "linear-gradient(to right, rgba(98, 99, 117, 0.3), rgba(174, 175, 184, 0.3))",
   // other colors:
   main: "rgb(54, 60, 79)",
   gradDark: "rgb(31,36,54)",
@@ -36,6 +37,11 @@ export const colors: any = {
   red: 'rgb(214, 75, 71)',
   purple: 'rgb(110, 107, 233)',
   selected: 'rgb(67, 159, 174)',
+};
+
+export const styleX = {
+  topx: "20%",
+  top: "37%"
 };
 
 export const fonts = {

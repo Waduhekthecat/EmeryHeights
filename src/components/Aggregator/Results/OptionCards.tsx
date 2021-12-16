@@ -17,6 +17,8 @@ interface Props1 {
     gasD: any;
     countdownD: any;
     premiumD: String;
+    pColor: String;
+    styleX: String;
   };
 }
 
@@ -26,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "0px !important",
   },
   CardContainer: {
-    paddingTop: "0px !important",
+    paddingBottom: "10px !important",
+    paddingTop: "10px !important",
   },
 }));
 
@@ -56,6 +59,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$1825",
+        pColor: "teal",
+        styleX: "",
       },
     },
     {
@@ -70,6 +75,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2000",
+        pColor: "purple",
+        styleX: "",
       },
     },
     {
@@ -84,6 +91,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2350",
+        pColor: "white",
+        styleX: "",
       },
     },
     {
@@ -98,6 +107,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2375",
+        pColor: "orange",
+        styleX: "",
       },
     },
     {
@@ -112,6 +123,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2420",
+        pColor: "darkBlue",
+        styleX: "",
       },
     },
     {
@@ -126,6 +139,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2500",
+        pColor: "green",
+        styleX: "",
       },
     },
     {
@@ -140,6 +155,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2750",
+        pColor: "lightBlue",
+        styleX: "",
       },
     },
     {
@@ -154,6 +171,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$2950",
+        pColor: "grey",
+        styleX: "",
       },
     },
     {
@@ -168,6 +187,8 @@ const Card: React.FC<Props1> = ({ Results }) => {
         gasD: " ",
         countdownD: " ",
         premiumD: "$3000",
+        pColor: "red",
+        styleX: "",
       },
     },
   ];
