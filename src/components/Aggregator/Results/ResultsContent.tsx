@@ -3,7 +3,7 @@ import styled from "styled-components";
 import OptionCards from "./OptionCards";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
-import { colors, styleX } from "../../../styles";
+import { colors } from "../../../styles";
 import Filter from "./AdvancedFilter";
 import Collapsible from "react-collapsible";
 import { Collapse } from "@mui/material";
@@ -33,6 +33,7 @@ interface Props1 {
     styleX: String;
   };
 }
+
 {
   /* height must be adjusted for variance in stat cards returned from query */
 }
@@ -112,22 +113,38 @@ const HeaderTitle = styled.p`
     width: 350px;
   }
 `;
+const style = {
+  position: "absolute" as "absolute",
+  top: "37%",
+  left: "2%",
+  width: "22%",
+  height: "38%",
+  zIndex: "1300",
+};
+
+const style3 = {
+  position: "absolute" as "absolute",
+  top: "20%",
+  left: "2%",
+  width: "22%",
+  height: "38%",
+  zIndex: "1300",
+};
 
 // React.FC<Props1> = ({platformD, optionD, chartD, underlyingD, strikeD, expiryD, amountD, gasD, countdownD, premiumD});
 
 const ResultsContent: React.FC<Props1> = ({ Results }) => {
   const [toggled, setToggled] = React.useState(false);
   const [isHide, setIsHide] = React.useState(true);
-  const [containerUp, setContainerUp] = React.useState(styleX.topx);
+  const [styleX, setStyleX] = React.useState(style3);
   const containerRef = React.useRef(null);
 
   const handleFilterSwitch = () => {
     setToggled(!toggled);
     setIsHide(!isHide);
-    containerUp == styleX.topx
-      ? setContainerUp(styleX.top)
-      : setContainerUp(styleX.topx);
+    styleX == style3 ? setStyleX(style) : setStyleX(style3);
   };
+
   return (
     <div>
       <Grid container>

@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { colors, styleX } from "../../../styles";
+import { colors } from "../../../styles";
 import { ModalUnstyled } from "@mui/core";
 import { FormControl, Icon } from "@material-ui/core";
 import { flexbox } from "@mui/system";
@@ -516,7 +516,7 @@ const StatCard = (props: { xResults: Props1 }) => {
                 <Box ref={containerRef}>
                   <Fade in={toggled}>
                     <Box
-                      sx={style}
+                      sx={styleX}
                       style={{ zIndex: 1500, position: "absolute" }} // top: {styleX.topX} }}
                       hidden={isHide}
                     >

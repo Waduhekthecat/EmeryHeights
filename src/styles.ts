@@ -39,11 +39,6 @@ export const colors: any = {
   selected: 'rgb(67, 159, 174)',
 };
 
-export const styleX = {
-  topx: "20%",
-  top: "37%"
-};
-
 export const fonts = {
   size: {
     tiny: '10px',
